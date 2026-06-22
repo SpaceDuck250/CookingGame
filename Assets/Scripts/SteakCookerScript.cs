@@ -1,13 +1,12 @@
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class SteakCookerScript : MonoBehaviour
 {
     public SteakFlipperScript steakFlipper;
 
     public GameObject cookSide;
+    public SteakSideScript steakSide;
 
-    public float timer;
     public float cookedTime;
 
     public float burntTime;
@@ -39,18 +38,18 @@ public class SteakCookerScript : MonoBehaviour
             return;
         }
 
-        timer += Time.deltaTime;
+        steakSide.cookedTimer += Time.deltaTime;
 
-        if (timer >= cookedTime)
+        if (steakSide.cookedTimer >= cookedTime)
         {
-            cookSide.GetComponent<SteakSideScript>().cooked = true;
+            steakSide.cooked = true;
 
             ApplyTexture(cookedMaterial);
         }
 
-        if (timer >= burntTime)
+        if (steakSide.cookedTimer >= burntTime)
         {
-            cookSide.GetComponent<SteakSideScript>().burnt = true;
+            steakSide.burnt = true;
 
             ApplyTexture(burntMaterial);
 
@@ -62,8 +61,8 @@ public class SteakCookerScript : MonoBehaviour
     {
         this.cookSide = cookSide;
 
-        SteakSideScript steakSideScript = cookSide.GetComponent<SteakSideScript>();
-        CheckIfAlreadyCookedOrBunt(steakSideScript);
+        steakSide = cookSide.GetComponent<SteakSideScript>();
+        CheckIfAlreadyCookedOrBunt(steakSide);
     }
 
     private void ApplyTexture(Material material)
@@ -78,16 +77,9 @@ public class SteakCookerScript : MonoBehaviour
         {
             canRunTimer = false;
         }
-        else if (side.cooked)
+        else 
         {
-            timer = cookedTime;
             canRunTimer = true;
         }
-        else if (!side.burnt && !side.cooked)
-        {
-            timer = 0;
-            canRunTimer = true;
-        }
-
     }
 }
