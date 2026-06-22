@@ -13,17 +13,21 @@ public class TurnScript : MonoBehaviour
 
     public float yRange;
 
+    public Camera cam;
+
     private void Update()
     {
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
-        xTurn += mouseX * Time.deltaTime * senseX;
+        //xTurn += mouseX * Time.deltaTime * senseX;
         yTurn -= mouseY * Time.deltaTime * senseY;
 
         yTurn = Mathf.Clamp(yTurn, -yRange, yRange);
 
-        transform.rotation = Quaternion.Euler(yTurn, xTurn, 0);
+        cam.transform.localRotation = Quaternion.Euler(yTurn, 0, 0);
+
+        transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
 
     }
 }
