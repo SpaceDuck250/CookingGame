@@ -7,4 +7,6 @@ public class FoodData : ScriptableObject
     public string foodName;
     public Sprite foodSprite;
     public GameObject foodModel;
+
+    public FoodData cookedVersion;
 }
