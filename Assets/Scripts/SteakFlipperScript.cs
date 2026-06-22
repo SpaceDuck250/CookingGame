@@ -18,12 +18,21 @@ public class SteakFlipperScript : MonoBehaviour
 
     public GameObject sideGettingCooked;
 
+    //For setup
+    public CookingInputOutputScript cookingInputOutput;
+    public GameObject rawSteakPrefab;
+    public Vector3 localPositionOffset;
+
     private void Start()
     {
         desiredRotation = Quaternion.Euler(0, 0, 90);
 
-        // Maybe change this later when making machine
-        SetTopAndBottom();
+        cookingInputOutput.OnCookingStart += OnCookingGameStart;
+    }
+
+    private void OnDestroy()
+    {
+        cookingInputOutput.OnCookingStart -= OnCookingGameStart;
     }
 
     private void Update()
@@ -32,8 +41,20 @@ public class SteakFlipperScript : MonoBehaviour
         SlowlyRotate();
     }
 
+    private void OnCookingGameStart(FoodData foodCooked)
+    {
+        steakHeld = Instantiate(rawSteakPrefab, transform.position, Quaternion.identity, flipObject.transform);
+        steakHeld.transform.localPosition = localPositionOffset;
+        SetTopAndBottom();
+    }
+
     public void CheckInput()
     {
+        if (steakHeld == null)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             FlipSteak(rotateAmount, Vector3.right);

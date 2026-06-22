@@ -16,19 +16,29 @@ public class SteakCookerScript : MonoBehaviour
 
     public bool canRunTimer = false;
 
+    public CookingInputOutputScript cookingInputOutputScript;
+
     private void Start()
     {
         steakFlipper.OnSteakFlipped += OnSideSwitched;
+        cookingInputOutputScript.OnCookingStart += OnCookingStart;
     }
 
     private void OnDestroy()
     {
         steakFlipper.OnSteakFlipped -= OnSideSwitched;
+        cookingInputOutputScript.OnCookingStart -= OnCookingStart;
+
     }
 
     private void Update()
     {
         CookSide();
+    }
+
+    private void OnCookingStart(FoodData foodData)
+    {
+        Invoke("StartCookingBottom", 0.1f);
     }
 
     private void CookSide()
@@ -55,6 +65,11 @@ public class SteakCookerScript : MonoBehaviour
 
             canRunTimer = false;
         }
+    }
+
+    private void StartCookingBottom()
+    {
+        OnSideSwitched(steakFlipper.bottomPart);
     }
 
     private void OnSideSwitched(GameObject cookSide)

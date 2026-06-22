@@ -8,6 +8,7 @@ public class PlayerHandScript : MonoBehaviour
 
     public float maxRange;
     public LayerMask foodLayer;
+    public LayerMask cookingStationLayer;
 
     public Transform heldContainer;
 
@@ -18,12 +19,27 @@ public class PlayerHandScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            TryHoldingFoodObj();
+            if (currentFoodHeld == null)
+            {
+                TryHoldingFoodObj();
+            }
+            else
+            {
+                print("l");
+                TryToInteractWithCookingStation();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            ThrowFood();
+            if (currentFoodHeldObj != null)
+            {
+                ThrowFood();
+            }
+            else
+            {
+                TryToTakeFoodFromStation();
+            }
         }
     }
 
@@ -82,6 +98,27 @@ public class PlayerHandScript : MonoBehaviour
         rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
 
         currentFoodHeldObj = null;
+    }
+
+    private void TryToInteractWithCookingStation()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange))
+        {
+            if (hit.collider.gameObject.tag != "CookingStation")
+            {
+                return;
+            }
+
+            print(hit.collider.gameObject);
+
+            CookingInputOutputScript inputOutputScript = hit.collider.gameObject.GetComponent<CookingInputOutputScript>();
+            inputOutputScript.TryPutFood(currentFoodHeld, this);
+        }
+    }
+
+    private void TryToTakeFoodFromStation()
+    {
 
     }
 }
