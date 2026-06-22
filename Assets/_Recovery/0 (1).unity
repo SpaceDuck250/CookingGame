@@ -187,9 +187,7 @@ MonoBehaviour:
   cookSide: {fileID: 0}
   timer: 0
   cookedTime: 4
-  cooked: 0
   burntTime: 10
-  burnt: 0
   cookedMaterial: {fileID: 2100000, guid: 7966edf0ef8ea354d8904696b8a60743, type: 2}
   burntMaterial: {fileID: 2100000, guid: 67fd2cb634aaa37478c594e740113710, type: 2}
   canRunTimer: 0
@@ -264,7 +262,7 @@ PrefabInstance:
     - target: {fileID: -2090608591832345471, guid: 2166124fb1246f743a128da492dbc529, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 97bd33886cff33f4cab53080b8debe8b, type: 2}
+      objectReference: {fileID: 2100000, guid: 602d29b65dc022e46b92c61825ce3582, type: 2}
     - target: {fileID: 919132149155446097, guid: 2166124fb1246f743a128da492dbc529, type: 3}
       propertyPath: m_Name
       value: Steak (1)
@@ -284,6 +282,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5394693769120690257, guid: 2166124fb1246f743a128da492dbc529, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1051967591}
+    - targetCorrespondingSourceObject: {fileID: -5049032948309972686, guid: 2166124fb1246f743a128da492dbc529, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 950721588}
   m_SourcePrefab: {fileID: 100100000, guid: 2166124fb1246f743a128da492dbc529, type: 3}
 --- !u!1 &358987129
 GameObject:
@@ -1178,6 +1179,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918970988}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &950721584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5049032948309972686, guid: 2166124fb1246f743a128da492dbc529, type: 3}
+  m_PrefabInstance: {fileID: 245119354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &950721588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950721584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteakSideScript
+  cooked: 0
+  burnt: 0
 --- !u!1 &1041559506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  cooked: 0
+  burnt: 0
 --- !u!1 &1070998862
 GameObject:
   m_ObjectHideFlags: 0
