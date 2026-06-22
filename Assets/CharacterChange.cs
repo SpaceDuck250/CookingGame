@@ -11,8 +11,9 @@ public class CharacterChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.75f;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 10f, layerMask))
+        if (Physics.Raycast(rayOrigin, transform.forward, out hit, 10f, layerMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
             if(Input.GetKey(KeyCode.E))
