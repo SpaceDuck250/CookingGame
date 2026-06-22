@@ -6,6 +6,6 @@ public class NewScriptableObjectScript : ScriptableObject
 {
     public int mealID;
     public string mealName;
-    public List<FoodData> foodIngredients;
+    public List<FoodData> foodIngredients = new List<FoodData>();
     public float mealPrice;
 }
