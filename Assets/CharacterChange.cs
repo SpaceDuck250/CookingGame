@@ -4,6 +4,8 @@ public class CharacterChange : MonoBehaviour
 {
     public Slider slider;
     public GameObject cuttingBar;
+    public GameObject carrotSlices;
+    public GameObject carrot;
     public float fillRate = 0.5f;
     public Animator animator;
     public RuntimeAnimatorController runtimeAnimatorController;
@@ -33,6 +35,14 @@ public class CharacterChange : MonoBehaviour
         {
             cuttingBar.SetActive(false);
             slider.value = 0;
+        }
+        if(slider.value >= 1)
+        {
+            animator.runtimeAnimatorController = null;
+            slider.value = 0;
+            cuttingBar.SetActive(false);
+            carrot.SetActive(false);
+            carrotSlices.SetActive(true);
         }
     }
 }
