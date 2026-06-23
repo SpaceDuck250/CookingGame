@@ -25,7 +25,6 @@ public class PlayerHandScript : MonoBehaviour
             }
             else
             {
-                print("l");
                 TryToInteractWithCookingStation();
             }
         }
@@ -53,7 +52,7 @@ public class PlayerHandScript : MonoBehaviour
             FoodData foodData = holdableFoodScript.foodData;
 
             SwitchFoodItem(foodData, hit.collider.gameObject);
-            BringFoodToHand(hit.collider.gameObject.transform);
+            BringFoodToHand(holdableFoodScript);
         }
     }
 
@@ -63,16 +62,18 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj = newFoodObj;
     }
 
-    private void BringFoodToHand(Transform foodTransform)
+    private void BringFoodToHand(HoldableFoodScript holdableScript)
     {
+        currentFoodHeldObj = Instantiate(holdableScript.foodData.foodModel, transform.position, Quaternion.identity, heldContainer);
+
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        
 
-        foodTransform.parent = heldContainer;
-        foodTransform.localPosition = Vector3.zero;
+        currentFoodHeldObj.transform.localPosition = Vector3.zero;
 
+        Destroy(holdableScript.objectToDelete);
 
+        //Destroy(oldFood);
     }
 
     private void ThrowFood()

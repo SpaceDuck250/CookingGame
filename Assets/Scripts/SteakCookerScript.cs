@@ -17,6 +17,7 @@ public class SteakCookerScript : MonoBehaviour
     public bool canRunTimer = false;
 
     public CookingInputOutputScript cookingInputOutputScript;
+    public bool steakFinished = false;
 
     private void Start()
     {
@@ -55,6 +56,12 @@ public class SteakCookerScript : MonoBehaviour
             steakSide.cooked = true;
 
             ApplyTexture(cookedMaterial);
+
+            if (CheckIfBothSidesPerfectlyCooked(steakFlipper))
+            {
+                cookingInputOutputScript.OnCookingEnd?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld);
+                EndCooking();
+            }
         }
 
         if (steakSide.cookedTimer >= burntTime)
@@ -69,7 +76,13 @@ public class SteakCookerScript : MonoBehaviour
 
     private void StartCookingBottom()
     {
+        steakFinished = false;
         OnSideSwitched(steakFlipper.bottomPart);
+    }
+
+    private void EndCooking()
+    {
+        canRunTimer = false;
     }
 
     private void OnSideSwitched(GameObject cookSide)
@@ -82,6 +95,10 @@ public class SteakCookerScript : MonoBehaviour
 
     private void ApplyTexture(Material material)
     {
+        if (cookSide == null)
+        {
+            return;
+        }
         Renderer sideRenderer = cookSide.GetComponent<Renderer>();
         sideRenderer.material = material;
     }
@@ -96,5 +113,24 @@ public class SteakCookerScript : MonoBehaviour
         {
             canRunTimer = true;
         }
+    }
+
+    private bool CheckIfBothSidesPerfectlyCooked(SteakFlipperScript steakFlipper)
+    {
+        if (steakFinished)
+        {
+            return false;
+        }
+
+        SteakSideScript bottomSide = steakFlipper.bottomPart.GetComponent<SteakSideScript>();
+        SteakSideScript topSide = steakFlipper.topPart.GetComponent<SteakSideScript>();
+
+        if (bottomSide.cooked && topSide.cooked)
+        {
+            steakFinished = true;
+            return true;
+        }
+
+        return false;
     }
 }

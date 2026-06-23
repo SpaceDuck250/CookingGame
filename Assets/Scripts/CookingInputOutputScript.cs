@@ -9,11 +9,25 @@ public class CookingInputOutputScript : MonoBehaviour
     public FoodData input;
 
     public Action<FoodData> OnCookingStart;
-    public Action<FoodData> OnCookingEnd;
+    public Action<Vector3, GameObject> OnCookingEnd;
 
     public Action<bool> OnFoodInputCorrect;
 
     public RecipeData currentRecipeUsed;
+
+    // Invisaible and can contain food;
+    public GameObject invisiblePickupObject;
+
+    private void Start()
+    {
+        OnCookingEnd += SpawnPickupableOutputFood;
+    }
+
+    private void OnDestroy()
+    {
+        OnCookingEnd -= SpawnPickupableOutputFood;
+
+    }
 
     private void Update()
     {
@@ -47,7 +61,16 @@ public class CookingInputOutputScript : MonoBehaviour
         OnCookingStart?.Invoke(currentRecipeUsed.inputFood);
         playerHand.currentFoodHeld = null;
         Destroy(playerHand.currentFoodHeldObj);
+    }
 
+    public void SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject)
+    {
+        GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
+
+        HoldableFoodScript holdScript = pickupFood.GetComponent<HoldableFoodScript>();
+        holdScript.foodData = currentRecipeUsed.outputFood;
+
+        holdScript.objectToDelete = deleteObject;
     }
 
 
