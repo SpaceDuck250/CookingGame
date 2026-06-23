@@ -43,8 +43,17 @@ public class SteakFlipperScript : MonoBehaviour
 
     private void OnCookingGameStart(FoodData foodCooked)
     {
-        steakHeld = Instantiate(rawSteakPrefab, transform.position, Quaternion.identity, flipObject.transform);
+        //steakHeld = Instantiate(rawSteakPrefab, transform.position, Quaternion.identity, flipObject.transform);
+        steakHeld = Instantiate(foodCooked.foodModel, transform.position, Quaternion.identity);
+
+        steakHeld.transform.SetParent(flipObject.transform, true);
+
+        steakHeld.GetComponent<Rigidbody>().isKinematic = true;
+
         steakHeld.transform.localPosition = localPositionOffset;
+
+        Destroy(steakHeld.GetComponent<Collider>());
+
         SetTopAndBottom();
     }
 
@@ -79,8 +88,10 @@ public class SteakFlipperScript : MonoBehaviour
     {
         steakHeld = flipObject.transform.GetChild(0).gameObject;
 
-        bottomPart = steakHeld.transform.GetChild(1).gameObject;
-        topPart = steakHeld.transform.GetChild(2).gameObject;
+        //bottomPart = steakHeld.transform.GetChild(1).gameObject;
+        //topPart = steakHeld.transform.GetChild(2).gameObject;
+        bottomPart = steakHeld.transform.Find("Bottom").gameObject;
+        topPart = steakHeld.transform.Find("Top").gameObject;
 
         sideGettingCooked = bottomPart;
     }
