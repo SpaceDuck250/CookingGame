@@ -25,8 +25,14 @@ public class CharacterChange : MonoBehaviour
             else
             {
                 cuttingBar.SetActive(false);
+                slider.value = 0;
                 animator.runtimeAnimatorController = null;
             }
+        }
+        else
+        {
+            cuttingBar.SetActive(false);
+            slider.value = 0;
         }
     }
 }
