@@ -49,6 +49,8 @@ public class SteakCookerScript : MonoBehaviour
             return;
         }
 
+        CheckIfSteakTakenOut();
+
         steakSide.cookedTimer += Time.deltaTime;
 
         if (steakSide.cookedTimer >= cookedTime)
@@ -109,7 +111,7 @@ public class SteakCookerScript : MonoBehaviour
         {
             canRunTimer = false;
         }
-        else 
+        else
         {
             canRunTimer = true;
         }
@@ -117,7 +119,7 @@ public class SteakCookerScript : MonoBehaviour
 
     private bool CheckIfBothSidesPerfectlyCooked(SteakFlipperScript steakFlipper)
     {
-        if (steakFinished)
+        if (steakFinished || steakFlipper.steakHeld == null)
         {
             return false;
         }
@@ -132,5 +134,13 @@ public class SteakCookerScript : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void CheckIfSteakTakenOut()
+    {
+        if (steakFlipper.steakHeld == null)
+        {
+            EndCooking();
+        }
     }
 }

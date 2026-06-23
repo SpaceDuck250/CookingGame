@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   foodData: {fileID: 11400000, guid: da6343f616c2a674b96e9e082f6247bd, type: 2}
+  objectToDelete: {fileID: 0}
 --- !u!54 &866516334038129780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,8 +200,9 @@ GameObject:
   - component: {fileID: 3705799844040874406}
   - component: {fileID: 1128983399265472480}
   - component: {fileID: 6345973568775734235}
+  - component: {fileID: 6103614305014595201}
   m_Layer: 7
-  m_Name: Plane.011
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,6 +280,21 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6103614305014595201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3470577334306875695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteakSideScript
+  cooked: 0
+  burnt: 0
+  cookedTimer: 0
 --- !u!1 &4479157100201160727
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +306,9 @@ GameObject:
   - component: {fileID: 3356838157146058977}
   - component: {fileID: 3655117481573266355}
   - component: {fileID: 6701052068674774492}
+  - component: {fileID: 6102651610564318124}
   m_Layer: 7
-  m_Name: Plane.010
+  m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,3 +386,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6102651610564318124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479157100201160727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteakSideScript
+  cooked: 0
+  burnt: 0
+  cookedTimer: 0

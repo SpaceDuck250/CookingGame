@@ -12,4 +12,17 @@ public class HoldableFoodScript : MonoBehaviour
             objectToDelete = gameObject;
         }
     }
+    
+    public void DeleteObjectToDelete()
+    {
+        if (objectToDelete != gameObject)
+        {
+            Destroy(objectToDelete);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(objectToDelete);
+        }
+    }
 }

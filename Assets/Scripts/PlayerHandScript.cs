@@ -71,7 +71,9 @@ public class PlayerHandScript : MonoBehaviour
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
 
-        Destroy(holdableScript.objectToDelete);
+        //Destroy(holdableScript.objectToDelete);
+
+        holdableScript.DeleteObjectToDelete();
 
         //Destroy(oldFood);
     }
