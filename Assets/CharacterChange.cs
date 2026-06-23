@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class CharacterChange : MonoBehaviour
     public RuntimeAnimatorController knifeCutting;
     public RuntimeAnimatorController panFry;
     public LayerMask layerMask;
+    public TMP_Text cutInteractText;
+    public GameObject[] ingredient;
     // Update is called once per frame
     void Update()
     {
@@ -60,6 +63,28 @@ public class CharacterChange : MonoBehaviour
             foodBar.SetActive(false);
             carrot.SetActive(false);
             carrotSlices.SetActive(true);
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("CuttingStation") & other.gameObject.transform.childCount == 0)
+        {
+            cutInteractText.text = "Press E to place ingredient";
+            if(Input.GetKey(KeyCode.E))
+            {
+                ingredient
+            }
+        }
+        else if(other.CompareTag("CuttingStation") & other.gameObject.transform.childCount > 0)
+        {
+            cutInteractText.text = "Press E to chop ingredient";
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("CuttingStation"))
+        {
+            cutInteractText.text = "";
         }
     }
 }
