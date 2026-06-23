@@ -23,6 +23,8 @@ public class SteakFlipperScript : MonoBehaviour
     public GameObject rawSteakPrefab;
     public Vector3 localPositionOffset;
 
+    public InteractAreaScript interactScript;
+
     private void Start()
     {
         desiredRotation = Quaternion.Euler(0, 0, 90);
@@ -59,6 +61,11 @@ public class SteakFlipperScript : MonoBehaviour
 
     public void CheckInput()
     {
+        if (interactScript != null && !interactScript.withinRange)
+        {
+            return;
+        }
+
         if (steakHeld == null)
         {
             return;

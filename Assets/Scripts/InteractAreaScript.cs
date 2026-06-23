@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using System;
 
-public class CookingInteractScript : MonoBehaviour
+public class InteractAreaScript : MonoBehaviour
 {
     public string previewText;
     public char clickCharacter;
@@ -14,6 +14,7 @@ public class CookingInteractScript : MonoBehaviour
     public event Action<GameObject> OnPreviewShown;
     public event Action OnPreviewHidden;
 
+    public bool withinRange = false;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class CookingInteractScript : MonoBehaviour
 
         OnPreviewShown?.Invoke(other.gameObject);
         ShowClickPreview(true);
+        withinRange = true;
     }
 
     private void OnTriggerExit(Collider other)
@@ -39,7 +41,8 @@ public class CookingInteractScript : MonoBehaviour
         }
 
         ShowClickPreview(false);
-        OnPreviewHidden?.Invoke(); 
+        OnPreviewHidden?.Invoke();
+        withinRange = false;
     }
 
     private void SetupPreviewObj()

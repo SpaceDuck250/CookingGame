@@ -35,10 +35,6 @@ public class PlayerHandScript : MonoBehaviour
             {
                 ThrowFood();
             }
-            else
-            {
-                TryToTakeFoodFromStation();
-            }
         }
     }
 
@@ -108,20 +104,11 @@ public class PlayerHandScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange))
         {
-            if (hit.collider.gameObject.tag != "CookingStation")
+            if (hit.collider.gameObject.tag == "CookingStation")
             {
-                return;
+                CookingInputOutputScript inputOutputScript = hit.collider.gameObject.GetComponent<CookingInputOutputScript>();
+                inputOutputScript.TryPutFood(currentFoodHeld, this);
             }
-
-            print(hit.collider.gameObject);
-
-            CookingInputOutputScript inputOutputScript = hit.collider.gameObject.GetComponent<CookingInputOutputScript>();
-            inputOutputScript.TryPutFood(currentFoodHeld, this);
         }
-    }
-
-    private void TryToTakeFoodFromStation()
-    {
-
     }
 }

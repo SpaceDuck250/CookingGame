@@ -5,7 +5,7 @@ public class BillBoardScript : MonoBehaviour
     public GameObject player;
     public GameObject self;
 
-    public CookingInteractScript interactScript;
+    public InteractAreaScript interactScript;
 
     private void Start()
     {
