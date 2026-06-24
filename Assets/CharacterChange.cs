@@ -72,7 +72,7 @@ public class CharacterChange : MonoBehaviour
             cutInteractText.text = "Press E to place ingredient";
             if(Input.GetKey(KeyCode.E))
             {
-                ingredient
+                
             }
         }
         else if(other.CompareTag("CuttingStation") & other.gameObject.transform.childCount > 0)
