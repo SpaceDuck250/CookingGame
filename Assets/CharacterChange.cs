@@ -8,6 +8,7 @@ public class CharacterChange : MonoBehaviour
     public GameObject foodBar;
     public GameObject carrotSlices;
     public GameObject carrot;
+    public GameObject carrots;
     public GameObject knife;
     public GameObject pan;
     public float fillRate = 0.5f;
@@ -17,6 +18,7 @@ public class CharacterChange : MonoBehaviour
     public LayerMask layerMask;
     public TMP_Text cutInteractText;
     public GameObject[] ingredient;
+    public GameObject cuttingStation;
     // Update is called once per frame
     void Update()
     {
@@ -65,14 +67,16 @@ public class CharacterChange : MonoBehaviour
             carrotSlices.SetActive(true);
         }
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("CuttingStation") & other.gameObject.transform.childCount == 0)
         {
-            cutInteractText.text = "Press E to place ingredient";
-            if(Input.GetKey(KeyCode.E))
+            cutInteractText.text = "Press P to place ingredient";
+            if(Input.GetKey(KeyCode.P) && carrot.activeSelf == true)
             {
-                
+                carrot.transform.SetParent(null);
+                carrot.transform.SetParent(cuttingStation.transform);
+                carrot.transform.position = new Vector3(-0.9f,0.8f,-0.6f);
             }
         }
         else if(other.CompareTag("CuttingStation") & other.gameObject.transform.childCount > 0)
