@@ -50,24 +50,6 @@ public class SteakFlipperScript : Interactable
         SetTopAndBottom();
     }
 
-    //public void CheckInput()
-    //{
-    //    //if (interactScript != null && !interactScript.withinRange)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //if (steakHeld == null)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //if (Input.GetKeyDown(KeyCode.T))
-    //    //{
-    //    //    FlipSteak(rotateAmount, Vector3.right);
-    //    //}
-    //}
-
     public void FlipSteak(float angle, Vector3 axis) 
     {
         desiredRotation = Quaternion.AngleAxis(angle, axis) * desiredRotation;
