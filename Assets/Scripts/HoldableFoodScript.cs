@@ -5,6 +5,11 @@ public class HoldableFoodScript : MonoBehaviour
     public FoodData foodData;
     public GameObject objectToDelete;
 
+    public PlatterScript platterIn;
+    public bool CarryType = false;
+
+    public Vector3 holdOffset;
+
     public void Start()
     {
         if (objectToDelete == null)

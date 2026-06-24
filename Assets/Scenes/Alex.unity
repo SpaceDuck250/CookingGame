@@ -1950,7 +1950,9 @@ GameObject:
   - component: {fileID: 809376894}
   - component: {fileID: 809376893}
   - component: {fileID: 809376892}
-  m_Layer: 0
+  - component: {fileID: 809376896}
+  - component: {fileID: 809376897}
+  m_Layer: 7
   m_Name: Platter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,8 +1978,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.5014453, z: 1}
+  m_Center: {x: 0, y: -0.25072268, z: 0}
 --- !u!23 &809376893
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2044,7 +2046,7 @@ Transform:
   m_GameObject: {fileID: 809376891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3486, y: 0.704, z: 4.44}
+  m_LocalPosition: {x: -1.3486, y: 0.949, z: 4.44}
   m_LocalScale: {x: 2.2092, y: 0.14, z: 1.5801}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2052,6 +2054,50 @@ Transform:
   - {fileID: 1528758275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809376896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809376891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33190c6c5668d14eaeb5f6b0c8656a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
+  foodData: {fileID: 0}
+  objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 1
+  holdOffset: {x: 0, y: 0, z: 0}
+--- !u!54 &809376897
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809376891}
+  serializedVersion: 5
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &875822965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3052,7 +3098,7 @@ MonoBehaviour:
   - {fileID: 1229028568}
   - {fileID: 1354771325}
   currentIndex: 0
-  upOffset: {x: 0, y: 0.72, z: 0}
+  upOffset: {x: 0, y: 0.57, z: 0}
 --- !u!65 &954664733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5194,6 +5240,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1708475868667994488, guid: 2c14862bc12148243acbb063d04e7f4b, type: 3}
+      propertyPath: m_Constraints
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 4893601837453194027, guid: 2c14862bc12148243acbb063d04e7f4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.869
