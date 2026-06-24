@@ -1,24 +1,24 @@
-using TMPro;
 using UnityEngine;
 using System;
 
 public class InteractAreaScript : MonoBehaviour
 {
-    public string previewText;
-    public char clickCharacter;
-
-    public GameObject previewObject;
-    public TextMeshProUGUI previewTextComp;
-    public TextMeshProUGUI previewCharComp;
-
-    public event Action<GameObject> OnPreviewShown;
-    public event Action OnPreviewHidden;
-
     public bool withinRange = false;
 
-    private void Start()
+    public Interactable interactable;
+
+    public event Action<GameObject> OnPlayerEnterRange;
+    public event Action OnPlayerExitRange;
+
+    private void Update()
     {
-        SetupPreviewObj();
+        if (!withinRange)
+        {
+            return;
+        }
+
+        PlayerHandScript playerHand = PlayerHandScript.instance;
+        interactable.CheckInput(playerHand);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,9 +28,9 @@ public class InteractAreaScript : MonoBehaviour
             return;
         }
 
-        OnPreviewShown?.Invoke(other.gameObject);
-        ShowClickPreview(true);
         withinRange = true;
+
+        OnPlayerEnterRange?.Invoke(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,19 +40,8 @@ public class InteractAreaScript : MonoBehaviour
             return;
         }
 
-        ShowClickPreview(false);
-        OnPreviewHidden?.Invoke();
         withinRange = false;
-    }
 
-    private void SetupPreviewObj()
-    {
-        previewTextComp.text = previewText;
-        previewCharComp.text = clickCharacter.ToString();
-    }
-
-    private void ShowClickPreview(bool value)
-    {
-        previewObject.SetActive(value);
+        OnPlayerExitRange?.Invoke();
     }
 }

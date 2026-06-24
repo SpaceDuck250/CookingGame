@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class CustomerScript : MonoBehaviour
+public class CustomerScript : Interactable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Interact(PlayerHandScript playerHand)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        print("talked to customer");
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CookingInputOutputScript : MonoBehaviour
+public class CookingInputOutputScript : Interactable
 {
     public List<RecipeData> recipeStored = new List<RecipeData>();
 
@@ -31,10 +31,7 @@ public class CookingInputOutputScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            print(FindRecipeFromInput(input));
-        }
+
     }
 
     public RecipeData FindRecipeFromInput(FoodData foodInput)
@@ -50,9 +47,9 @@ public class CookingInputOutputScript : MonoBehaviour
         return null;
     }
 
-    public void TryPutFood(FoodData foodInput, PlayerHandScript playerHand)
+    public void TryPutFood(PlayerHandScript playerHand)
     {
-        currentRecipeUsed = FindRecipeFromInput(foodInput);
+        currentRecipeUsed = FindRecipeFromInput(playerHand.currentFoodHeld);
         if (currentRecipeUsed == null)
         {
             return;
@@ -71,6 +68,27 @@ public class CookingInputOutputScript : MonoBehaviour
         holdScript.foodData = currentRecipeUsed.outputFood;
 
         holdScript.objectToDelete = deleteObject;
+    }
+
+    // Only for display
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset)
+    {
+        GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, Quaternion.identity);
+
+        newDisplayFood.transform.SetParent(parent.transform, true);
+
+        newDisplayFood.GetComponent<Rigidbody>().isKinematic = true;
+
+        newDisplayFood.transform.localPosition = localPositionOffset;
+
+        Destroy(newDisplayFood.GetComponent<Collider>());
+
+        return newDisplayFood;
+    }
+
+    public override void Interact(PlayerHandScript playerHand)
+    {
+        TryPutFood(playerHand);
     }
 
 
