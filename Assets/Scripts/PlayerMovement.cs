@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 refVelocity;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    } 
     private void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
