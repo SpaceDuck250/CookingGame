@@ -1,8 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
-using System;
 
-public class CookingInteractScript : MonoBehaviour
+public class ClickPreviewScript : MonoBehaviour
 {
     public string previewText;
     public char clickCharacter;
@@ -14,32 +14,31 @@ public class CookingInteractScript : MonoBehaviour
     public event Action<GameObject> OnPreviewShown;
     public event Action OnPreviewHidden;
 
+    public InteractAreaScript interactArea;
 
     private void Start()
     {
         SetupPreviewObj();
+
+        interactArea.OnPlayerEnterRange += OnPlayerEnterRange;
+        interactArea.OnPlayerExitRange += OnPlayerExitRange;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDestroy()
     {
-        if (other.gameObject.tag != "Player")
-        {
-            return;
-        }
+        interactArea.OnPlayerEnterRange -= OnPlayerEnterRange;
+        interactArea.OnPlayerExitRange -= OnPlayerExitRange;
+    }
 
-        OnPreviewShown?.Invoke(other.gameObject);
+    private void OnPlayerEnterRange(GameObject player)
+    {
         ShowClickPreview(true);
+        OnPreviewShown?.Invoke(player);
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OnPlayerExitRange()
     {
-        if (other.gameObject.tag != "Player")
-        {
-            return;
-        }
-
         ShowClickPreview(false);
-        OnPreviewHidden?.Invoke(); 
+        OnPreviewHidden?.Invoke();
     }
 
     private void SetupPreviewObj()

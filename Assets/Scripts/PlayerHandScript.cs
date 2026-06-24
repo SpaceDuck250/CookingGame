@@ -15,7 +15,23 @@ public class PlayerHandScript : MonoBehaviour
     public float throwStrength;
     public float spinStrength;
 
+    public Interactable currentInteractable;
+
+    public static PlayerHandScript instance;
+
+    private void Awake()
+    {
+        instance = this;
+
+    }
+
     private void Update()
+    {
+        CheckForFoodInputs();
+        print(instance);
+    }
+
+    public void CheckForFoodInputs()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -25,7 +41,7 @@ public class PlayerHandScript : MonoBehaviour
             }
             else
             {
-                TryToInteractWithCookingStation();
+                TryInteractWithInteractable();
             }
         }
 
@@ -34,10 +50,6 @@ public class PlayerHandScript : MonoBehaviour
             if (currentFoodHeldObj != null)
             {
                 ThrowFood();
-            }
-            else
-            {
-                TryToTakeFoodFromStation();
             }
         }
     }
@@ -71,11 +83,7 @@ public class PlayerHandScript : MonoBehaviour
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
 
-        //Destroy(holdableScript.objectToDelete);
-
         holdableScript.DeleteObjectToDelete();
-
-        //Destroy(oldFood);
     }
 
     private void ThrowFood()
@@ -103,25 +111,16 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj = null;
     }
 
-    private void TryToInteractWithCookingStation()
+    private void TryInteractWithInteractable()
     {
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange))
         {
-            if (hit.collider.gameObject.tag != "CookingStation")
+            Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            if (interactable != null)
             {
-                return;
+                interactable.Interact(this);
             }
-
-            print(hit.collider.gameObject);
-
-            CookingInputOutputScript inputOutputScript = hit.collider.gameObject.GetComponent<CookingInputOutputScript>();
-            inputOutputScript.TryPutFood(currentFoodHeld, this);
         }
-    }
-
-    private void TryToTakeFoodFromStation()
-    {
-
     }
 }

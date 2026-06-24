@@ -5,11 +5,11 @@ public class BillBoardScript : MonoBehaviour
     public GameObject player;
     public GameObject self;
 
-    public CookingInteractScript interactScript;
+    public ClickPreviewScript clickPreview;
 
     private void Start()
     {
-        interactScript.OnPreviewShown += OnPreviewShown;
+        clickPreview.OnPreviewShown += OnPreviewShown;
 
         gameObject.SetActive(false);
     }
@@ -17,7 +17,7 @@ public class BillBoardScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        interactScript.OnPreviewShown -= OnPreviewShown;
+        clickPreview.OnPreviewShown -= OnPreviewShown;
     }
 
     private void OnPreviewShown(GameObject player)

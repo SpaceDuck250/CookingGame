@@ -25,4 +25,5 @@ public class HoldableFoodScript : MonoBehaviour
             Destroy(objectToDelete);
         }
     }
+
 }

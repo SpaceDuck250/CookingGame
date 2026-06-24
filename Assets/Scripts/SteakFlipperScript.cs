@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class SteakFlipperScript : MonoBehaviour
+public class SteakFlipperScript : Interactable
 {
     public GameObject flipObject;
     public GameObject steakHeld;
@@ -23,6 +23,8 @@ public class SteakFlipperScript : MonoBehaviour
     public GameObject rawSteakPrefab;
     public Vector3 localPositionOffset;
 
+    public InteractAreaScript interactScript;
+
     private void Start()
     {
         desiredRotation = Quaternion.Euler(0, 0, 90);
@@ -37,39 +39,34 @@ public class SteakFlipperScript : MonoBehaviour
 
     private void Update()
     {
-        CheckInput();
+        //CheckInput();
         SlowlyRotate();
     }
 
     private void OnCookingGameStart(FoodData foodCooked)
     {
-        //steakHeld = Instantiate(rawSteakPrefab, transform.position, Quaternion.identity, flipObject.transform);
-        steakHeld = Instantiate(foodCooked.foodModel, transform.position, Quaternion.identity);
-
-        steakHeld.transform.SetParent(flipObject.transform, true);
-
-        steakHeld.GetComponent<Rigidbody>().isKinematic = true;
-
-        steakHeld.transform.localPosition = localPositionOffset;
-
-        Destroy(steakHeld.GetComponent<Collider>());
+        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset);
 
         SetTopAndBottom();
     }
 
-    public void CheckInput()
-    {
-        if (steakHeld == null)
-        {
-            return;
-        }
+    //public void CheckInput()
+    //{
+    //    //if (interactScript != null && !interactScript.withinRange)
+    //    //{
+    //    //    return;
+    //    //}
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            FlipSteak(rotateAmount, Vector3.right);
-        }
-    }
+    //    //if (steakHeld == null)
+    //    //{
+    //    //    return;
+    //    //}
 
+    //    //if (Input.GetKeyDown(KeyCode.T))
+    //    //{
+    //    //    FlipSteak(rotateAmount, Vector3.right);
+    //    //}
+    //}
 
     public void FlipSteak(float angle, Vector3 axis) 
     {
@@ -88,11 +85,24 @@ public class SteakFlipperScript : MonoBehaviour
     {
         steakHeld = flipObject.transform.GetChild(0).gameObject;
 
-        //bottomPart = steakHeld.transform.GetChild(1).gameObject;
-        //topPart = steakHeld.transform.GetChild(2).gameObject;
         bottomPart = steakHeld.transform.Find("Bottom").gameObject;
         topPart = steakHeld.transform.Find("Top").gameObject;
 
         sideGettingCooked = bottomPart;
+    }
+
+    public override void Interact(PlayerHandScript playerHand)
+    {
+        if (interactScript != null && !interactScript.withinRange)
+        {
+            return;
+        }
+
+        if (steakHeld == null)
+        {
+            return;
+        }
+
+        FlipSteak(rotateAmount, Vector3.right);
     }
 }
