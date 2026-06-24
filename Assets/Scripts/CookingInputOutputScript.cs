@@ -83,6 +83,9 @@ public class CookingInputOutputScript : Interactable
 
         Destroy(newDisplayFood.GetComponent<Collider>());
 
+        PlayerHandScript.instance.currentFoodHeld = null;
+        Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+
         return newDisplayFood;
     }
 
