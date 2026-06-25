@@ -28,7 +28,6 @@ public class PlayerHandScript : MonoBehaviour
     private void Update()
     {
         CheckForFoodInputs();
-        print(instance);
     }
 
     public void CheckForFoodInputs()
