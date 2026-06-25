@@ -45,7 +45,7 @@ public class SteakFlipperScript : Interactable
 
     private void OnCookingGameStart(FoodData foodCooked)
     {
-        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset);
+        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset, false);
 
         SetTopAndBottom();
     }

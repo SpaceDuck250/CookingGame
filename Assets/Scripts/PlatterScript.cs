@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlatterScript : Interactable
 {
@@ -10,6 +11,29 @@ public class PlatterScript : Interactable
 
     public Vector3 upOffset;
 
+    public Action<FoodData> OnFoodTakenOutOfPlatter;
+
+    private void Start()
+    {
+        OnFoodTakenOutOfPlatter += TakeFoodOutOfPlatter;
+    }
+
+    private void OnDestroy()
+    {
+        OnFoodTakenOutOfPlatter -= TakeFoodOutOfPlatter;
+    }
+
+    private void TakeFoodOutOfPlatter(FoodData foodData)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (foodData == foodHeldArray[i])
+            {
+                foodHeldArray[i] = null;
+            }
+        }
+    }
+
     public override void Interact(PlayerHandScript playerHand)
     {
         if (!CheckIfPlayerIsHoldingFood(playerHand))
@@ -17,7 +41,7 @@ public class PlatterScript : Interactable
             return;
         }
 
-        TryPlaceFoodOnPlaceArea(playerHand.currentFoodHeld);
+        FindFreeSpotAndPlace(playerHand.currentFoodHeld);
 
     }
 
@@ -33,17 +57,30 @@ public class PlatterScript : Interactable
         }
     }
 
-    public void TryPlaceFoodOnPlaceArea(FoodData foodData)
+    public void FindFreeSpotAndPlace(FoodData foodData)
     {
-        if (currentIndex >= 4)
+
+        int emptySlotIndex = -1;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (foodHeldArray[i] == null)
+            {
+                emptySlotIndex = i;
+                break;
+            }
+        }
+
+        if (emptySlotIndex == -1)
         {
             return;
         }
 
-        Transform placeParent = placeAreasArray[currentIndex];
+        Transform placeParent = placeAreasArray[emptySlotIndex];
 
-        CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset);
+        GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true);
+        newFood.GetComponent<HoldableFoodScript>().platterIn = this;
 
-        currentIndex++;
+        foodHeldArray[emptySlotIndex] = foodData;
     }
 }
