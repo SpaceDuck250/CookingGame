@@ -6,6 +6,9 @@ public class CustomerAI : MonoBehaviour
     NavMeshAgent agent;
     Seat targetSeat;
 
+    public float minSpeed = 2f;
+    public float maxSpeed = 4f;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -15,6 +18,11 @@ public class CustomerAI : MonoBehaviour
             Debug.LogError("No NavMeshAgent on " + gameObject.name);
             return;
         }
+
+
+        // Random customer walking speed
+        agent.speed = Random.Range(minSpeed, maxSpeed);
+
 
         FindChair();
     }
