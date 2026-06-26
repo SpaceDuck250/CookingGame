@@ -71,17 +71,24 @@ public class CookingInputOutputScript : Interactable
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp)
     {
         GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, Quaternion.identity);
 
         newDisplayFood.transform.SetParent(parent.transform, true);
 
         newDisplayFood.GetComponent<Rigidbody>().isKinematic = true;
+        newDisplayFood.GetComponent<Collider>().isTrigger = true;
 
         newDisplayFood.transform.localPosition = localPositionOffset;
 
-        Destroy(newDisplayFood.GetComponent<Collider>());
+        if (!canPickUp)
+        {
+            Destroy(newDisplayFood.GetComponent<Collider>());
+        }
+
+        PlayerHandScript.instance.currentFoodHeld = null;
+        Destroy(PlayerHandScript.instance.currentFoodHeldObj);
 
         return newDisplayFood;
     }

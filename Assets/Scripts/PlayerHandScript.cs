@@ -55,6 +55,11 @@ public class PlayerHandScript : MonoBehaviour
 
     private void TryHoldingFoodObj()
     {
+        if (currentFoodHeld != null || currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, foodLayer))
         {
@@ -62,7 +67,15 @@ public class PlayerHandScript : MonoBehaviour
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponent<HoldableFoodScript>();
             FoodData foodData = holdableFoodScript.foodData;
 
-            SwitchFoodItem(foodData, hit.collider.gameObject);
+            if (!holdableFoodScript.CarryType)
+            {
+                SwitchFoodItem(foodData, hit.collider.gameObject);
+            }
+            else
+            {
+                SwitchFoodItem(null, hit.collider.gameObject);
+            }
+
             BringFoodToHand(holdableFoodScript);
         }
     }
@@ -75,7 +88,22 @@ public class PlayerHandScript : MonoBehaviour
 
     private void BringFoodToHand(HoldableFoodScript holdableScript)
     {
+        if (holdableScript.CarryType)
+        {
+            CarryInstead(holdableScript.gameObject);
+            return;
+        }
+
+        if (holdableScript.platterIn != null)
+        {
+            holdableScript.platterIn.OnFoodTakenOutOfPlatter?.Invoke(holdableScript.foodData);
+        }
+
         currentFoodHeldObj = Instantiate(holdableScript.foodData.foodModel, transform.position, Quaternion.identity, heldContainer);
+
+        //currentFoodHeldObj = holdableScript.gameObject;
+        currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
+
 
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -85,9 +113,23 @@ public class PlayerHandScript : MonoBehaviour
         holdableScript.DeleteObjectToDelete();
     }
 
+    private void CarryInstead(GameObject objectToCarry)
+    {
+        currentFoodHeldObj = objectToCarry;
+        currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
+
+
+        Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+
+        currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
+
+        currentFoodHeldObj.transform.localPosition = Vector3.zero;
+    }
+
     private void ThrowFood()
     {
-        if (currentFoodHeld == null)
+        if (currentFoodHeld == null && currentFoodHeldObj == null)
         {
             return;
         }
@@ -100,6 +142,7 @@ public class PlayerHandScript : MonoBehaviour
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
 
+        currentFoodHeldObj.GetComponent<Collider>().isTrigger = false;
 
 
         Vector3 throwForce = cam.transform.forward * throwStrength;

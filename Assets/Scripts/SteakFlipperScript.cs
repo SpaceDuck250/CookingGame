@@ -45,28 +45,10 @@ public class SteakFlipperScript : Interactable
 
     private void OnCookingGameStart(FoodData foodCooked)
     {
-        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset);
+        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset, false);
 
         SetTopAndBottom();
     }
-
-    //public void CheckInput()
-    //{
-    //    //if (interactScript != null && !interactScript.withinRange)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //if (steakHeld == null)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //if (Input.GetKeyDown(KeyCode.T))
-    //    //{
-    //    //    FlipSteak(rotateAmount, Vector3.right);
-    //    //}
-    //}
 
     public void FlipSteak(float angle, Vector3 axis) 
     {
