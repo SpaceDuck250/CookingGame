@@ -8,7 +8,7 @@ public class PlayerHandScript : MonoBehaviour
 
     public float maxRange;
     public LayerMask foodLayer;
-    public LayerMask cookingStationLayer;
+    public LayerMask interactableLayer;
 
     public Transform heldContainer;
 
@@ -28,7 +28,6 @@ public class PlayerHandScript : MonoBehaviour
     private void Update()
     {
         CheckForFoodInputs();
-        print(instance);
     }
 
     public void CheckForFoodInputs()
@@ -157,8 +156,10 @@ public class PlayerHandScript : MonoBehaviour
     private void TryInteractWithInteractable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, interactableLayer))
         {
+            print(hit.collider);
+
             Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
             if (interactable != null)
             {

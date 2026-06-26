@@ -1,9 +1,11 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class PlatterScript : Interactable
 {
-    public FoodData[] foodHeldArray = new FoodData[4];
+    //public FoodData[] foodHeldArray = new FoodData[4];
+    public List<FoodData> foodHeldList = new List<FoodData>();
 
     public Transform[] placeAreasArray = new Transform[4];
 
@@ -27,9 +29,10 @@ public class PlatterScript : Interactable
     {
         for (int i = 0; i < 4; i++)
         {
-            if (foodData == foodHeldArray[i])
+            if (foodData == foodHeldList[i])
             {
-                foodHeldArray[i] = null;
+                foodHeldList.RemoveAt(i);
+                break;
             }
         }
     }
@@ -59,12 +62,16 @@ public class PlatterScript : Interactable
 
     public void FindFreeSpotAndPlace(FoodData foodData)
     {
+        if (foodHeldList.Count >= 4)
+        {
+            return;
+        }
 
         int emptySlotIndex = -1;
 
         for (int i = 0; i < 4; i++)
         {
-            if (foodHeldArray[i] == null)
+            if (placeAreasArray[i].childCount == 0)
             {
                 emptySlotIndex = i;
                 break;
@@ -81,6 +88,7 @@ public class PlatterScript : Interactable
         GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true);
         newFood.GetComponent<HoldableFoodScript>().platterIn = this;
 
-        foodHeldArray[emptySlotIndex] = foodData;
+        //foodHeldArray[emptySlotIndex] = foodData;
+        foodHeldList.Add(foodData);
     }
 }

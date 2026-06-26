@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SteakCookerScript : MonoBehaviour
@@ -19,6 +20,10 @@ public class SteakCookerScript : MonoBehaviour
     public CookingInputOutputScript cookingInputOutputScript;
     public bool steakFinished = false;
 
+    public static event Action OnFoodBurnt;
+
+    public Transform pickupObjParent;
+
     private void Start()
     {
         steakFlipper.OnSteakFlipped += OnSideSwitched;
@@ -29,7 +34,6 @@ public class SteakCookerScript : MonoBehaviour
     {
         steakFlipper.OnSteakFlipped -= OnSideSwitched;
         cookingInputOutputScript.OnCookingStart -= OnCookingStart;
-
     }
 
     private void Update()
@@ -53,7 +57,7 @@ public class SteakCookerScript : MonoBehaviour
 
         steakSide.cookedTimer += Time.deltaTime;
 
-        if (steakSide.cookedTimer >= cookedTime)
+        if (steakSide.cookedTimer >= cookedTime )
         {
             steakSide.cooked = true;
 
@@ -61,8 +65,7 @@ public class SteakCookerScript : MonoBehaviour
 
             if (CheckIfBothSidesPerfectlyCooked(steakFlipper))
             {
-                cookingInputOutputScript.OnCookingEnd?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld);
-                EndCooking();
+                cookingInputOutputScript.OnCookingSuccess?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
             }
         }
 
@@ -72,7 +75,10 @@ public class SteakCookerScript : MonoBehaviour
 
             ApplyTexture(burntMaterial);
 
-            canRunTimer = false;
+            //canRunTimer = false;
+            EndCooking();
+
+            cookingInputOutputScript.OnCookingFail?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
         }
     }
 
