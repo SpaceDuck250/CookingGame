@@ -34,7 +34,7 @@ public class PlayerHandScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (currentFoodHeld == null)
+            if (currentFoodHeld == null && currentFoodHeldObj == null)
             {
                 TryHoldingFoodObj();
             }
