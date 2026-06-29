@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class SteakGameSetupper : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public CookingInputOutputScript cookingInputOutput;
+    public SteakFlipperScript flipperScript;
+
+    private void Start()
     {
-        
+        cookingInputOutput.OnCookingStart += OnCookingGameStart;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        cookingInputOutput.OnCookingStart -= OnCookingGameStart;
+    }
+
+    private void OnCookingGameStart(FoodData foodCooked)
+    {
+        flipperScript.steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipperScript.flipObject.transform, flipperScript.localPositionOffset, false);
+
+        flipperScript.SetTopAndBottom();
     }
 }

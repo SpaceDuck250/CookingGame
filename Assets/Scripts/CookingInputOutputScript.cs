@@ -9,7 +9,8 @@ public class CookingInputOutputScript : Interactable
     public FoodData input;
 
     public Action<FoodData> OnCookingStart;
-    public Action<Vector3, GameObject> OnCookingEnd;
+    public Action<Vector3, GameObject, Transform> OnCookingSuccess;
+    public Action<Vector3, GameObject, Transform> OnCookingFail;
 
     public Action<bool> OnFoodInputCorrect;
 
@@ -17,22 +18,6 @@ public class CookingInputOutputScript : Interactable
 
     // Invisaible and can contain food;
     public GameObject invisiblePickupObject;
-
-    private void Start()
-    {
-        OnCookingEnd += SpawnPickupableOutputFood;
-    }
-
-    private void OnDestroy()
-    {
-        OnCookingEnd -= SpawnPickupableOutputFood;
-
-    }
-
-    private void Update()
-    {
-
-    }
 
     public RecipeData FindRecipeFromInput(FoodData foodInput)
     {
@@ -60,14 +45,25 @@ public class CookingInputOutputScript : Interactable
         Destroy(playerHand.currentFoodHeldObj);
     }
 
-    public void SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject)
+    public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
     {
         GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
 
         HoldableFoodScript holdScript = pickupFood.GetComponent<HoldableFoodScript>();
-        holdScript.foodData = currentRecipeUsed.outputFood;
+        if (success)
+        {
+            holdScript.foodData = currentRecipeUsed.outputFood;
+        }
+        else
+        {
+            holdScript.foodData = currentRecipeUsed.failedOutputFood;
+        }
 
         holdScript.objectToDelete = deleteObject;
+
+        pickupFood.transform.parent = parent;
+
+        return pickupFood;
     }
 
     // Only for display
