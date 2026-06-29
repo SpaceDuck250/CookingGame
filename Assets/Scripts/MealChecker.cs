@@ -1,39 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 
-public class MealChecker : Interactable
+public class MealChecker : MonoBehaviour
 {
     public List<FoodData> inputFoodDataList = new List<FoodData>();
 
     public MealData mealToCheck;
 
-    public CustomerScript customerScript;
-
-    public event Action OnMealOrderFulfilled;
-
-    public override void Interact(PlayerHandScript playerHand)
+    private void Update()
     {
-        if (playerHand.currentFoodHeldObj.tag != "Platter")
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            return;
+            print(CheckIfMealMatchesOrder());
         }
-
-        PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
-        inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
-
-        mealToCheck = customerScript.currentMealOrder;
-
-        if (CheckIfMealMatchesOrder())
-        {
-            OnMealOrderFulfilled?.Invoke();
-            NpcDialogueScript.OnOrderMetTalk?.Invoke();
-        }
-        else
-        {
-            print("meal doesnt match order");
-        }
-
     }
 
     public bool CheckIfMealMatchesOrder()
