@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-public class CustomerScriptTinTin : Interactable
+public class CustomerMovementScript : Interactable
 {
     public MealData orderData;
 
@@ -22,9 +22,9 @@ public class CustomerScriptTinTin : Interactable
 
     private float sitTimer;
 
-    public Action<CustomerScriptTinTin> OnCustomerOrdered;
-    public Action<CustomerScriptTinTin> OnCustomerServed;
-    public Action<CustomerScriptTinTin> OnCustomerLeft;
+    public Action<CustomerMovementScript> OnCustomerOrdered;
+    public Action<CustomerMovementScript> OnCustomerServed;
+    public Action<CustomerMovementScript> OnCustomerLeft;
 
     private NavMeshAgent agent;
 
@@ -66,6 +66,11 @@ public class CustomerScriptTinTin : Interactable
         agent.isStopped = false;
         agent.SetDestination(tableTransform.position);
     }
+
+    //private void WalkToDestination(Transform destination)
+    //{
+    //    if ()
+    //}
 
     private void WalkToExit()
     {
