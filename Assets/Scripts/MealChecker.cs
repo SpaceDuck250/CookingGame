@@ -8,7 +8,7 @@ public class MealChecker : Interactable
 
     public MealData mealToCheck;
 
-    public CustomerScript customerScript;
+    public CustomerInteractScript customerScript;
 
     public event Action OnMealOrderFulfilled;
 
@@ -28,6 +28,8 @@ public class MealChecker : Interactable
         {
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetTalk?.Invoke();
+
+            playerHand.ClearFoodFromHand();
         }
         else
         {

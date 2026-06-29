@@ -12,7 +12,9 @@ public class NpcDialogueScript : MonoBehaviour
     public CustomerData heldCustomerData;
 
     public GameObject dialogueObject;
-    public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI dialogueTextComponent;
+
+    public static bool conversationOpen = false;
 
     // Add slowtalk later
 
@@ -28,6 +30,13 @@ public class NpcDialogueScript : MonoBehaviour
         OnTalkToCustomer -= TalkToCustomer;
         OnEndTalkToCustomer -= StopTalkToCustomer;
         OnOrderMetTalk -= OnOrderMetTalkFunction;
+    }
+
+    public void WriteNewText(string newText)
+    {
+        conversationOpen = true;
+        dialogueTextComponent.text = newText;
+        dialogueObject.SetActive(true);
 
     }
 
@@ -35,18 +44,18 @@ public class NpcDialogueScript : MonoBehaviour
     {
         heldCustomerData = newCustomer;
 
-        dialogueText.text = heldCustomerData.customerName + ": Hello I would like... " + pickedMeal.mealName;
-        dialogueObject.SetActive(true);
+        WriteNewText(heldCustomerData.customerName + ": Hello I would like... " + pickedMeal.mealName);
     }
 
     public void StopTalkToCustomer()
     {
+        conversationOpen = false;
+
         dialogueObject.SetActive(false);
     }
 
     public void OnOrderMetTalkFunction()
     {
-        dialogueText.text = heldCustomerData.customerName + ": Thank you that is the correct meal!";
-        dialogueObject.SetActive(true);
+        WriteNewText(heldCustomerData.customerName + ": Thank you that is the correct meal!");
     }
 }

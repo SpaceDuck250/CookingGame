@@ -167,4 +167,13 @@ public class PlayerHandScript : MonoBehaviour
             }
         }
     }
+
+    public void ClearFoodFromHand()
+    {
+        currentFoodHeld = null;
+        if (currentFoodHeldObj != null)
+        {
+            Destroy(currentFoodHeldObj.gameObject);
+        }
+    }
 }

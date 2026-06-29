@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-public class CustomerMovementScript : Interactable
+public class CustomerMovementScript : MonoBehaviour
 {
     public MealData orderData;
 
@@ -10,194 +10,61 @@ public class CustomerMovementScript : Interactable
     public Transform tableTransform;
     public Transform exitTransform;
 
+    public Transform destinationPoint;
+
     public float sitTime;
-
-    public bool hasOrdered = false;
-    public bool hasBeenServed = false;
-
-    private bool isHeadingToStall = false;
-    private bool hasReachedStall = false;
-    private bool hasReachedTable = false;
-    private bool isHeadingToExit = false;
 
     private float sitTimer;
 
-    public Action<CustomerMovementScript> OnCustomerOrdered;
-    public Action<CustomerMovementScript> OnCustomerServed;
-    public Action<CustomerMovementScript> OnCustomerLeft;
+    public NavMeshAgent agent;
 
-    private NavMeshAgent agent;
+    public Action<Transform> OnNewDestinationChange;
 
-    private void Awake()
+    public float closeEnough;
+
+    private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        SetNewDestination(stallTransform);
+
+        OnNewDestinationChange += SetNewDestination;
+    }
+
+    private void OnDestroy()
+    {
+        OnNewDestinationChange -= SetNewDestination;
     }
 
     private void Update()
     {
-        CheckIfReachedStall();
-        CheckIfReachedTable();
-        CheckIfReachedExit();
-    }
-    public void WalkToQueuePosition(Transform queuePosition)
-    {
-        agent.isStopped = false;
-        agent.SetDestination(queuePosition.position);
-    }
-    public void WalkToStall()
-    {
-        if (stallTransform == null)
-        {
-            return;
-        }
-
-        isHeadingToStall = true;
-        agent.isStopped = false;
-        agent.SetDestination(stallTransform.position);
+        WalkToDestination();
     }
 
-    private void WalkToTable()
+    private void SetNewDestination(Transform destination)
     {
-        if (tableTransform == null)
-        {
-            return;
-        }
-
-        agent.isStopped = false;
-        agent.SetDestination(tableTransform.position);
+        this.destinationPoint = destination;
     }
 
-    //private void WalkToDestination(Transform destination)
-    //{
-    //    if ()
-    //}
-
-    private void WalkToExit()
+    public void WalkToDestination()
     {
-        if (exitTransform == null)
+        if (CheckIfCloseEnoughToDestination())
         {
-            return;
-        }
-
-        isHeadingToExit = true;
-        agent.isStopped = false;
-        agent.SetDestination(exitTransform.position);
-    }
-
-    private void CheckIfReachedStall()
-    {
-        if (!isHeadingToStall || hasReachedStall)
-        {
-            return;
-        }
-
-        if (agent.remainingDistance < 0.5f && !agent.pathPending)
-        {
-            hasReachedStall = true;
-            isHeadingToStall = false;
             agent.isStopped = true;
-        }
-    }
-
-    private void CheckIfReachedTable()
-    {
-        if (!hasBeenServed || hasReachedTable)
-        {
             return;
         }
-
-        if (agent.remainingDistance < 0.5f && !agent.pathPending)
+        else
         {
-            hasReachedTable = true;
-            agent.isStopped = true;
+            agent.isStopped = false;
         }
+
+        agent.SetDestination(destinationPoint.position);
     }
 
-    private void CheckIfReachedExit()
+    public bool CheckIfCloseEnoughToDestination()
     {
-        if (!isHeadingToExit)
+        float distance = Vector3.Distance(transform.position, destinationPoint.position);
+        if (distance <= closeEnough)
         {
-            return;
-        }
-
-        if (agent.remainingDistance < 0.5f && !agent.pathPending)
-        {
-            OnCustomerLeft?.Invoke(this);
-            Destroy(gameObject);
-        }
-    }
-
-    public override void Interact(PlayerHandScript playerHand)
-    {
-        if (hasBeenServed)
-        {
-            return;
-        }
-
-        if (!hasOrdered)
-        {
-            TakeOrder();
-            return;
-        }
-
-        TryServeFood(playerHand);
-    }
-
-    private void TakeOrder()
-    {
-        if (!hasReachedStall)
-        {
-            return;
-        }
-
-        hasOrdered = true;
-
-        print("Customer ordered: " + orderData.name);
-
-        OnCustomerOrdered?.Invoke(this);
-    }
-
-    private void TryServeFood(PlayerHandScript playerHand)
-    {
-        if (playerHand.currentFoodHeld == null)
-        {
-            return;
-        }
-
-        if (!CheckIfFoodMatchesOrder(playerHand.currentFoodHeld))
-        {
-            print("Wrong food!");
-            return;
-        }
-
-        playerHand.currentFoodHeld = null;
-        Destroy(playerHand.currentFoodHeldObj);
-        playerHand.currentFoodHeldObj = null;
-
-        WalkToTable();
-        OnCustomerServed?.Invoke(this);
-
-        hasBeenServed = true;
-        StartCoroutine(SitThenLeave());
-    }
-
-    private System.Collections.IEnumerator SitThenLeave()
-    {
-        yield return new WaitUntil(() => hasReachedTable);
-
-        yield return new WaitForSeconds(sitTime);
-
-        WalkToExit();
-    }
-
-    private bool CheckIfFoodMatchesOrder(FoodData foodData)
-    {
-        foreach (FoodData ingredient in orderData.foodIngredients)
-        {
-            if (ingredient == foodData)
-            {
-                return true;
-            }
+            return true;
         }
 
         return false;

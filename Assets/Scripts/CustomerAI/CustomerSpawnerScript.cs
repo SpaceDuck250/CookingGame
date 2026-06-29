@@ -67,21 +67,21 @@ public class CustomerSpawnerScript : MonoBehaviour
         customerScript.tableTransform = table;
         customerScript.exitTransform = exitTransform;
 
-        customerScript.OnCustomerOrdered += OnCustomerOrdered;
-        customerScript.OnCustomerServed += OnCustomerServed;
-        customerScript.OnCustomerLeft += OnCustomerLeft;
+        //customerScript.OnCustomerOrdered += OnCustomerOrdered;
+        //customerScript.OnCustomerServed += OnCustomerServed;
+        //customerScript.OnCustomerLeft += OnCustomerLeft;
 
         activeCustomers.Add(customerScript);
 
         if (!stallOccupied)
         {
             stallOccupied = true;
-            customerScript.WalkToStall();
+            //customerScript.WalkToStall();
             return;
         }
 
         queue.Add(customerScript);
-        customerScript.WalkToQueuePosition(queuePositions[queue.Count - 1]);
+        //customerScript.WalkToQueuePosition(queuePositions[queue.Count - 1]);
     }
 
     private void OnCustomerOrdered(CustomerMovementScript customer)
@@ -102,7 +102,7 @@ public class CustomerSpawnerScript : MonoBehaviour
         queue.RemoveAt(0);
 
         stallOccupied = true;
-        nextCustomer.WalkToStall();
+        //nextCustomer.WalkToStall();
 
         ShuffleQueue();
     }
@@ -111,7 +111,7 @@ public class CustomerSpawnerScript : MonoBehaviour
     {
         for (int i = 0; i < queue.Count; i++)
         {
-            queue[i].WalkToQueuePosition(queuePositions[i]);
+            //queue[i].WalkToQueuePosition(queuePositions[i]);
         }
     }
 
