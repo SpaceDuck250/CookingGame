@@ -9,7 +9,7 @@ public class CustomerSpawnerScript : MonoBehaviour
     public Transform stallTransform;
     public Transform exitTransform;
 
-    public List<Transform> tableTransforms = new List<Transform>();
+    public List<Transform> chairTransforms = new List<Transform>();
     public List<Transform> queuePositions = new List<Transform>();
 
     public float spawnInterval;
@@ -127,7 +127,7 @@ public class CustomerSpawnerScript : MonoBehaviour
             }
         }
 
-        foreach (Transform table in tableTransforms)
+        foreach (Transform table in chairTransforms)
         {
             if (!occupiedTables.Contains(table))
             {
