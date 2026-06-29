@@ -3,144 +3,144 @@ using System.Collections.Generic;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
-    public GameObject customerPrefab;
+    //public GameObject customerPrefab;
 
-    public Transform spawnPoint;
-    public Transform stallTransform;
-    public Transform exitTransform;
+    //public Transform spawnPoint;
+    //public Transform stallTransform;
+    //public Transform exitTransform;
 
-    public List<Transform> tableTransforms = new List<Transform>();
-    public List<Transform> queuePositions = new List<Transform>();
+    //public List<Transform> tableTransforms = new List<Transform>();
+    //public List<Transform> queuePositions = new List<Transform>();
 
-    public float spawnInterval;
-    public int maxCustomers;
+    //public float spawnInterval;
+    //public int maxCustomers;
 
-    private float spawnTimer;
-    private bool stallOccupied = false;
-    private List<CustomerScript> activeCustomers = new List<CustomerScript>();
-    private List<CustomerScript> queue = new List<CustomerScript>();
+    //private float spawnTimer;
+    //private bool stallOccupied = false;
+    //private List<CustomerScript> activeCustomers = new List<CustomerScript>();
+    //private List<CustomerScript> queue = new List<CustomerScript>();
 
-    private void Start()
-    {
-        spawnTimer = 0f;
-    }
+    //private void Start()
+    //{
+    //    spawnTimer = 0f;
+    //}
 
-    private void Update()
-    {
-        spawnTimer += Time.deltaTime;
+    //private void Update()
+    //{
+    //    spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= spawnInterval)
-        {
-            spawnTimer = 0f;
-            TrySpawnCustomer();
-        }
-    }
+    //    if (spawnTimer >= spawnInterval)
+    //    {
+    //        spawnTimer = 0f;
+    //        TrySpawnCustomer();
+    //    }
+    //}
 
-    private void TrySpawnCustomer()
-    {
-        if (activeCustomers.Count >= maxCustomers)
-        {
-            return;
-        }
+    //private void TrySpawnCustomer()
+    //{
+    //    if (activeCustomers.Count >= maxCustomers)
+    //    {
+    //        return;
+    //    }
 
-        if (queue.Count >= queuePositions.Count && stallOccupied)
-        {
-            return;
-        }
+    //    if (queue.Count >= queuePositions.Count && stallOccupied)
+    //    {
+    //        return;
+    //    }
 
-        Transform freeTable = FindFreeTable();
-        if (freeTable == null)
-        {
-            return;
-        }
+    //    Transform freeTable = FindFreeTable();
+    //    if (freeTable == null)
+    //    {
+    //        return;
+    //    }
 
-        SpawnCustomer(freeTable);
-    }
+    //    SpawnCustomer(freeTable);
+    //}
 
-    private void SpawnCustomer(Transform table)
-    {
-        GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
+    //private void SpawnCustomer(Transform table)
+    //{
+    //    GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
 
-        CustomerScript customerScript = newCustomer.GetComponent<CustomerScript>();
+    //    CustomerScript customerScript = newCustomer.GetComponent<CustomerScript>();
 
-        customerScript.stallTransform = stallTransform;
-        customerScript.tableTransform = table;
-        customerScript.exitTransform = exitTransform;
+    //    customerScript.stallTransform = stallTransform;
+    //    customerScript.tableTransform = table;
+    //    customerScript.exitTransform = exitTransform;
 
-        customerScript.OnCustomerOrdered += OnCustomerOrdered;
-        customerScript.OnCustomerServed += OnCustomerServed;
-        customerScript.OnCustomerLeft += OnCustomerLeft;
+    //    customerScript.OnCustomerOrdered += OnCustomerOrdered;
+    //    customerScript.OnCustomerServed += OnCustomerServed;
+    //    customerScript.OnCustomerLeft += OnCustomerLeft;
 
-        activeCustomers.Add(customerScript);
+    //    activeCustomers.Add(customerScript);
 
-        if (!stallOccupied)
-        {
-            stallOccupied = true;
-            customerScript.WalkToStall();
-            return;
-        }
+    //    if (!stallOccupied)
+    //    {
+    //        stallOccupied = true;
+    //        customerScript.WalkToStall();
+    //        return;
+    //    }
 
-        queue.Add(customerScript);
-        customerScript.WalkToQueuePosition(queuePositions[queue.Count - 1]);
-    }
+    //    queue.Add(customerScript);
+    //    customerScript.WalkToQueuePosition(queuePositions[queue.Count - 1]);
+    //}
 
-    private void OnCustomerOrdered(CustomerScript customer)
-    {
-        ShuffleQueue();
-    }
+    //private void OnCustomerOrdered(CustomerScript customer)
+    //{
+    //    ShuffleQueue();
+    //}
 
-    private void OnCustomerServed(CustomerScript customer)
-    {
-        stallOccupied = false;
+    //private void OnCustomerServed(CustomerScript customer)
+    //{
+    //    stallOccupied = false;
 
-        if (queue.Count == 0)
-        {
-            return;
-        }
+    //    if (queue.Count == 0)
+    //    {
+    //        return;
+    //    }
 
-        CustomerScript nextCustomer = queue[0];
-        queue.RemoveAt(0);
+    //    CustomerScript nextCustomer = queue[0];
+    //    queue.RemoveAt(0);
 
-        stallOccupied = true;
-        nextCustomer.WalkToStall();
+    //    stallOccupied = true;
+    //    nextCustomer.WalkToStall();
 
-        ShuffleQueue();
-    }
+    //    ShuffleQueue();
+    //}
 
-    private void ShuffleQueue()
-    {
-        for (int i = 0; i < queue.Count; i++)
-        {
-            queue[i].WalkToQueuePosition(queuePositions[i]);
-        }
-    }
+    //private void ShuffleQueue()
+    //{
+    //    for (int i = 0; i < queue.Count; i++)
+    //    {
+    //        queue[i].WalkToQueuePosition(queuePositions[i]);
+    //    }
+    //}
 
-    private Transform FindFreeTable()
-    {
-        List<Transform> occupiedTables = new List<Transform>();
+    //private Transform FindFreeTable()
+    //{
+    //    List<Transform> occupiedTables = new List<Transform>();
 
-        foreach (CustomerScript customer in activeCustomers)
-        {
-            if (customer.tableTransform != null)
-            {
-                occupiedTables.Add(customer.tableTransform);
-            }
-        }
+    //    foreach (CustomerScript customer in activeCustomers)
+    //    {
+    //        if (customer.tableTransform != null)
+    //        {
+    //            occupiedTables.Add(customer.tableTransform);
+    //        }
+    //    }
 
-        foreach (Transform table in tableTransforms)
-        {
-            if (!occupiedTables.Contains(table))
-            {
-                return table;
-            }
-        }
+    //    foreach (Transform table in tableTransforms)
+    //    {
+    //        if (!occupiedTables.Contains(table))
+    //        {
+    //            return table;
+    //        }
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 
-    private void OnCustomerLeft(CustomerScript customer)
-    {
-        customer.tableTransform = null;
-        activeCustomers.Remove(customer);
-    }
+    //private void OnCustomerLeft(CustomerScript customer)
+    //{
+    //    customer.tableTransform = null;
+    //    activeCustomers.Remove(customer);
+    //}
 }

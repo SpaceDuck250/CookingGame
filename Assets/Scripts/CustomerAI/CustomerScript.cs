@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-public class CustomerScript : Interactable
+public class CustomerScriptTinTin : Interactable
 {
     public MealData orderData;
 
@@ -22,9 +22,9 @@ public class CustomerScript : Interactable
 
     private float sitTimer;
 
-    public Action<CustomerScript> OnCustomerOrdered;
-    public Action<CustomerScript> OnCustomerServed;
-    public Action<CustomerScript> OnCustomerLeft;
+    public Action<CustomerScriptTinTin> OnCustomerOrdered;
+    public Action<CustomerScriptTinTin> OnCustomerServed;
+    public Action<CustomerScriptTinTin> OnCustomerLeft;
 
     private NavMeshAgent agent;
 
