@@ -192,6 +192,7 @@ public class CustomerSpawnerScript : MonoBehaviour
     {
         emptyQueueIndex = FindEmptyQueueIndex(customer.stallQueuePointTransform);
         customer.stallQueuePointTransform = null;
+        customer.orderDone = true;
 
         float waitTime = 2;
         Invoke("ShuffleQueue", waitTime);

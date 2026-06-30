@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ExitScript : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Customer")
         {

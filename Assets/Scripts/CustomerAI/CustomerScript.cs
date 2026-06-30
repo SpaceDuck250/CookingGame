@@ -21,6 +21,10 @@ public class CustomerMovementScript : MonoBehaviour
     public Action<Transform> OnNewDestinationChange;
 
     public float closeEnough;
+    public bool orderDone = false;
+
+    public Action OnCustomerMove;
+    public Action OnCustomerIdle;
 
     private void Start()
     {
@@ -48,6 +52,8 @@ public class CustomerMovementScript : MonoBehaviour
     {
         if (CheckIfCloseEnoughToDestination())
         {
+            print("Close enough");
+            OnCustomerIdle?.Invoke();
             agent.isStopped = true;
             return;
         }
@@ -56,6 +62,7 @@ public class CustomerMovementScript : MonoBehaviour
             agent.isStopped = false;
         }
 
+        OnCustomerMove?.Invoke();
         agent.SetDestination(destinationPoint.position);
     }
 

@@ -6,9 +6,13 @@ public class ChairScript : MonoBehaviour
 
     public float seatTime;
 
-    private void OnCollisionEnter(Collision other)
+    private void Start()
     {
+        seatTime = 2;
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
         print(other);
         if (other.gameObject.tag != "Customer" || heldCustomer != null)
         {
@@ -19,15 +23,16 @@ public class ChairScript : MonoBehaviour
 
         CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
 
-        if (movementScript.tableTransform != transform)
+        if (movementScript.tableTransform.GetChild(0) == transform && movementScript.orderDone)
         {
-            return;
+            heldCustomer = movementScript;
+            //CustomerSpawnerScript.OnCustomerSeated?.Invoke(heldCustomer);
+            print("go to exit sooner");
+
+            Invoke("LeaveSeat", seatTime);
         }
 
-        heldCustomer = movementScript;
-        //CustomerSpawnerScript.OnCustomerSeated?.Invoke(heldCustomer);
-
-        Invoke("LeaveSeat", seatTime);
+        
     }
 
     private void LeaveSeat()
