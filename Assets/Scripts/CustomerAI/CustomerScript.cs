@@ -22,6 +22,7 @@ public class CustomerMovementScript : MonoBehaviour
 
     public float closeEnough;
     public bool orderDone = false;
+    public bool sitting = false;
 
     public Action OnCustomerMove;
     public Action OnCustomerIdle;
@@ -40,6 +41,10 @@ public class CustomerMovementScript : MonoBehaviour
 
     private void Update()
     {
+        if (sitting)
+        {
+            return;
+        }
         WalkToDestination();
     }
 
