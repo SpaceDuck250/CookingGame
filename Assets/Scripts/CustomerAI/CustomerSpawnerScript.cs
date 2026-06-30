@@ -21,18 +21,37 @@ public class CustomerSpawnerScript : MonoBehaviour
     private List<CustomerMovementScript> activeCustomers = new List<CustomerMovementScript>();
 
     public static Action<CustomerMovementScript> OnCustomerLeftQueue;
+
+    public static Action<CustomerMovementScript> OnCustomerSeated;
     public static Action<CustomerMovementScript> OnCustomerLeftSeat;
+
+    public static Action<CustomerMovementScript> OnCustomerExit;
+
+    public static CustomerSpawnerScript instance;
+
+    public int emptyQueueIndex;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         spawnTimer = 0f;
 
         OnCustomerLeftQueue += OnCustomerOrderFinish;
+        OnCustomerExit += OnCustomerDestroyed;
+        OnCustomerSeated += CustomerSeated;
     }
 
     private void OnDestroy()
     {
         OnCustomerLeftQueue -= OnCustomerOrderFinish;
+        OnCustomerExit -= OnCustomerDestroyed;
+        OnCustomerSeated -= CustomerSeated;
+
+
 
     }
 
@@ -81,7 +100,12 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void ShuffleQueue()
     {
-        for (int i = 0; i < stallQueuePointList.Length; i++)
+        if (emptyQueueIndex == stallQueuePointList.Length - 1)
+        {
+            return;
+        }
+
+        for (int i = emptyQueueIndex + 1; i < stallQueuePointList.Length; i++)
         {
             CustomerMovementScript customer = activeCustomers.SingleOrDefault(n => n.stallQueuePointTransform == stallQueuePointList[i]);
             if (customer != null && i != 0)
@@ -138,18 +162,35 @@ public class CustomerSpawnerScript : MonoBehaviour
         return null;
     }
 
-    private void OnCustomerDestroyed(CustomerMovementScript customer)
+    public int FindEmptyQueueIndex(Transform stallQueue)
     {
-        customer.tableTransform = null;
+        for (int i = 0; i < stallQueuePointList.Length; i++)
+        {
+            if (stallQueuePointList[i] == stallQueue)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
-    private void OnCustomerSeated()
+    private void OnCustomerDestroyed(CustomerMovementScript customer)
     {
+        //customer.tableTransform = null;
+
+        activeCustomers.Remove(customer);
+    }
+
+    private void CustomerSeated(CustomerMovementScript customer)
+    {
+        customer.tableTransform = null;
 
     }
 
     private void OnCustomerOrderFinish(CustomerMovementScript customer)
     {
+        emptyQueueIndex = FindEmptyQueueIndex(customer.stallQueuePointTransform);
         customer.stallQueuePointTransform = null;
 
         float waitTime = 2;
