@@ -65,6 +65,10 @@ public class SteakCookerScript : MonoBehaviour
 
             if (CheckIfBothSidesPerfectlyCooked(steakFlipper))
             {
+                if (steakFlipper.steakHeld == null)
+                {
+                    return;
+                }
                 cookingInputOutputScript.OnCookingSuccess?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
             }
         }
@@ -78,6 +82,10 @@ public class SteakCookerScript : MonoBehaviour
             //canRunTimer = false;
             EndCooking();
 
+            if (steakFlipper.steakHeld == null)
+            {
+                return;
+            }
             cookingInputOutputScript.OnCookingFail?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
         }
     }
