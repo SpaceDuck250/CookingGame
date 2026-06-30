@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class MealChecker : Interactable
+public class MealChecker : MonoBehaviour
 {
     public List<FoodData> inputFoodDataList = new List<FoodData>();
 
@@ -12,7 +12,7 @@ public class MealChecker : Interactable
 
     public event Action OnMealOrderFulfilled;
 
-    public override void Interact(PlayerHandScript playerHand)
+    public void CheckOrder(PlayerHandScript playerHand)
     {
         if (playerHand.currentFoodHeldObj.tag != "Platter")
         {

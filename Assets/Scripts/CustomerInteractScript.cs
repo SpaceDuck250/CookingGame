@@ -33,7 +33,31 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        TryTalkToCustomer();
+        if (CheckIfHoldingFood(playerHand))
+        {
+            CheckIfFoodMatchesOrder(playerHand);
+        }
+        else
+        {
+            TryTalkToCustomer();
+        }
+    }
+
+    public bool CheckIfHoldingFood(PlayerHandScript playerHand)
+    {
+        if (playerHand.currentFoodHeldObj == null && playerHand.currentFoodHeld == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private void CheckIfFoodMatchesOrder(PlayerHandScript playerHand)
+    {
+        mealChecker.CheckOrder(playerHand);
     }
 
     private void TryTalkToCustomer()
@@ -59,6 +83,7 @@ public class CustomerInteractScript : Interactable
         if (orderComplete)
         {
             movementScript.OnNewDestinationChange?.Invoke(movementScript.tableTransform);
+            CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(movementScript);
         }
     }
 

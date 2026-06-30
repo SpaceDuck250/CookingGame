@@ -1,28 +1,39 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
     public GameObject customerPrefab;
 
     public Transform spawnPoint;
-    public Transform stallTransform;
     public Transform exitTransform;
 
     public List<Transform> chairTransforms = new List<Transform>();
-    public List<Transform> queuePositions = new List<Transform>();
+    //public List<Transform> stallQueuePointList = new List<Transform>();
+    public Transform[] stallQueuePointList = new Transform[4];
 
     public float spawnInterval;
     public int maxCustomers;
-
     private float spawnTimer;
-    private bool stallOccupied = false;
+
     private List<CustomerMovementScript> activeCustomers = new List<CustomerMovementScript>();
-    private List<CustomerMovementScript> queue = new List<CustomerMovementScript>();
+
+    public static Action<CustomerMovementScript> OnCustomerLeftQueue;
+    public static Action<CustomerMovementScript> OnCustomerLeftSeat;
 
     private void Start()
     {
         spawnTimer = 0f;
+
+        OnCustomerLeftQueue += OnCustomerOrderFinish;
+    }
+
+    private void OnDestroy()
+    {
+        OnCustomerLeftQueue -= OnCustomerOrderFinish;
+
     }
 
     private void Update()
@@ -43,79 +54,68 @@ public class CustomerSpawnerScript : MonoBehaviour
             return;
         }
 
-        if (queue.Count >= queuePositions.Count && stallOccupied)
+        Transform freeChair = FindFreeChair();
+        Transform queuePoint = FindFreeQueuePoint();
+
+        // Checks if any free chairs and if all queuePoints taken
+        if (freeChair == null || queuePoint == null)
         {
             return;
         }
 
-        Transform freeTable = FindFreeTable();
-        if (freeTable == null)
-        {
-            return;
-        }
-
-        SpawnCustomer(freeTable);
+        SpawnCustomer(freeChair, queuePoint);
     }
 
-    private void SpawnCustomer(Transform table)
+    private void SpawnCustomer(Transform table, Transform queuePoint)
     {
         GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
 
         CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
 
-        customerScript.stallTransform = stallTransform;
+        customerScript.stallQueuePointTransform = queuePoint;
         customerScript.tableTransform = table;
         customerScript.exitTransform = exitTransform;
 
-        //customerScript.OnCustomerOrdered += OnCustomerOrdered;
-        //customerScript.OnCustomerServed += OnCustomerServed;
-        //customerScript.OnCustomerLeft += OnCustomerLeft;
-
         activeCustomers.Add(customerScript);
-
-        if (!stallOccupied)
-        {
-            stallOccupied = true;
-            //customerScript.WalkToStall();
-            return;
-        }
-
-        queue.Add(customerScript);
-        //customerScript.WalkToQueuePosition(queuePositions[queue.Count - 1]);
-    }
-
-    private void OnCustomerOrdered(CustomerMovementScript customer)
-    {
-        ShuffleQueue();
-    }
-
-    private void OnCustomerServed(CustomerMovementScript customer)
-    {
-        stallOccupied = false;
-
-        if (queue.Count == 0)
-        {
-            return;
-        }
-
-        CustomerMovementScript nextCustomer = queue[0];
-        queue.RemoveAt(0);
-
-        stallOccupied = true;
-        //nextCustomer.WalkToStall();
-
-        ShuffleQueue();
     }
 
     private void ShuffleQueue()
     {
-        for (int i = 0; i < queue.Count; i++)
+        for (int i = 0; i < stallQueuePointList.Length; i++)
         {
-            //queue[i].WalkToQueuePosition(queuePositions[i]);
+            CustomerMovementScript customer = activeCustomers.SingleOrDefault(n => n.stallQueuePointTransform == stallQueuePointList[i]);
+            if (customer != null && i != 0)
+            {
+                customer.stallQueuePointTransform = stallQueuePointList[i - 1];
+                customer.OnNewDestinationChange?.Invoke(customer.stallQueuePointTransform);
+            }
         }
     }
 
-    private Transform FindFreeTable()
+    private Transform FindFreeQueuePoint()
+    {
+        List<Transform> takenQueuePoints = new List<Transform>();
+
+        foreach (CustomerMovementScript customer in activeCustomers)
+        {
+            if (customer.stallQueuePointTransform != null)
+            {
+                takenQueuePoints.Add(customer.stallQueuePointTransform);
+            }
+        }
+
+        for (int i = 0; i < stallQueuePointList.Length; i++)
+        {
+            if (!takenQueuePoints.Contains(stallQueuePointList[i]))
+            {
+                return stallQueuePointList[i];
+            }
+        }
+
+        return null;
+    }
+
+    private Transform FindFreeChair()
     {
         List<Transform> occupiedTables = new List<Transform>();
 
@@ -138,9 +138,21 @@ public class CustomerSpawnerScript : MonoBehaviour
         return null;
     }
 
-    private void OnCustomerLeft(CustomerMovementScript customer)
+    private void OnCustomerDestroyed(CustomerMovementScript customer)
     {
         customer.tableTransform = null;
-        activeCustomers.Remove(customer);
+    }
+
+    private void OnCustomerSeated()
+    {
+
+    }
+
+    private void OnCustomerOrderFinish(CustomerMovementScript customer)
+    {
+        customer.stallQueuePointTransform = null;
+
+        float waitTime = 2;
+        Invoke("ShuffleQueue", waitTime);
     }
 }

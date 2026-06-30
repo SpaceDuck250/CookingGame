@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerHandScript : MonoBehaviour
 {
-    public FoodData currentFoodHeld;
-    public GameObject currentFoodHeldObj;
+    public FoodData currentFoodHeld = null;
+    public GameObject currentFoodHeldObj = null;
     public Camera cam;
 
     public float maxRange;
@@ -36,7 +36,11 @@ public class PlayerHandScript : MonoBehaviour
         {
             if (currentFoodHeld == null && currentFoodHeldObj == null)
             {
-                TryHoldingFoodObj();
+                if (TryHoldingFoodObj())
+                {
+                    return;
+                }
+                TryInteractWithInteractable();
             }
             else
             {
@@ -53,11 +57,11 @@ public class PlayerHandScript : MonoBehaviour
         }
     }
 
-    private void TryHoldingFoodObj()
+    private bool TryHoldingFoodObj()
     {
         if (currentFoodHeld != null || currentFoodHeldObj != null)
         {
-            return;
+            return false;
         }
 
         RaycastHit hit;
@@ -77,7 +81,11 @@ public class PlayerHandScript : MonoBehaviour
             }
 
             BringFoodToHand(holdableFoodScript);
+
+            return true;
         }
+
+        return false;
     }
 
     private void SwitchFoodItem(FoodData newFoodItem, GameObject newFoodObj)
