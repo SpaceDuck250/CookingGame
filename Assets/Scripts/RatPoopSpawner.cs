@@ -19,8 +19,12 @@ public class RatPoopSpawner : MonoBehaviour
     }
 
 
-    public void OnMouseStopEating(Vector3 foodPos)
+    public void OnMouseStopEating(bool spawnPoop)
     {
+        if (!spawnPoop)
+        {
+            return;
+        }
 
         Vector3 downOffset = Vector3.down * 0.1f;
         Instantiate(ratPoop, backTransform.position + downOffset, ratPoop.transform.rotation);
