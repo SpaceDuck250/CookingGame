@@ -34,6 +34,11 @@ public class CookingInputOutputScript : Interactable
 
     public void TryPutFood(PlayerHandScript playerHand)
     {
+        if (playerHand.currentFoodHeldObj == null && playerHand.currentFoodHeld == null)
+        {
+            return;
+        }
+
         currentRecipeUsed = FindRecipeFromInput(playerHand.currentFoodHeld);
         if (currentRecipeUsed == null)
         {
