@@ -22,7 +22,6 @@ public class PlayerHandScript : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
     }
 
     private void Update()

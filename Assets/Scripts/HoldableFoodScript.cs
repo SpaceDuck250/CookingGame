@@ -6,6 +6,7 @@ public class HoldableFoodScript : MonoBehaviour
     public GameObject objectToDelete;
 
     public PlatterScript platterIn;
+    public CuttingFoodScript cuttingIn;
     public bool CarryType = false;
 
     public Vector3 holdOffset;
