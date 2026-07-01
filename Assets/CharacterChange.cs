@@ -9,12 +9,7 @@ public class CharacterChange : MonoBehaviour
     public GameObject carrotSlices;
     public GameObject carrot;
     public GameObject carrots;
-    public GameObject knife;
-    public GameObject pan;
     public float fillRate = 0.5f;
-    public Animator animator;
-    public RuntimeAnimatorController knifeCutting;
-    public RuntimeAnimatorController panFry;
     public LayerMask layerMask;
     public TMP_Text cutInteractText;
     public GameObject[] ingredient;
@@ -29,38 +24,27 @@ public class CharacterChange : MonoBehaviour
             Debug.Log("Hit: " + hit.collider.name);
             if(Input.GetKey(KeyCode.E))
             {
-                knife.SetActive(true);
-                animator.runtimeAnimatorController = knifeCutting;
                 foodBar.SetActive(true);
                 slider.value += fillRate * Time.deltaTime;
             }
             else if(Input.GetKey(KeyCode.Q))
             {
-                pan.SetActive(true);
-                animator.runtimeAnimatorController = panFry;
                 foodBar.SetActive(true);
                 slider.value += fillRate * Time.deltaTime;
             }
             else
             {
-                knife.SetActive(false);
-                pan.SetActive(false);
                 foodBar.SetActive(false);
                 slider.value = 0;
-                animator.runtimeAnimatorController = null;
             }
         }
         else
         {
-            knife.SetActive(false);
-            pan.SetActive(false);
             foodBar.SetActive(false);
             slider.value = 0;
         }
         if(slider.value >= 1)
         {
-            knife.SetActive(false);
-            animator.runtimeAnimatorController = null;
             slider.value = 0;
             foodBar.SetActive(false);
             carrot.SetActive(false);
