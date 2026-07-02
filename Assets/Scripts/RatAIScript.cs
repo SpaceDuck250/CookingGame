@@ -52,6 +52,11 @@ public class RatAIScript : MonoBehaviour
     {
         RotateToMoveDirection();
 
+        if (foodTarget == null && agent.isStopped)
+        {
+            OnMouseStopEating?.Invoke(false);
+        }
+
         if (foodTarget != null)
         {
             TryGoToEatFood();
