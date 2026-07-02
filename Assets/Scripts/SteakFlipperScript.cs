@@ -29,25 +29,12 @@ public class SteakFlipperScript : Interactable
     {
         desiredRotation = Quaternion.Euler(0, 0, 90);
 
-        cookingInputOutput.OnCookingStart += OnCookingGameStart;
-    }
-
-    private void OnDestroy()
-    {
-        cookingInputOutput.OnCookingStart -= OnCookingGameStart;
     }
 
     private void Update()
     {
         //CheckInput();
         SlowlyRotate();
-    }
-
-    private void OnCookingGameStart(FoodData foodCooked)
-    {
-        steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipObject.transform, localPositionOffset, false);
-
-        SetTopAndBottom();
     }
 
     public void FlipSteak(float angle, Vector3 axis) 
@@ -63,7 +50,7 @@ public class SteakFlipperScript : Interactable
         flipObject.transform.rotation = Quaternion.RotateTowards(flipObject.transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
     }
 
-    private void SetTopAndBottom()
+    public void SetTopAndBottom()
     {
         steakHeld = flipObject.transform.GetChild(0).gameObject;
 

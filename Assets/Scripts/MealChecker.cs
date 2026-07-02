@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class MealChecker : MonoBehaviour
 {
@@ -7,12 +8,34 @@ public class MealChecker : MonoBehaviour
 
     public MealData mealToCheck;
 
-    private void Update()
+    public CustomerInteractScript customerScript;
+
+    public event Action OnMealOrderFulfilled;
+
+    public void CheckOrder(PlayerHandScript playerHand)
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (playerHand.currentFoodHeldObj.tag != "Platter")
         {
-            print(CheckIfMealMatchesOrder());
+            return;
         }
+
+        PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
+        inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
+
+        mealToCheck = customerScript.currentMealOrder;
+
+        if (CheckIfMealMatchesOrder())
+        {
+            OnMealOrderFulfilled?.Invoke();
+            NpcDialogueScript.OnOrderMetTalk?.Invoke();
+
+            playerHand.ClearFoodFromHand();
+        }
+        else
+        {
+            print("meal doesnt match order");
+        }
+
     }
 
     public bool CheckIfMealMatchesOrder()
