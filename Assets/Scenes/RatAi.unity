@@ -1144,14 +1144,13 @@ MonoBehaviour:
   eatingTimer: 0
   eatTime: 0
   destination: {x: 0, y: 0, z: 0}
-  smellRadius: 0
   foodLayer:
     serializedVersion: 2
     m_Bits: 0
   foodTarget: {fileID: 0}
+  smellRadius: 0
   eatDistance: 0
   tooFarDistance: 0
-  mouseMouth: {fileID: 0}
 --- !u!54 &712564529
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1647,7 +1646,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 383
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -1726,6 +1725,10 @@ PrefabInstance:
     - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_Name
       value: Platter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1808,14 +1811,13 @@ MonoBehaviour:
   eatingTimer: 0
   eatTime: 6
   destination: {x: 0, y: 0, z: 0}
-  smellRadius: 4
   foodLayer:
     serializedVersion: 2
     m_Bits: 128
   foodTarget: {fileID: 0}
-  eatDistance: 2.2
+  smellRadius: 4
+  eatDistance: 1.02
   tooFarDistance: 6
-  mouseMouth: {fileID: 0}
 --- !u!195 &1857311883
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1827,9 +1829,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 13.43
+  m_Acceleration: 113.1
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 175.25
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1880,7 +1882,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1901,21 +1903,6 @@ MonoBehaviour:
   ratAi: {fileID: 1857311882}
   ratPoop: {fileID: 1704504527637158970, guid: 8e12969cb03033a4ab1cc8a6be787909, type: 3}
   backTransform: {fileID: 519000194}
---- !u!114 &1857311889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148145921880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6671eb94374ff624183b6f18864f17d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  ratAi: {fileID: 1857311882}
-  playingAnimation: 0
-  animator: {fileID: 919132148145921881}
 --- !u!1 &1891813798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,14 +2110,13 @@ MonoBehaviour:
   eatingTimer: 0
   eatTime: 0
   destination: {x: 0, y: 0, z: 0}
-  smellRadius: 0
   foodLayer:
     serializedVersion: 2
     m_Bits: 0
   foodTarget: {fileID: 0}
+  smellRadius: 0
   eatDistance: 0
   tooFarDistance: 0
-  mouseMouth: {fileID: 0}
 --- !u!195 &2137390628
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2193,7 +2179,7 @@ Transform:
   m_GameObject: {fileID: 919132148145921880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.657, y: -1.627, z: -0.20124191}
+  m_LocalPosition: {x: 1.657, y: -1.838, z: -0.20124191}
   m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2239,8 +2225,6 @@ GameObject:
   - component: {fileID: 1857311883}
   - component: {fileID: 1857311882}
   - component: {fileID: 1857311887}
-  - component: {fileID: 1857311889}
-  - component: {fileID: 919132148145921881}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -2248,28 +2232,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &919132148145921881
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148145921880}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76bf6730e50234647b6808641bbf2163, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!23 &1079662026214145579
 MeshRenderer:
   m_ObjectHideFlags: 0
