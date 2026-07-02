@@ -91,4 +91,9 @@ public class PlatterScript : Interactable
         //foodHeldArray[emptySlotIndex] = foodData;
         foodHeldList.Add(foodData);
     }
+
+    public static implicit operator PlatterScript(CuttingFoodScript v)
+    {
+        throw new NotImplementedException();
+    }
 }
