@@ -58,7 +58,7 @@ public class RatAIScript : MonoBehaviour
             return;
         }
 
-        OnMouseStopEating?.Invoke(false);
+        //OnMouseStopEating?.Invoke(false);
 
         decisionTimer += Time.deltaTime;
         if (decisionTimer > waitTime)
@@ -96,6 +96,12 @@ public class RatAIScript : MonoBehaviour
         foreach (Collider food in foodsInRange)
         {
             if (food.gameObject.tag == "Platter")
+            {
+                continue;
+            }
+
+            HoldableFoodScript holdScript = food.gameObject.GetComponent<HoldableFoodScript>();
+            if (holdScript.platterIn != null)
             {
                 continue;
             }
@@ -180,10 +186,11 @@ public class RatAIScript : MonoBehaviour
         if (eatingTimer >= eatTime)
         {
             OnMouseStopEating?.Invoke(true);
-
             Destroy(foodTarget);
             foodTarget = null;
             eatingTimer = 0;
+
+            agent.isStopped = false;
         }
 
     }
@@ -223,18 +230,4 @@ public class RatAIScript : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, angle + 90, 0);
     }
-
-    //public void SnapBodyToFood()
-    //{
-    //    //if (foodTarget == null)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //Vector3 angleVector = (transform.position - foodTarget.transform.position).normalized;
-    //    //float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
-
-    //    //transform.rotation = Quaternion.Euler(0, angle, 0);
-
-    //}
 }
