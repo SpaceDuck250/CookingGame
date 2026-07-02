@@ -7148,14 +7148,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945842881}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.8614, y: 0.488, z: -7.13}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -14, y: 0.488, z: 11.912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1792369364}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1972883254 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7002507381359385950, guid: 76368b6352409d24a872236263356641, type: 3}
@@ -7785,13 +7785,13 @@ MonoBehaviour:
   eatingTimer: 0
   eatTime: 6
   destination: {x: 0, y: 0, z: 0}
-  smellRadius: 4
   foodLayer:
     serializedVersion: 2
     m_Bits: 128
   foodTarget: {fileID: 0}
+  smellRadius: 4
   eatDistance: 0.02
-  mouseMouth: {fileID: 0}
+  tooFarDistance: 0
 --- !u!195 &2130275858
 NavMeshAgent:
   m_ObjectHideFlags: 0
