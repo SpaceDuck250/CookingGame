@@ -141,6 +141,7 @@ public class RatAIScript : MonoBehaviour
 
     public void TryGoToEatFood()
     {
+        // There is no food
         if (foodTarget == null)
         {
             agent.isStopped = false;
@@ -153,7 +154,8 @@ public class RatAIScript : MonoBehaviour
 
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
-        if (PlayerHandScript.instance.currentFoodHeldObj == foodTarget || distanceToFood >= tooFarDistance)
+        // Food is too far away
+        if (distanceToFood >= tooFarDistance)
         {
             agent.isStopped = false;
 
@@ -161,7 +163,6 @@ public class RatAIScript : MonoBehaviour
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
             print("stop eating");
-
             return;
         }
 
@@ -182,6 +183,7 @@ public class RatAIScript : MonoBehaviour
         OnMouseEating?.Invoke(foodTarget);
         agent.isStopped = true;
 
+        // Case when the rat finishes food
         eatingTimer += Time.deltaTime;
         if (eatingTimer >= eatTime)
         {
