@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using System;
 
-public class RatAIScript : MonoBehaviour
+public class    RatAIScript : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -18,17 +18,16 @@ public class RatAIScript : MonoBehaviour
 
     public Vector3 destination;
 
-    public float smellRadius;
     public LayerMask foodLayer;
 
     public GameObject foodTarget;
 
+    public float smellRadius;
     public float eatDistance;
-
-    public GameObject mouseMouth;
+    public float tooFarDistance;
 
     public event Action<GameObject> OnMouseEating;
-    public event Action<Vector3> OnMouseStopEating;
+    public event Action<bool> OnMouseStopEating;
 
     private void Start()
     {
@@ -46,6 +45,7 @@ public class RatAIScript : MonoBehaviour
             return;
         }
 
+        OnMouseStopEating?.Invoke(false);
         decisionTimer += Time.deltaTime;
         if (decisionTimer > waitTime)
         {
@@ -81,6 +81,10 @@ public class RatAIScript : MonoBehaviour
 
         foreach (Collider food in foodsInRange)
         {
+            if (food.gameObject.tag == "Platter")
+            {
+                continue;
+            }
 
             float distanceToFood = Vector3.Distance(food.gameObject.transform.position, transform.position);
 
@@ -119,19 +123,34 @@ public class RatAIScript : MonoBehaviour
     {
         if (foodTarget == null)
         {
-            return;
-        }
-
-        if (PlayerHandScript.instance.currentFoodHeldObj == foodTarget)
-        {
-            foodTarget = null;
+            eatingTimer = 0;
+            OnMouseStopEating?.Invoke(false);
+            print("stop eating");
             return;
         }
 
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
+
+        if (PlayerHandScript.instance.currentFoodHeldObj == foodTarget || distanceToFood >= tooFarDistance)
+        {
+            foodTarget = null;
+            eatingTimer = 0;
+            OnMouseStopEating?.Invoke(false);
+            print("stop eating");
+
+            return;
+        }
+
         if (distanceToFood >= eatDistance)
         {
+            eatingTimer = 0;
+            OnMouseStopEating?.Invoke(false);
+
             agent.SetDestination(foodTarget.transform.position);
+            print("stop eating");
+
+
+            return;
         }
 
         OnMouseEating?.Invoke(foodTarget);
@@ -139,10 +158,11 @@ public class RatAIScript : MonoBehaviour
         eatingTimer += Time.deltaTime;
         if (eatingTimer >= eatTime)
         {
-            OnMouseStopEating?.Invoke(foodTarget.transform.position);
+            OnMouseStopEating?.Invoke(true);
 
-            eatingTimer = 0;
             Destroy(foodTarget);
+            foodTarget = null;
+            eatingTimer = 0;
         }
 
     }
