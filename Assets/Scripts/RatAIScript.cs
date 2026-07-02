@@ -52,13 +52,18 @@ public class RatAIScript : MonoBehaviour
     {
         RotateToMoveDirection();
 
+        if (foodTarget == null && agent.isStopped)
+        {
+            OnMouseStopEating?.Invoke(false);
+        }
+
         if (foodTarget != null)
         {
             TryGoToEatFood();
             return;
         }
 
-        OnMouseStopEating?.Invoke(false);
+        //OnMouseStopEating?.Invoke(false);
 
         decisionTimer += Time.deltaTime;
         if (decisionTimer > waitTime)
@@ -100,6 +105,12 @@ public class RatAIScript : MonoBehaviour
                 continue;
             }
 
+            HoldableFoodScript holdScript = food.gameObject.GetComponent<HoldableFoodScript>();
+            if (holdScript.platterIn != null)
+            {
+                continue;
+            }
+
             float distanceToFood = Vector3.Distance(food.gameObject.transform.position, transform.position);
 
             if (distanceToFood < closestDistance)
@@ -135,6 +146,7 @@ public class RatAIScript : MonoBehaviour
 
     public void TryGoToEatFood()
     {
+        // There is no food
         if (foodTarget == null)
         {
             agent.isStopped = false;
@@ -147,7 +159,8 @@ public class RatAIScript : MonoBehaviour
 
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
-        if (PlayerHandScript.instance.currentFoodHeldObj == foodTarget || distanceToFood >= tooFarDistance)
+        // Food is too far away
+        if (distanceToFood >= tooFarDistance)
         {
             agent.isStopped = false;
 
@@ -155,7 +168,6 @@ public class RatAIScript : MonoBehaviour
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
             print("stop eating");
-
             return;
         }
 
@@ -176,14 +188,16 @@ public class RatAIScript : MonoBehaviour
         OnMouseEating?.Invoke(foodTarget);
         agent.isStopped = true;
 
+        // Case when the rat finishes food
         eatingTimer += Time.deltaTime;
         if (eatingTimer >= eatTime)
         {
             OnMouseStopEating?.Invoke(true);
-
             Destroy(foodTarget);
             foodTarget = null;
             eatingTimer = 0;
+
+            agent.isStopped = false;
         }
 
     }
@@ -223,18 +237,4 @@ public class RatAIScript : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, angle + 90, 0);
     }
-
-    //public void SnapBodyToFood()
-    //{
-    //    //if (foodTarget == null)
-    //    //{
-    //    //    return;
-    //    //}
-
-    //    //Vector3 angleVector = (transform.position - foodTarget.transform.position).normalized;
-    //    //float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
-
-    //    //transform.rotation = Quaternion.Euler(0, angle, 0);
-
-    //}
 }
