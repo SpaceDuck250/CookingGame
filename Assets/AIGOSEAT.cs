@@ -1,15 +1,13 @@
-using System.Collections.Concurrent;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI : MonoBehaviour
+public class AIGOSEAT : MonoBehaviour
 {
     NavMeshAgent agent;
     Animator animator;
     float moveSpeed = 5;
     Chair currentChair;
     Chair targetChair;
-    public QueueManager queueManager;
     Transform table;
     void Start()
     {
@@ -18,8 +16,6 @@ public class AI : MonoBehaviour
         table = GameObject.Find("Table").transform;
         Chair[] chairs = FindObjectsByType<Chair>(
         FindObjectsSortMode.None);
-        queueManager.JoinQueue(this);
-
         foreach (Chair chair in chairs)
         {
         if (!chair.seated)
@@ -44,7 +40,7 @@ public class AI : MonoBehaviour
             currentChair.seated = false;
 
         targetChair = chair;
-        //agent.SetDestination(targetChair.transform.position);
+        agent.SetDestination(targetChair.transform.position);
     }
 
     void Update()
@@ -54,20 +50,9 @@ public class AI : MonoBehaviour
         if (!agent.pathPending &&
             agent.remainingDistance <= agent.stoppingDistance)
         {
-            agent.isStopped = true;
-            //SitDown();
-            OrderFood();
+            SitDown();
         }
         Debug.Log(agent.destination);
-    }
-    public void MoveToQueueSpot(Transform spot)
-    {
-        Debug.Log("Moving to " + spot.name + transform.name);
-        agent.SetDestination(spot.position);
-    }
-    void OrderFood()
-    {
-        animator.SetBool("Idle", true);
     }
     void SitDown()
     {
@@ -83,3 +68,4 @@ public class AI : MonoBehaviour
         Debug.Log("Sat down");
     }
 }
+
