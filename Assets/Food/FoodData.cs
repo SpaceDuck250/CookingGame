@@ -7,4 +7,7 @@ public class FoodData : ScriptableObject
     public string foodName;
     public Sprite foodSprite;
     public GameObject foodModel;
+
+    // -1 if not choppable
+    public int chopsRequired;
 }
