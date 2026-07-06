@@ -10,6 +10,10 @@ public class HoldableFoodScript : MonoBehaviour
 
     public CookingInputOutputScript cookingStationIn;
 
+    public Vector3 originalScale;
+    public bool changeScaleOnHand = false;
+    public float pickupScaleModifier;
+
     public Vector3 holdOffset;
 
     public void Start()
@@ -18,6 +22,10 @@ public class HoldableFoodScript : MonoBehaviour
         {
             objectToDelete = gameObject;
         }
+
+        originalScale = transform.localScale;
+        pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
+
     }
     
     public void DeleteObjectToDelete()

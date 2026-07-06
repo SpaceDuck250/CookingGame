@@ -20,8 +20,6 @@ public class PlayerHandScript : MonoBehaviour
 
     public static PlayerHandScript instance;
 
-    //public event Action<CookingInputOutputScript> OnFoodTakenOutOfCookingStation;
-
     private void Awake()
     {
         instance = this;
@@ -139,6 +137,11 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
+        currentFoodHeldObj.transform.localRotation = Quaternion.identity;
+
+        HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
+
+        ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
     }
 
     private void ThrowFood()
@@ -163,6 +166,8 @@ public class PlayerHandScript : MonoBehaviour
         rb.AddForce(throwForce, ForceMode.Impulse);
 
         rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
+
+        ScaleObject(currentFoodHeldObj, currentFoodHeldObj.GetComponent<HoldableFoodScript>().originalScale);
 
         currentFoodHeldObj = null;
     }
@@ -189,5 +194,22 @@ public class PlayerHandScript : MonoBehaviour
         {
             Destroy(currentFoodHeldObj.gameObject);
         }
+    }
+
+    public void TransferPlatterTo(Transform newParent)
+    {
+        currentFoodHeld = null;
+        if (currentFoodHeldObj != null)
+        {
+            currentFoodHeldObj.transform.SetParent(newParent);
+            currentFoodHeldObj.transform.localPosition = Vector3.zero;
+
+            currentFoodHeldObj = null;
+        }
+    }
+
+    public void ScaleObject(GameObject obj, Vector3 scaleAmount)
+    {
+        obj.transform.localScale = scaleAmount;
     }
 }

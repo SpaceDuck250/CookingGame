@@ -12,6 +12,8 @@ public class MealChecker : MonoBehaviour
 
     public event Action OnMealOrderFulfilled;
 
+    public Transform customerHand;
+
     public void CheckOrder(PlayerHandScript playerHand)
     {
         if (playerHand.currentFoodHeldObj.tag != "Platter")
@@ -29,7 +31,8 @@ public class MealChecker : MonoBehaviour
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetTalk?.Invoke();
 
-            playerHand.ClearFoodFromHand();
+            //playerHand.ClearFoodFromHand();
+            playerHand.TransferPlatterTo(customerHand);
         }
         else
         {
