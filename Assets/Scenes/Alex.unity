@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &72948682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8538140161564244447, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+  m_PrefabInstance: {fileID: 489150551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &72948686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72948682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac587ecf0ace3f45aec64afbb1ce59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickPreviewScript
+  previewText: 
+  clickCharacter: 0
+  previewObject: {fileID: 0}
+  previewTextComp: {fileID: 0}
+  previewCharComp: {fileID: 0}
+  interactArea: {fileID: 0}
+--- !u!1 &95191822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1860735640173846947, guid: b1d59541171109647a71f705f313ac5e, type: 3}
+  m_PrefabInstance: {fileID: 1742498265427280245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &95191827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95191822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6a8d951a158084696128d2d12cf15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
+  foodData: {fileID: 0}
+  objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  holdOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &118608129
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,14 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f41a821eb9ac946804301345c0d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  interactKeyCode: 0
-  recipeStored:
-  - {fileID: 11400000, guid: d37bde643f15bd845a43f7131aa3352c, type: 2}
-  - {fileID: 11400000, guid: 8acfc5316a0430746b3588aa43fef491, type: 2}
-  input: {fileID: 0}
-  currentRecipeUsed: {fileID: 0}
-  invisiblePickupObject: {fileID: 0}
-  hasFood: 0
 --- !u!1 &253382471
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,20 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1388dfb9c7c0314e839e5ca6fc33bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentFoodHeld: {fileID: 0}
-  currentFoodHeldObj: {fileID: 0}
-  cam: {fileID: 903122429}
-  maxRange: 10
-  foodLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  heldContainer: {fileID: 315072852}
-  throwStrength: 8.2
-  spinStrength: 13.9
-  currentInteractable: {fileID: 0}
 --- !u!4 &253382473
 Transform:
   m_ObjectHideFlags: 0
@@ -1245,6 +1269,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8425146
@@ -1285,14 +1321,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_Name
       value: Platter (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8622584456047325612, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: clickPreview
+      value: 
+      objectReference: {fileID: 72948686}
+    m_RemovedComponents:
+    - {fileID: 6924455561001662051, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8538140161564244447, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 72948686}
   m_SourcePrefab: {fileID: 100100000, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
 --- !u!1 &493015936
 GameObject:
@@ -1422,14 +1478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f41a821eb9ac946804301345c0d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CookingInputOutputScript
-  interactKeyCode: 0
-  recipeStored:
-  - {fileID: 11400000, guid: 3cdf422631c1ac44585f8f9e27f0fa45, type: 2}
-  - {fileID: 11400000, guid: 8acfc5316a0430746b3588aa43fef491, type: 2}
-  input: {fileID: 0}
-  currentRecipeUsed: {fileID: 0}
-  invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
-  hasFood: 0
 --- !u!1 &537714165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,6 +2868,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 410407896694415475, guid: 1c03294a1095f7343854b0a4ab884c71, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2106661979}
+    - targetCorrespondingSourceObject: {fileID: 410407896694415475, guid: 1c03294a1095f7343854b0a4ab884c71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2106661983}
   m_SourcePrefab: {fileID: 100100000, guid: 1c03294a1095f7343854b0a4ab884c71, type: 3}
 --- !u!1 &917249354
 GameObject:
@@ -2888,8 +2939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9e81ccfe3d3374b939067afbd8911d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractAreaScript
-  withinRange: 0
-  interactable: {fileID: 1487665643}
 --- !u!1 &918970988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,13 +3530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f41a821eb9ac946804301345c0d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CookingInputOutputScript
-  interactKeyCode: 0
-  recipeStored:
-  - {fileID: 11400000, guid: e962383d7f7de4f4d9cdd11f5b86aa67, type: 2}
-  input: {fileID: 0}
-  currentRecipeUsed: {fileID: 0}
-  invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
-  hasFood: 0
 --- !u!65 &1063244679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4362,8 +4404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9e81ccfe3d3374b939067afbd8911d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractAreaScript
-  withinRange: 0
-  interactable: {fileID: 1231501937}
 --- !u!114 &1231501937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,13 +4594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f41a821eb9ac946804301345c0d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CookingInputOutputScript
-  interactKeyCode: 0
-  recipeStored:
-  - {fileID: 11400000, guid: 249c91fe395bab44680fce7661435854, type: 2}
-  input: {fileID: 0}
-  currentRecipeUsed: {fileID: 0}
-  invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
-  hasFood: 0
 --- !u!1001 &1256039480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4569,6 +4602,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.950016
@@ -4609,14 +4654,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_Name
       value: Platter (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8622584456047325612, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: clickPreview
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6924455561001662051, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8538140161564244447, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2022692030}
   m_SourcePrefab: {fileID: 100100000, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
 --- !u!4 &1270248199 stripped
 Transform:
@@ -5185,8 +5250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9e81ccfe3d3374b939067afbd8911d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractAreaScript
-  withinRange: 0
-  interactable: {fileID: 1425911369}
 --- !u!65 &1425911371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5903,9 +5966,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231501935}
     m_Modifications:
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4280542075424678991, guid: 76368b6352409d24a872236263356641, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8595381317557359330, guid: 76368b6352409d24a872236263356641, type: 3}
       propertyPath: previewText
@@ -6419,6 +6506,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3211397664477415501, guid: d72a9fcc8188ef7449039f5d5419f8ec, type: 3}
   m_PrefabInstance: {fileID: 604633538}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2022692026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8538140161564244447, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+  m_PrefabInstance: {fileID: 1256039480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022692030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022692026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac587ecf0ace3f45aec64afbb1ce59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickPreviewScript
+  previewText: 
+  clickCharacter: 0
+  previewObject: {fileID: 0}
+  previewTextComp: {fileID: 0}
+  previewCharComp: {fileID: 0}
+  interactArea: {fileID: 0}
 --- !u!224 &2049814998 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8989133293717977408, guid: 76368b6352409d24a872236263356641, type: 3}
@@ -6520,6 +6630,47 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2106661983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106661975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6a8d951a158084696128d2d12cf15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
+  foodData: {fileID: 0}
+  objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  holdOffset: {x: 0, y: 0, z: 0}
+--- !u!1 &2121677397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5209990088077892174, guid: cddf435dae244df43b29c45a4a2c3268, type: 3}
+  m_PrefabInstance: {fileID: 8579923634841974047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2121677402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121677397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6a8d951a158084696128d2d12cf15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
+  foodData: {fileID: 0}
+  objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  holdOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &1401649847580483442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6632,7 +6783,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1860735640173846947, guid: b1d59541171109647a71f705f313ac5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 95191827}
   m_SourcePrefab: {fileID: 100100000, guid: b1d59541171109647a71f705f313ac5e, type: 3}
 --- !u!1001 &2003973599903282353
 PrefabInstance:
@@ -6642,9 +6796,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 917249355}
     m_Modifications:
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4280542075424678991, guid: 76368b6352409d24a872236263356641, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5820593329074351832, guid: 76368b6352409d24a872236263356641, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8595381317557359330, guid: 76368b6352409d24a872236263356641, type: 3}
       propertyPath: interactArea
@@ -6861,6 +7039,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 159814890613333388, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3486
@@ -6899,6 +7089,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 5158469486894795353, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
@@ -6962,10 +7164,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurntChicken
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2562807668724746842, guid: cddf435dae244df43b29c45a4a2c3268, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5209990088077892174, guid: cddf435dae244df43b29c45a4a2c3268, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2121677402}
   m_SourcePrefab: {fileID: 100100000, guid: cddf435dae244df43b29c45a4a2c3268, type: 3}
 --- !u!1001 &8657536713660978872
 PrefabInstance:
