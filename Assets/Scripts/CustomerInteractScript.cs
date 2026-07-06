@@ -20,6 +20,8 @@ public class CustomerInteractScript : Interactable
 
     public Action OnInteractWithCustomer;
     public static Action OnEndInteractWithCustomer;
+
+    public bool finishedInteract = false;
     
     private void Start()
     {
@@ -36,6 +38,11 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (finishedInteract)
+        {
+            return;
+        }
+
         if (CheckIfHoldingFood(playerHand))
         {
             CheckIfFoodMatchesOrder(playerHand);
@@ -90,8 +97,10 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete)
         {
-            movementScript.OnNewDestinationChange?.Invoke(movementScript.tableTransform);
+            movementScript.OnNewDestinationChange?.Invoke(movementScript.chairTransform);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(movementScript);
+
+            finishedInteract = true;
         }
     }
 

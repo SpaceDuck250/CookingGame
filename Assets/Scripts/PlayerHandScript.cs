@@ -72,6 +72,11 @@ public class PlayerHandScript : MonoBehaviour
             HoldableFoodScript holdableFoodScript = hit.collider.GetComponent<HoldableFoodScript>();
             FoodData foodData = holdableFoodScript.foodData;
 
+            if (!holdableFoodScript.canPickUp)
+            {
+                return false;
+            }
+
             if (!holdableFoodScript.CarryType)
             {
                 SwitchFoodItem(foodData, hit.collider.gameObject);
@@ -133,14 +138,19 @@ public class PlayerHandScript : MonoBehaviour
     {
         currentFoodHeldObj = objectToCarry;
 
-        currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
-
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
         currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
+        currentFoodHeldObj.transform.localRotation = Quaternion.identity;
+
+        HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
+        ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
+
+        InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+        interactArea.HideDisplay();
     }
 
     private void ThrowFood()
@@ -163,6 +173,13 @@ public class PlayerHandScript : MonoBehaviour
         rb.AddForce(throwForce, ForceMode.Impulse);
 
         rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
+
+        ScaleObject(currentFoodHeldObj, currentFoodHeldObj.GetComponent<HoldableFoodScript>().originalScale);
+
+        if (currentFoodHeldObj.tag == "Platter")
+        {
+            currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
+        }
 
         currentFoodHeldObj = null;
     }
@@ -191,5 +208,42 @@ public class PlayerHandScript : MonoBehaviour
             Destroy(currentFoodHeldObj);
             currentFoodHeldObj = null;
         }
+    }
+
+    public void TransferPlatterToCustomer(Transform newParent, Quaternion newRotation)
+    {
+        HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
+
+        // Summarize into a function
+        holdScript.canPickUp = false;
+
+        PlatterScript platterScript = holdScript.transform.GetChild(0).GetComponent<PlatterScript>();
+        if (platterScript != null)
+        {
+            foreach (Transform placeArea in platterScript.placeAreasArray)
+            {
+                if (placeArea.childCount > 0)
+                {
+                    placeArea.GetChild(0).GetComponent<HoldableFoodScript>().canPickUp = false;
+                }
+            }
+        }
+
+        ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier * 0.6f);
+
+        currentFoodHeld = null;
+        if (currentFoodHeldObj != null)
+        {
+            currentFoodHeldObj.transform.SetParent(newParent);
+            currentFoodHeldObj.transform.localPosition = Vector3.zero;
+            currentFoodHeldObj.transform.localRotation = newRotation;
+
+            currentFoodHeldObj = null;
+        }
+    }
+
+    public void ScaleObject(GameObject obj, Vector3 scaleAmount)
+    {
+        obj.transform.localScale = scaleAmount;
     }
 }

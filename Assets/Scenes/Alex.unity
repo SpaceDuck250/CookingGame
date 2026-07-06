@@ -2263,7 +2263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 64.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &792027417
@@ -3370,6 +3370,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8407af13d3d719d4b9580c40601d0cf5, type: 2}
   mealToCheck: {fileID: 11400000, guid: de13db9a596095f498b63fdddf04aeaf, type: 2}
   customerScript: {fileID: 0}
+  customerHand: {fileID: 0}
 --- !u!4 &1041517482
 Transform:
   m_ObjectHideFlags: 0
@@ -4972,7 +4973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 0}
   stallQueuePointTransform: {fileID: 0}
-  tableTransform: {fileID: 0}
+  chairTransform: {fileID: 0}
   exitTransform: {fileID: 0}
   destinationPoint: {fileID: 832749178}
   sitTime: 0
@@ -4980,6 +4981,7 @@ MonoBehaviour:
   closeEnough: 0.78
   orderDone: 0
   sitting: 0
+  mealChecker: {fileID: 0}
 --- !u!195 &1410573308
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5017,6 +5019,7 @@ MonoBehaviour:
   inputFoodDataList: []
   mealToCheck: {fileID: 0}
   customerScript: {fileID: 1425911369}
+  customerHand: {fileID: 0}
 --- !u!54 &1410573310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5767,6 +5770,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542471517}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1621816961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.046894807
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5292749
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.892
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590257948791415596, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_Name
+      value: Platter (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062856219847739558, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59f5d3ecf6a9b9a4aaf66b051b65e707, type: 3}
 --- !u!1 &1698754657
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,7 +5882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 11400000, guid: 76521598435ebed4a8dd1ab64cd6f986, type: 2}
   stallQueuePointTransform: {fileID: 0}
-  tableTransform: {fileID: 0}
+  chairTransform: {fileID: 0}
   exitTransform: {fileID: 832749178}
   destinationPoint: {fileID: 0}
   sitTime: 1.22
@@ -5810,6 +5890,7 @@ MonoBehaviour:
   closeEnough: 3.75
   orderDone: 0
   sitting: 0
+  mealChecker: {fileID: 0}
 --- !u!136 &1698754659
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7343,6 +7424,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889392656918324560, guid: d72a9fcc8188ef7449039f5d5419f8ec, type: 3}
+      propertyPath: upOffset.y
+      value: -1.16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7433,6 +7518,7 @@ SceneRoots:
   - {fileID: 1410573314}
   - {fileID: 1041517482}
   - {fileID: 7254184541075102828}
+  - {fileID: 1621816961}
   - {fileID: 1698754662}
   - {fileID: 713421322}
   - {fileID: 349854247}

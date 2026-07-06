@@ -92,7 +92,7 @@ public class CustomerSpawnerScript : MonoBehaviour
         CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
 
         customerScript.stallQueuePointTransform = queuePoint;
-        customerScript.tableTransform = table;
+        customerScript.chairTransform = table;
         customerScript.exitTransform = exitTransform;
 
         activeCustomers.Add(customerScript);
@@ -107,7 +107,7 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         for (int i = emptyQueueIndex + 1; i < stallQueuePointList.Length; i++)
         {
-            CustomerMovementScript customer = activeCustomers.SingleOrDefault(n => n.stallQueuePointTransform == stallQueuePointList[i]);
+            CustomerMovementScript customer = activeCustomers.FirstOrDefault(n => n.stallQueuePointTransform == stallQueuePointList[i]);
             if (customer != null && i != 0)
             {
                 customer.stallQueuePointTransform = stallQueuePointList[i - 1];
@@ -145,9 +145,9 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         foreach (CustomerMovementScript customer in activeCustomers)
         {
-            if (customer.tableTransform != null)
+            if (customer.chairTransform != null)
             {
-                occupiedTables.Add(customer.tableTransform);
+                occupiedTables.Add(customer.chairTransform);
             }
         }
 
@@ -184,7 +184,7 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void CustomerSeated(CustomerMovementScript customer)
     {
-        customer.tableTransform = null;
+        customer.chairTransform = null;
 
     }
 
