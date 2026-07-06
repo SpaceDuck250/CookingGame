@@ -135,7 +135,6 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj = objectToCarry;
         currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
 
-
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
@@ -145,8 +144,10 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.transform.localRotation = Quaternion.identity;
 
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
-
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
+
+        InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+        interactArea.HideDisplay();
     }
 
     private void ThrowFood()
@@ -173,6 +174,11 @@ public class PlayerHandScript : MonoBehaviour
         rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
 
         ScaleObject(currentFoodHeldObj, currentFoodHeldObj.GetComponent<HoldableFoodScript>().originalScale);
+
+        if (currentFoodHeldObj.tag == "Platter")
+        {
+            currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
+        }
 
         currentFoodHeldObj = null;
     }
