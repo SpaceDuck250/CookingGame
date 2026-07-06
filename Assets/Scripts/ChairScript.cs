@@ -13,6 +13,9 @@ public class ChairScript : MonoBehaviour
 
     public GameObject tableParent;
 
+    public Vector3 foodPlaceOffset;
+    private Vector3 originalPos;
+
     private void Start()
     {
         seatTime = 2;
@@ -32,7 +35,7 @@ public class ChairScript : MonoBehaviour
 
         CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
 
-        if (movementScript.tableTransform != null && movementScript.tableTransform.GetChild(0) == transform && movementScript.orderDone)
+        if (movementScript.chairTransform != null && movementScript.chairTransform.GetChild(0) == transform && movementScript.orderDone)
         {
             heldCustomer = movementScript;
             heldCustomer.sitting = true;
@@ -51,10 +54,12 @@ public class ChairScript : MonoBehaviour
 
         heldCustomer.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.exitTransform);
         heldCustomer.sitting = false;
-        heldCustomer.tableTransform = null;
+        heldCustomer.chairTransform = null;
+
+        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
+
 
         heldCustomer = null;
-
     }
 
     private void SeatCustomer()
@@ -70,6 +75,8 @@ public class ChairScript : MonoBehaviour
         float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
 
         heldCustomer.gameObject.transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
+
+        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 0.38f, 1.292f);
 
         heldCustomer.gameObject.GetComponent<CustomerAnimator>().Sit();
     }

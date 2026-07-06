@@ -16,6 +16,8 @@ public class HoldableFoodScript : MonoBehaviour
 
     public Vector3 holdOffset;
 
+    public bool canPickUp = true;
+
     public void Start()
     {
         if (objectToDelete == null)

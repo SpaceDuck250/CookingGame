@@ -90,7 +90,7 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete)
         {
-            movementScript.OnNewDestinationChange?.Invoke(movementScript.tableTransform);
+            movementScript.OnNewDestinationChange?.Invoke(movementScript.chairTransform);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(movementScript);
         }
     }
