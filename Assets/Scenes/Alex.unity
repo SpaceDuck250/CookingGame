@@ -407,6 +407,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 0}
+  hasFood: 0
 --- !u!1 &253382471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,6 +1682,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
+  hasFood: 0
 --- !u!1 &537714165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,6 +3693,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
+  hasFood: 0
 --- !u!65 &1063244679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4763,6 +4766,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
+  hasFood: 0
 --- !u!1001 &1256039480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5630,7 +5634,6 @@ GameObject:
   - component: {fileID: 1487665641}
   - component: {fileID: 1487665643}
   - component: {fileID: 1487665642}
-  - component: {fileID: 1487665645}
   - component: {fileID: 1487665644}
   m_Layer: 0
   m_Name: SteakFlipperAndCooker
@@ -5716,18 +5719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cookingInputOutput: {fileID: 493015941}
   flipperScript: {fileID: 1487665643}
---- !u!114 &1487665645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487665640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fcfd7b2ec796047a11756d9b9fd3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BurntFoodDestroyer
+  alreadyCooking: 0
 --- !u!1001 &1515383127
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerHandScript : MonoBehaviour
 {
@@ -19,10 +20,11 @@ public class PlayerHandScript : MonoBehaviour
 
     public static PlayerHandScript instance;
 
+    //public event Action<CookingInputOutputScript> OnFoodTakenOutOfCookingStation;
+
     private void Awake()
     {
         instance = this;
-
     }
 
     private void Update()
@@ -67,7 +69,6 @@ public class PlayerHandScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, foodLayer))
         {
-            //SwitchFoodItem(hit.collider.gameObject.GetComponent<FoodData>());
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponent<HoldableFoodScript>();
             FoodData foodData = holdableFoodScript.foodData;
 
@@ -105,6 +106,11 @@ public class PlayerHandScript : MonoBehaviour
         if (holdableScript.platterIn != null)
         {
             holdableScript.platterIn.OnFoodTakenOutOfPlatter?.Invoke(holdableScript.foodData);
+        }
+
+        if (holdableScript.cookingStationIn != null)
+        {
+            holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
         }
 
         currentFoodHeldObj = Instantiate(holdableScript.foodData.foodModel, transform.position, Quaternion.identity, heldContainer);

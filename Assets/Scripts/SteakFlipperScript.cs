@@ -52,6 +52,7 @@ public class SteakFlipperScript : Interactable
 
     public void SetTopAndBottom()
     {
+
         steakHeld = flipObject.transform.GetChild(0).gameObject;
 
         bottomPart = steakHeld.transform.Find("Bottom").gameObject;

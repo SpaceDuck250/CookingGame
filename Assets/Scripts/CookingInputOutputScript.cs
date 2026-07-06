@@ -12,12 +12,27 @@ public class CookingInputOutputScript : Interactable
     public Action<Vector3, GameObject, Transform> OnCookingSuccess;
     public Action<Vector3, GameObject, Transform> OnCookingFail;
 
+    public Action OnFoodTakenOutOfCookingStation;
+
     public Action<bool> OnFoodInputCorrect;
 
     public RecipeData currentRecipeUsed;
 
     // Invisaible and can contain food;
     public GameObject invisiblePickupObject;
+
+    public bool hasFood = false;
+
+    private void Start()
+    {
+        OnFoodTakenOutOfCookingStation += TakeFoodOut;
+    }
+
+    private void OnDestroy()
+    {
+        OnFoodTakenOutOfCookingStation -= TakeFoodOut;
+
+    }
 
     public RecipeData FindRecipeFromInput(FoodData foodInput)
     {
@@ -34,6 +49,11 @@ public class CookingInputOutputScript : Interactable
 
     public void TryPutFood(PlayerHandScript playerHand)
     {
+        if (hasFood)
+        {
+            return;
+        }
+
         if (playerHand.currentFoodHeldObj == null && playerHand.currentFoodHeld == null)
         {
             return;
@@ -48,6 +68,8 @@ public class CookingInputOutputScript : Interactable
         OnCookingStart?.Invoke(currentRecipeUsed.inputFood);
         playerHand.currentFoodHeld = null;
         Destroy(playerHand.currentFoodHeldObj);
+
+        hasFood = true;
     }
 
     public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
@@ -67,6 +89,11 @@ public class CookingInputOutputScript : Interactable
         holdScript.objectToDelete = deleteObject;
 
         pickupFood.transform.parent = parent;
+
+        holdScript.cookingStationIn = this;
+
+        //pickupFoodStore = pickupFood;
+        //spawnedPickupFood = true;
 
         return pickupFood;
     }
@@ -97,7 +124,12 @@ public class CookingInputOutputScript : Interactable
     public override void Interact(PlayerHandScript playerHand)
     {
         TryPutFood(playerHand);
+
     }
 
+    public void TakeFoodOut()
+    {
+        hasFood = false;
+    }
 
 }
