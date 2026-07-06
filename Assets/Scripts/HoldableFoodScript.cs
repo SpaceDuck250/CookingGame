@@ -9,6 +9,8 @@ public class HoldableFoodScript : MonoBehaviour
     public CuttingFoodScript cuttingIn;
     public bool CarryType = false;
 
+    public CookingInputOutputScript cookingStationIn;
+
     public Vector3 holdOffset;
 
     public void Start()
