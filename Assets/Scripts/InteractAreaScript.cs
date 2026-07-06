@@ -27,6 +27,7 @@ public class InteractAreaScript : MonoBehaviour
     // Check if the player entered interactable range
     private void OnTriggerEnter(Collider other)
     {
+<<<<<<< HEAD
         if (other.gameObject.tag != "Player")
         {
             return;
@@ -35,11 +36,23 @@ public class InteractAreaScript : MonoBehaviour
         withinRange = true;
 
         OnPlayerEnterRange?.Invoke(other.gameObject);
+=======
+        if (other.gameObject.tag == "Player")
+        {
+            withinRange = true;
+
+            OnPlayerEnterRange?.Invoke(other.gameObject);
+            
+        }
+
+        
+>>>>>>> origin/newestAlex
     }
 
     // Check if player left interactable range
     private void OnTriggerExit(Collider other)
     {
+<<<<<<< HEAD
         if (other.gameObject.tag != "Player")
         {
             return;
@@ -48,5 +61,15 @@ public class InteractAreaScript : MonoBehaviour
         withinRange = false;
 
         OnPlayerExitRange?.Invoke();
+=======
+        if (other.gameObject.tag == "Player")
+        {
+            withinRange = false;
+
+            OnPlayerExitRange?.Invoke();
+        }
+
+        
+>>>>>>> origin/newestAlex
     }
 }

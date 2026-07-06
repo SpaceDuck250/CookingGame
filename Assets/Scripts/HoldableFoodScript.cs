@@ -8,6 +8,11 @@ public class HoldableFoodScript : MonoBehaviour
     public PlatterScript platterIn;
     public bool CarryType = false;
 
+<<<<<<< HEAD
+=======
+    public CookingInputOutputScript cookingStationIn;
+
+>>>>>>> origin/newestAlex
     public Vector3 holdOffset;
 
     public void Start()

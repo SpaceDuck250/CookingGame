@@ -1,14 +1,27 @@
 using UnityEngine;
+<<<<<<< HEAD
 
 public class PlayerHandScript : MonoBehaviour
 {
     public FoodData currentFoodHeld;
     public GameObject currentFoodHeldObj;
+=======
+using System;
+
+public class PlayerHandScript : MonoBehaviour
+{
+    public FoodData currentFoodHeld = null;
+    public GameObject currentFoodHeldObj = null;
+>>>>>>> origin/newestAlex
     public Camera cam;
 
     public float maxRange;
     public LayerMask foodLayer;
+<<<<<<< HEAD
     public LayerMask cookingStationLayer;
+=======
+    public LayerMask interactableLayer;
+>>>>>>> origin/newestAlex
 
     public Transform heldContainer;
 
@@ -19,25 +32,46 @@ public class PlayerHandScript : MonoBehaviour
 
     public static PlayerHandScript instance;
 
+<<<<<<< HEAD
     private void Awake()
     {
         instance = this;
 
+=======
+    //public event Action<CookingInputOutputScript> OnFoodTakenOutOfCookingStation;
+
+    private void Awake()
+    {
+        instance = this;
+>>>>>>> origin/newestAlex
     }
 
     private void Update()
     {
         CheckForFoodInputs();
+<<<<<<< HEAD
         //print(instance);
+=======
+>>>>>>> origin/newestAlex
     }
 
     public void CheckForFoodInputs()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+<<<<<<< HEAD
             if (currentFoodHeld == null)
             {
                 TryHoldingFoodObj();
+=======
+            if (currentFoodHeld == null && currentFoodHeldObj == null)
+            {
+                if (TryHoldingFoodObj())
+                {
+                    return;
+                }
+                TryInteractWithInteractable();
+>>>>>>> origin/newestAlex
             }
             else
             {
@@ -54,17 +88,28 @@ public class PlayerHandScript : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     private void TryHoldingFoodObj()
     {
         if (currentFoodHeld != null || currentFoodHeldObj != null)
         {
             return;
+=======
+    private bool TryHoldingFoodObj()
+    {
+        if (currentFoodHeld != null || currentFoodHeldObj != null)
+        {
+            return false;
+>>>>>>> origin/newestAlex
         }
 
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, foodLayer))
         {
+<<<<<<< HEAD
             //SwitchFoodItem(hit.collider.gameObject.GetComponent<FoodData>());
+=======
+>>>>>>> origin/newestAlex
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponent<HoldableFoodScript>();
             FoodData foodData = holdableFoodScript.foodData;
 
@@ -78,7 +123,15 @@ public class PlayerHandScript : MonoBehaviour
             }
 
             BringFoodToHand(holdableFoodScript);
+<<<<<<< HEAD
         }
+=======
+
+            return true;
+        }
+
+        return false;
+>>>>>>> origin/newestAlex
     }
 
     private void SwitchFoodItem(FoodData newFoodItem, GameObject newFoodObj)
@@ -100,6 +153,14 @@ public class PlayerHandScript : MonoBehaviour
             holdableScript.platterIn.OnFoodTakenOutOfPlatter?.Invoke(holdableScript.foodData);
         }
 
+<<<<<<< HEAD
+=======
+        if (holdableScript.cookingStationIn != null)
+        {
+            holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
+        }
+
+>>>>>>> origin/newestAlex
         currentFoodHeldObj = Instantiate(holdableScript.foodData.foodModel, transform.position, Quaternion.identity, heldContainer);
 
         //currentFoodHeldObj = holdableScript.gameObject;
@@ -157,8 +218,15 @@ public class PlayerHandScript : MonoBehaviour
     private void TryInteractWithInteractable()
     {
         RaycastHit hit;
+<<<<<<< HEAD
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange))
         {
+=======
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, interactableLayer))
+        {
+            print(hit.collider);
+
+>>>>>>> origin/newestAlex
             Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
             if (interactable != null)
             {
@@ -166,4 +234,16 @@ public class PlayerHandScript : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void ClearFoodFromHand()
+    {
+        currentFoodHeld = null;
+        if (currentFoodHeldObj != null)
+        {
+            Destroy(currentFoodHeldObj.gameObject);
+        }
+    }
+>>>>>>> origin/newestAlex
 }
