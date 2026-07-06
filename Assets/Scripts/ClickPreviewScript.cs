@@ -16,46 +16,39 @@ public class ClickPreviewScript : MonoBehaviour
 
     public InteractAreaScript interactArea;
 
-<<<<<<< HEAD
-=======
     private void Awake()
     {
         Subscribe();
     }
 
->>>>>>> origin/newestAlex
     private void Start()
     {
         SetupPreviewObj();
-
-<<<<<<< HEAD
-        interactArea.OnPlayerEnterRange += OnPlayerEnterRange;
-        interactArea.OnPlayerExitRange += OnPlayerExitRange;
-=======
-        
->>>>>>> origin/newestAlex
     }
 
     private void OnDestroy()
     {
-        interactArea.OnPlayerEnterRange -= OnPlayerEnterRange;
-        interactArea.OnPlayerExitRange -= OnPlayerExitRange;
+        if (interactArea != null)
+        {
+            interactArea.OnPlayerEnterRange -= OnPlayerEnterRange;
+            interactArea.OnPlayerExitRange -= OnPlayerExitRange;
+        }
     }
 
-<<<<<<< HEAD
-=======
     public void Subscribe()
     {
+        if (interactArea == null) return;
+
         interactArea.OnPlayerEnterRange += OnPlayerEnterRange;
         interactArea.OnPlayerExitRange += OnPlayerExitRange;
     }
 
->>>>>>> origin/newestAlex
     private void OnPlayerEnterRange(GameObject player)
     {
         ShowClickPreview(true);
         OnPreviewShown?.Invoke(player);
     }
+
     private void OnPlayerExitRange()
     {
         ShowClickPreview(false);
