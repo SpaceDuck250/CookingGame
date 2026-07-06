@@ -353,6 +353,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
+  hasFood: 0
 --- !u!65 &82946654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4095,6 +4096,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 0}
+  hasFood: 0
 --- !u!4 &574975478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2b4b713fe9fe51549aab3bead87e46d7, type: 3}
@@ -5702,15 +5704,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff0d39e3c6d356a47a8a94b61557b606, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -989.79
+      value: -986.255
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff0d39e3c6d356a47a8a94b61557b606, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -538.8121
+      value: -539.444
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff0d39e3c6d356a47a8a94b61557b606, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2210002
+      value: 13.059
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff0d39e3c6d356a47a8a94b61557b606, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8388,6 +8390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cookingInputOutput: {fileID: 1871388177}
   flipperScript: {fileID: 1393522716}
+  alreadyCooking: 0
 --- !u!114 &1393522718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11481,6 +11484,7 @@ MonoBehaviour:
   input: {fileID: 0}
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
+  hasFood: 0
 --- !u!65 &1871388178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12902,6 +12906,7 @@ MonoBehaviour:
   platterIn: {fileID: 1531318098}
   cuttingIn: {fileID: 0}
   CarryType: 1
+  cookingStationIn: {fileID: 0}
   holdOffset: {x: 0, y: 0, z: 0}
 --- !u!65 &2009514619
 BoxCollider:
