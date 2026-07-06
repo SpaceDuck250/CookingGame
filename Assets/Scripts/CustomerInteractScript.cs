@@ -8,8 +8,8 @@ public class CustomerInteractScript : Interactable
 
     public MealData currentMealOrder;
 
-    // fix this later
-    public bool talkingTo = false;
+    //// fix this later
+    //public bool talkingTo = false;
 
     public event Action<MealData> OnNewMealPicked;
 
@@ -17,6 +17,9 @@ public class CustomerInteractScript : Interactable
 
     public bool orderComplete = false;
     public CustomerMovementScript movementScript;
+
+    public Action OnInteractWithCustomer;
+    public static Action OnEndInteractWithCustomer;
     
     private void Start()
     {
@@ -74,11 +77,16 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
+        OnInteractWithCustomer?.Invoke();
+
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, currentMealOrder);
     }
 
     public void CloseConversation()
     {
+        print("ended" + gameObject);
+        OnEndInteractWithCustomer?.Invoke();
+
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete)
         {
