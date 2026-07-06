@@ -9,6 +9,8 @@ public class ChairScript : MonoBehaviour
 
     public Vector3 upOffset;
 
+    public GameObject tableParent;
+
     private void Start()
     {
         seatTime = 2;
