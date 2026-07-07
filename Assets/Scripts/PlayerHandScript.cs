@@ -122,10 +122,12 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
 
 
+
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
+        currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
 
         holdableScript.DeleteObjectToDelete();
     }
