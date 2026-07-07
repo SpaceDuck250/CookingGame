@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class ChairScript : MonoBehaviour
@@ -18,9 +17,9 @@ public class ChairScript : MonoBehaviour
 
     private void Start()
     {
-        seatTime = 2;
-        upOffset = Vector3.up * 0.9f;
-        forwardOffsetValue = 0.4f;
+        seatTime = 6;
+        upOffset = Vector3.up * 0.15f;
+        forwardOffsetValue = 0.35f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,9 +41,7 @@ public class ChairScript : MonoBehaviour
 
             SeatCustomer();
             Invoke("LeaveSeat", seatTime);
-        }
-
-        
+        } 
     }
 
     private void LeaveSeat()
@@ -52,12 +49,17 @@ public class ChairScript : MonoBehaviour
         heldCustomer.transform.position = originalPosition;
         heldCustomer.agent.enabled = true;
 
-        heldCustomer.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.exitTransform);
+        heldCustomer.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.platterPoint);
         heldCustomer.sitting = false;
         heldCustomer.chairTransform = null;
 
-        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
+        //heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
 
+        Vector3 originalHeldPosition = new Vector3(0, 2.141f, 1.292f);
+        SetPlatterPosition(heldCustomer.mealChecker.customerHand, originalHeldPosition);
+
+        PlatterScript platter = heldCustomer.mealChecker.platterHeld;
+        ClearTray(platter);
 
         heldCustomer = null;
     }
@@ -76,9 +78,20 @@ public class ChairScript : MonoBehaviour
 
         heldCustomer.gameObject.transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
 
-        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 0.38f, 1.292f);
+        Vector3 tablePosition = new Vector3(0, 1.83f, 1.292f);
+        SetPlatterPosition(heldCustomer.mealChecker.customerHand, tablePosition);
 
         heldCustomer.gameObject.GetComponent<CustomerAnimator>().Sit();
+    }
+
+    public void SetPlatterPosition(Transform platter, Vector3 newLocalPosition)
+    {
+        platter.localPosition = newLocalPosition;
+    }
+
+    public void ClearTray(PlatterScript platterScript)
+    {
+        platterScript.ClearAllInPlatter();
     }
 
 }

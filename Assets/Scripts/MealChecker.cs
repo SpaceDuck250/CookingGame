@@ -14,6 +14,8 @@ public class MealChecker : MonoBehaviour
 
     public Transform customerHand;
 
+    public PlatterScript platterHeld;
+
     public void CheckOrder(PlayerHandScript playerHand)
     {
         if (playerHand.currentFoodHeldObj.tag != "Platter")
@@ -23,6 +25,7 @@ public class MealChecker : MonoBehaviour
 
         PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
         inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
+        platterHeld = platterGiver.platterScript;
 
         mealToCheck = customerScript.currentMealOrder;
 
@@ -32,8 +35,8 @@ public class MealChecker : MonoBehaviour
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetTalk?.Invoke(customerScript.heldCustomerData);
 
-            //playerHand.ClearFoodFromHand();
             playerHand.TransferPlatterToCustomer(customerHand, Quaternion.identity * Quaternion.Euler(0, 90 + 90, 0));
+            customerScript.movementScript.holdingTray = true;
         }
         else
         {

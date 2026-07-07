@@ -9,6 +9,7 @@ public class CustomerMovementScript : MonoBehaviour
     public Transform stallQueuePointTransform;
     public Transform chairTransform;
     public Transform exitTransform;
+    public Transform platterAreaTransform;
 
     public Transform destinationPoint;
 
@@ -23,6 +24,8 @@ public class CustomerMovementScript : MonoBehaviour
     public float closeEnough;
     public bool orderDone = false;
     public bool sitting = false;
+
+    public bool holdingTray = false;
 
     public Action OnCustomerMove;
     public Action OnCustomerIdle;

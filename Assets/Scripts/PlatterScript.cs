@@ -92,8 +92,17 @@ public class PlatterScript : Interactable
         foodHeldList.Add(foodData);
     }
 
-    public static implicit operator PlatterScript(CuttingFoodScript v)
+    public void ClearAllInPlatter()
     {
-        throw new NotImplementedException();
+        foodHeldList.Clear();
+        foreach (Transform placeArea in placeAreasArray)
+        {
+            if (placeArea.childCount > 0)
+            {
+                Destroy(placeArea.GetChild(0).gameObject);
+            }
+        }
+
+        currentIndex = 0;
     }
 }

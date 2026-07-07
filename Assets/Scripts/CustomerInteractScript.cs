@@ -8,9 +8,6 @@ public class CustomerInteractScript : Interactable
 
     public MealData currentMealOrder;
 
-    //// fix this later
-    //public bool talkingTo = false;
-
     public event Action<MealData> OnNewMealPicked;
 
     public MealChecker mealChecker;

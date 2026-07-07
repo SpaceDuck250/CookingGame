@@ -10,6 +10,8 @@ public class CustomerSpawnerScript : MonoBehaviour
     public Transform spawnPoint;
     public Transform exitTransform;
 
+    public Transform platterPoint;
+
     public List<Transform> chairTransforms = new List<Transform>();
     //public List<Transform> stallQueuePointList = new List<Transform>();
     public Transform[] stallQueuePointList = new Transform[4];
