@@ -15,7 +15,7 @@ public class HoldableFoodScript : MonoBehaviour
     public bool changeScaleOnHand = false;
     public float pickupScaleModifier;
 
-    public Vector3 holdOffset;
+    public Vector3 holdOffset = Vector3.zero;
 
     public bool canPickUp = true;
 
