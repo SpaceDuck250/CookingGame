@@ -18,9 +18,9 @@ public class ChairScript : MonoBehaviour
 
     private void Start()
     {
-        seatTime = 2;
-        upOffset = Vector3.up * 0.9f;
-        forwardOffsetValue = 0.4f;
+        seatTime = 6;
+        upOffset = Vector3.up * 0.15f;
+        forwardOffsetValue = 0.35f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,7 +76,7 @@ public class ChairScript : MonoBehaviour
 
         heldCustomer.gameObject.transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
 
-        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 0.38f, 1.292f);
+        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 1.83f, 1.292f);
 
         heldCustomer.gameObject.GetComponent<CustomerAnimator>().Sit();
     }
