@@ -69,7 +69,9 @@ public class SteakCookerScript : MonoBehaviour
                 {
                     return;
                 }
-                cookingInputOutputScript.OnCookingSuccess?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
+                //cookingInputOutputScript.OnCookingSuccess?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
+                ICookStation cookStation = cookingInputOutputScript.GetComponent<ICookStation>();
+                cookStation.CallFoodSuccessEvent(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
             }
         }
 
@@ -86,7 +88,9 @@ public class SteakCookerScript : MonoBehaviour
             {
                 return;
             }
-            cookingInputOutputScript.OnCookingFail?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
+            //cookingInputOutputScript.OnCookingFail?.Invoke(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
+            ICookStation cookStation = cookingInputOutputScript.GetComponent<ICookStation>();
+            cookStation.CallFoodFailEvent(steakFlipper.steakHeld.transform.position, steakFlipper.steakHeld, pickupObjParent);
         }
     }
 

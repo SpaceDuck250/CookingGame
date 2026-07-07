@@ -5,7 +5,9 @@ using System.Linq;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
-    public GameObject customerPrefab;
+    //public GameObject customerPrefab;
+
+    public List<GameObject> customerPrefabList = new List<GameObject>();
 
     public Transform spawnPoint;
     public Transform exitTransform;
@@ -89,6 +91,10 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void SpawnCustomer(Transform table, Transform queuePoint)
     {
+        // Pick Random
+        int randomInt = UnityEngine.Random.Range(0, customerPrefabList.Count);
+        GameObject customerPrefab = customerPrefabList[randomInt];
+
         GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
 
         CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
