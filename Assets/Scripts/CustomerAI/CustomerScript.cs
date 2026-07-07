@@ -7,7 +7,7 @@ public class CustomerMovementScript : MonoBehaviour
     public MealData orderData;
 
     public Transform stallQueuePointTransform;
-    public Transform tableTransform;
+    public Transform chairTransform;
     public Transform exitTransform;
 
     public Transform destinationPoint;
@@ -26,6 +26,8 @@ public class CustomerMovementScript : MonoBehaviour
 
     public Action OnCustomerMove;
     public Action OnCustomerIdle;
+
+    public MealChecker mealChecker;
 
     private void Start()
     {

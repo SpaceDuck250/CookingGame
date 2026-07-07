@@ -28,11 +28,12 @@ public class MealChecker : MonoBehaviour
 
         if (CheckIfMealMatchesOrder())
         {
+            print("correct");
             OnMealOrderFulfilled?.Invoke();
-            NpcDialogueScript.OnOrderMetTalk?.Invoke();
+            NpcDialogueScript.OnOrderMetTalk?.Invoke(customerScript.heldCustomerData);
 
             //playerHand.ClearFoodFromHand();
-            playerHand.TransferPlatterTo(customerHand);
+            playerHand.TransferPlatterToCustomer(customerHand, Quaternion.identity * Quaternion.Euler(0, 90 + 90, 0));
         }
         else
         {

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class NpcDialogueScript : MonoBehaviour
 {
     public static Action<CustomerData, MealData> OnTalkToCustomer;
     public static Action OnEndTalkToCustomer;
-    public static Action OnOrderMetTalk;
+    public static Action<CustomerData> OnOrderMetTalk;
 
     public CustomerData heldCustomerData;
 
@@ -54,8 +53,9 @@ public class NpcDialogueScript : MonoBehaviour
         dialogueObject.SetActive(false);
     }
 
-    public void OnOrderMetTalkFunction()
+    public void OnOrderMetTalkFunction(CustomerData customer)
     {
+        heldCustomerData = customer;
         WriteNewText(heldCustomerData.customerName + ": Thank you that is the correct meal!");
     }
 }

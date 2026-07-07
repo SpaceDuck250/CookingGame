@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 5554667844274634726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.141, z: 0.515}
+  m_LocalPosition: {x: 0, y: 2.141, z: 1.291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 0}
   stallQueuePointTransform: {fileID: 0}
-  tableTransform: {fileID: 0}
+  chairTransform: {fileID: 0}
   exitTransform: {fileID: 0}
   destinationPoint: {fileID: 0}
   sitTime: 0
@@ -556,6 +556,7 @@ MonoBehaviour:
   closeEnough: 1
   orderDone: 0
   sitting: 0
+  mealChecker: {fileID: 4199876860131006312}
 --- !u!114 &6593406411499386557
 MonoBehaviour:
   m_ObjectHideFlags: 0
