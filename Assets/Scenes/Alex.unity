@@ -1438,6 +1438,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430121806}
   m_CullTransparentMesh: 1
+--- !u!4 &476833503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1983119116466343533, guid: 25ef8d6fa330bab44bb796e8a256f087, type: 3}
+  m_PrefabInstance: {fileID: 7260982422007363694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &482251212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a064c44d1e83bad43b17d8f15639a336, type: 3}
@@ -2070,6 +2075,100 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 612bd636f39d58d4e9d8a4c14d78cba0, type: 3}
   m_PrefabInstance: {fileID: 11721351}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &656192912
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2429845255458184889, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_Name
+      value: NewCustomer (New AI) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2429845255458184889, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 656192914}
+  m_SourcePrefab: {fileID: 100100000, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+--- !u!1 &656192913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2429845255458184889, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
+  m_PrefabInstance: {fileID: 656192912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &656192914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656192913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5877293004989fc4484560aa3b8291b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
+  agent: {fileID: 0}
+  animator: {fileID: 0}
+  profile: {fileID: 0}
+  counterPoint: {fileID: 1773495328}
+  seatPoint: {fileID: 476833503}
+  exitPoint: {fileID: 736042597}
+  possibleOrders:
+  - {fileID: 11400000, guid: 3e826486cbe7bfe4684c5151891f1105, type: 2}
+  wantedOrders: []
+  servedOrders: []
+  mealRequired: 1
+  timeoutPay: 0
+  preferredMeals: []
+  maxWaitTime: 30
+  fullPay: 20
+  wrongOrderPay: 8
+  currentState: 0
 --- !u!1 &686863353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,7 +3829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2429845255458184889, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
       propertyPath: m_Name
-      value: NewCustomer (1)
+      value: Uncle Fedrick (New AI)
       objectReference: {fileID: 0}
     - target: {fileID: 3094918310671713283, guid: d1531ed56fd45c1449eb83aebb2d7ee9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3799,11 +3898,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
   agent: {fileID: 0}
   animator: {fileID: 0}
-  counterPoint: {fileID: 0}
-  seatPoint: {fileID: 0}
-  exitPoint: {fileID: 0}
+  profile: {fileID: 11400000, guid: 224ba8cb0acc90748ab24366f046f80e, type: 2}
+  counterPoint: {fileID: 1209229153}
+  seatPoint: {fileID: 2042284121}
+  exitPoint: {fileID: 736042597}
   possibleOrders: []
-  wantedOrder: {fileID: 0}
+  wantedOrders: []
+  servedOrders: []
+  mealRequired: 1
+  timeoutPay: 0
+  preferredMeals: []
   maxWaitTime: 30
   fullPay: 20
   wrongOrderPay: 8
@@ -7432,3 +7536,4 @@ SceneRoots:
   - {fileID: 8657536713660978872}
   - {fileID: 1515383127}
   - {fileID: 1105201734}
+  - {fileID: 656192912}
