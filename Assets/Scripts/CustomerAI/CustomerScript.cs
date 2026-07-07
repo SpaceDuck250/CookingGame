@@ -27,6 +27,9 @@ public class CustomerMovementScript : MonoBehaviour
 
     public bool holdingTray = false;
 
+    public Vector3 normalTrayLocalPosition;
+    public Vector3 seatedTrayLocalPosition;
+
     public Action OnCustomerMove;
     public Action OnCustomerIdle;
 

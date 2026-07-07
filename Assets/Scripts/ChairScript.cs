@@ -55,7 +55,8 @@ public class ChairScript : MonoBehaviour
 
         //heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
 
-        Vector3 originalHeldPosition = new Vector3(0, 2.141f, 1.292f);
+        //Vector3 originalHeldPosition = new Vector3(0, 2.141f, 1.292f);
+        Vector3 originalHeldPosition = heldCustomer.normalTrayLocalPosition;
         SetPlatterPosition(heldCustomer.mealChecker.customerHand, originalHeldPosition);
 
         PlatterScript platter = heldCustomer.mealChecker.platterHeld;
@@ -78,7 +79,8 @@ public class ChairScript : MonoBehaviour
 
         heldCustomer.gameObject.transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
 
-        Vector3 tablePosition = new Vector3(0, 1.83f, 1.292f);
+        //Vector3 tablePosition = new Vector3(0, 1.83f, 1.292f);
+        Vector3 tablePosition = heldCustomer.seatedTrayLocalPosition;
         SetPlatterPosition(heldCustomer.mealChecker.customerHand, tablePosition);
 
         heldCustomer.gameObject.GetComponent<CustomerAnimator>().Sit();
