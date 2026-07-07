@@ -144,6 +144,8 @@ public class PlayerHandScript : MonoBehaviour
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
         currentFoodHeldObj.transform.localRotation = Quaternion.identity;
+        currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
+
 
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
