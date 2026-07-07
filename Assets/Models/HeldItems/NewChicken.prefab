@@ -4969,6 +4969,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a9279a86e1800d841905c0ac416e9789, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6653664432701996548}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a9279a86e1800d841905c0ac416e9789, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8617834260174809444}
     - targetCorrespondingSourceObject: {fileID: -1599826595754709761, guid: a9279a86e1800d841905c0ac416e9789, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4260163733600834658}
@@ -5046,7 +5049,12 @@ MonoBehaviour:
   platterIn: {fileID: 0}
   cuttingIn: {fileID: 0}
   CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  pickupScaleModifier: 0
   holdOffset: {x: 0, y: 0, z: 0}
+  canPickUp: 1
 --- !u!114 &6653664432701996548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5070,20 @@ MonoBehaviour:
   top: {fileID: 4260163733600834658}
   bottom: {fileID: 1277200180113588163}
   smoke: {fileID: 8547862908984109295}
+--- !u!114 &8617834260174809444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516176318025884226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7ca47fee5d64a42932f6600fb53a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  chopsRequired: 3
+  choppedPrefab: {fileID: 7695181082313268786, guid: 0f49db414a08cb74a8d78efafbe272ee, type: 3}
 --- !u!4 &2180123718481262840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9279a86e1800d841905c0ac416e9789, type: 3}
