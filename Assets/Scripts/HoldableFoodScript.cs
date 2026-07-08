@@ -8,7 +8,15 @@ public class HoldableFoodScript : MonoBehaviour
     public PlatterScript platterIn;
     public bool CarryType = false;
 
-    public Vector3 holdOffset;
+    public GameObject cookingStationIn;
+
+    public Vector3 originalScale;
+    public bool changeScaleOnHand = false;
+    public float pickupScaleModifier;
+
+    public Vector3 holdOffset = Vector3.zero;
+
+    public bool canPickUp = true;
 
     public void Start()
     {
@@ -16,6 +24,10 @@ public class HoldableFoodScript : MonoBehaviour
         {
             objectToDelete = gameObject;
         }
+
+        originalScale = transform.localScale;
+        pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
+
     }
     
     public void DeleteObjectToDelete()

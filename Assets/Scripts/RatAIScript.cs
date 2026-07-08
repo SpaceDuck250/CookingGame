@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using System;
 
-public class    RatAIScript : MonoBehaviour
+public class RatAIScript : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -33,11 +33,29 @@ public class    RatAIScript : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        OnMouseStopEating += OnMouseFinishEating;
+    }
+
+    private void OnDestroy()
+    {
+        OnMouseStopEating -= OnMouseFinishEating;
+
+    }
+
+    private void OnMouseFinishEating(bool value)
+    {
+        agent.isStopped = false;
     }
 
     private void Update()
     {
         RotateToMoveDirection();
+
+        if (foodTarget == null && agent.isStopped)
+        {
+            OnMouseStopEating?.Invoke(false);
+        }
 
         if (foodTarget != null)
         {
@@ -45,7 +63,8 @@ public class    RatAIScript : MonoBehaviour
             return;
         }
 
-        OnMouseStopEating?.Invoke(false);
+        //OnMouseStopEating?.Invoke(false);
+
         decisionTimer += Time.deltaTime;
         if (decisionTimer > waitTime)
         {
@@ -56,7 +75,7 @@ public class    RatAIScript : MonoBehaviour
 
     public void DecideNextMove()
     {
-        if (UnityEngine.Random.value < 0.4)
+        if (UnityEngine.Random.value <= 0.4)
         {
             MoveRandomly();
         }
@@ -82,6 +101,12 @@ public class    RatAIScript : MonoBehaviour
         foreach (Collider food in foodsInRange)
         {
             if (food.gameObject.tag == "Platter")
+            {
+                continue;
+            }
+
+            HoldableFoodScript holdScript = food.gameObject.GetComponent<HoldableFoodScript>();
+            if (holdScript.platterIn != null)
             {
                 continue;
             }
@@ -121,8 +146,11 @@ public class    RatAIScript : MonoBehaviour
 
     public void TryGoToEatFood()
     {
+        // There is no food
         if (foodTarget == null)
         {
+            agent.isStopped = false;
+
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
             print("stop eating");
@@ -131,44 +159,58 @@ public class    RatAIScript : MonoBehaviour
 
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
-        if (PlayerHandScript.instance.currentFoodHeldObj == foodTarget || distanceToFood >= tooFarDistance)
+        // Food is too far away
+        if (distanceToFood >= tooFarDistance)
         {
+            agent.isStopped = false;
+
             foodTarget = null;
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
             print("stop eating");
-
             return;
         }
 
         if (distanceToFood >= eatDistance)
         {
+            agent.isStopped = false;
+
+
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
 
             agent.SetDestination(foodTarget.transform.position);
             print("stop eating");
 
-
             return;
         }
 
         OnMouseEating?.Invoke(foodTarget);
+        agent.isStopped = true;
 
+        // Case when the rat finishes food
         eatingTimer += Time.deltaTime;
         if (eatingTimer >= eatTime)
         {
             OnMouseStopEating?.Invoke(true);
-
             Destroy(foodTarget);
             foodTarget = null;
             eatingTimer = 0;
+
+            agent.isStopped = false;
         }
 
     }
 
     public bool CheckIfValidPosition(Vector3 point)
     {
+        float tooClose = 0.5f;
+        float distance = Vector3.Distance(point, transform.position);
+        if (distance < tooClose)
+        {
+            return false;
+        }
+
         NavMeshHit hit;
         if (NavMesh.SamplePosition(point, out hit, 1.0f, NavMesh.AllAreas))
         {
@@ -182,22 +224,13 @@ public class    RatAIScript : MonoBehaviour
 
     public void RotateToMoveDirection()
     {
-        if (destination == null)
+        if (agent.velocity.magnitude <= 0.01f)
         {
             return;
         }
 
-        Vector3 lookTarget = Vector3.zero;
-        if (foodTarget != null)
-        {
-            lookTarget = foodTarget.transform.position;
-        }
-        else
-        {
-            lookTarget = destination;
-        }
-
-        Vector3 angleVector = (lookTarget - transform.position).normalized;
+        Vector3 angleVector = agent.velocity;
+        angleVector.y = 0;
 
         // z because its 3d
         float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;

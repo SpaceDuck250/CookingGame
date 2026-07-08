@@ -8,15 +8,17 @@ public class CustomerInteractScript : Interactable
 
     public MealData currentMealOrder;
 
-    // fix this later
-    public bool talkingTo = false;
-
     public event Action<MealData> OnNewMealPicked;
 
     public MealChecker mealChecker;
 
     public bool orderComplete = false;
     public CustomerMovementScript movementScript;
+
+    public Action OnInteractWithCustomer;
+    public static Action OnEndInteractWithCustomer;
+
+    public bool finishedInteract = false;
     
     private void Start()
     {
@@ -33,6 +35,11 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (finishedInteract)
+        {
+            return;
+        }
+
         if (CheckIfHoldingFood(playerHand))
         {
             CheckIfFoodMatchesOrder(playerHand);
@@ -74,16 +81,23 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
+        OnInteractWithCustomer?.Invoke();
+
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, currentMealOrder);
     }
 
     public void CloseConversation()
     {
+        print("ended" + gameObject);
+        OnEndInteractWithCustomer?.Invoke();
+
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete)
         {
-            movementScript.OnNewDestinationChange?.Invoke(movementScript.tableTransform);
+            movementScript.OnNewDestinationChange?.Invoke(movementScript.chairTransform);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(movementScript);
+
+            finishedInteract = true;
         }
     }
 

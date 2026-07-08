@@ -2,22 +2,42 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CookingInputOutputScript : Interactable
+public class CookingInputOutputScript : Interactable, ICookStation
 {
     public List<RecipeData> recipeStored = new List<RecipeData>();
 
     public FoodData input;
 
-    public Action<FoodData> OnCookingStart;
-    public Action<Vector3, GameObject, Transform> OnCookingSuccess;
-    public Action<Vector3, GameObject, Transform> OnCookingFail;
+    public event Action<FoodData> OnCookingStart;
+    public event Action<Vector3, GameObject, Transform> OnCookingSuccess;
+    public event Action<Vector3, GameObject, Transform> OnCookingFail;
 
-    public Action<bool> OnFoodInputCorrect;
+    public event Action OnFoodTakenOutOfCookingStation;
+
+    //public Action<bool> OnFoodInputCorrect;
 
     public RecipeData currentRecipeUsed;
 
-    // Invisaible and can contain food;
+    // Invisible and can contain food;
     public GameObject invisiblePickupObject;
+
+    public bool hasFood = false;
+
+    // If the cooking station also uses special recipes
+    //public bool takesMultipleInputFoods;
+    //public List<FoodData> inputFoodList = new List<FoodData>();
+    //public List<SpecialRecipe> specialRecipeStored = new List<SpecialRecipe>();
+
+    private void Start()
+    {
+        OnFoodTakenOutOfCookingStation += TakeFoodOut;
+    }
+
+    private void OnDestroy()
+    {
+        OnFoodTakenOutOfCookingStation -= TakeFoodOut;
+
+    }
 
     public RecipeData FindRecipeFromInput(FoodData foodInput)
     {
@@ -34,6 +54,11 @@ public class CookingInputOutputScript : Interactable
 
     public void TryPutFood(PlayerHandScript playerHand)
     {
+        if (hasFood)
+        {
+            return;
+        }
+
         if (playerHand.currentFoodHeldObj == null && playerHand.currentFoodHeld == null)
         {
             return;
@@ -48,6 +73,8 @@ public class CookingInputOutputScript : Interactable
         OnCookingStart?.Invoke(currentRecipeUsed.inputFood);
         playerHand.currentFoodHeld = null;
         Destroy(playerHand.currentFoodHeldObj);
+
+        hasFood = true;
     }
 
     public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
@@ -67,6 +94,11 @@ public class CookingInputOutputScript : Interactable
         holdScript.objectToDelete = deleteObject;
 
         pickupFood.transform.parent = parent;
+
+        holdScript.cookingStationIn = gameObject;
+
+        //pickupFoodStore = pickupFood;
+        //spawnedPickupFood = true;
 
         return pickupFood;
     }
@@ -97,7 +129,27 @@ public class CookingInputOutputScript : Interactable
     public override void Interact(PlayerHandScript playerHand)
     {
         TryPutFood(playerHand);
+
     }
 
+    public void TakeFoodOut()
+    {
+        hasFood = false;
+    }
+
+    public void CallFoodSuccessEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingSuccess?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodFailEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingFail?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodTakenOutEvent()
+    {
+        OnFoodTakenOutOfCookingStation.Invoke();
+    }
 
 }

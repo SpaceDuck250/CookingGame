@@ -20,12 +20,25 @@ public class CustomerAnimator : MonoBehaviour
     public void Walk()
     {
         animator.SetBool("sitting", false);
-        animator.SetBool("walking", true);
+
+        if (!moveScript.holdingTray)
+        {
+            animator.SetBool("walking", true);
+            animator.SetBool("traywalk", false);
+
+        }
+        else
+        {
+            animator.SetBool("traywalk", true);
+            animator.SetBool("walking", false);
+        }
     }
 
     public void Sit()
     {
         animator.SetBool("walking", false);
+        animator.SetBool("traywalk", false);
+
         animator.SetBool("sitting", true);
     }
 

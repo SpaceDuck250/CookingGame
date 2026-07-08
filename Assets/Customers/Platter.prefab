@@ -68,7 +68,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3486, y: 0.949, z: 4.44}
   m_LocalScale: {x: 2.2092, y: 0.14, z: 1.5801}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4134973102582628547}
   - {fileID: 8610433760193802112}
@@ -168,6 +168,10 @@ MonoBehaviour:
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
   CarryType: 1
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 1
+  pickupScaleModifier: 0.67
   holdOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &9221446645143495878
 Rigidbody:
