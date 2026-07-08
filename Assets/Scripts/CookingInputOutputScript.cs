@@ -18,10 +18,15 @@ public class CookingInputOutputScript : Interactable
 
     public RecipeData currentRecipeUsed;
 
-    // Invisaible and can contain food;
+    // Invisible and can contain food;
     public GameObject invisiblePickupObject;
 
     public bool hasFood = false;
+
+    // If the cooking station also uses special recipes
+    public bool takesMultipleInputFoods;
+    public List<FoodData> inputFoodList = new List<FoodData>();
+    public List<SpecialRecipe> specialRecipeStored = new List<SpecialRecipe>();
 
     private void Start()
     {
