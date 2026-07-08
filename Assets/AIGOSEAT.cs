@@ -34,7 +34,6 @@ public class AIGOSEAT : MonoBehaviour
         }
 
         chair.seated = true;
-        chair.seated = true;
 
         if (currentChair != null)
             currentChair.seated = false;
