@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 413685684}
   - component: {fileID: 413685683}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5205,6 +5205,8 @@ MonoBehaviour:
   orderDone: 0
   sitting: 0
   holdingTray: 0
+  normalTrayLocalPosition: {x: 0, y: 0, z: 0}
+  seatedTrayLocalPosition: {x: 0, y: 0, z: 0}
   mealChecker: {fileID: 0}
 --- !u!195 &1410573308
 NavMeshAgent:
@@ -6060,6 +6062,8 @@ MonoBehaviour:
   orderDone: 0
   sitting: 0
   holdingTray: 0
+  normalTrayLocalPosition: {x: 0, y: 0, z: 0}
+  seatedTrayLocalPosition: {x: 0, y: 0, z: 0}
   mealChecker: {fileID: 0}
 --- !u!136 &1698754659
 CapsuleCollider:
