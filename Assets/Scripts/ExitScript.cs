@@ -7,9 +7,10 @@ public class ExitScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Customer")
         {
-            CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
+            //CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
+            CustomerStateMachine customer = other.GetComponent<CustomerStateMachine>();
 
-            CustomerSpawnerScript.OnCustomerExit?.Invoke(movementScript);
+            CustomerSpawnerScript.OnCustomerExit?.Invoke(customer);
             Destroy(other.gameObject);
         }
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Customer Profile")]
 public class CustomerProfileScript : ScriptableObject
@@ -7,7 +8,8 @@ public class CustomerProfileScript : ScriptableObject
     public string customerName;
 
     // Meal preferences for this customer profile, can be multiple meals
-    public MealData[] favoriteMeal;
+    //public MealData[] favoriteMealList = new MealData[10];
+    public List<MealData> favoriteMealList = new List<MealData>();
     public int mealRequired = 1;
 
     // Time the customer will wait before leaving

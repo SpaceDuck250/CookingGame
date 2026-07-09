@@ -545,6 +545,8 @@ MonoBehaviour:
   inputFoodDataList: []
   mealToCheck: {fileID: 0}
   customerScript: {fileID: 3266575145390314491}
+  customerHand: {fileID: 0}
+  platterHeld: {fileID: 0}
 --- !u!114 &8731911951660881353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,14 +561,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 0}
   stallQueuePointTransform: {fileID: 0}
-  tableTransform: {fileID: 0}
+  chairTransform: {fileID: 0}
   exitTransform: {fileID: 0}
+  platterAreaTransform: {fileID: 0}
   destinationPoint: {fileID: 0}
   sitTime: 0
   agent: {fileID: 1582659216779913541}
   closeEnough: 1
   orderDone: 0
   sitting: 0
+  holdingTray: 0
+  normalTrayLocalPosition: {x: 0, y: 0, z: 0}
+  seatedTrayLocalPosition: {x: 0, y: 0, z: 0}
+  mealChecker: {fileID: 0}
 --- !u!114 &3266575145390314491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,10 +589,10 @@ MonoBehaviour:
   interactKeyCode: 0
   heldCustomerData: {fileID: 11400000, guid: cc8ed18ff92720e45ae7b14c0865cd23, type: 2}
   currentMealOrder: {fileID: 0}
-  talkingTo: 0
   mealChecker: {fileID: 8965317737347431291}
   orderComplete: 0
   movementScript: {fileID: 8731911951660881353}
+  finishedInteract: 0
 --- !u!114 &3745389926644979104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,9 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5877293004989fc4484560aa3b8291b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
-  agent: {fileID: 0}
-  animator: {fileID: 0}
-  profile: {fileID: 0}
+  agent: {fileID: 1582659216779913541}
+  animator: {fileID: 2161549901788536356}
+  profile: {fileID: 11400000, guid: 224ba8cb0acc90748ab24366f046f80e, type: 2}
   counterPoint: {fileID: 0}
   seatPoint: {fileID: 0}
   exitPoint: {fileID: 0}
