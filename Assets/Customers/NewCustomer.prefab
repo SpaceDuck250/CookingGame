@@ -534,6 +534,7 @@ MonoBehaviour:
   mealToCheck: {fileID: 0}
   customerScript: {fileID: 6593406411499386557}
   customerHand: {fileID: 7553704457928143946}
+  platterHeld: {fileID: 0}
 --- !u!114 &8620197271517752276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,12 +551,16 @@ MonoBehaviour:
   stallQueuePointTransform: {fileID: 0}
   chairTransform: {fileID: 0}
   exitTransform: {fileID: 0}
+  platterAreaTransform: {fileID: 0}
   destinationPoint: {fileID: 0}
   sitTime: 0
   agent: {fileID: 6887838076700408086}
   closeEnough: 1
   orderDone: 0
   sitting: 0
+  holdingTray: 0
+  normalTrayLocalPosition: {x: 0, y: 2.141, z: 1.291}
+  seatedTrayLocalPosition: {x: 0, y: 1.83, z: 1.291}
   mealChecker: {fileID: 4199876860131006312}
 --- !u!114 &6593406411499386557
 MonoBehaviour:
@@ -575,6 +580,7 @@ MonoBehaviour:
   mealChecker: {fileID: 4199876860131006312}
   orderComplete: 0
   movementScript: {fileID: 8620197271517752276}
+  finishedInteract: 0
 --- !u!4 &3094918310671713283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 10c24f43ed93a0d4a963fd43c99ad4e1, type: 3}

@@ -1,15 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Customer;
 
 public class CustomerInteractScript : Interactable
 {
     public CustomerData heldCustomerData;
 
-    public MealData currentMealOrder;
-
-    //// fix this later
-    //public bool talkingTo = false;
+    //public MealData currentMealOrder;
 
     public event Action<MealData> OnNewMealPicked;
 
@@ -22,10 +20,14 @@ public class CustomerInteractScript : Interactable
     public static Action OnEndInteractWithCustomer;
 
     public bool finishedInteract = false;
+
+    public CustomerStateMachine customerStateMachine;
+
+    public bool TalkedTo = false;
     
     private void Start()
     {
-        PickNewMeal();
+        //PickNewMeal();
 
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
     }
@@ -43,11 +45,16 @@ public class CustomerInteractScript : Interactable
             return;
         }
 
-        if (CheckIfHoldingFood(playerHand))
+        if (movementScript.agent.isStopped)
+        {
+            RotateToPlayer();
+        }
+
+        if (CheckIfHoldingFood(playerHand) && TalkedTo)
         {
             CheckIfFoodMatchesOrder(playerHand);
         }
-        else
+        else if (!CheckIfHoldingFood(playerHand))
         {
             TryTalkToCustomer();
         }
@@ -72,9 +79,12 @@ public class CustomerInteractScript : Interactable
 
     private void TryTalkToCustomer()
     {
+        TalkedTo = true;
+
         if (!NpcDialogueScript.conversationOpen)
         {
             OpenConversation();
+            customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WaitingForFood);
         }
         else
         {
@@ -86,7 +96,7 @@ public class CustomerInteractScript : Interactable
     {
         OnInteractWithCustomer?.Invoke();
 
-        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, currentMealOrder);
+        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck);
     }
 
     public void CloseConversation()
@@ -97,25 +107,20 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete)
         {
-            movementScript.OnNewDestinationChange?.Invoke(movementScript.chairTransform);
-            CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(movementScript);
+            // Be more nuanced later
+            customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
+            CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(customerStateMachine);
 
             finishedInteract = true;
         }
     }
 
-    public void PickNewMeal()
+    public void RotateToPlayer()
     {
-        currentMealOrder = PickRandomMeal();
-    }
+        Vector3 rotateVector = (PlayerHandScript.instance.transform.position - transform.position).normalized;
+        float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
 
-    public MealData PickRandomMeal()
-    {
-        int randomIndex = UnityEngine.Random.Range(0, heldCustomerData.possibleMealOrders.Count);
-
-        MealData randomMeal = heldCustomerData.possibleMealOrders[randomIndex];
-
-        return randomMeal;
+        transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
     }
 
     public void OnOrderComplete()

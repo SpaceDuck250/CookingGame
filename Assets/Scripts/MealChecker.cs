@@ -1,18 +1,28 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Customer;
 
 public class MealChecker : MonoBehaviour
 {
     public List<FoodData> inputFoodDataList = new List<FoodData>();
 
-    public MealData mealToCheck;
+    public MealData mealToCheck = null;
 
     public CustomerInteractScript customerScript;
 
     public event Action OnMealOrderFulfilled;
 
     public Transform customerHand;
+
+    public PlatterScript platterHeld;
+
+    public CustomerStateMachine stateMachine;
+
+    private void Start()
+    {
+        SetMeal();
+    }
 
     public void CheckOrder(PlayerHandScript playerHand)
     {
@@ -23,17 +33,19 @@ public class MealChecker : MonoBehaviour
 
         PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
         inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
+        platterHeld = platterGiver.platterScript;
 
-        mealToCheck = customerScript.currentMealOrder;
+
 
         if (CheckIfMealMatchesOrder())
         {
             print("correct");
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetTalk?.Invoke(customerScript.heldCustomerData);
+            stateMachine.OnCustomerChangeState?.Invoke(CustomerState.PayingForFood);    
 
-            //playerHand.ClearFoodFromHand();
             playerHand.TransferPlatterToCustomer(customerHand, Quaternion.identity * Quaternion.Euler(0, 90 + 90, 0));
+            customerScript.movementScript.holdingTray = true;
         }
         else
         {
@@ -63,4 +75,25 @@ public class MealChecker : MonoBehaviour
             return false;
         }
     }
+
+    private MealData ChooseOrder()
+    {
+
+        if (customerScript == null)
+        {
+            return null;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, customerScript.heldCustomerData.possibleMealOrders.Count);
+
+        MealData randomMeal = customerScript.heldCustomerData.possibleMealOrders[randomIndex];
+
+        return randomMeal;
+    }
+
+    public void SetMeal()
+    {
+        mealToCheck = ChooseOrder();
+    }
+
 }

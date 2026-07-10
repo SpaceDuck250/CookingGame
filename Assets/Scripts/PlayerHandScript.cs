@@ -114,7 +114,10 @@ public class PlayerHandScript : MonoBehaviour
 
         if (holdableScript.cookingStationIn != null)
         {
-            holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
+            //holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
+            ICookStation cookStation = holdableScript.cookingStationIn.GetComponent<ICookStation>();
+
+            cookStation.CallFoodTakenOutEvent();
         }
 
         currentFoodHeldObj = Instantiate(
@@ -125,11 +128,14 @@ public class PlayerHandScript : MonoBehaviour
         );
 
         currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
+        currentFoodHeldObj.transform.localRotation = holdableScript.foodData.foodModel.transform.rotation;
+
 
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
+        currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
 
         holdableScript.DeleteObjectToDelete();
     }
@@ -145,6 +151,8 @@ public class PlayerHandScript : MonoBehaviour
 
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
         currentFoodHeldObj.transform.localRotation = Quaternion.identity;
+        currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
+
 
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);

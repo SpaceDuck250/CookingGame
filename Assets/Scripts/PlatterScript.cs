@@ -84,4 +84,18 @@ public class PlatterScript : Interactable
 
         foodHeldList.Add(foodData);
     }
+
+    public void ClearAllInPlatter()
+    {
+        foodHeldList.Clear();
+        foreach (Transform placeArea in placeAreasArray)
+        {
+            if (placeArea.childCount > 0)
+            {
+                Destroy(placeArea.GetChild(0).gameObject);
+            }
+        }
+
+        currentIndex = 0;
+    }
 }

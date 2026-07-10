@@ -2,26 +2,32 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CookingInputOutputScript : Interactable
+public class CookingInputOutputScript : Interactable, ICookStation
 {
     public List<RecipeData> recipeStored = new List<RecipeData>();
 
     public FoodData input;
 
-    public Action<FoodData> OnCookingStart;
+    public event Action<FoodData> OnCookingStart;
 
-    public Action<Vector3, GameObject, Transform> OnCookingSuccess;
-    public Action<Vector3, GameObject, Transform> OnCookingFail;
+    public event Action<Vector3, GameObject, Transform> OnCookingSuccess;
+    public event Action<Vector3, GameObject, Transform> OnCookingFail;
 
-    public Action OnFoodTakenOutOfCookingStation;
+    public event Action OnFoodTakenOutOfCookingStation;
 
-    public Action<bool> OnFoodInputCorrect;
+    //public Action<bool> OnFoodInputCorrect;
 
     public RecipeData currentRecipeUsed;
 
+    // Invisible and can contain food;
     public GameObject invisiblePickupObject;
 
     public bool hasFood = false;
+
+    // If the cooking station also uses special recipes
+    //public bool takesMultipleInputFoods;
+    //public List<FoodData> inputFoodList = new List<FoodData>();
+    //public List<SpecialRecipe> specialRecipeStored = new List<SpecialRecipe>();
 
     private void Start()
     {
@@ -95,7 +101,7 @@ public class CookingInputOutputScript : Interactable
         holdScript.objectToDelete = deleteObject;
 
         pickupFood.transform.parent = parent;
-        holdScript.cookingStationIn = this;
+        holdScript.cookingStationIn = gameObject;
 
         return pickupFood;
     }
@@ -135,4 +141,20 @@ public class CookingInputOutputScript : Interactable
     {
         hasFood = false;
     }
+
+    public void CallFoodSuccessEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingSuccess?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodFailEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingFail?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodTakenOutEvent()
+    {
+        OnFoodTakenOutOfCookingStation.Invoke();
+    }
+
 }

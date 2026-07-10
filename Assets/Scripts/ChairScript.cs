@@ -1,9 +1,9 @@
-using JetBrains.Annotations;
 using UnityEngine;
+using Customer;
 
 public class ChairScript : MonoBehaviour
 {
-    public CustomerMovementScript heldCustomer;
+    public CustomerStateMachine heldCustomer;
     public Vector3 originalPosition;
 
     public float seatTime;
@@ -18,9 +18,9 @@ public class ChairScript : MonoBehaviour
 
     private void Start()
     {
-        seatTime = 2;
-        upOffset = Vector3.up * 0.9f;
-        forwardOffsetValue = 0.4f;
+        seatTime = 6;
+        upOffset = Vector3.up * 0.15f;
+        forwardOffsetValue = 0.35f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,18 +33,17 @@ public class ChairScript : MonoBehaviour
 
         print("hit");
 
-        CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
+        //CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
+        CustomerStateMachine customer = other.gameObject.GetComponent<CustomerStateMachine>();
 
-        if (movementScript.chairTransform != null && movementScript.chairTransform.GetChild(0) == transform && movementScript.orderDone)
+        if (customer.seatPoint != null && customer.seatPoint.GetChild(0) == transform && customer.orderDone)
         {
-            heldCustomer = movementScript;
+            heldCustomer = customer;
             heldCustomer.sitting = true;
 
             SeatCustomer();
             Invoke("LeaveSeat", seatTime);
-        }
-
-        
+        } 
     }
 
     private void LeaveSeat()
@@ -52,12 +51,20 @@ public class ChairScript : MonoBehaviour
         heldCustomer.transform.position = originalPosition;
         heldCustomer.agent.enabled = true;
 
-        heldCustomer.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.exitTransform);
+        // Be more nuanced later
+        //heldCustomer.movementScript.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.platterPoint);
+        heldCustomer.OnCustomerChangeState?.Invoke(CustomerState.ReturningTray);
         heldCustomer.sitting = false;
-        heldCustomer.chairTransform = null;
+        heldCustomer.seatPoint = null;
 
-        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
+        //heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 2.141f, 1.292f);
 
+        //Vector3 originalHeldPosition = new Vector3(0, 2.141f, 1.292f);
+        Vector3 originalHeldPosition = heldCustomer.normalTrayLocalPosition;
+        SetPlatterPosition(heldCustomer.mealChecker.customerHand, originalHeldPosition);
+
+        PlatterScript platter = heldCustomer.mealChecker.platterHeld;
+        ClearTray(platter);
 
         heldCustomer = null;
     }
@@ -76,9 +83,21 @@ public class ChairScript : MonoBehaviour
 
         heldCustomer.gameObject.transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
 
-        heldCustomer.mealChecker.customerHand.localPosition = new Vector3(0, 0.38f, 1.292f);
+        //Vector3 tablePosition = new Vector3(0, 1.83f, 1.292f);
+        Vector3 tablePosition = heldCustomer.seatedTrayLocalPosition;
+        SetPlatterPosition(heldCustomer.mealChecker.customerHand, tablePosition);
 
-        heldCustomer.gameObject.GetComponent<CustomerAnimator>().Sit();
+        heldCustomer.OnCustomerChangeState?.Invoke(CustomerState.Seated);
+    }
+
+    public void SetPlatterPosition(Transform platter, Vector3 newLocalPosition)
+    {
+        platter.localPosition = newLocalPosition;
+    }
+
+    public void ClearTray(PlatterScript platterScript)
+    {
+        platterScript.ClearAllInPlatter();
     }
 
 }
