@@ -7,6 +7,8 @@ public class CustomerData : ScriptableObject
     public string customerName;
     public List<MealData> possibleMealOrders = new List<MealData>();
 
+    public List<string> possibleDialogueLines = new List<string>();
+
     public float waitTime;
 
     public float tipRange;
