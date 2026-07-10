@@ -113,7 +113,10 @@ public class PlayerHandScript : MonoBehaviour
 
         if (holdableScript.cookingStationIn != null)
         {
-            holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
+            //holdableScript.cookingStationIn.OnFoodTakenOutOfCookingStation?.Invoke();
+            ICookStation cookStation = holdableScript.cookingStationIn.GetComponent<ICookStation>();
+
+            cookStation.CallFoodTakenOutEvent();
         }
 
         currentFoodHeldObj = Instantiate(holdableScript.foodData.foodModel, transform.position, Quaternion.identity, heldContainer);

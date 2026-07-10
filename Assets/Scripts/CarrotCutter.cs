@@ -60,7 +60,10 @@ public class CarrotCutter : Interactable
 
             GameObject displayOut = CookingInputOutputScript.SpawnDisplayFoodInPosition(cookingInputOutput.currentRecipeUsed.outputFood, parent, spawnOffset, false);
 
-            cookingInputOutput.OnCookingSuccess?.Invoke(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
+            ICookStation cookStation = cookingInputOutput.GetComponent<ICookStation>();
+            cookStation.CallFoodSuccessEvent(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
+                
+            //OnCookingSuccess?.Invoke(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
 
             Destroy(cutObj);
 

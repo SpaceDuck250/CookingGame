@@ -6,10 +6,10 @@ public class CustomerMovementScript : MonoBehaviour
 {
     public MealData orderData;
 
-    public Transform stallQueuePointTransform;
-    public Transform chairTransform;
-    public Transform exitTransform;
-    public Transform platterAreaTransform;
+    //public Transform stallQueuePointTransform;
+    //public Transform chairTransform;
+    //public Transform exitTransform;
+    //public Transform platterAreaTransform;
 
     public Transform destinationPoint;
 
@@ -27,15 +27,18 @@ public class CustomerMovementScript : MonoBehaviour
 
     public bool holdingTray = false;
 
+    public Vector3 normalTrayLocalPosition;
+    public Vector3 seatedTrayLocalPosition;
+
     public Action OnCustomerMove;
     public Action OnCustomerIdle;
 
     public MealChecker mealChecker;
 
-    private void Start()
-    {
-        SetNewDestination(stallQueuePointTransform);
+    public CustomerStateMachine customerStateMachine;
 
+    private void Awake()
+    {
         OnNewDestinationChange += SetNewDestination;
     }
 
@@ -60,16 +63,27 @@ public class CustomerMovementScript : MonoBehaviour
 
     public void WalkToDestination()
     {
+        if (destinationPoint == null)
+        {
+            return;
+        }
+
         if (CheckIfCloseEnoughToDestination())
         {
             print("Close enough");
             OnCustomerIdle?.Invoke();
-            agent.isStopped = true;
+            if (agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+            }
             return;
         }
         else
         {
-            agent.isStopped = false;
+            if (agent.isOnNavMesh)
+            {
+                agent.isStopped = false;
+            }
         }
 
         OnCustomerMove?.Invoke();
@@ -78,6 +92,11 @@ public class CustomerMovementScript : MonoBehaviour
 
     public bool CheckIfCloseEnoughToDestination()
     {
+        if (destinationPoint == null)
+        {
+            return false;
+        }
+
         float distance = Vector3.Distance(transform.position, destinationPoint.position);
         if (distance <= closeEnough)
         {

@@ -43,7 +43,9 @@ public class NpcDialogueScript : MonoBehaviour
     {
         heldCustomerData = newCustomer;
 
-        WriteNewText(heldCustomerData.customerName + ": Hello I would like... " + pickedMeal.mealName);
+        string randomLineFromCustomer = PickRandomLine(newCustomer);
+
+        WriteNewText(randomLineFromCustomer);
     }
 
     public void StopTalkToCustomer()
@@ -57,5 +59,21 @@ public class NpcDialogueScript : MonoBehaviour
     {
         heldCustomerData = customer;
         WriteNewText(heldCustomerData.customerName + ": Thank you that is the correct meal!");
+    }
+
+    public string PickRandomLine(CustomerData customer)
+    {
+        if (customer.possibleDialogueLines.Count == 0)
+        {
+            return "This customer has no lines, please add some clown";
+        }
+
+        int randomInt = UnityEngine.Random.Range(0, customer.possibleDialogueLines.Count);
+
+        string randomLine = customer.possibleDialogueLines[randomInt];
+
+        randomLine = customer.customerName + ": " + randomLine;
+
+        return randomLine;
     }
 }

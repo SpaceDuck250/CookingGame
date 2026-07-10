@@ -9,7 +9,7 @@ public class HoldableFoodScript : MonoBehaviour
     public CuttingFoodScript cuttingIn;
     public bool CarryType = false;
 
-    public CookingInputOutputScript cookingStationIn;
+    public GameObject cookingStationIn;
 
     public Vector3 originalScale;
     public bool changeScaleOnHand = false;
