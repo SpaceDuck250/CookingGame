@@ -151,7 +151,16 @@ public class PlayerHandScript : MonoBehaviour
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
 
+        if (currentFoodHeldObj.transform.childCount == 0)
+        {
+            return;
+        }
         InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+
+        if (interactArea == null)
+        {
+            return;
+        }
         interactArea.HideDisplay();
     }
 
