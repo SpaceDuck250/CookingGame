@@ -23,4 +23,6 @@ public class MealData : ScriptableObject
     // When food is served check if all food matches the food ingredients
     public List<FoodData> foodIngredients = new List<FoodData>();
     public float mealPrice;
+
+    public Sprite mealSprite;
 }

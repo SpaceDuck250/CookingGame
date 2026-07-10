@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Customer;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
@@ -22,14 +23,14 @@ public class CustomerSpawnerScript : MonoBehaviour
     public int maxCustomers;
     private float spawnTimer;
 
-    private List<CustomerMovementScript> activeCustomers = new List<CustomerMovementScript>();
+    private List<CustomerStateMachine> activeCustomers = new List<CustomerStateMachine>();
 
-    public static Action<CustomerMovementScript> OnCustomerLeftQueue;
+    public static Action<CustomerStateMachine> OnCustomerLeftQueue;
 
-    public static Action<CustomerMovementScript> OnCustomerSeated;
-    public static Action<CustomerMovementScript> OnCustomerLeftSeat;
+    public static Action<CustomerStateMachine> OnCustomerSeated;
+    public static Action<CustomerStateMachine> OnCustomerLeftSeat;
 
-    public static Action<CustomerMovementScript> OnCustomerExit;
+    public static Action<CustomerStateMachine> OnCustomerExit;
 
     public static CustomerSpawnerScript instance;
 
@@ -97,13 +98,23 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
 
-        CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
+        //CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
+        CustomerStateMachine customerStateMachine = newCustomer.GetComponent<CustomerStateMachine>();
 
-        customerScript.stallQueuePointTransform = queuePoint;
-        customerScript.chairTransform = table;
-        customerScript.exitTransform = exitTransform;
+        customerStateMachine.counterPoint = queuePoint;
+        customerStateMachine.seatPoint = table;
+        customerStateMachine.exitPoint = exitTransform;
+        customerStateMachine.trayReturnPoint = platterPoint;
 
-        activeCustomers.Add(customerScript);
+        //customerScript.stallQueuePointTransform = queuePoint;
+        //customerScript.chairTransform = table;
+        //customerScript.exitTransform = exitTransform;
+
+        activeCustomers.Add(customerStateMachine);
+
+        //customerStateMachine.OnCustomerChangeState(CustomerStateMachine.CustomerState.WalkingToSeat);
+        print("here");
+        customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WalkingToCounter);
     }
 
     private void ShuffleQueue()
@@ -115,11 +126,13 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         for (int i = emptyQueueIndex + 1; i < stallQueuePointList.Length; i++)
         {
-            CustomerMovementScript customer = activeCustomers.FirstOrDefault(n => n.stallQueuePointTransform == stallQueuePointList[i]);
+            CustomerStateMachine customer = activeCustomers.FirstOrDefault(n => n.counterPoint == stallQueuePointList[i]);
             if (customer != null && i != 0)
             {
-                customer.stallQueuePointTransform = stallQueuePointList[i - 1];
-                customer.OnNewDestinationChange?.Invoke(customer.stallQueuePointTransform);
+                customer.counterPoint = stallQueuePointList[i - 1];
+
+                CustomerMovementScript movementScript = customer.GetComponent<CustomerMovementScript>();
+                movementScript.OnNewDestinationChange?.Invoke(customer.counterPoint);
             }
         }
     }
@@ -128,11 +141,11 @@ public class CustomerSpawnerScript : MonoBehaviour
     {
         List<Transform> takenQueuePoints = new List<Transform>();
 
-        foreach (CustomerMovementScript customer in activeCustomers)
+        foreach (CustomerStateMachine customer in activeCustomers)
         {
-            if (customer.stallQueuePointTransform != null)
+            if (customer.counterPoint != null)
             {
-                takenQueuePoints.Add(customer.stallQueuePointTransform);
+                takenQueuePoints.Add(customer.counterPoint);
             }
         }
 
@@ -151,11 +164,11 @@ public class CustomerSpawnerScript : MonoBehaviour
     {
         List<Transform> occupiedTables = new List<Transform>();
 
-        foreach (CustomerMovementScript customer in activeCustomers)
+        foreach (CustomerStateMachine customer in activeCustomers)
         {
-            if (customer.chairTransform != null)
+            if (customer.seatPoint != null)
             {
-                occupiedTables.Add(customer.chairTransform);
+                occupiedTables.Add(customer.seatPoint);
             }
         }
 
@@ -183,23 +196,23 @@ public class CustomerSpawnerScript : MonoBehaviour
         return -1;
     }
 
-    private void OnCustomerDestroyed(CustomerMovementScript customer)
+    private void OnCustomerDestroyed(CustomerStateMachine customer)
     {
         //customer.tableTransform = null;
 
         activeCustomers.Remove(customer);
     }
 
-    private void CustomerSeated(CustomerMovementScript customer)
+    private void CustomerSeated(CustomerStateMachine customer)
     {
-        customer.chairTransform = null;
+        customer.seatPoint = null;
 
     }
 
-    private void OnCustomerOrderFinish(CustomerMovementScript customer)
+    private void OnCustomerOrderFinish(CustomerStateMachine customer)
     {
-        emptyQueueIndex = FindEmptyQueueIndex(customer.stallQueuePointTransform);
-        customer.stallQueuePointTransform = null;
+        emptyQueueIndex = FindEmptyQueueIndex(customer.counterPoint);
+        customer.counterPoint = null;
         customer.orderDone = true;
 
         float waitTime = 2;
