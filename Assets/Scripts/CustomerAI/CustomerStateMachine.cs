@@ -59,6 +59,7 @@ public class CustomerStateMachine : MonoBehaviour
     public CustomerMood currentMood;
 
     public Action<CustomerState> OnCustomerChangeState;
+    public Action<CustomerMood> OnCustomerMoodChange;
 
     public bool orderDone = false;
     public bool sitting = false;
@@ -66,22 +67,30 @@ public class CustomerStateMachine : MonoBehaviour
     public Vector3 normalTrayLocalPosition;
     public Vector3 seatedTrayLocalPosition;
 
+    public float upOffsetChair;
+    public float forwardOffset;
+
+    public Sprite normalSprite, angrySprite, happySprite;
+
     private void Awake()
     {
         OnCustomerChangeState += ChangeCustomerState;
+        OnCustomerMoodChange += ChangeCustomerMood;
     }
 
     void Start()
     {
         ApplyProfile();
 
-        currentMood = CustomerMood.Normal;
+        OnCustomerMoodChange?.Invoke(CustomerMood.Normal);
 
     }
 
     private void OnDestroy()
     {
         OnCustomerChangeState -= ChangeCustomerState;
+        OnCustomerMoodChange -= ChangeCustomerMood;
+
     }
 
     private void Update()
@@ -124,6 +133,11 @@ public class CustomerStateMachine : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void ChangeCustomerMood(CustomerMood newMood)
+    {
+        currentMood = newMood;
     }
 
     // Still working on this
@@ -190,6 +204,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void StartWaitTimer()
     {
+        waitTimer = maxWaitTime;
         canRunTimer = true;
     }
 
@@ -213,48 +228,24 @@ public class CustomerStateMachine : MonoBehaviour
             canRunTimer = false;
             waitTimer = 0f;
 
-            currentMood = CustomerMood.Angry;
+            OnCustomerMoodChange?.Invoke(CustomerMood.Angry);
         }
     }
 
-    //private void LeaveHappy(int payment)
-    //{
-    //    //GivePlayerMoney(payment);
+    public Sprite MapMoodToSprite(CustomerMood mood)
+    {
+        switch (mood)
+        {
+            case CustomerMood.Normal:
+                return normalSprite;
 
-    //    currentState = CustomerState.LeavingHappy;
+            case CustomerMood.Angry:
+                return angrySprite;
 
-    //    if (exitPoint == null)
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
+            case CustomerMood.Happy:
+                return happySprite;
+        }
 
-    //    agent.isStopped = false;
-    //    agent.SetDestination(exitPoint.position);
-    //}
-
-    // Customer leaves angry and gives the player partial payment
-    //private void LeaveAngry(int payment)
-    //{
-    //    //GivePlayerMoney(payment);
-
-    //    currentState = CustomerState.LeavingAngry;
-
-    //    if (exitPoint == null)
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
-
-    //    agent.isStopped = false;
-    //    agent.SetDestination(exitPoint.position);
-    //}
-
-
-    //public void SetPreferences(MealData[] prefs)
-    //{
-    //    preferredMeals = prefs;
-    //}
-
-
+        return null;
+    }
 }
