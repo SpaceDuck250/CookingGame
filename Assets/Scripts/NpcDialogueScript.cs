@@ -15,6 +15,8 @@ public class NpcDialogueScript : MonoBehaviour
 
     public static bool conversationOpen = false;
 
+    public SlowTyper slowTyper;
+
     // Add slowtalk later
 
     private void Start()
@@ -31,10 +33,10 @@ public class NpcDialogueScript : MonoBehaviour
         OnOrderMetTalk -= OnOrderMetTalkFunction;
     }
 
-    public void WriteNewText(string newText)
+    public void WriteNewText(string name, string newText)
     {
         conversationOpen = true;
-        dialogueTextComponent.text = newText;
+        slowTyper.StartWritingSlowly(name, newText);
         dialogueObject.SetActive(true);
 
     }
@@ -45,7 +47,8 @@ public class NpcDialogueScript : MonoBehaviour
 
         string randomLineFromCustomer = PickRandomLine(newCustomer);
 
-        WriteNewText(randomLineFromCustomer);
+        WriteNewText(GetName(newCustomer), randomLineFromCustomer);
+
     }
 
     public void StopTalkToCustomer()
@@ -58,7 +61,8 @@ public class NpcDialogueScript : MonoBehaviour
     public void OnOrderMetTalkFunction(CustomerData customer)
     {
         heldCustomerData = customer;
-        WriteNewText(heldCustomerData.customerName + ": Thank you that is the correct meal!");
+        WriteNewText(GetName(customer) , "Thank you that is the correct meal!");
+
     }
 
     public string PickRandomLine(CustomerData customer)
@@ -72,8 +76,11 @@ public class NpcDialogueScript : MonoBehaviour
 
         string randomLine = customer.possibleDialogueLines[randomInt];
 
-        randomLine = customer.customerName + ": " + randomLine;
-
         return randomLine;
+    }
+
+    public string GetName(CustomerData customer)
+    {
+        return customer.name + ": ";
     }
 }
