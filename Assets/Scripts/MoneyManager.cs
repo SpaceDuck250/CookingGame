@@ -7,6 +7,7 @@ public class MoneyManager : MonoBehaviour
 {
     // Depends on the meal's price and tip depends on the customer's mood + customer's tip range
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
+    public static Action<float> OnMoneyChanged;
 
     public float PlayerMoneyAmount;
 
@@ -28,6 +29,8 @@ public class MoneyManager : MonoBehaviour
         float totalPayAmount = foodPayAmount + tipAmount;
 
         PlayerMoneyAmount += totalPayAmount;
+
+        OnMoneyChanged?.Invoke(PlayerMoneyAmount);
     }
 
     // This is for testing
