@@ -70,6 +70,8 @@ public class CustomerStateMachine : MonoBehaviour
     public float upOffsetChair;
     public float forwardOffset;
 
+    public Sprite normalSprite, angrySprite, happySprite;
+
     private void Awake()
     {
         OnCustomerChangeState += ChangeCustomerState;
@@ -202,6 +204,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void StartWaitTimer()
     {
+        waitTimer = maxWaitTime;
         canRunTimer = true;
     }
 
@@ -229,5 +232,20 @@ public class CustomerStateMachine : MonoBehaviour
         }
     }
 
+    public Sprite MapMoodToSprite(CustomerMood mood)
+    {
+        switch (mood)
+        {
+            case CustomerMood.Normal:
+                return normalSprite;
 
+            case CustomerMood.Angry:
+                return angrySprite;
+
+            case CustomerMood.Happy:
+                return happySprite;
+        }
+
+        return null;
+    }
 }

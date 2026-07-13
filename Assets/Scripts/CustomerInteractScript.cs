@@ -23,7 +23,9 @@ public class CustomerInteractScript : Interactable
 
     public CustomerStateMachine customerStateMachine;
 
-    public bool TalkedTo = false;
+    public bool talkedTo = false;
+
+    public bool talkingTo = false;
     
     private void Start()
     {
@@ -50,7 +52,7 @@ public class CustomerInteractScript : Interactable
             RotateToPlayer();
         }
 
-        if (CheckIfHoldingFood(playerHand) && TalkedTo)
+        if (CheckIfHoldingFood(playerHand) && talkedTo)
         {
             CheckIfFoodMatchesOrder(playerHand);
         }
@@ -79,7 +81,7 @@ public class CustomerInteractScript : Interactable
 
     private void TryTalkToCustomer()
     {
-        TalkedTo = true;
+        talkedTo = true;
 
         if (!NpcDialogueScript.conversationOpen)
         {
@@ -94,6 +96,7 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
+        talkingTo = true;
         OnInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck);
@@ -101,6 +104,7 @@ public class CustomerInteractScript : Interactable
 
     public void CloseConversation()
     {
+        talkingTo = false;
         print("ended" + gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
