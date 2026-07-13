@@ -9,7 +9,6 @@ public class ChairScript : MonoBehaviour
     public float seatTime;
 
     public Vector3 upOffset;
-    public float forwardOffsetValue;
 
     public GameObject tableParent;
 
@@ -20,7 +19,6 @@ public class ChairScript : MonoBehaviour
     {
         seatTime = 6;
         upOffset = Vector3.up * 0.15f;
-        forwardOffsetValue = 0.35f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,9 +72,10 @@ public class ChairScript : MonoBehaviour
         originalPosition = heldCustomer.transform.position;
         heldCustomer.agent.enabled = false;
 
-        Vector3 forwardOffset = (tableParent.transform.position - transform.position).normalized * forwardOffsetValue;
+        Vector3 forwardOffset = (tableParent.transform.position - transform.position).normalized * heldCustomer.forwardOffset;
 
-        heldCustomer.gameObject.transform.position = transform.position + upOffset + forwardOffset;
+        heldCustomer.gameObject.transform.position = transform.position + forwardOffset;
+        heldCustomer.gameObject.transform.position = new Vector3(heldCustomer.transform.position.x, heldCustomer.upOffsetChair, heldCustomer.transform.position.z);
 
         Vector3 rotateVector = (tableParent.transform.position - transform.position).normalized;
         float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;

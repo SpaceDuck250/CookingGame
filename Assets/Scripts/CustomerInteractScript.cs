@@ -40,7 +40,7 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (finishedInteract)
+        if (finishedInteract || !movementScript.agent.isStopped)
         {
             return;
         }
