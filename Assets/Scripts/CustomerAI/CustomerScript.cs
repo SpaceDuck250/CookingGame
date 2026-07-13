@@ -1,0 +1,108 @@
+using UnityEngine;
+using UnityEngine.AI;
+using System;
+
+public class CustomerMovementScript : MonoBehaviour
+{
+    public MealData orderData;
+
+    //public Transform stallQueuePointTransform;
+    //public Transform chairTransform;
+    //public Transform exitTransform;
+    //public Transform platterAreaTransform;
+
+    public Transform destinationPoint;
+
+    public float sitTime;
+
+    private float sitTimer;
+
+    public NavMeshAgent agent;
+
+    public Action<Transform> OnNewDestinationChange;
+
+    public float closeEnough;
+    public bool orderDone = false;
+    public bool sitting = false;
+
+    public bool holdingTray = false;
+
+    public Vector3 normalTrayLocalPosition;
+    public Vector3 seatedTrayLocalPosition;
+
+    public Action OnCustomerMove;
+    public Action OnCustomerIdle;
+
+    public MealChecker mealChecker;
+
+    public CustomerStateMachine customerStateMachine;
+
+    private void Awake()
+    {
+        OnNewDestinationChange += SetNewDestination;
+    }
+
+    private void OnDestroy()
+    {
+        OnNewDestinationChange -= SetNewDestination;
+    }
+
+    private void Update()
+    {
+        if (sitting)
+        {
+            return;
+        }
+        WalkToDestination();
+    }
+
+    private void SetNewDestination(Transform destination)
+    {
+        this.destinationPoint = destination;
+    }
+
+    public void WalkToDestination()
+    {
+        if (destinationPoint == null)
+        {
+            return;
+        }
+
+        if (CheckIfCloseEnoughToDestination())
+        {
+            print("Close enough");
+            OnCustomerIdle?.Invoke();
+            if (agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+            }
+            return;
+        }
+        else
+        {
+            if (agent.isOnNavMesh)
+            {
+                agent.isStopped = false;
+            }
+        }
+
+        OnCustomerMove?.Invoke();
+        agent.SetDestination(destinationPoint.position);
+    }
+
+    public bool CheckIfCloseEnoughToDestination()
+    {
+        if (destinationPoint == null)
+        {
+            return false;
+        }
+
+        float distance = Vector3.Distance(transform.position, destinationPoint.position);
+        if (distance <= closeEnough)
+        {
+            return true;
+        }
+
+        return false;
+    }
+}

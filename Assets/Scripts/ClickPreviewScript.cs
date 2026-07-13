@@ -16,18 +16,28 @@ public class ClickPreviewScript : MonoBehaviour
 
     public InteractAreaScript interactArea;
 
+    private void Awake()
+    {
+        Subscribe();
+    }
+
     private void Start()
     {
         SetupPreviewObj();
 
-        interactArea.OnPlayerEnterRange += OnPlayerEnterRange;
-        interactArea.OnPlayerExitRange += OnPlayerExitRange;
+        
     }
 
     private void OnDestroy()
     {
         interactArea.OnPlayerEnterRange -= OnPlayerEnterRange;
         interactArea.OnPlayerExitRange -= OnPlayerExitRange;
+    }
+
+    public void Subscribe()
+    {
+        interactArea.OnPlayerEnterRange += OnPlayerEnterRange;
+        interactArea.OnPlayerExitRange += OnPlayerExitRange;
     }
 
     private void OnPlayerEnterRange(GameObject player)

@@ -5,12 +5,29 @@ public class HoldableFoodScript : MonoBehaviour
     public FoodData foodData;
     public GameObject objectToDelete;
 
+    public PlatterScript platterIn;
+    public bool CarryType = false;
+
+    public GameObject cookingStationIn;
+
+    public Vector3 originalScale;
+    public bool changeScaleOnHand = false;
+    public float pickupScaleModifier;
+
+    public Vector3 holdOffset = Vector3.zero;
+
+    public bool canPickUp = true;
+
     public void Start()
     {
         if (objectToDelete == null)
         {
             objectToDelete = gameObject;
         }
+
+        originalScale = transform.localScale;
+        pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
+
     }
     
     public void DeleteObjectToDelete()
