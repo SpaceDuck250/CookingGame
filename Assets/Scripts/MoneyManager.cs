@@ -2,12 +2,11 @@ using UnityEngine;
 using System;
 using Customer;
 
-
 public class MoneyManager : MonoBehaviour
 {
     // Depends on the meal's price and tip depends on the customer's mood + customer's tip range
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
-    public static Action<float> OnMoneyChanged;
+    public static Action<float, float, float> OnMoneyChanged;
 
     public float PlayerMoneyAmount;
 
@@ -30,7 +29,10 @@ public class MoneyManager : MonoBehaviour
 
         PlayerMoneyAmount += totalPayAmount;
 
-        OnMoneyChanged?.Invoke(PlayerMoneyAmount);
+        float totalMoneyAmount = PlayerMoneyAmount;
+        float earnedAmount = foodPayAmount;
+
+        OnMoneyChanged?.Invoke(totalMoneyAmount, earnedAmount, tipAmount);
     }
 
     // This is for testing

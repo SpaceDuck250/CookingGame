@@ -9,6 +9,11 @@ public class SlowTyper : MonoBehaviour
     public string dialogueLine;
     public float typeTime;
 
+    private void Start()
+    {
+        typeTime = 0.01f;
+    }
+
     public void StartWritingSlowly(string name, string newLine)
     {
         StopAllCoroutines();
