@@ -9,4 +9,6 @@ public class FoodData : ScriptableObject
     public GameObject foodModel;
 
     public int chopsRequired;
+
+    public bool isQualityFail;
 }

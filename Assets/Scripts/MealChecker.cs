@@ -12,6 +12,7 @@ public class MealChecker : MonoBehaviour
     public CustomerInteractScript customerScript;
 
     public event Action OnMealOrderFulfilled;
+    public event Action OnMealOrderIncorrect;  
 
     public Transform customerHand;
 
@@ -30,7 +31,7 @@ public class MealChecker : MonoBehaviour
         {
             return;
         }
-
+         
         PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
         inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
         platterHeld = platterGiver.platterScript;
@@ -50,6 +51,7 @@ public class MealChecker : MonoBehaviour
         else
         {
             print("meal doesnt match order");
+            OnMealOrderIncorrect?.Invoke();
         }
 
     }
