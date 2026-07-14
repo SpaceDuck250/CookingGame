@@ -106,7 +106,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
     // Only for display
     public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp)
     {
-        GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, Quaternion.identity);
+        GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, foodData.foodModel.transform.rotation);
 
         newDisplayFood.transform.SetParent(parent.transform, true);
 
