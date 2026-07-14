@@ -16,6 +16,8 @@ public class AITHIEF : Interactable
         thiefAgent = GetComponent<NavMeshAgent>();
         thiefAgent.SetDestination(thiefReady.position);
         thiefAnimator = GetComponent<Animator>();
+        Debug.Log(thiefAgent.SetDestination(thiefReady.position));
+        Debug.Log(thiefAgent.isOnNavMesh);
     }
 
     // Update is called once per frame
