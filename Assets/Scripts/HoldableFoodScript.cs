@@ -12,9 +12,11 @@ public class HoldableFoodScript : MonoBehaviour
 
     public Vector3 originalScale;
     public bool changeScaleOnHand = false;
+    public bool changeRotationOnHand = false;
     public float pickupScaleModifier;
 
     public Vector3 holdOffset = Vector3.zero;
+    public Quaternion rotationOffset;
 
     public bool canPickUp = true;
 
@@ -27,7 +29,7 @@ public class HoldableFoodScript : MonoBehaviour
 
         originalScale = transform.localScale;
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
-
+        rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
     }
     
     public void DeleteObjectToDelete()

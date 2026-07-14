@@ -8,5 +8,8 @@ public class FoodData : ScriptableObject
     public Sprite foodSprite;
     public GameObject foodModel;
 
+    public bool usesAlternateFoodModel = false;
+    public GameObject alternateFoodModel;
+
     public int chopsRequired;
 }

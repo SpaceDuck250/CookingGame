@@ -9,6 +9,11 @@ public class TalkRangeScript : MonoBehaviour
 
     public bool interacting = false;
 
+    public Action OnExitTalkRange;
+    public Action OnEnterTalkRange;
+
+    public bool inRange = false;
+
     private void Start()
     {
         interactScript.OnInteractWithCustomer += Interact;
@@ -24,10 +29,10 @@ public class TalkRangeScript : MonoBehaviour
 
     private void Update()
     {
-        if (!interacting)
-        {
-            return;
-        }
+        //if (!interacting)
+        //{
+        //    return;
+        //}
 
         CheckIfExitRange();
     }
@@ -38,7 +43,18 @@ public class TalkRangeScript : MonoBehaviour
 
         if (distanceToPlayer > interactRange)
         {
-            CustomerExitRange();
+            OnExitTalkRange?.Invoke();
+
+            if (interacting)
+            {
+                CustomerExitRange();
+                return;
+            }
+        }
+        else
+        {
+            OnEnterTalkRange?.Invoke();
+
         }
     }
 

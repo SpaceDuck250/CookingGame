@@ -2,13 +2,13 @@ using UnityEngine;
 using System;
 using Customer;
 
-
 public class MoneyManager : MonoBehaviour
 {
     // Depends on the meal's price and tip depends on the customer's mood + customer's tip range
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
+    public static Action<decimal, decimal, decimal> OnMoneyChanged;
 
-    public float PlayerMoneyAmount;
+    public decimal PlayerMoneyAmount;
 
     private void Start()
     {
@@ -22,20 +22,25 @@ public class MoneyManager : MonoBehaviour
 
     public void PayForOrder(MealData mealToPayFor, CustomerMood currentMood, CustomerData customer)
     {
-        float tipAmount = CalculateTip(currentMood, customer);
-        float foodPayAmount = mealToPayFor.mealPrice;
+        decimal tipAmount = CalculateTip(currentMood, customer);
+        decimal foodPayAmount = (decimal)mealToPayFor.mealPrice;
 
-        float totalPayAmount = foodPayAmount + tipAmount;
+        decimal totalPayAmount = foodPayAmount + tipAmount;
 
         PlayerMoneyAmount += totalPayAmount;
+
+        decimal totalMoneyAmount = PlayerMoneyAmount;
+        decimal earnedAmount = foodPayAmount;
+
+        OnMoneyChanged?.Invoke(totalMoneyAmount, earnedAmount, tipAmount);
     }
 
     // This is for testing
-    public float CalculateTip(CustomerMood currentMood, CustomerData customer)
+    public decimal CalculateTip(CustomerMood currentMood, CustomerData customer)
     {
         float randomTipAmount = UnityEngine.Random.Range(0f, customer.tipRange);
         // Round to 2dp
-        randomTipAmount = Mathf.Round(randomTipAmount * 100) / 100;
+        decimal roundedTipAmount = Math.Round((decimal)randomTipAmount, 2);
 
         float tipChance = 0;
         if (currentMood == CustomerMood.Normal)
@@ -53,7 +58,7 @@ public class MoneyManager : MonoBehaviour
 
         if (UnityEngine.Random.value < tipChance)
         {
-            return randomTipAmount;
+            return roundedTipAmount;
         }
         else
         {
