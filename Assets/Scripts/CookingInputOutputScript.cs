@@ -99,7 +99,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false, bool clearHand = false)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false)
     {
         GameObject foodToSpawn;
         if (!useAlternate)
@@ -125,11 +125,11 @@ public class CookingInputOutputScript : Interactable, ICookStation
             Destroy(newDisplayFood.GetComponent<Collider>());
         }
 
-        if (clearHand)
-        {
-            PlayerHandScript.instance.currentFoodHeld = null;
-            Destroy(PlayerHandScript.instance.currentFoodHeldObj);
-        }
+        //if (clearHand)
+        //{
+        //    PlayerHandScript.instance.currentFoodHeld = null;
+        //    Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+        //}
 
 
         return newDisplayFood;
