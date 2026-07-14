@@ -36,6 +36,17 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     public int emptyQueueIndex;
 
+    // Special spawn, spawn companions with this customer
+    public string specialCustomerName = "Uncle Fedrick";
+    public int specialCompanionCount = 2;
+
+    // Put the specific Fedrick-children prefabs here in the inspector.
+    // When Uncle Fedrick spawns companions, they'll be picked from this list.
+    public List<GameObject> fedrickChildrenPrefabs = new List<GameObject>();
+
+    // Event Rush Hour, if true, will spawn more customers than usual
+    public bool eventRushHour = false;
+
     private void Awake()
     {
         instance = this;
@@ -55,9 +66,6 @@ public class CustomerSpawnerScript : MonoBehaviour
         OnCustomerLeftQueue -= OnCustomerOrderFinish;
         OnCustomerExit -= OnCustomerDestroyed;
         OnCustomerSeated -= CustomerSeated;
-
-
-
     }
 
     private void Update()
@@ -87,16 +95,28 @@ public class CustomerSpawnerScript : MonoBehaviour
             return;
         }
 
-        SpawnCustomer(freeChair, queuePoint);
+        SpawnCustomer(freeChair, queuePoint); // default: allow companions
     }
 
-    private void SpawnCustomer(Transform table, Transform queuePoint)
+    // allowCompanions = false, prevents recursive companion-spawning when we spawn companions themselves
+    // overridePrefab. if provided, spawn this prefab instead of picking randomly from customerPrefabList
+    private void SpawnCustomer(Transform table, Transform queuePoint, bool allowCompanions = true, GameObject overridePrefab = null)
     {
-        // Pick Random
-        int randomInt = UnityEngine.Random.Range(0, customerPrefabList.Count);
-        GameObject customerPrefab = customerPrefabList[randomInt];
+        // Pick prefab (override if provided).
+        GameObject prefabToInstantiate = overridePrefab;
+        if (prefabToInstantiate == null)
+        {
+            if (customerPrefabList == null || customerPrefabList.Count == 0)
+            {
+                Debug.LogWarning("No customer prefab available to spawn.");
+                return;
+            }
+            prefabToInstantiate = customerPrefabList[UnityEngine.Random.Range(0, customerPrefabList.Count)];
+        }
 
-        GameObject newCustomer = Instantiate(customerPrefab, spawnPoint.position, customerPrefab.transform.rotation);
+        // small scatter so spawned objects don't stack exactly on top of each other
+        Vector3 instPos = spawnPoint.position + new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), 0f, UnityEngine.Random.Range(-0.5f, 0.5f));
+        GameObject newCustomer = Instantiate(prefabToInstantiate, instPos, prefabToInstantiate.transform.rotation);
 
         //CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
         CustomerStateMachine customerStateMachine = newCustomer.GetComponent<CustomerStateMachine>();
@@ -106,14 +126,36 @@ public class CustomerSpawnerScript : MonoBehaviour
         customerStateMachine.exitPoint = exitTransform;
         customerStateMachine.trayReturnPoint = platterPoint;
 
-        //customerScript.stallQueuePointTransform = queuePoint;
-        //customerScript.chairTransform = table;
-        //customerScript.exitTransform = exitTransform;
-
         activeCustomers.Add(customerStateMachine);
 
-        //customerStateMachine.OnCustomerChangeState(CustomerStateMachine.CustomerState.WalkingToSeat);
-        print("here");
+        // If this is the special customer and companions are allowed, try to spawn companions
+        if (allowCompanions && customerStateMachine.profile != null && customerStateMachine.profile.customerName == specialCustomerName && eventRushHour)
+        {
+            // Respect maxCustomers limit
+            int availableSlots = maxCustomers - activeCustomers.Count;
+            int spawnCount = Mathf.Min(specialCompanionCount, Mathf.Max(0, availableSlots));
+            for (int i = 0; i < spawnCount; i++)
+            {
+                Transform freeChair = FindFreeChair();
+                Transform freeQueue = FindFreeQueuePoint();
+
+                if (freeChair == null || freeQueue == null)
+                    break;
+
+                // Choose a Fedrick child prefab
+                GameObject childPrefab = null;
+                if (fedrickChildrenPrefabs != null && fedrickChildrenPrefabs.Count > 0)
+                {
+                    int index = UnityEngine.Random.Range(0, fedrickChildrenPrefabs.Count);
+                    childPrefab = fedrickChildrenPrefabs[index];
+                }
+
+                // Spawn companion without allowing them to spawn more companions
+                SpawnCustomer(freeChair, freeQueue, false, childPrefab);
+            }
+        }
+
+        // Start moving the customer(s) to the queue
         customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WalkingToCounter);
     }
 
@@ -206,7 +248,6 @@ public class CustomerSpawnerScript : MonoBehaviour
     private void CustomerSeated(CustomerStateMachine customer)
     {
         customer.seatPoint = null;
-
     }
 
     private void OnCustomerOrderFinish(CustomerStateMachine customer)
@@ -217,5 +258,17 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         float waitTime = 2;
         Invoke("ShuffleQueue", waitTime);
+    }
+
+    // Public accessor so other scripts can request a free queue point
+    // Mostly for me to use but could be useful for other scripts too
+    public Transform GetFreeQueuePoint()
+    {
+        return FindFreeQueuePoint();
+    }
+
+    public Transform GetFreeChair()
+    {
+        return FindFreeChair();
     }
 }
