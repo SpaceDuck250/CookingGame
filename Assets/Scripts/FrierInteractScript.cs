@@ -53,7 +53,7 @@ public class FrierInteractScript : Interactable
 
     private void OnCookingGameStart(FoodData food)
     {
-        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false);
+        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false, true);
         CheckIfCooking();
     }
 

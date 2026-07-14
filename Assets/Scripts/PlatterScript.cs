@@ -85,7 +85,7 @@ public class PlatterScript : Interactable
 
         Transform placeParent = placeAreasArray[emptySlotIndex];
 
-        GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true);
+        GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true, false, true);
         newFood.GetComponent<HoldableFoodScript>().platterIn = this;
 
         //foodHeldArray[emptySlotIndex] = foodData;
