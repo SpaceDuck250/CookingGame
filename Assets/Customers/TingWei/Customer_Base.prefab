@@ -965,7 +965,8 @@ MonoBehaviour:
   movementScript: {fileID: 8305492917439897951}
   finishedInteract: 0
   customerStateMachine: {fileID: 3171387887883017947}
-  TalkedTo: 0
+  talkedTo: 0
+  talkingTo: 0
 --- !u!114 &3171387887883017947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,6 +1004,9 @@ MonoBehaviour:
   maxOrders: 1
   completedOrders: 0
   canOrderAgain: 1
+  normalSprite: {fileID: 1564441941, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
+  angrySprite: {fileID: 1504868629, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
+  happySprite: {fileID: 2062754610, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
 --- !u!1 &2928518371721769170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1339,7 @@ GameObject:
   - component: {fileID: 8656508556146306402}
   - component: {fileID: 6250307872185565989}
   - component: {fileID: 179424394347011417}
+  - component: {fileID: 2952334107394999286}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1462,6 +1467,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2952334107394999286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786770948331842591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ab2688441f64c458d9beb13d9fbcbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmotionUIScript
+  emotionObj: {fileID: 6648291446828526651}
+  emotionImage: {fileID: 629153588713445227}
+  stateMachine: {fileID: 3171387887883017947}
+  interactScript: {fileID: 5572442997843537308}
+  rangeScript: {fileID: 7613256347541667346}
+  mealChecker: {fileID: 95440999740362058}
+  mood: 0
+  active: 1
 --- !u!1 &5828913401246500631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,6 +1630,7 @@ MonoBehaviour:
   interactScript: {fileID: 5572442997843537308}
   interactRange: 4.34
   interacting: 0
+  inRange: 0
 --- !u!1 &6309768340617420435
 GameObject:
   m_ObjectHideFlags: 0

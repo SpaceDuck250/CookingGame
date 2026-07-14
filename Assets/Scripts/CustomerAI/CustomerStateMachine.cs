@@ -72,6 +72,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     // Track if this customer has already used their "return" chance
     private bool hasReturnedOnce = false;
+    public Sprite normalSprite, angrySprite, happySprite;
 
     private void Awake()
     {
@@ -268,6 +269,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void StartWaitTimer()
     {
+        waitTimer = maxWaitTime;
         canRunTimer = true;
     }
 
@@ -295,5 +297,20 @@ public class CustomerStateMachine : MonoBehaviour
         }
     }
 
+    public Sprite MapMoodToSprite(CustomerMood mood)
+    {
+        switch (mood)
+        {
+            case CustomerMood.Normal:
+                return normalSprite;
 
+            case CustomerMood.Angry:
+                return angrySprite;
+
+            case CustomerMood.Happy:
+                return happySprite;
+        }
+
+        return null;
+    }
 }

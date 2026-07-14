@@ -39,7 +39,7 @@ public class CarrotCutter : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (!canCut)
+        if (!canCut || playerHand.currentFoodHeldObj != null)
         {
             return;
         }

@@ -123,9 +123,15 @@ public class PlayerHandScript : MonoBehaviour
 
         //currentFoodHeldObj = holdableScript.gameObject;
         currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
-        currentFoodHeldObj.transform.localRotation = holdableScript.foodData.foodModel.transform.rotation;
 
-
+        if (!holdableScript.changeRotationOnHand)
+        {
+            currentFoodHeldObj.transform.localRotation = holdableScript.foodData.foodModel.transform.rotation;
+        }
+        else
+        {
+            currentFoodHeldObj.transform.localRotation = holdableScript.rotationOffset;
+        }
 
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
         rb.isKinematic = true;
