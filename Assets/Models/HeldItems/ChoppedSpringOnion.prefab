@@ -1,0 +1,422 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5861831998391149501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5094890135841460054}
+  - component: {fileID: 3923351870879700037}
+  - component: {fileID: 220069191097887371}
+  - component: {fileID: 5433851855803046509}
+  m_Layer: 7
+  m_Name: ChoppedSpringOnion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5094890135841460054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861831998391149501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.56247, y: 0.815, z: -2.23037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8147429284750590701}
+  - {fileID: 2831847117410208822}
+  - {fileID: 4819515339977253186}
+  - {fileID: 6712246245611497208}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3923351870879700037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861831998391149501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33190c6c5668d14eaeb5f6b0c8656a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
+  foodData: {fileID: 11400000, guid: 183c79043e8b5df4387a1e08b2161a5f, type: 2}
+  objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  pickupScaleModifier: 0
+  holdOffset: {x: 0, y: 0, z: 0}
+  canPickUp: 1
+--- !u!65 &220069191097887371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861831998391149501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.07, z: 0.31}
+  m_Center: {x: 0.4, y: 0.09, z: -0.09}
+--- !u!54 &5433851855803046509
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861831998391149501}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1001 &2361580064376515549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5094890135841460054}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.399999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57717407
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.30647087
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.046000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09162998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_Name
+      value: Chopped Spring Onion (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+--- !u!4 &2831847117410208822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+  m_PrefabInstance: {fileID: 2361580064376515549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5001496802635974313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5094890135841460054}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.399999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57717407
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.75847054
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.046000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09162998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_Name
+      value: Chopped Spring Onion (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+--- !u!4 &4819515339977253186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+  m_PrefabInstance: {fileID: 5001496802635974313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6533607161382174995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5094890135841460054}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.399999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57717407
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.050470352
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.046000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09162998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_Name
+      value: Chopped Spring Onion (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+--- !u!4 &6712246245611497208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+  m_PrefabInstance: {fileID: 6533607161382174995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8546638817699947782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5094890135841460054}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.399999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57717407
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5420246
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.046000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09162998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+      propertyPath: m_Name
+      value: Chopped Spring Onion (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+--- !u!4 &8147429284750590701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0856df414436604d8c4b02e5e0bf7f6, type: 3}
+  m_PrefabInstance: {fileID: 8546638817699947782}
+  m_PrefabAsset: {fileID: 0}

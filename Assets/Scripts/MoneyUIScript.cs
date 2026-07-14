@@ -21,14 +21,14 @@ public class MoneyUIScript : MonoBehaviour
         MoneyManager.OnMoneyChanged -= OnMoneyChanged;
     }
 
-    private void OnMoneyChanged(float totalMoneyAmount, float earnedAmount, float tipAmount)
+    private void OnMoneyChanged(decimal totalMoneyAmount, decimal earnedAmount, decimal tipAmount)
     {
         moneyUIText.text = ": " + totalMoneyAmount + "$";
 
         ShowEarnTextObj(earnedAmount, tipAmount);
     }
 
-    private void ShowEarnTextObj(float amount, float tipAmount)
+    private void ShowEarnTextObj(decimal amount, decimal tipAmount)
     {
         StopAllCoroutines();
 
