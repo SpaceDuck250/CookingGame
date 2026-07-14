@@ -30,7 +30,6 @@ public class HoldableFoodScript : MonoBehaviour
         originalScale = transform.localScale;
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
-
     }
     
     public void DeleteObjectToDelete()

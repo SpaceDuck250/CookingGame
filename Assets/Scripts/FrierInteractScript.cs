@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class FrierScript : Interactable
+public class FrierInteractScript : Interactable
 {
     public class HeatLevel
     {
@@ -16,6 +16,9 @@ public class FrierScript : Interactable
     public HeatLevel currentHeatLevel;
 
     public Action<HeatLevel> OnChangeHeatLevel;
+
+    public Action<GameObject> OnFry;
+    public Action OnFryEnd;
 
     public CookingInputOutputScript inputOutputScript;
 
@@ -50,13 +53,17 @@ public class FrierScript : Interactable
 
     private void OnCookingGameStart(FoodData food)
     {
-        CheckIfCooking();
-
         foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false);
+        CheckIfCooking();
     }
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (playerHand.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         ChangeTemp();
     }
 
@@ -65,10 +72,14 @@ public class FrierScript : Interactable
         if (currentHeatLevel.name == "Off")
         {
             cooking = false;
+            OnFryEnd?.Invoke();
         }
         else
         {
             cooking = true;
+
+            OnFry?.Invoke(foodHeld);
+            
         }
     }
 

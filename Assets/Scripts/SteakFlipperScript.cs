@@ -68,7 +68,7 @@ public class SteakFlipperScript : Interactable
             return;
         }
 
-        if (steakHeld == null)
+        if (steakHeld == null || playerHand.currentFoodHeldObj != null)
         {
             return;
         }
