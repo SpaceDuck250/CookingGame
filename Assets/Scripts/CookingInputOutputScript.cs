@@ -23,11 +23,6 @@ public class CookingInputOutputScript : Interactable, ICookStation
 
     public bool hasFood = false;
 
-    // If the cooking station also uses special recipes
-    //public bool takesMultipleInputFoods;
-    //public List<FoodData> inputFoodList = new List<FoodData>();
-    //public List<SpecialRecipe> specialRecipeStored = new List<SpecialRecipe>();
-
     private void Start()
     {
         OnFoodTakenOutOfCookingStation += TakeFoodOut;
@@ -106,7 +101,9 @@ public class CookingInputOutputScript : Interactable, ICookStation
     // Only for display
     public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp)
     {
-        GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, Quaternion.identity);
+        GameObject foodToSpawn = foodData.usesAlternateFoodModel ? foodData.alternateFoodModel : foodData.foodModel;
+
+        GameObject newDisplayFood = Instantiate(foodToSpawn, parent.position, foodToSpawn.transform.rotation);
 
         newDisplayFood.transform.SetParent(parent.transform, true);
 
@@ -120,8 +117,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
             Destroy(newDisplayFood.GetComponent<Collider>());
         }
 
-        PlayerHandScript.instance.currentFoodHeld = null;
-        Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+        //PlayerHandScript.instance.currentFoodHeld = null;
+        //Destroy(PlayerHandScript.instance.currentFoodHeldObj);
 
         return newDisplayFood;
     }

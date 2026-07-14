@@ -9,10 +9,12 @@ public class EmotionUIScript : MonoBehaviour
     public CustomerStateMachine stateMachine;
     public CustomerInteractScript interactScript;
     public TalkRangeScript rangeScript;
+    public MealChecker mealChecker;
 
     public CustomerMood mood;
 
-    public bool talkingToCustomer = false;
+    //public bool talkingToCustomer = false;
+    public bool active = true;
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class EmotionUIScript : MonoBehaviour
 
         rangeScript.OnEnterTalkRange += TryShowEmotion;
         rangeScript.OnExitTalkRange += HideEmotion;
+
+        mealChecker.OnMealOrderFulfilled += SetEmotionInactive;
     }
 
     private void OnDestroy()
@@ -29,13 +33,13 @@ public class EmotionUIScript : MonoBehaviour
         rangeScript.OnEnterTalkRange -= TryShowEmotion;
         rangeScript.OnExitTalkRange -= HideEmotion;
 
-
-
+        mealChecker.OnMealOrderFulfilled -= SetEmotionInactive;
     }
 
     public void ChangeEmotionSprite(CustomerMood newMood)
     {
         emotionImage.sprite = stateMachine.MapMoodToSprite(newMood);
+        mood = newMood;
     }
 
     public void HideEmotion()
@@ -45,7 +49,7 @@ public class EmotionUIScript : MonoBehaviour
 
     public void TryShowEmotion()
     {
-        if (interactScript.talkingTo)
+        if (interactScript.talkingTo || !active)
         {
             HideEmotion();
             return;
@@ -54,4 +58,8 @@ public class EmotionUIScript : MonoBehaviour
 
     }
 
+    public void SetEmotionInactive()
+    {
+        active = false;
+    }
 }
