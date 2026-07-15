@@ -5,7 +5,7 @@ public class HealthInspectorManager : MonoBehaviour
 {
     public static HealthInspectorManager instance;
 
-    public static event Action<string, int> OnRestaurantReported;
+    public static event Action<string, int> OnStallReported;
 
     private void Awake()
     {
@@ -19,11 +19,11 @@ public class HealthInspectorManager : MonoBehaviour
         }
     }
 
-    public static void ReportRestaurant(string reportingCustomerName, int finalScore)
+    public static void ReportStall(string reportingCustomerName, int finalScore)
     {
-        Debug.Log("[Health Inspector] " + reportingCustomerName + " reported the restaurant! Final score was " + finalScore);
+        Debug.Log("[Health Inspector] " + reportingCustomerName + " reported the Stall Final score was " + finalScore);
 
-        OnRestaurantReported?.Invoke(reportingCustomerName, finalScore);
+        OnStallReported?.Invoke(reportingCustomerName, finalScore);
 
     }
 }

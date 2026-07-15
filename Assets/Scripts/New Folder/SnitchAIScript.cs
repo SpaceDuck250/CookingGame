@@ -135,7 +135,7 @@ public class SnitchAIScript : MonoBehaviour
         if (currentScore < reportThreshold)
         {
             hasReported = true;
-            HealthInspectorManager.ReportRestaurant(customerName, currentScore);
+            HealthInspectorManager.ReportStall(customerName, currentScore);
         }
     }
 }
