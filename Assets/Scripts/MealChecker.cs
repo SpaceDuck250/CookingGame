@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using Category;
+using System.Linq;
 
 public class MealChecker : MonoBehaviour
 {
@@ -51,8 +53,8 @@ public class MealChecker : MonoBehaviour
         {
             customerScript.talkingTo = true; // fix this later by putting in a function for this and other to invoke event
             customerScript.OnInteractWithCustomer?.Invoke();
-            
-            bool servedBurntFood = false; // Change this later
+
+            bool servedBurntFood = CheckIfMealContainsCookType(CookAmount.Burnt);
             NpcDialogueScript.OnWrongMealServedTalk?.Invoke(stateMachine.profile, servedBurntFood);
         }
 
@@ -80,9 +82,10 @@ public class MealChecker : MonoBehaviour
         }
     }
 
-    public bool CheckIfMealContains()
+    public bool CheckIfMealContainsCookType(CookAmount cookedAmountToCheckFor)
     {
-        return false;
+        bool has = inputFoodDataList.Any(n => n.cookedAmount == cookedAmountToCheckFor);
+        return has;
     }
 
     private MealData ChooseOrder()
