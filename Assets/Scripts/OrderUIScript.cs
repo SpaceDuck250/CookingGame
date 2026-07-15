@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Customer;
 
 public class OrderUIScript : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class OrderUIScript : MonoBehaviour
         NpcDialogueScript.OnOrderMetTalk -= FinishOrder;
     }
 
-    public void ShowOrder(CustomerData customerData, MealData mealOrdered)
+    public void ShowOrder(CustomerData customerData, MealData mealOrdered, CustomerMood mood)
     {
         mealOrderName.text = mealOrdered.mealName;
         if (mealOrdered.mealSprite != null)

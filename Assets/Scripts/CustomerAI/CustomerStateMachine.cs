@@ -70,8 +70,6 @@ public class CustomerStateMachine : MonoBehaviour
     public float upOffsetChair;
     public float forwardOffset;
 
-    // Track if this customer has already used their "return" chance
-    private bool hasReturnedOnce = false;
     public Sprite normalSprite, angrySprite, happySprite;
 
     private void Awake()
@@ -83,9 +81,7 @@ public class CustomerStateMachine : MonoBehaviour
     void Start()
     {
         ApplyProfile();
-        hasReturnedOnce = false;
         OnCustomerMoodChange?.Invoke(CustomerMood.Normal);
-
     }
 
     private void OnDestroy()
@@ -132,7 +128,6 @@ public class CustomerStateMachine : MonoBehaviour
             case CustomerState.LeavingMap:
                 LeaveMap();
                 break;
-
         }
     }
 
@@ -150,6 +145,7 @@ public class CustomerStateMachine : MonoBehaviour
         }
 
         maxWaitTime = profile.waitTime;
+        waitTimer = maxWaitTime;
         interactScript.heldCustomerData = profile;
     }
 
@@ -200,76 +196,12 @@ public class CustomerStateMachine : MonoBehaviour
 
     private void LeaveMap()
     {
-        // Special behaviour: Uncle Fedrick has a 30% chance to return and order one more meal.
-        // Only allow this to happen once per customer instance.
-        if (!hasReturnedOnce && profile != null && profile.customerName == "Uncle Fedrick")
-        {
-            print("Uncle Fedrick has a chance to return!");
-            float chance = UnityEngine.Random.value; // 0.0 - 1.0
-
-            if (chance <= 0.3f)
-            {
-                hasReturnedOnce = true;
-
-                // Reset relevant state so the customer effectively returns to the counter and orders again
-                orderDone = false;
-                sitting = false;
-
-                if (interactScript != null)
-                {
-                    interactScript.orderComplete = false;
-                    interactScript.talkedTo = false;
-                    interactScript.finishedInteract = false;
-                }
-
-                if (movementScript != null)
-                {
-                    movementScript.orderDone = false;
-                    movementScript.sitting = false;
-                    movementScript.holdingTray = false;
-                }
-
-                // Choose a new meal for the customer
-                if (mealChecker != null)
-                {
-                    mealChecker.SetMeal();
-                }
-
-                // Request a free queue point from the spawner and set counterPoint before walking
-                Transform freeQueue = null;
-                Transform freeChair = null;
-                if (CustomerSpawnerScript.instance != null)
-                {
-                    freeQueue = CustomerSpawnerScript.instance.GetFreeQueuePoint();
-                    freeChair = CustomerSpawnerScript.instance.GetFreeChair();
-                }
-
-                if (freeQueue != null && freeChair != null)
-                {
-                    // The change state to walking to counter
-                    counterPoint = freeQueue;
-                    seatPoint = freeChair;
-                    OnCustomerChangeState?.Invoke(CustomerState.WalkingToCounter);
-                    print("Uncle Fedrick is returning to counter.");
-                    return;
-                }
-                else
-                {
-                    // No free queue point available, fallback to leaving map
-                    Debug.Log("No free queue point available for return, sending to exit.");
-                    movementScript.OnNewDestinationChange?.Invoke(exitPoint);
-                    return;
-                }
-            }
-        }
-
-        // Default leave behaviour (either not Fedrick, already returned, or chance failed)
         movementScript.OnNewDestinationChange?.Invoke(exitPoint);
     }
 
     public void StartWaitTimer()
     {
-        waitTimer = maxWaitTime;
+
         canRunTimer = true;
     }
 
