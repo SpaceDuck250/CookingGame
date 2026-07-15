@@ -14,6 +14,10 @@ public class CustomerData : ScriptableObject
     
     public List<LineMoodPair> dialogueLines = new List<LineMoodPair>();
 
+    // Special cases
+    public string wrongFoodDialogueLine;
+    public string burntFoodDialogueLine;
+
 
     public float waitTime;
 

@@ -12,6 +12,8 @@ public class NpcDialogueScript : MonoBehaviour
     public static Action OnEndTalkToCustomer;
     public static Action<CustomerData> OnOrderMetTalk;
 
+    public static Action<CustomerData, bool> OnWrongMealServedTalk;
+
     public CustomerData heldCustomerData;
 
     public GameObject dialogueObject;
@@ -29,6 +31,8 @@ public class NpcDialogueScript : MonoBehaviour
         OnEndTalkToCustomer += StopTalkToCustomer;
         OnOrderMetTalk += OnOrderMetTalkFunction;
 
+        OnWrongMealServedTalk += TalkWrongMeal;
+
     }
 
     private void OnDestroy()
@@ -36,6 +40,9 @@ public class NpcDialogueScript : MonoBehaviour
         OnTalkToCustomer -= TalkToCustomer;
         OnEndTalkToCustomer -= StopTalkToCustomer;
         OnOrderMetTalk -= OnOrderMetTalkFunction;
+
+        OnWrongMealServedTalk -= TalkWrongMeal;
+
     }
 
     public void WriteNewText(string name, string newText)
@@ -68,6 +75,23 @@ public class NpcDialogueScript : MonoBehaviour
         heldCustomerData = customer;
         WriteNewText(GetName(customer) , "Thank you that is the correct meal!");
 
+    }
+
+    public void TalkWrongMeal(CustomerData customer, bool burntFood)
+    {
+        if (conversationOpen)
+        {
+            StopTalkToCustomer();
+            CustomerInteractScript.OnEndInteractWithCustomer?.Invoke();
+
+            return;
+        }
+
+        heldCustomerData = customer;
+
+        // Make sure they arent null
+        string lineToShow = burntFood ? customer.burntFoodDialogueLine : customer.wrongFoodDialogueLine;
+        WriteNewText(GetName(customer), lineToShow);
     }
 
     public string PickRandomLine(CustomerData customer, CustomerMood currentMood)

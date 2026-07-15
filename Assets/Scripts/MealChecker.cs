@@ -49,7 +49,11 @@ public class MealChecker : MonoBehaviour
         }
         else
         {
-            print("meal doesnt match order");
+            customerScript.talkingTo = true; // fix this later by putting in a function for this and other to invoke event
+            customerScript.OnInteractWithCustomer?.Invoke();
+            
+            bool servedBurntFood = false; // Change this later
+            NpcDialogueScript.OnWrongMealServedTalk?.Invoke(stateMachine.profile, servedBurntFood);
         }
 
     }
@@ -74,6 +78,11 @@ public class MealChecker : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public bool CheckIfMealContains()
+    {
+        return false;
     }
 
     private MealData ChooseOrder()

@@ -33,11 +33,14 @@ public class CustomerInteractScript : Interactable
         //PickNewMeal();
 
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
+        OnEndInteractWithCustomer += NotTalking;
     }
 
     private void OnDestroy()
     {
         mealChecker.OnMealOrderFulfilled -= OnOrderComplete;
+        OnEndInteractWithCustomer -= NotTalking;
+
 
     }
 
@@ -118,6 +121,11 @@ public class CustomerInteractScript : Interactable
 
             finishedInteract = true;
         }
+    }
+
+    public void NotTalking()
+    {
+        talkingTo = false;
     }
 
     public void RotateToPlayer()
