@@ -15,9 +15,22 @@ public class FoodBox : Interactable
     {
         return;
     }
-    GameObject obj = Instantiate(
+    if(this.name != "Dabao Boxes")
+        {
+            GameObject obj = Instantiate(
         foodPrefab,
         heldObjectContainer.position,
         heldObjectContainer.rotation);
+        }
+    else if(heldObjectContainer.Find("Chicken Rice(Clone)") != null)
+        {
+            GameObject obj = Instantiate(
+        foodPrefab,
+        heldObjectContainer.position,
+        heldObjectContainer.rotation);
+        Destroy(heldObjectContainer.Find("Chicken Rice(Clone)").gameObject);
+        playerHand.currentFoodHeld = null;
+        playerHand.currentFoodHeldObj = null;
+        }
 }
 }
