@@ -63,8 +63,6 @@ public class RatAIScript : MonoBehaviour
             return;
         }
 
-        //OnMouseStopEating?.Invoke(false);
-
         decisionTimer += Time.deltaTime;
         if (decisionTimer > waitTime)
         {

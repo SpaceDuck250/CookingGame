@@ -218,7 +218,7 @@ public class CustomerStateMachine : MonoBehaviour
                 if (interactScript != null)
                 {
                     interactScript.orderComplete = false;
-                    interactScript.TalkedTo = false;
+                    interactScript.talkedTo = false;
                     interactScript.finishedInteract = false;
                 }
 
