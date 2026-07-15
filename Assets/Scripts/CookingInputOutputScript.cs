@@ -99,9 +99,17 @@ public class CookingInputOutputScript : Interactable, ICookStation
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false)
     {
-        GameObject foodToSpawn = foodData.usesAlternateFoodModel ? foodData.alternateFoodModel : foodData.foodModel;
+        GameObject foodToSpawn;
+        if (!useAlternate)
+        {
+            foodToSpawn = foodData.foodModel;
+        }
+        else
+        {
+            foodToSpawn = foodData.usesAlternateFoodModel ? foodData.alternateFoodModel : foodData.foodModel;
+        }
 
         GameObject newDisplayFood = Instantiate(foodToSpawn, parent.position, foodToSpawn.transform.rotation);
 
@@ -117,8 +125,12 @@ public class CookingInputOutputScript : Interactable, ICookStation
             Destroy(newDisplayFood.GetComponent<Collider>());
         }
 
-        //PlayerHandScript.instance.currentFoodHeld = null;
-        //Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+        //if (clearHand)
+        //{
+        //    PlayerHandScript.instance.currentFoodHeld = null;
+        //    Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+        //}
+
 
         return newDisplayFood;
     }

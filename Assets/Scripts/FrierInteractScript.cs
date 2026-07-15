@@ -43,7 +43,7 @@ public class FrierInteractScript : Interactable
 
     private void SetupHeatLevels()
     {
-        heatLevelList.Add(new HeatLevel { name = "Off", displayColor = Color.gray, speedIncreaser = 0 });
+        heatLevelList.Add(new HeatLevel { name = "Off", displayColor = Color.white, speedIncreaser = 0 });
         heatLevelList.Add(new HeatLevel { name = "Warm", displayColor = Color.orange, speedIncreaser = 1 });
         heatLevelList.Add(new HeatLevel { name = "Hot", displayColor = Color.red, speedIncreaser = 1.5f });
         heatLevelList.Add(new HeatLevel { name = "Blazing", displayColor = Color.purple, speedIncreaser = 2.5f });
@@ -53,7 +53,7 @@ public class FrierInteractScript : Interactable
 
     private void OnCookingGameStart(FoodData food)
     {
-        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false);
+        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false, true);
         CheckIfCooking();
     }
 
