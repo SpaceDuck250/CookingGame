@@ -108,19 +108,6 @@ public class SnitchAIScript : MonoBehaviour
         }
     }
 
-    private void SpawnFloatingText(string text, Color color)
-    {
-        Vector3 spawnPosition = popupSpawnPoint != null ? popupSpawnPoint.position : transform.position + Vector3.up * 2f;
-
-        GameObject popupInstance = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-
-        SnitchFloatingTextScript floatingText = popupInstance.GetComponent<SnitchFloatingTextScript>();
-        if (floatingText != null)
-        {
-            floatingText.SetText(text, color);
-        }
-    }
-
     private void OnServed()
     {
         if (hasReported)
@@ -136,6 +123,19 @@ public class SnitchAIScript : MonoBehaviour
         {
             hasReported = true;
             HealthInspectorManager.ReportStall(customerName, currentScore);
+        }
+    }
+
+    private void SpawnFloatingText(string text, Color color)
+    {
+        Vector3 spawnPosition = popupSpawnPoint != null ? popupSpawnPoint.position : transform.position + Vector3.up * 2f;
+
+        GameObject popupInstance = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+
+        SnitchFloatingTextScript floatingText = popupInstance.GetComponent<SnitchFloatingTextScript>();
+        if (floatingText != null)
+        {
+            floatingText.SetText(text, color);
         }
     }
 }
