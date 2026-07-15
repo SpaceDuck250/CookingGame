@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using UnityEditorInternal;
 
 public class CustomerInteractScript : Interactable
 {
@@ -99,7 +100,7 @@ public class CustomerInteractScript : Interactable
         talkingTo = true;
         OnInteractWithCustomer?.Invoke();
 
-        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck);
+        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
     }
 
     public void CloseConversation()

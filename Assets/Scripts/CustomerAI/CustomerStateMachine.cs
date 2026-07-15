@@ -145,6 +145,7 @@ public class CustomerStateMachine : MonoBehaviour
         }
 
         maxWaitTime = profile.waitTime;
+        waitTimer = maxWaitTime;
         interactScript.heldCustomerData = profile;
     }
 
@@ -200,7 +201,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void StartWaitTimer()
     {
-        waitTimer = maxWaitTime;
+
         canRunTimer = true;
     }
 
