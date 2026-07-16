@@ -70,7 +70,7 @@ public class CustomerMovementScript : MonoBehaviour
 
         if (CheckIfCloseEnoughToDestination())
         {
-            print("Close enough");
+            //print("Close enough");
             OnCustomerIdle?.Invoke();
             if (agent.isOnNavMesh)
             {

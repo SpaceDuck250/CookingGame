@@ -20,6 +20,9 @@ public class PlayerHandScript : MonoBehaviour
 
     public static PlayerHandScript instance;
 
+    public static Action OnHoldSomething;
+    public static Action OnStopHoldSomething;
+
     private void Awake()
     {
         instance = this;
@@ -85,6 +88,7 @@ public class PlayerHandScript : MonoBehaviour
             }
 
             BringFoodToHand(holdableFoodScript);
+            OnHoldSomething?.Invoke();
 
             return true;
         }
@@ -139,6 +143,8 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
         currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
 
+        currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
+
         holdableScript.DeleteObjectToDelete();
     }
 
@@ -171,6 +177,7 @@ public class PlayerHandScript : MonoBehaviour
             return;
         }
         interactArea.HideDisplay();
+
     }
 
     private void ThrowFood()
@@ -204,6 +211,8 @@ public class PlayerHandScript : MonoBehaviour
         }
 
         currentFoodHeldObj = null;
+
+        OnStopHoldSomething?.Invoke();
     }
 
     private void TryInteractWithInteractable()

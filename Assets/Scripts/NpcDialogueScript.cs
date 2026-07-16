@@ -1,12 +1,18 @@
 using System;
 using TMPro;
 using UnityEngine;
+using Customer;
+using System.Linq;
+using Pair;
+using System.Collections.Generic;
 
 public class NpcDialogueScript : MonoBehaviour
 {
-    public static Action<CustomerData, MealData> OnTalkToCustomer;
+    public static Action<CustomerData, MealData, CustomerMood> OnTalkToCustomer;
     public static Action OnEndTalkToCustomer;
     public static Action<CustomerData> OnOrderMetTalk;
+
+    public static Action<CustomerData, bool> OnWrongMealServedTalk;
 
     public CustomerData heldCustomerData;
 
@@ -24,6 +30,9 @@ public class NpcDialogueScript : MonoBehaviour
         OnTalkToCustomer += TalkToCustomer;
         OnEndTalkToCustomer += StopTalkToCustomer;
         OnOrderMetTalk += OnOrderMetTalkFunction;
+
+        OnWrongMealServedTalk += TalkWrongMeal;
+
     }
 
     private void OnDestroy()
@@ -31,6 +40,9 @@ public class NpcDialogueScript : MonoBehaviour
         OnTalkToCustomer -= TalkToCustomer;
         OnEndTalkToCustomer -= StopTalkToCustomer;
         OnOrderMetTalk -= OnOrderMetTalkFunction;
+
+        OnWrongMealServedTalk -= TalkWrongMeal;
+
     }
 
     public void WriteNewText(string name, string newText)
@@ -41,11 +53,11 @@ public class NpcDialogueScript : MonoBehaviour
 
     }
 
-    public void TalkToCustomer(CustomerData newCustomer, MealData pickedMeal)
+    public void TalkToCustomer(CustomerData newCustomer, MealData pickedMeal, CustomerMood mood)
     {
         heldCustomerData = newCustomer;
 
-        string randomLineFromCustomer = PickRandomLine(newCustomer);
+        string randomLineFromCustomer = PickRandomLine(newCustomer, mood);
 
         WriteNewText(GetName(newCustomer), randomLineFromCustomer);
 
@@ -65,16 +77,40 @@ public class NpcDialogueScript : MonoBehaviour
 
     }
 
-    public string PickRandomLine(CustomerData customer)
+    public void TalkWrongMeal(CustomerData customer, bool burntFood)
     {
-        if (customer.possibleDialogueLines.Count == 0)
+        if (conversationOpen)
+        {
+            StopTalkToCustomer();
+            CustomerInteractScript.OnEndInteractWithCustomer?.Invoke();
+
+            return;
+        }
+
+        heldCustomerData = customer;
+
+        // Make sure they arent null
+        string lineToShow = burntFood ? customer.burntFoodDialogueLine : customer.wrongFoodDialogueLine;
+        WriteNewText(GetName(customer), lineToShow);
+    }
+
+    public string PickRandomLine(CustomerData customer, CustomerMood currentMood)
+    {
+        if (customer.dialogueLines.Count == 0)
         {
             return "This customer has no lines, please add some clown";
         }
 
-        int randomInt = UnityEngine.Random.Range(0, customer.possibleDialogueLines.Count);
+        List<LineMoodPair> moodMatchedLines = customer.dialogueLines.Where(n => n.moodType == currentMood).ToList<LineMoodPair>();
 
-        string randomLine = customer.possibleDialogueLines[randomInt];
+        if (moodMatchedLines.Count == 0)
+        {
+            return "This customer is missing lines when it is in this mood.." + currentMood.ToString();
+        }
+
+        int randomInt = UnityEngine.Random.Range(0, moodMatchedLines.Count);
+
+        string randomLine = moodMatchedLines[randomInt].dialogueLine;
 
         return randomLine;
     }

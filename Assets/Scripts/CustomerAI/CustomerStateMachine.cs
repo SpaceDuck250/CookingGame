@@ -5,7 +5,7 @@ using System;
 using Customer;
 
 // If want to use these enums in other scripts put "using Customer" at the top of the script
-namespace Customer 
+namespace Customer
 {
     public enum CustomerState
     {
@@ -23,7 +23,8 @@ namespace Customer
     {
         Normal,
         Happy,
-        Angry
+        Angry,
+        ReallyAngry
     }
 }
 
@@ -70,26 +71,27 @@ public class CustomerStateMachine : MonoBehaviour
     public float upOffsetChair;
     public float forwardOffset;
 
-    public Sprite normalSprite, angrySprite, happySprite;
+    public Sprite normalSprite, angrySprite, happySprite, reallyAngrySprite;
 
     private void Awake()
     {
         OnCustomerChangeState += ChangeCustomerState;
         OnCustomerMoodChange += ChangeCustomerMood;
+        mealChecker.OnWrongOrderServed += OnWrongOrderServed;
     }
 
     void Start()
     {
         ApplyProfile();
-
         OnCustomerMoodChange?.Invoke(CustomerMood.Normal);
-
     }
 
     private void OnDestroy()
     {
         OnCustomerChangeState -= ChangeCustomerState;
         OnCustomerMoodChange -= ChangeCustomerMood;
+
+        mealChecker.OnWrongOrderServed -= OnWrongOrderServed;
 
     }
 
@@ -131,7 +133,6 @@ public class CustomerStateMachine : MonoBehaviour
             case CustomerState.LeavingMap:
                 LeaveMap();
                 break;
-
         }
     }
 
@@ -140,7 +141,7 @@ public class CustomerStateMachine : MonoBehaviour
         currentMood = newMood;
     }
 
-    // Still working on this
+    // Applies the customer profile to the customer state machine
     private void ApplyProfile()
     {
         if (profile == null)
@@ -148,7 +149,8 @@ public class CustomerStateMachine : MonoBehaviour
             return;
         }
 
-        maxWaitTime = profile.waitTime;
+        maxWaitTime = profile.waitTimeUntilAngry;
+        waitTimer = 0;
         interactScript.heldCustomerData = profile;
     }
 
@@ -204,7 +206,7 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void StartWaitTimer()
     {
-        waitTimer = maxWaitTime;
+
         canRunTimer = true;
     }
 
@@ -221,14 +223,20 @@ public class CustomerStateMachine : MonoBehaviour
             return;
         }
 
-        waitTimer -= Time.deltaTime;
+        waitTimer += Time.deltaTime;
 
-        if (waitTimer <= 0f)
+        if (waitTimer >= maxWaitTime && currentMood != CustomerMood.Angry)
         {
-            canRunTimer = false;
-            waitTimer = 0f;
+            waitTimer = maxWaitTime;
 
             OnCustomerMoodChange?.Invoke(CustomerMood.Angry);
+        }
+        else if (waitTimer >= profile.waitTimeUntilReallyAngry)
+        {
+            waitTimer = 0;
+            canRunTimer = false;
+
+            OnCustomerMoodChange?.Invoke(CustomerMood.ReallyAngry);
         }
     }
 
@@ -244,8 +252,20 @@ public class CustomerStateMachine : MonoBehaviour
 
             case CustomerMood.Happy:
                 return happySprite;
+
+            case CustomerMood.ReallyAngry:
+                return reallyAngrySprite;
         }
 
         return null;
+    }
+
+    private void OnWrongOrderServed()
+    {
+        if (currentMood == CustomerMood.Normal)
+        {
+            OnCustomerMoodChange?.Invoke(CustomerMood.Angry);
+        }
+        waitTimer = waitTimer < maxWaitTime ? maxWaitTime : waitTimer;
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using UnityEditorInternal;
 
 public class CustomerInteractScript : Interactable
 {
@@ -32,11 +33,19 @@ public class CustomerInteractScript : Interactable
         //PickNewMeal();
 
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
+        OnEndInteractWithCustomer += NotTalking;
+        OnInteractWithCustomer += Talking;
+
+        customerStateMachine.OnCustomerMoodChange += OnCustomerMoodChange;
     }
 
     private void OnDestroy()
     {
         mealChecker.OnMealOrderFulfilled -= OnOrderComplete;
+        OnEndInteractWithCustomer -= NotTalking;
+        OnInteractWithCustomer -= Talking;
+
+        customerStateMachine.OnCustomerMoodChange -= OnCustomerMoodChange;
 
     }
 
@@ -96,16 +105,13 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
-        talkingTo = true;
         OnInteractWithCustomer?.Invoke();
 
-        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck);
+        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
     }
 
     public void CloseConversation()
     {
-        talkingTo = false;
-        print("ended" + gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
@@ -115,6 +121,24 @@ public class CustomerInteractScript : Interactable
             customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(customerStateMachine);
 
+            finishedInteract = true;
+        }
+    }
+
+    public void NotTalking()
+    {
+        talkingTo = false;
+    }
+
+    public void Talking()
+    {
+        talkingTo = true;
+    }
+
+    public void OnCustomerMoodChange(CustomerMood mood)
+    {
+        if (mood == CustomerMood.ReallyAngry)
+        {
             finishedInteract = true;
         }
     }

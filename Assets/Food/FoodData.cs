@@ -1,4 +1,5 @@
 using UnityEngine;
+using Category;
 
 [CreateAssetMenu(fileName = "FoodData", menuName = "Scriptable Objects/FoodData")]
 public class FoodData : ScriptableObject
@@ -12,4 +13,20 @@ public class FoodData : ScriptableObject
     public GameObject alternateFoodModel;
 
     public int chopsRequired;
+
+    // Dont change this, this is a static data
+    public CookAmount cookedAmount = CookAmount.Raw;
+}
+
+namespace Category
+{
+    public enum CookAmount
+    { 
+        Raw,
+        Cooked,
+        Burnt
+    }
+
+
+
 }
