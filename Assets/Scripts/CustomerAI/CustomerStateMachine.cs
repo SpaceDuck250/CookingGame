@@ -145,6 +145,7 @@ public class CustomerStateMachine : MonoBehaviour
         }
 
         maxWaitTime = profile.waitTime;
+        waitTimer = maxWaitTime;
         interactScript.heldCustomerData = profile;
     }
 
@@ -195,13 +196,12 @@ public class CustomerStateMachine : MonoBehaviour
 
     private void LeaveMap()
     {
-        // Default leave behaviour (no special-cased customer logic in this class anymore)
         movementScript.OnNewDestinationChange?.Invoke(exitPoint);
     }
 
     public void StartWaitTimer()
     {
-        waitTimer = maxWaitTime;
+
         canRunTimer = true;
     }
 

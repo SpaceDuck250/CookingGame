@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using UnityEditorInternal;
 
 public class CustomerInteractScript : Interactable
 {
@@ -32,11 +33,14 @@ public class CustomerInteractScript : Interactable
         //PickNewMeal();
 
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
+        OnEndInteractWithCustomer += NotTalking;
     }
 
     private void OnDestroy()
     {
         mealChecker.OnMealOrderFulfilled -= OnOrderComplete;
+        OnEndInteractWithCustomer -= NotTalking;
+
 
     }
 
@@ -99,7 +103,7 @@ public class CustomerInteractScript : Interactable
         talkingTo = true;
         OnInteractWithCustomer?.Invoke();
 
-        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck);
+        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
     }
 
     public void CloseConversation()
@@ -117,6 +121,11 @@ public class CustomerInteractScript : Interactable
 
             finishedInteract = true;
         }
+    }
+
+    public void NotTalking()
+    {
+        talkingTo = false;
     }
 
     public void RotateToPlayer()
