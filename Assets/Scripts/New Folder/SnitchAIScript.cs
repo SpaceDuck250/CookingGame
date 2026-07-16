@@ -1,5 +1,6 @@
 using UnityEngine;
 using Customer;
+using Category;
 
 public class SnitchAIScript : MonoBehaviour
 {
@@ -13,12 +14,13 @@ public class SnitchAIScript : MonoBehaviour
     public int startingScore = 100;
     public int reportThreshold = 50;
 
-    // Deduction options
+    // Deduction Options
     public int wrongOrderDeduction = 15;
     public int qualityDeduction = 20;
     public int longWaitDeduction = 25;
 
     private int currentScore;
+
 
     private bool hasDeductedForWait = false;
     private bool hasReported = false;
@@ -40,7 +42,7 @@ public class SnitchAIScript : MonoBehaviour
         if (customerStateMachine.mealChecker != null)
         {
             customerStateMachine.mealChecker.OnMealOrderFulfilled += OnServed;
-            customerStateMachine.mealChecker.OnMealOrderIncorrect += OnWrongOrderGiven;
+            customerStateMachine.mealChecker.OnWrongOrderServed += OnWrongOrderGiven;
         }
     }
 
@@ -51,7 +53,7 @@ public class SnitchAIScript : MonoBehaviour
         if (customerStateMachine.mealChecker != null)
         {
             customerStateMachine.mealChecker.OnMealOrderFulfilled -= OnServed;
-            customerStateMachine.mealChecker.OnMealOrderIncorrect -= OnWrongOrderGiven;
+            customerStateMachine.mealChecker.OnWrongOrderServed -= OnWrongOrderGiven;
         }
     }
 
@@ -68,27 +70,16 @@ public class SnitchAIScript : MonoBehaviour
 
     private void OnWrongOrderGiven()
     {
-        if (ContainsQualityFailedFood())
+        bool servedBurntFood = customerStateMachine.mealChecker.CheckIfMealContainsCookType(CookAmount.Burnt);
+
+        if (servedBurntFood)
         {
-            DeductPoints(qualityDeduction, "poor quality");
+            DeductPoints(qualityDeduction, "poor quality (burnt) food served");
         }
         else
         {
             DeductPoints(wrongOrderDeduction, "wrong food served");
         }
-    }
-
-    private bool ContainsQualityFailedFood()
-    {
-        foreach (FoodData food in customerStateMachine.mealChecker.inputFoodDataList)
-        {
-            if (food != null && food.isQualityFail)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private void DeductPoints(int amount, string reason)
@@ -108,6 +99,19 @@ public class SnitchAIScript : MonoBehaviour
         }
     }
 
+    private void SpawnFloatingText(string text, Color color)
+    {
+        Vector3 spawnPosition = popupSpawnPoint != null ? popupSpawnPoint.position : transform.position + Vector3.up * 2f;
+
+        GameObject popupInstance = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+
+        SnitchFloatingTextScript floatingText = popupInstance.GetComponent<SnitchFloatingTextScript>();
+        if (floatingText != null)
+        {
+            floatingText.SetText(text, color);
+        }
+    }
+
     private void OnServed()
     {
         if (hasReported)
@@ -123,19 +127,6 @@ public class SnitchAIScript : MonoBehaviour
         {
             hasReported = true;
             HealthInspectorManager.ReportStall(customerName, currentScore);
-        }
-    }
-
-    private void SpawnFloatingText(string text, Color color)
-    {
-        Vector3 spawnPosition = popupSpawnPoint != null ? popupSpawnPoint.position : transform.position + Vector3.up * 2f;
-
-        GameObject popupInstance = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-
-        SnitchFloatingTextScript floatingText = popupInstance.GetComponent<SnitchFloatingTextScript>();
-        if (floatingText != null)
-        {
-            floatingText.SetText(text, color);
         }
     }
 }
