@@ -250,7 +250,7 @@ public class CustomerSpawnerScript : MonoBehaviour
         customer.seatPoint = null;
     }
 
-    private void OnCustomerOrderFinish(CustomerStateMachine customer)
+    public void OnCustomerOrderFinish(CustomerStateMachine customer)
     {
         emptyQueueIndex = FindEmptyQueueIndex(customer.counterPoint);
         customer.counterPoint = null;

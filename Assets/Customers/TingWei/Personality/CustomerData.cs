@@ -19,7 +19,8 @@ public class CustomerData : ScriptableObject
     public string burntFoodDialogueLine;
 
 
-    public float waitTime;
+    public float waitTimeUntilAngry;
+    public float waitTimeUntilReallyAngry;
 
     public float tipRange;
 
