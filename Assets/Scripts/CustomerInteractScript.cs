@@ -27,6 +27,8 @@ public class CustomerInteractScript : Interactable
     public bool talkedTo = false;
 
     public bool talkingTo = false;
+
+    public static Action<CustomerInteractScript> OnCheckIfNeedToLeave;
     
     private void Start()
     {
@@ -37,6 +39,8 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer += Talking;
 
         customerStateMachine.OnCustomerMoodChange += OnCustomerMoodChange;
+
+        OnCheckIfNeedToLeave += TryLeaveSelf;
     }
 
     private void OnDestroy()
@@ -46,6 +50,9 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer -= Talking;
 
         customerStateMachine.OnCustomerMoodChange -= OnCustomerMoodChange;
+
+        OnCheckIfNeedToLeave -= TryLeaveSelf;
+
 
     }
 
@@ -108,6 +115,8 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
+
+        OnCheckIfNeedToLeave?.Invoke(this);
     }
 
     public void CloseConversation()
@@ -115,7 +124,7 @@ public class CustomerInteractScript : Interactable
         OnEndInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
-        if (orderComplete)
+        if (orderComplete && !finishedInteract)
         {
             // Be more nuanced later
             customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
@@ -123,6 +132,8 @@ public class CustomerInteractScript : Interactable
 
             finishedInteract = true;
         }
+
+        OnCheckIfNeedToLeave?.Invoke(this);
     }
 
     public void NotTalking()
@@ -154,5 +165,21 @@ public class CustomerInteractScript : Interactable
     public void OnOrderComplete()
     {
         orderComplete = true;
+        OnInteractWithCustomer?.Invoke();
+    }
+
+    public void TryLeaveSelf(CustomerInteractScript interactScript)
+    {
+        if (interactScript != this)
+        {
+            if (orderComplete && !finishedInteract)
+            {
+                // Be more nuanced later
+                customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
+                CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(customerStateMachine);
+
+                finishedInteract = true;
+            }
+        }
     }
 }
