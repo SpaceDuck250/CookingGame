@@ -33,12 +33,15 @@ public class CustomerInteractScript : Interactable
         //PickNewMeal();
 
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
+        OnEndInteractWithCustomer += NotTalking;
+        OnInteractWithCustomer += Talking;
     }
 
     private void OnDestroy()
     {
         mealChecker.OnMealOrderFulfilled -= OnOrderComplete;
-
+        OnEndInteractWithCustomer -= NotTalking;
+        OnInteractWithCustomer -= Talking;
     }
 
     public override void Interact(PlayerHandScript playerHand)
@@ -97,7 +100,6 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
-        talkingTo = true;
         OnInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
@@ -105,8 +107,6 @@ public class CustomerInteractScript : Interactable
 
     public void CloseConversation()
     {
-        talkingTo = false;
-        print("ended" + gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
@@ -118,6 +118,16 @@ public class CustomerInteractScript : Interactable
 
             finishedInteract = true;
         }
+    }
+
+    public void NotTalking()
+    {
+        talkingTo = false;
+    }
+
+    public void Talking()
+    {
+        talkingTo = true;
     }
 
     public void RotateToPlayer()

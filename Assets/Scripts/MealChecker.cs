@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using Category;
+using System.Linq;
 
 public class MealChecker : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class MealChecker : MonoBehaviour
     public CustomerInteractScript customerScript;
 
     public event Action OnMealOrderFulfilled;
-    public event Action OnMealOrderIncorrect;  
+    public event Action OnWrongOrderServed;
 
     public Transform customerHand;
 
@@ -50,8 +52,12 @@ public class MealChecker : MonoBehaviour
         }
         else
         {
-            print("meal doesnt match order");
-            OnMealOrderIncorrect?.Invoke();
+            OnWrongOrderServed?.Invoke();
+
+            customerScript.OnInteractWithCustomer?.Invoke();
+
+            bool servedBurntFood = CheckIfMealContainsCookType(CookAmount.Burnt);
+            NpcDialogueScript.OnWrongMealServedTalk?.Invoke(stateMachine.profile, servedBurntFood);
         }
 
     }
@@ -76,6 +82,12 @@ public class MealChecker : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public bool CheckIfMealContainsCookType(CookAmount cookedAmountToCheckFor)
+    {
+        bool has = inputFoodDataList.Any(n => n.cookedAmount == cookedAmountToCheckFor);
+        return has;
     }
 
     private MealData ChooseOrder()

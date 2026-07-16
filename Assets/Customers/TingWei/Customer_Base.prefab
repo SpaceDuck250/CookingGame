@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 8305492917439897951}
   - component: {fileID: 5572442997843537308}
   - component: {fileID: 3171387887883017947}
+  - component: {fileID: 8018390654948010942}
   m_Layer: 6
   m_Name: Customer_Base
   m_TagString: Customer
@@ -1001,12 +1002,23 @@ MonoBehaviour:
   seatedTrayLocalPosition: {x: 0, y: 1.31, z: 0.684}
   upOffsetChair: 0.911
   forwardOffset: 0.55
-  maxOrders: 1
-  completedOrders: 0
-  canOrderAgain: 1
   normalSprite: {fileID: 1564441941, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
   angrySprite: {fileID: 1504868629, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
   happySprite: {fileID: 2062754610, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
+  reallyAngrySprite: {fileID: -229307364, guid: eae472e8061fa6f49a74b9caf129bd34, type: 3}
+--- !u!114 &8018390654948010942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772638863480983493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5096c33c12bd54b9d2e1416aa71fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  stateMachine: {fileID: 3171387887883017947}
 --- !u!1 &2928518371721769170
 GameObject:
   m_ObjectHideFlags: 0
