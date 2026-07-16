@@ -268,7 +268,11 @@ public class CustomerSpawnerScript : MonoBehaviour
     public IEnumerator MoveToNextPoint(CustomerMovementScript move, Transform point)
     {
         yield return new WaitForSeconds(2);
-        move.OnNewDestinationChange(point);
+        if (move.customerStateMachine.currentMood != CustomerMood.ReallyAngry)
+        {
+            move.OnNewDestinationChange(point);
+        }
+
     }
 
     // Public accessor so other scripts can request a free queue point
