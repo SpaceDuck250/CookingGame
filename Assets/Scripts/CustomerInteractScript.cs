@@ -35,6 +35,8 @@ public class CustomerInteractScript : Interactable
         mealChecker.OnMealOrderFulfilled += OnOrderComplete;
         OnEndInteractWithCustomer += NotTalking;
         OnInteractWithCustomer += Talking;
+
+        customerStateMachine.OnCustomerMoodChange += OnCustomerMoodChange;
     }
 
     private void OnDestroy()
@@ -42,6 +44,9 @@ public class CustomerInteractScript : Interactable
         mealChecker.OnMealOrderFulfilled -= OnOrderComplete;
         OnEndInteractWithCustomer -= NotTalking;
         OnInteractWithCustomer -= Talking;
+
+        customerStateMachine.OnCustomerMoodChange -= OnCustomerMoodChange;
+
     }
 
     public override void Interact(PlayerHandScript playerHand)
@@ -128,6 +133,14 @@ public class CustomerInteractScript : Interactable
     public void Talking()
     {
         talkingTo = true;
+    }
+
+    public void OnCustomerMoodChange(CustomerMood mood)
+    {
+        if (mood == CustomerMood.ReallyAngry)
+        {
+            finishedInteract = true;
+        }
     }
 
     public void RotateToPlayer()

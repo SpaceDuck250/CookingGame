@@ -36,6 +36,7 @@ public class CustomerMovementScript : MonoBehaviour
     public MealChecker mealChecker;
 
     public CustomerStateMachine customerStateMachine;
+    public LeaveWhenAngryScript leaveWhenAngryScript;
 
     private void Awake()
     {
