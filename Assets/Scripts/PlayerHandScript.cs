@@ -226,6 +226,7 @@ public class PlayerHandScript : MonoBehaviour
             if (interactable != null)
             {
                 interactable.Interact(this);
+                OnStopHoldSomething?.Invoke();
             }
         }
     }

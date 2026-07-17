@@ -177,6 +177,9 @@ public class CustomerStateMachine : MonoBehaviour
     private void SetupPay()
     {
         StopTimer();
+
+        CheckIfFastToBeHappy();
+
         MoneyManager.OnPayForOrder?.Invoke(mealChecker.mealToCheck, currentMood, profile);
 
         // Determine mood depending on the timer value
@@ -237,6 +240,14 @@ public class CustomerStateMachine : MonoBehaviour
             canRunTimer = false;
 
             OnCustomerMoodChange?.Invoke(CustomerMood.ReallyAngry);
+        }
+    }
+
+    public void CheckIfFastToBeHappy()
+    {
+        if (waitTimer <= profile.fastEnoughTime)
+        {
+            OnCustomerMoodChange?.Invoke(CustomerMood.Happy);
         }
     }
 
