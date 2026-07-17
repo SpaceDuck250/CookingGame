@@ -20,6 +20,9 @@ public class CustomerInteractScript : Interactable
     public Action OnInteractWithCustomer;
     public static Action OnEndInteractWithCustomer;
 
+    // For UI;
+    public static Action<CustomerStateMachine> OnAnyCustomerInteract;
+
     public bool finishedInteract = false;
 
     public CustomerStateMachine customerStateMachine;
@@ -113,6 +116,7 @@ public class CustomerInteractScript : Interactable
     public void OpenConversation()
     {
         OnInteractWithCustomer?.Invoke();
+        OnAnyCustomerInteract?.Invoke(customerStateMachine);
 
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
 
@@ -126,7 +130,7 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete && !finishedInteract)
         {
-            // Be more nuanced later
+
             customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(customerStateMachine);
 
