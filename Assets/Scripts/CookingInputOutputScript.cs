@@ -2,35 +2,35 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CookingInputOutputScript : Interactable
+public class CookingInputOutputScript : Interactable, ICookStation
 {
     public List<RecipeData> recipeStored = new List<RecipeData>();
 
     public FoodData input;
 
-    public Action<FoodData> OnCookingStart;
-    public Action<Vector3, GameObject> OnCookingEnd;
+    public event Action<FoodData> OnCookingStart;
+    public event Action<Vector3, GameObject, Transform> OnCookingSuccess;
+    public event Action<Vector3, GameObject, Transform> OnCookingFail;
 
-    public Action<bool> OnFoodInputCorrect;
+    public event Action OnFoodTakenOutOfCookingStation;
+
+    //public Action<bool> OnFoodInputCorrect;
 
     public RecipeData currentRecipeUsed;
 
-    // Invisaible and can contain food;
+    // Invisible and can contain food;
     public GameObject invisiblePickupObject;
+
+    public bool hasFood = false;
 
     private void Start()
     {
-        OnCookingEnd += SpawnPickupableOutputFood;
+        OnFoodTakenOutOfCookingStation += TakeFoodOut;
     }
 
     private void OnDestroy()
     {
-        OnCookingEnd -= SpawnPickupableOutputFood;
-
-    }
-
-    private void Update()
-    {
+        OnFoodTakenOutOfCookingStation -= TakeFoodOut;
 
     }
 
@@ -49,6 +49,16 @@ public class CookingInputOutputScript : Interactable
 
     public void TryPutFood(PlayerHandScript playerHand)
     {
+        if (hasFood)
+        {
+            return;
+        }
+
+        if (playerHand.currentFoodHeldObj == null && playerHand.currentFoodHeld == null)
+        {
+            return;
+        }
+
         currentRecipeUsed = FindRecipeFromInput(playerHand.currentFoodHeld);
         if (currentRecipeUsed == null)
         {
@@ -58,30 +68,69 @@ public class CookingInputOutputScript : Interactable
         OnCookingStart?.Invoke(currentRecipeUsed.inputFood);
         playerHand.currentFoodHeld = null;
         Destroy(playerHand.currentFoodHeldObj);
+
+        hasFood = true;
     }
 
-    public void SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject)
+    public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
     {
         GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
 
         HoldableFoodScript holdScript = pickupFood.GetComponent<HoldableFoodScript>();
-        holdScript.foodData = currentRecipeUsed.outputFood;
+        if (success)
+        {
+            holdScript.foodData = currentRecipeUsed.outputFood;
+        }
+        else
+        {
+            holdScript.foodData = currentRecipeUsed.failedOutputFood;
+        }
 
         holdScript.objectToDelete = deleteObject;
+
+        pickupFood.transform.parent = parent;
+
+        holdScript.cookingStationIn = gameObject;
+
+        //pickupFoodStore = pickupFood;
+        //spawnedPickupFood = true;
+
+        return pickupFood;
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false)
     {
-        GameObject newDisplayFood = Instantiate(foodData.foodModel, parent.position, Quaternion.identity);
+        GameObject foodToSpawn;
+        if (!useAlternate)
+        {
+            foodToSpawn = foodData.foodModel;
+        }
+        else
+        {
+            foodToSpawn = foodData.usesAlternateFoodModel ? foodData.alternateFoodModel : foodData.foodModel;
+        }
+
+        GameObject newDisplayFood = Instantiate(foodToSpawn, parent.position, foodToSpawn.transform.rotation);
 
         newDisplayFood.transform.SetParent(parent.transform, true);
 
         newDisplayFood.GetComponent<Rigidbody>().isKinematic = true;
+        newDisplayFood.GetComponent<Collider>().isTrigger = true;
 
         newDisplayFood.transform.localPosition = localPositionOffset;
 
-        Destroy(newDisplayFood.GetComponent<Collider>());
+        if (!canPickUp)
+        {
+            Destroy(newDisplayFood.GetComponent<Collider>());
+        }
+
+        //if (clearHand)
+        //{
+        //    PlayerHandScript.instance.currentFoodHeld = null;
+        //    Destroy(PlayerHandScript.instance.currentFoodHeldObj);
+        //}
+
 
         return newDisplayFood;
     }
@@ -89,7 +138,27 @@ public class CookingInputOutputScript : Interactable
     public override void Interact(PlayerHandScript playerHand)
     {
         TryPutFood(playerHand);
+
     }
 
+    public void TakeFoodOut()
+    {
+        hasFood = false;
+    }
+
+    public void CallFoodSuccessEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingSuccess?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodFailEvent(Vector3 spawnPos, GameObject displayObj, Transform parent)
+    {
+        OnCookingFail?.Invoke(spawnPos, displayObj, parent);
+    }
+
+    public void CallFoodTakenOutEvent()
+    {
+        OnFoodTakenOutOfCookingStation.Invoke();
+    }
 
 }

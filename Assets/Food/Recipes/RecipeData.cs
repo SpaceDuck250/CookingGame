@@ -6,4 +6,6 @@ public class RecipeData : ScriptableObject
     // This is for machinery only
     public FoodData inputFood;
     public FoodData outputFood;
+
+    public FoodData failedOutputFood;
 }

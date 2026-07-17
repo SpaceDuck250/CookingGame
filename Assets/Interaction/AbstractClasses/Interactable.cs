@@ -17,5 +17,4 @@ public abstract class Interactable : MonoBehaviour
 
     // Interact function is abstract which means it can be different for different scripts.
     public abstract void Interact(PlayerHandScript playerHand);
-
 }

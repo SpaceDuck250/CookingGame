@@ -11,10 +11,17 @@ public class InteractAreaScript : MonoBehaviour
     public event Action<GameObject> OnPlayerEnterRange;
     public event Action OnPlayerExitRange;
 
+    public bool active = true;
+
     // Checks if the player is in range. If the player is in range then check if the player has clicked the appropriate input key (Example for customers E or for machines T)
     // if the input key is clicked then it will call the interact function
     private void Update()
     {
+        if (!active)
+        {
+            return;
+        }
+
         if (!withinRange)
         {
             return;
@@ -27,26 +34,44 @@ public class InteractAreaScript : MonoBehaviour
     // Check if the player entered interactable range
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (!active)
         {
             return;
         }
 
-        withinRange = true;
+        if (other.gameObject.tag == "Player")
+        {
+            withinRange = true;
 
-        OnPlayerEnterRange?.Invoke(other.gameObject);
+            OnPlayerEnterRange?.Invoke(other.gameObject);
+            
+        }
+
+        
     }
 
     // Check if player left interactable range
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (!active)
         {
             return;
         }
 
-        withinRange = false;
+        if (other.gameObject.tag == "Player")
+        {
+            withinRange = false;
 
+            OnPlayerExitRange?.Invoke();
+        }
+
+        
+    }
+
+    public void HideDisplay()
+    {
+        active = false;
         OnPlayerExitRange?.Invoke();
+
     }
 }
