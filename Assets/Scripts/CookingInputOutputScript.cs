@@ -66,10 +66,11 @@ public class CookingInputOutputScript : Interactable, ICookStation
         }
 
         OnCookingStart?.Invoke(currentRecipeUsed.inputFood);
-        playerHand.currentFoodHeld = null;
-        Destroy(playerHand.currentFoodHeldObj);
+        playerHand.ClearFoodFromHand();
 
         hasFood = true;
+
+        PlayerHandScript.OnStopHoldSomething?.Invoke();
     }
 
     public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)

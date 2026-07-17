@@ -22,6 +22,8 @@ public class CustomerData : ScriptableObject
     public float waitTimeUntilAngry;
     public float waitTimeUntilReallyAngry;
 
+    public float fastEnoughTime;
+
     public float tipRange;
 
     public enum PersonalityTrait

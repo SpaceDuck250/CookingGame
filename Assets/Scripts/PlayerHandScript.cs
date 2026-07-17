@@ -1,5 +1,7 @@
-using UnityEngine;
 using System;
+using Unity.Burst.CompilerServices;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHandScript : MonoBehaviour
 {
@@ -102,7 +104,7 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj = newFoodObj;
     }
 
-    private void BringFoodToHand(HoldableFoodScript holdableScript)
+    private void BringFoodToHand(HoldableFoodScript holdableScript, bool deleteWhenPickedUp = true)
     {
         if (holdableScript.CarryType)
         {
@@ -145,7 +147,10 @@ public class PlayerHandScript : MonoBehaviour
 
         currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
 
-        holdableScript.DeleteObjectToDelete();
+        if (deleteWhenPickedUp)
+        {
+            holdableScript.DeleteObjectToDelete();
+        }
     }
 
     private void CarryInstead(GameObject objectToCarry)
@@ -260,6 +265,18 @@ public class PlayerHandScript : MonoBehaviour
 
             currentFoodHeldObj = null;
         }
+    }
+
+    // For food box
+    public void BringFoodDirectlyToHand(FoodData food)
+    {
+        HoldableFoodScript holdableFoodScript = food.foodModel.gameObject.GetComponent<HoldableFoodScript>();
+
+        SwitchFoodItem(food, null);
+
+
+        BringFoodToHand(holdableFoodScript, false);
+        OnHoldSomething?.Invoke();
     }
 
     public void ScaleObject(GameObject obj, Vector3 scaleAmount)
