@@ -233,6 +233,8 @@ public class PlayerHandScript : MonoBehaviour
         {
             Destroy(currentFoodHeldObj.gameObject);
         }
+
+        OnStopHoldSomething?.Invoke();
     }
 
     public void TransferPlatterToCustomer(Transform newParent, Quaternion newRotation)

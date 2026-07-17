@@ -12,6 +12,8 @@ public class CustomerPopUpManager : MonoBehaviour
 
     public List<CustomerStateMachine> popUpsActiveList = new List<CustomerStateMachine>();
 
+    public bool hidden = true;
+
     private void Start()
     {
         CustomerInteractScript.OnAnyCustomerInteract += TryAddPopUp;
@@ -27,13 +29,32 @@ public class CustomerPopUpManager : MonoBehaviour
         CustomerInteractScript.OnEndInteractWithCustomer -= ShowPopUp;
 
         OnPopUpFinished -= TakeOutPopUp;
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (!hidden)
+            {
+                HidePopUp();
+            }
+            else
+            {
+                ShowPopUp();
+            }
+        }
+    }
 
+    private void HidePopUp()
+    {
+        popUpParent.SetActive(false);
+        hidden = true;
     }
 
     public void TryAddPopUp(CustomerStateMachine customer)
     {
-        popUpParent.SetActive(false);
+        HidePopUp();
 
         if (popUpsActiveList.Contains(customer))
         {
@@ -50,6 +71,7 @@ public class CustomerPopUpManager : MonoBehaviour
     public void ShowPopUp()
     {
         popUpParent.SetActive(true);
+        hidden = false;
     }
 
     public void TakeOutPopUp(CustomerStateMachine customer)
