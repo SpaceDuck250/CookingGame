@@ -32,6 +32,8 @@ public class CustomerInteractScript : Interactable
     public bool talkingTo = false;
 
     public static Action<CustomerInteractScript> OnCheckIfNeedToLeave;
+
+    public TalkRangeScript talkRange;
     
     private void Start()
     {
@@ -61,7 +63,7 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (finishedInteract || !movementScript.agent.isStopped)
+        if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {
             return;
         }
@@ -172,6 +174,7 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer?.Invoke();
     }
 
+    // Comes from others
     public void TryLeaveSelf(CustomerInteractScript interactScript)
     {
         if (interactScript != this)

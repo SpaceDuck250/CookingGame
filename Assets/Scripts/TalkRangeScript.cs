@@ -43,6 +43,7 @@ public class TalkRangeScript : MonoBehaviour
 
         if (distanceToPlayer > interactRange)
         {
+            inRange = false;
             OnExitTalkRange?.Invoke();
 
             if (interacting)
@@ -53,6 +54,7 @@ public class TalkRangeScript : MonoBehaviour
         }
         else
         {
+            inRange = true;
             OnEnterTalkRange?.Invoke();
 
         }
