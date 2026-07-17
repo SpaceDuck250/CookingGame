@@ -20,6 +20,9 @@ public class CustomerInteractScript : Interactable
     public Action OnInteractWithCustomer;
     public static Action OnEndInteractWithCustomer;
 
+    // For UI;
+    public static Action<CustomerStateMachine> OnAnyCustomerInteract;
+
     public bool finishedInteract = false;
 
     public CustomerStateMachine customerStateMachine;
@@ -29,6 +32,8 @@ public class CustomerInteractScript : Interactable
     public bool talkingTo = false;
 
     public static Action<CustomerInteractScript> OnCheckIfNeedToLeave;
+
+    public TalkRangeScript talkRange;
     
     private void Start()
     {
@@ -58,7 +63,7 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (finishedInteract || !movementScript.agent.isStopped)
+        if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {
             return;
         }
@@ -113,6 +118,7 @@ public class CustomerInteractScript : Interactable
     public void OpenConversation()
     {
         OnInteractWithCustomer?.Invoke();
+        OnAnyCustomerInteract?.Invoke(customerStateMachine);
 
         NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
 
@@ -126,7 +132,7 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
         if (orderComplete && !finishedInteract)
         {
-            // Be more nuanced later
+
             customerStateMachine.OnCustomerChangeState(CustomerState.WalkingToSeat);
             CustomerSpawnerScript.OnCustomerLeftQueue?.Invoke(customerStateMachine);
 
@@ -168,6 +174,7 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer?.Invoke();
     }
 
+    // Comes from others
     public void TryLeaveSelf(CustomerInteractScript interactScript)
     {
         if (interactScript != this)

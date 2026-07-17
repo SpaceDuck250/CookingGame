@@ -8,6 +8,7 @@ using Pair;
 public class CustomerData : ScriptableObject
 {
     public string customerName;
+    public Sprite customerSprite;
     public List<MealData> possibleMealOrders = new List<MealData>();
 
     //public List<string> normalDialogueLines = new List<string>();
