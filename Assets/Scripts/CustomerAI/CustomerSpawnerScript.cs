@@ -24,6 +24,9 @@ public class CustomerSpawnerScript : MonoBehaviour
     private float spawnTimer;
 
     private List<CustomerStateMachine> activeCustomers = new List<CustomerStateMachine>();
+    // Get the number of active customers, removing any null references first
+    // as in case a customer was destroyed without being removed from the list
+    public int ActiveCustomerCount { get { activeCustomers.RemoveAll(customer => customer == null); return activeCustomers.Count; } }
 
     public static Action<CustomerStateMachine> OnCustomerLeftQueue;
 
@@ -32,17 +35,13 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     public static Action<CustomerStateMachine> OnCustomerExit;
 
+    // New event - fires after the spawner instantiates and registers a customer.
+    // Parameters: spawned customer's state machine, the prefab that was instantiated.
+    public Action<CustomerStateMachine, GameObject> OnCustomerSpawned;
+
     public static CustomerSpawnerScript instance;
 
     public int emptyQueueIndex;
-
-    // Special spawn, spawn companions with this customer
-    public string specialCustomerName = "Uncle Fedrick";
-    public int specialCompanionCount = 2;
-
-    // Put the specific Fedrick-children prefabs here in the inspector.
-    // When Uncle Fedrick spawns companions, they'll be picked from this list.
-    public List<GameObject> fedrickChildrenPrefabs = new List<GameObject>();
 
     // Event Rush Hour, if true, will spawn more customers than usual
     public bool eventRushHour = false;
@@ -75,11 +74,14 @@ public class CustomerSpawnerScript : MonoBehaviour
         if (spawnTimer >= spawnInterval)
         {
             spawnTimer = 0f;
+
+            // Randomize the next spawn interval between 5 and 10 seconds
+            spawnInterval = UnityEngine.Random.Range(15f, 35f); 
             TrySpawnCustomer();
         }
     }
 
-    private void TrySpawnCustomer()
+    public void TrySpawnCustomer()
     {
         if (activeCustomers.Count >= maxCustomers)
         {
@@ -95,12 +97,13 @@ public class CustomerSpawnerScript : MonoBehaviour
             return;
         }
 
-        SpawnCustomer(freeChair, queuePoint); // default: allow companions
+        SpawnCustomer(freeChair, queuePoint); // default: allow companions handled externally
     }
 
     // allowCompanions = false, prevents recursive companion-spawning when we spawn companions themselves
     // overridePrefab. if provided, spawn this prefab instead of picking randomly from customerPrefabList
-    private void SpawnCustomer(Transform table, Transform queuePoint, bool allowCompanions = true, GameObject overridePrefab = null)
+    // Made public so external handlers can spawn companions via the spawner API.
+    public void SpawnCustomer(Transform table, Transform queuePoint, bool allowCompanions = true, GameObject overridePrefab = null)
     {
         // Pick prefab (override if provided).
         GameObject prefabToInstantiate = overridePrefab;
@@ -128,32 +131,8 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         activeCustomers.Add(customerStateMachine);
 
-        // If this is the special customer and companions are allowed, try to spawn companions
-        if (allowCompanions && customerStateMachine.profile != null && customerStateMachine.profile.customerName == specialCustomerName && eventRushHour)
-        {
-            // Respect maxCustomers limit
-            int availableSlots = maxCustomers - activeCustomers.Count;
-            int spawnCount = Mathf.Min(specialCompanionCount, Mathf.Max(0, availableSlots));
-            for (int i = 0; i < spawnCount; i++)
-            {
-                Transform freeChair = FindFreeChair();
-                Transform freeQueue = FindFreeQueuePoint();
-
-                if (freeChair == null || freeQueue == null)
-                    break;
-
-                // Choose a Fedrick child prefab
-                GameObject childPrefab = null;
-                if (fedrickChildrenPrefabs != null && fedrickChildrenPrefabs.Count > 0)
-                {
-                    int index = UnityEngine.Random.Range(0, fedrickChildrenPrefabs.Count);
-                    childPrefab = fedrickChildrenPrefabs[index];
-                }
-
-                // Spawn companion without allowing them to spawn more companions
-                SpawnCustomer(freeChair, freeQueue, false, childPrefab);
-            }
-        }
+        // Notify subscribers that a customer was spawned (handler can spawn companions here).
+        OnCustomerSpawned?.Invoke(customerStateMachine, prefabToInstantiate);
 
         // Start moving the customer(s) to the queue
         customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WalkingToCounter);

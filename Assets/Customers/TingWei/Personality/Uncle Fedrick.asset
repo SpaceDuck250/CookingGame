@@ -15,11 +15,23 @@ MonoBehaviour:
   customerName: Uncle Fedrick
   possibleMealOrders:
   - {fileID: 11400000, guid: 8a7bbc5e890909041bc6a2a8ac76b2bc, type: 2}
-  possibleDialogueLines:
-  - Old Nan used to say that Chicken is the Best!
-  - Chicken for life
-  - Chicken please
-  - Do you know, back in my time..., ah chicken please
-  - Do you sell chicken?
+  dialogueLines:
+  - dialogueLine: Chicken Please
+    moodType: 0
+  - dialogueLine: Old Nan used to say... Ah, chicken please
+    moodType: 0
+  - dialogueLine: Chicken Everyday
+    moodType: 0
+  - dialogueLine: Chicken
+    moodType: 1
+  - dialogueLine: Good. good
+    moodType: 1
+  - dialogueLine: Oi, where meal
+    moodType: 2
+  - dialogueLine: Oi. slow ah
+    moodType: 2
+  wrongFoodDialogueLine: You deaf boy?
+  burntFoodDialogueLine: ...
   waitTime: 45
   tipRange: 5
+  isSpecialCustomer: 1
