@@ -17,6 +17,13 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
 
     private CustomerSpawnerScript spawner;
 
+    // Global flag, true while Uncle Fedrick instance is present in the scene
+    private static bool isUnclePresent = false;
+
+    // Track the currently-present Uncle instance and whether companions were spawned for it
+    private CustomerStateMachine currentUncle = null;
+    private bool companionsSpawnedForCurrentUncle = false;
+
     private void Start()
     {
         spawner = CustomerSpawnerScript.instance;
@@ -27,8 +34,9 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
             return;
         }
 
-        // Subscribe to spawn notifications
+        // Subscribe to spawn notification (instance event) and to the spawner's static exit event
         spawner.OnCustomerSpawned += OnCustomerSpawned;
+        CustomerSpawnerScript.OnCustomerExit += OnCustomerExit;
     }
 
     private void OnDestroy()
@@ -36,6 +44,7 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
         if (spawner != null)
         {
             spawner.OnCustomerSpawned -= OnCustomerSpawned;
+            CustomerSpawnerScript.OnCustomerExit -= OnCustomerExit;
         }
     }
 
@@ -46,8 +55,75 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
             return;
         }
 
-        // Only trigger for Uncle Fedrick (and only during rush hour per original behaviour)
-        if (!spawner.eventRushHour)
+        // Only handle Uncle Fedrick here
+        if (customer.profile.customerName != specialCustomerName)
+        {
+            return;
+        }
+
+        // If an Uncle is already present, remove this duplicate immediately
+        if (isUnclePresent)
+        {
+            Debug.Log("UncleFedrickSpawnHandler: Duplicate Uncle spawned, removed duplicate");
+            Destroy(customer.gameObject);
+            return;
+        }
+
+        // Register the newly spawned Uncle and prevent further spawns until he exits
+        isUnclePresent = true;
+        currentUncle = customer;
+        companionsSpawnedForCurrentUncle = false;
+
+        // If in rush hour and companions haven't been spawned for this Uncle, spawn them now
+        if (spawner.eventRushHour && !companionsSpawnedForCurrentUncle)
+        {
+            companionsSpawnedForCurrentUncle = true;
+
+            // Determine how many companions we can actually spawn without exceeding maxCustomers
+            int availableSlots = Mathf.Max(0, spawner.maxCustomers - spawner.ActiveCustomerCount);
+            int spawnCount = Mathf.Min(specialCompanionCount, availableSlots);
+
+            for (int i = 0; i < spawnCount; i++)
+            {
+                Transform freeChair = spawner.GetFreeChair();
+                Transform freeQueue = spawner.GetFreeQueuePoint();
+
+                if (freeChair == null || freeQueue == null)
+                {
+                    break;
+                }
+
+                // Randomly select a child prefab from the list, if available
+                GameObject childPrefab = null;
+                if (fedrickChildrenPrefabs != null && fedrickChildrenPrefabs.Count > 0)
+                {
+                    int index = UnityEngine.Random.Range(0, fedrickChildrenPrefabs.Count);
+                    childPrefab = fedrickChildrenPrefabs[index];
+                }
+
+                // If no child specific prefab provided, fall back to spawner's consumer prefabs list
+                if (childPrefab == null)
+                {
+                    if (spawner.customerPrefabList != null && spawner.customerPrefabList.Count > 0)
+                    {
+                        childPrefab = spawner.customerPrefabList[UnityEngine.Random.Range(0, spawner.customerPrefabList.Count)];
+                    }
+                    else
+                    {
+                        Debug.Log("UncleFedrickSpawnHandler: No child prefab available to spawn");
+                        break;
+                    }
+                }
+
+                // Use spawner's public SpawnCustomer with allowCompanions = false to avoid recursion
+                spawner.SpawnCustomer(freeChair, freeQueue, false, childPrefab);
+            }
+        }
+    }
+
+    private void OnCustomerExit(CustomerStateMachine customer)
+    {
+        if (customer == null || customer.profile == null)
         {
             return;
         }
@@ -57,44 +133,19 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
             return;
         }
 
-        // Determine how many companions we can actually spawn without exceeding maxCustomers
-        int availableSlots = Mathf.Max(0, spawner.maxCustomers - spawner.ActiveCustomerCount);
-        int spawnCount = Mathf.Min(specialCompanionCount, availableSlots);
-
-        for (int i = 0; i < spawnCount; i++)
+        // If the exiting customer is the tracked Uncle, clear the tracking so Uncle can spawn again
+        if (customer == currentUncle)
         {
-            Transform freeChair = spawner.GetFreeChair();
-            Transform freeQueue = spawner.GetFreeQueuePoint();
-
-            if (freeChair == null || freeQueue == null)
-            {
-                break;
-            }
-
-            // Randomly select a child prefab from the list, if available
-            GameObject childPrefab = null;
-            if (fedrickChildrenPrefabs != null && fedrickChildrenPrefabs.Count > 0)
-            {
-                int index = UnityEngine.Random.Range(0, fedrickChildrenPrefabs.Count);
-                childPrefab = fedrickChildrenPrefabs[index];
-            }
-
-            // If no child specific prefab provided, fall back to spawner's consumer prefabs list.
-            if (childPrefab == null)
-            {
-                if (spawner.customerPrefabList != null && spawner.customerPrefabList.Count > 0)
-                {
-                    childPrefab = spawner.customerPrefabList[UnityEngine.Random.Range(0, spawner.customerPrefabList.Count)];
-                }
-                else
-                {
-                    Debug.Log("UncleFedrickSpawnHandler: No child prefab available to spawn.");
-                    break;
-                }
-            }
-
-            // Use spawner's public SpawnCustomer with allowCompanions = false to avoid recursion
-            spawner.SpawnCustomer(freeChair, freeQueue, false, childPrefab);
+            currentUncle = null;
+            companionsSpawnedForCurrentUncle = false;
+            isUnclePresent = false;
+        }
+        else
+        {
+            // if some other Uncle instance exits, this ensure global flag is cleared
+            isUnclePresent = false;
+            companionsSpawnedForCurrentUncle = false;
+            currentUncle = null;
         }
     }
 }
