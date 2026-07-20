@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ShopItemShowerScript : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class ShopItemShowerScript : MonoBehaviour
     public TextMeshProUGUI displayCost;
 
     public FoodData currentSelectedFood;
+
+    public static Action<float, int, FoodData> OnTryBuyFood;
+    public static Action<float, int, FoodData> OnSucessfullyBoughtFood;
+
+    public int amountToBuy = 0;
 
     private void Start()
     {
@@ -34,6 +40,8 @@ public class ShopItemShowerScript : MonoBehaviour
         displayName.text = foodData.foodName;
         displayCost.text = foodData.costInShop.ToString() + "$";
 
-
+        amountToBuy = 0;
     }
+
+
 }

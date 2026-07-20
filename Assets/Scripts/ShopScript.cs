@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class ShopScript : MonoBehaviour
 {
@@ -9,9 +10,22 @@ public class ShopScript : MonoBehaviour
     public GameObject uiItemPrefab;
     public Transform spawnParent;
 
+    public GameObject shopObj;
+
+    public static Action OnShopOpen;
+    public static Action OnShopClose;
+
+
     private void Start()
     {
+        OnShopOpen += OpenShop;
+
         SpawnAllFoodsUI();
+    }
+
+    private void OnDestroy()
+    {
+        OnShopOpen -= OpenShop;
     }
 
     public void SpawnAllFoodsUI()
@@ -23,5 +37,19 @@ public class ShopScript : MonoBehaviour
 
             newShopItem.SetItem(food.foodName, food.costInShop, food.foodSprite, food);
         }
+    }
+
+    public void CloseShop()
+    {
+        shopObj.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void OpenShop()
+    {
+        shopObj.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

@@ -30,6 +30,12 @@ public class PlayerHandScript : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
         CheckForFoodInputs();
