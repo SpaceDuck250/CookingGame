@@ -23,7 +23,8 @@ namespace Customer
     {
         Normal,
         Happy,
-        Angry
+        Angry,
+        ReallyAngry
     }
 }
 
@@ -70,12 +71,13 @@ public class CustomerStateMachine : MonoBehaviour
     public float upOffsetChair;
     public float forwardOffset;
 
-    public Sprite normalSprite, angrySprite, happySprite;
+    public Sprite normalSprite, angrySprite, happySprite, reallyAngrySprite;
 
     private void Awake()
     {
         OnCustomerChangeState += ChangeCustomerState;
         OnCustomerMoodChange += ChangeCustomerMood;
+        mealChecker.OnWrongOrderServed += OnWrongOrderServed;
     }
 
     void Start()
@@ -88,6 +90,9 @@ public class CustomerStateMachine : MonoBehaviour
     {
         OnCustomerChangeState -= ChangeCustomerState;
         OnCustomerMoodChange -= ChangeCustomerMood;
+
+        mealChecker.OnWrongOrderServed -= OnWrongOrderServed;
+
     }
 
     private void Update()
@@ -144,8 +149,8 @@ public class CustomerStateMachine : MonoBehaviour
             return;
         }
 
-        maxWaitTime = profile.waitTime;
-        waitTimer = maxWaitTime;
+        maxWaitTime = profile.waitTimeUntilAngry;
+        waitTimer = 0;
         interactScript.heldCustomerData = profile;
     }
 
@@ -172,6 +177,9 @@ public class CustomerStateMachine : MonoBehaviour
     private void SetupPay()
     {
         StopTimer();
+
+        CheckIfFastToBeHappy();
+
         MoneyManager.OnPayForOrder?.Invoke(mealChecker.mealToCheck, currentMood, profile);
 
         // Determine mood depending on the timer value
@@ -218,14 +226,28 @@ public class CustomerStateMachine : MonoBehaviour
             return;
         }
 
-        waitTimer -= Time.deltaTime;
+        waitTimer += Time.deltaTime;
 
-        if (waitTimer <= 0f)
+        if (waitTimer >= maxWaitTime && currentMood != CustomerMood.Angry)
         {
-            canRunTimer = false;
-            waitTimer = 0f;
+            waitTimer = maxWaitTime;
 
             OnCustomerMoodChange?.Invoke(CustomerMood.Angry);
+        }
+        else if (waitTimer >= profile.waitTimeUntilReallyAngry)
+        {
+            waitTimer = 0;
+            canRunTimer = false;
+
+            OnCustomerMoodChange?.Invoke(CustomerMood.ReallyAngry);
+        }
+    }
+
+    public void CheckIfFastToBeHappy()
+    {
+        if (waitTimer <= profile.fastEnoughTime)
+        {
+            OnCustomerMoodChange?.Invoke(CustomerMood.Happy);
         }
     }
 
@@ -241,8 +263,20 @@ public class CustomerStateMachine : MonoBehaviour
 
             case CustomerMood.Happy:
                 return happySprite;
+
+            case CustomerMood.ReallyAngry:
+                return reallyAngrySprite;
         }
 
         return null;
+    }
+
+    private void OnWrongOrderServed()
+    {
+        if (currentMood == CustomerMood.Normal)
+        {
+            OnCustomerMoodChange?.Invoke(CustomerMood.Angry);
+        }
+        waitTimer = waitTimer < maxWaitTime ? maxWaitTime : waitTimer;
     }
 }

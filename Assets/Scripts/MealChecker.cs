@@ -14,6 +14,7 @@ public class MealChecker : MonoBehaviour
     public CustomerInteractScript customerScript;
 
     public event Action OnMealOrderFulfilled;
+    public event Action OnWrongOrderServed;
 
     public Transform customerHand;
 
@@ -51,7 +52,8 @@ public class MealChecker : MonoBehaviour
         }
         else
         {
-            customerScript.talkingTo = true; // fix this later by putting in a function for this and other to invoke event
+            OnWrongOrderServed?.Invoke();
+
             customerScript.OnInteractWithCustomer?.Invoke();
 
             bool servedBurntFood = CheckIfMealContainsCookType(CookAmount.Burnt);

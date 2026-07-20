@@ -1,5 +1,7 @@
-using UnityEngine;
 using System;
+using Unity.Burst.CompilerServices;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHandScript : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class PlayerHandScript : MonoBehaviour
     public Interactable currentInteractable;
 
     public static PlayerHandScript instance;
+
+    public static Action OnHoldSomething;
+    public static Action OnStopHoldSomething;
 
     private void Awake()
     {
@@ -85,6 +90,7 @@ public class PlayerHandScript : MonoBehaviour
             }
 
             BringFoodToHand(holdableFoodScript);
+            OnHoldSomething?.Invoke();
 
             return true;
         }
@@ -98,7 +104,7 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj = newFoodObj;
     }
 
-    private void BringFoodToHand(HoldableFoodScript holdableScript)
+    private void BringFoodToHand(HoldableFoodScript holdableScript, bool deleteWhenPickedUp = true)
     {
         if (holdableScript.CarryType)
         {
@@ -139,7 +145,12 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
         currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
 
-        holdableScript.DeleteObjectToDelete();
+        currentFoodHeldObj.GetComponent<Collider>().isTrigger = true;
+
+        if (deleteWhenPickedUp)
+        {
+            holdableScript.DeleteObjectToDelete();
+        }
     }
 
     private void CarryInstead(GameObject objectToCarry)
@@ -162,6 +173,7 @@ public class PlayerHandScript : MonoBehaviour
 
         InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
         interactArea.HideDisplay();
+
     }
 
     private void ThrowFood()
@@ -195,6 +207,8 @@ public class PlayerHandScript : MonoBehaviour
         }
 
         currentFoodHeldObj = null;
+
+        OnStopHoldSomething?.Invoke();
     }
 
     private void TryInteractWithInteractable()
@@ -219,6 +233,8 @@ public class PlayerHandScript : MonoBehaviour
         {
             Destroy(currentFoodHeldObj.gameObject);
         }
+
+        OnStopHoldSomething?.Invoke();
     }
 
     public void TransferPlatterToCustomer(Transform newParent, Quaternion newRotation)
@@ -251,6 +267,18 @@ public class PlayerHandScript : MonoBehaviour
 
             currentFoodHeldObj = null;
         }
+    }
+
+    // For food box
+    public void BringFoodDirectlyToHand(FoodData food)
+    {
+        HoldableFoodScript holdableFoodScript = food.foodModel.gameObject.GetComponent<HoldableFoodScript>();
+
+        SwitchFoodItem(food, null);
+
+
+        BringFoodToHand(holdableFoodScript, false);
+        OnHoldSomething?.Invoke();
     }
 
     public void ScaleObject(GameObject obj, Vector3 scaleAmount)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Customer;
+using System.Collections;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
@@ -153,7 +154,9 @@ public class CustomerSpawnerScript : MonoBehaviour
                 customer.counterPoint = stallQueuePointList[i - 1];
 
                 CustomerMovementScript movementScript = customer.GetComponent<CustomerMovementScript>();
-                movementScript.OnNewDestinationChange?.Invoke(customer.counterPoint);
+                //movementScript.OnNewDestinationChange?.Invoke(customer.counterPoint);
+
+                StartCoroutine(MoveToNextPoint(movementScript, customer.counterPoint));
             }
         }
     }
@@ -229,14 +232,26 @@ public class CustomerSpawnerScript : MonoBehaviour
         customer.seatPoint = null;
     }
 
-    private void OnCustomerOrderFinish(CustomerStateMachine customer)
+    public void OnCustomerOrderFinish(CustomerStateMachine customer)
     {
         emptyQueueIndex = FindEmptyQueueIndex(customer.counterPoint);
         customer.counterPoint = null;
         customer.orderDone = true;
 
-        float waitTime = 2;
-        Invoke("ShuffleQueue", waitTime);
+        //float waitTime = 2;
+        //Invoke("ShuffleQueue", waitTime);
+
+        ShuffleQueue();
+    }
+
+    public IEnumerator MoveToNextPoint(CustomerMovementScript move, Transform point)
+    {
+        yield return new WaitForSeconds(2);
+        if (move.customerStateMachine.currentMood != CustomerMood.ReallyAngry)
+        {
+            move.OnNewDestinationChange(point);
+        }
+
     }
 
     // Public accessor so other scripts can request a free queue point

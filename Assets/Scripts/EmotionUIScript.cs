@@ -23,7 +23,7 @@ public class EmotionUIScript : MonoBehaviour
         rangeScript.OnEnterTalkRange += TryShowEmotion;
         rangeScript.OnExitTalkRange += HideEmotion;
 
-        mealChecker.OnMealOrderFulfilled += SetEmotionInactive;
+        //mealChecker.OnMealOrderFulfilled += SetEmotionInactive;
     }
 
     private void OnDestroy()
@@ -33,7 +33,8 @@ public class EmotionUIScript : MonoBehaviour
         rangeScript.OnEnterTalkRange -= TryShowEmotion;
         rangeScript.OnExitTalkRange -= HideEmotion;
 
-        mealChecker.OnMealOrderFulfilled -= SetEmotionInactive;
+
+        //mealChecker.OnMealOrderFulfilled -= SetEmotionInactive;
     }
 
     public void ChangeEmotionSprite(CustomerMood newMood)
