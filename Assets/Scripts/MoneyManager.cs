@@ -8,7 +8,7 @@ public class MoneyManager : MonoBehaviour
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
     public static Action<decimal, decimal, decimal> OnMoneyChanged;
 
-    public decimal PlayerMoneyAmount;
+    public static decimal PlayerMoneyAmount;
 
     private void Start()
     {

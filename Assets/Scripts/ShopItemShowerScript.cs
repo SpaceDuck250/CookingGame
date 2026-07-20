@@ -9,13 +9,12 @@ public class ShopItemShowerScript : MonoBehaviour
     public Image displayImage;
     public TextMeshProUGUI displayName;
     public TextMeshProUGUI displayCost;
+    public TextMeshProUGUI amountText;
 
     public FoodData currentSelectedFood;
 
     public static Action<float, int, FoodData> OnTryBuyFood;
     public static Action<float, int, FoodData> OnSucessfullyBoughtFood;
-
-    public int amountToBuy = 0;
 
     private void Start()
     {
@@ -25,6 +24,7 @@ public class ShopItemShowerScript : MonoBehaviour
     private void OnDestroy()
     {
         ShopItemScript.OnSelectFoodItemInShop -= DisplayItem;
+
     }
 
     public void DisplayItem(FoodData foodData)
@@ -38,9 +38,20 @@ public class ShopItemShowerScript : MonoBehaviour
         }
 
         displayName.text = foodData.foodName;
-        displayCost.text = foodData.costInShop.ToString() + "$";
 
-        amountToBuy = 0;
+        float totalCost = 0;
+        EditCostAmountText(totalCost);
+    }
+
+    public void EditCostAmountText(float newCost)
+    {
+        displayCost.text = "Total Cost: " + newCost + "$";
+
+    }
+
+    public void EditAmountText(int newBuyAmount)
+    {
+        amountText.text = "Amount: " + newBuyAmount.ToString();
     }
 
 
