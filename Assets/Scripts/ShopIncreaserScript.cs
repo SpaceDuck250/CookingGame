@@ -14,11 +14,14 @@ public class ShopIncreaserScript : MonoBehaviour
     private void Start()
     {
         ShopItemScript.OnSelectFoodItemInShop += ResetBuyAmount;
+        ShopScript.OnSucessfullyBoughtFood += ResetBuyAmount;
     }
 
     private void OnDestroy()
     {
         ShopItemScript.OnSelectFoodItemInShop -= ResetBuyAmount;
+        ShopScript.OnSucessfullyBoughtFood -= ResetBuyAmount;
+
     }
 
     public void ResetBuyAmount(FoodData food)

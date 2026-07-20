@@ -15,6 +15,11 @@ public class ShopScript : MonoBehaviour
     public static Action OnShopOpen;
     public static Action OnShopClose;
 
+    public ShopCostCalculator shopCostScript;
+    public ShopItemShowerScript shopSideScript;
+
+    public static Action<FoodData> OnSucessfullyBoughtFood;
+
 
     private void Start()
     {
@@ -51,5 +56,19 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void TryBuy()
+    {
+        if (!shopCostScript.canAfford)
+        {
+            return;
+        }
+
+        float totalCost = -1 * shopCostScript.totalCost;
+        MoneyManager.instance.ChangeMoneyAmount((decimal)totalCost);
+
+        OnSucessfullyBoughtFood?.Invoke(shopSideScript.currentSelectedFood);
+
     }
 }

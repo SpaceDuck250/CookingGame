@@ -5,6 +5,8 @@ using System;
 
 public class ShopItemShowerScript : MonoBehaviour
 {
+    public ShopCostCalculator shopCostScript;
+
     public GameObject displayObj;
     public Image displayImage;
     public TextMeshProUGUI displayName;
@@ -13,8 +15,6 @@ public class ShopItemShowerScript : MonoBehaviour
 
     public FoodData currentSelectedFood;
 
-    public static Action<float, int, FoodData> OnTryBuyFood;
-    public static Action<float, int, FoodData> OnSucessfullyBoughtFood;
 
     private void Start()
     {
@@ -53,6 +53,4 @@ public class ShopItemShowerScript : MonoBehaviour
     {
         amountText.text = "Amount: " + newBuyAmount.ToString();
     }
-
-
 }

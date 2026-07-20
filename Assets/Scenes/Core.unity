@@ -6185,7 +6185,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 819873584}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1086341722}
+        m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
+        m_MethodName: TryBuy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &819873584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6275,6 +6287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8646aa951e66548b0477a7e5398303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  shopCostScript: {fileID: 0}
   displayObj: {fileID: 36770059}
   displayImage: {fileID: 395595896}
   displayName: {fileID: 179513470}
@@ -6295,6 +6308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   canAfford: 0
   shopSideScript: {fileID: 836164755}
+  totalCost: 0
   costAmountText: {fileID: 1788282174}
 --- !u!1 &859543247
 GameObject:
@@ -8077,6 +8091,8 @@ MonoBehaviour:
   uiItemPrefab: {fileID: 2740407219520533918, guid: d40737f58aac2c847ad2e92d20100d39, type: 3}
   spawnParent: {fileID: 2062561769}
   shopObj: {fileID: 1886377856}
+  shopCostScript: {fileID: 836164756}
+  shopSideScript: {fileID: 836164755}
 --- !u!1 &1100975245
 GameObject:
   m_ObjectHideFlags: 0
@@ -8258,7 +8274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Online Shop
+  m_text: Poor Deli
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11567,7 +11583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -282.4, y: -76}
+  m_AnchoredPosition: {x: -266.8, y: -76}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788282174
