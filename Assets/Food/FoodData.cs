@@ -16,6 +16,8 @@ public class FoodData : ScriptableObject
 
     // Dont change this, this is a static data
     public CookAmount cookedAmount = CookAmount.Raw;
+
+    public float costInShop;
 }
 
 namespace Category
