@@ -65,7 +65,13 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
         if (isUnclePresent)
         {
             Debug.Log("UncleFedrickSpawnHandler: Duplicate Uncle spawned, removed duplicate");
+
+            // It will remove it from its active list and free up chair/queue transforms
+            CustomerSpawnerScript.OnCustomerExit?.Invoke(customer);
+
+            // Now destroy the duplicate GameObject
             Destroy(customer.gameObject);
+
             return;
         }
 
@@ -119,6 +125,7 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
                 spawner.SpawnCustomer(freeChair, freeQueue, false, childPrefab);
             }
         }
+
     }
 
     private void OnCustomerExit(CustomerStateMachine customer)
