@@ -22,6 +22,10 @@ public class ShopItemScript : MonoBehaviour
         if (foodPic != null)
         {
             foodImage.sprite = foodPic;
+
+            RectTransform rt = foodImage.GetComponent<RectTransform>();
+
+            rt.sizeDelta = new Vector2(100, 100);
         }
     }
 
