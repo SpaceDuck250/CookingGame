@@ -25,9 +25,6 @@ public class CustomerSpawnerScript : MonoBehaviour
     private float spawnTimer;
 
     private List<CustomerStateMachine> activeCustomers = new List<CustomerStateMachine>();
-    // Get the number of active customers, removing any null references first
-    // as in case a customer was destroyed without being removed from the list
-    public int ActiveCustomerCount { get { activeCustomers.RemoveAll(customer => customer == null); return activeCustomers.Count; } }
 
     public static Action<CustomerStateMachine> OnCustomerLeftQueue;
 
@@ -76,8 +73,16 @@ public class CustomerSpawnerScript : MonoBehaviour
         {
             spawnTimer = 0f;
 
-            // Randomize the next spawn interval between 5 and 10 seconds
-            spawnInterval = UnityEngine.Random.Range(15f, 35f); 
+            // Rush Hour event spawns interval
+            if (eventRushHour)
+            {
+                spawnInterval = UnityEngine.Random.Range(2f, 8f);
+            }
+            else // Normal spawn interval
+            {
+                spawnInterval = UnityEngine.Random.Range(15f, 35f);
+            }
+
             TrySpawnCustomer();
         }
     }
