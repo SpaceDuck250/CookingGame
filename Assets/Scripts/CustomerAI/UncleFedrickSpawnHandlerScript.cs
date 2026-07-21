@@ -146,10 +146,16 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
             currentUncle = null;
             companionsSpawnedForCurrentUncle = false;
             isUnclePresent = false;
+            return;
         }
-        else
+
+        // If some a duplicate of Uncle instance exits, this does not clear the global flag
+        // unless we no longer have a tracked Uncle so gg
+        // Unity's == operator returns true for destroyed UnityEngine.Object, so this
+        // correctly handles the destroyed but not null case
+        // otherwise ignore duplicate's exit and keep the original Uncle tracked
+        if (currentUncle == null)
         {
-            // if some other Uncle instance exits, this ensure global flag is cleared
             isUnclePresent = false;
             companionsSpawnedForCurrentUncle = false;
             currentUncle = null;
