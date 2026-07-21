@@ -8,7 +8,14 @@ public class MoneyManager : MonoBehaviour
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
     public static Action<decimal, decimal, decimal> OnMoneyChanged;
 
-    public decimal PlayerMoneyAmount;
+    public static decimal PlayerMoneyAmount;
+
+    public static MoneyManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -64,5 +71,13 @@ public class MoneyManager : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public void ChangeMoneyAmount(decimal change)
+    {
+        PlayerMoneyAmount += (decimal)change;
+
+        OnMoneyChanged?.Invoke(PlayerMoneyAmount, (decimal)change, 0);
+
     }
 }
