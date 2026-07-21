@@ -40,10 +40,10 @@ public class ShopItemShowerScript : MonoBehaviour
         displayName.text = foodData.foodName;
 
         float totalCost = 0;
-        EditCostAmountText(totalCost);
+        EditCostAmountText((decimal)totalCost);
     }
 
-    public void EditCostAmountText(float newCost)
+    public void EditCostAmountText(decimal newCost)
     {
         displayCost.text = "Total Cost: " + newCost + "$";
 

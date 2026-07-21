@@ -12,7 +12,7 @@ public class MoneyUIScript : MonoBehaviour
     public GameObject tipObj;
     public TextMeshProUGUI tipTextComponent;
 
-    private void Start()
+    private void Awake()
     {
         MoneyManager.OnMoneyChanged += OnMoneyChanged;
     }
@@ -36,8 +36,12 @@ public class MoneyUIScript : MonoBehaviour
             return;
         }
 
+        print("ShowMoney");
+
         CancelInvoke("HideBothEarnObj");
         StopAllCoroutines();
+
+        HideBothEarnObj();
 
         string sign = amount < 0 ? "-" : "+";
         Color color = amount < 0 ? Color.red : Color.green;

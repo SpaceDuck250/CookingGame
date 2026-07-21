@@ -27,9 +27,11 @@ public class ShopCostCalculator : MonoBehaviour
     public void CalculateCost(int buyAmount)
     {
         totalCost = buyAmount * shopSideScript.currentSelectedFood.costInShop;
-        canAfford = (decimal)totalCost < MoneyManager.PlayerMoneyAmount ? true : false;
+        canAfford = (decimal)totalCost < MoneyManager.playerMoneyAmount ? true : false;
 
-        shopSideScript.EditCostAmountText(totalCost);
+        totalCost = (float)System.Math.Round((double)totalCost, 2);
+
+        shopSideScript.EditCostAmountText((decimal)totalCost);
     }
 
     public void ResetValues(FoodData food)
