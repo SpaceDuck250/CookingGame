@@ -18,7 +18,7 @@ public class ShopScript : MonoBehaviour
     public ShopCostCalculator shopCostScript;
     public ShopItemShowerScript shopSideScript;
 
-    public static Action<FoodData> OnSucessfullyBoughtFood;
+    public static Action<FoodData, int> OnSucessfullyBoughtFood;
 
 
     private void Start()
@@ -68,7 +68,7 @@ public class ShopScript : MonoBehaviour
         float totalCost = -1 * shopCostScript.totalCost;
         MoneyManager.instance.ChangeMoneyAmount((decimal)totalCost);
 
-        OnSucessfullyBoughtFood?.Invoke(shopSideScript.currentSelectedFood);
+        OnSucessfullyBoughtFood?.Invoke(shopSideScript.currentSelectedFood, ShopIncreaserScript.buyAmount);
 
     }
 }
