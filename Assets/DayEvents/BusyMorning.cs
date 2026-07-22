@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NormalMorning : HawkerEvent
+public class BusyMorning : HawkerEvent
 {
 
     // Add all the customers that are ABLE to spawn in this event in here
@@ -14,8 +14,7 @@ public class NormalMorning : HawkerEvent
 
     public override void StartEvent(CustomerSpawnerScript customerSpawner)
     {
-        customerSpawner.maxCustomers = 5;
-        customerSpawner.spawnInterval = 5;
+        customerSpawner.maxCustomers = 10;
+        customerSpawner.spawnInterval = 1;
     }
-
 }
