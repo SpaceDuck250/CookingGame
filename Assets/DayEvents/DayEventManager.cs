@@ -24,9 +24,15 @@ namespace HawkerEventAndTime
 
 public class DayEventManager : MonoBehaviour
 {
-    public List<TimeLevel> timeLevelList = new List<TimeLevel>();
+    public TimeLevel[] timeLevelList = new TimeLevel[3];
+    public int currentTimeLevelIndex = -1;
 
-    public Dictionary<string, HawkerEvent> everyEventDictionary = new Dictionary<string, HawkerEvent>();
+    public TimeLevel currentTimeLevel;
+
+    public float timer;
+    public float duration;
+
+    public bool canRunTimer;
 
     private void Start()
     {
@@ -35,11 +41,36 @@ public class DayEventManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.J))
+        if (!canRunTimer)
         {
-            print(timeLevelList[0].possibleEvents[1].eventName);
+            return;
+        }
+
+        timer += Time.deltaTime;
+        if (timer >= duration)
+        {
+            canRunTimer = false;
+            timer = 0;
+
+            TransitionToNextTimeLevel();
         }
     }
+
+    private void TransitionToNextTimeLevel()
+    {
+        currentTimeLevelIndex++;
+        if (currentTimeLevelIndex >= timeLevelList.Length)
+        {
+            currentTimeLevelIndex = timeLevelList.Length - 1;
+            return;
+        }
+
+        currentTimeLevel = timeLevelList[currentTimeLevelIndex];
+        duration = currentTimeLevel.duration;
+
+        canRunTimer = true;
+    }
+
 
 
 }
