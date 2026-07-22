@@ -15,6 +15,8 @@ public class PlatterScript : Interactable
 
     public Action<FoodData> OnFoodTakenOutOfPlatter;
 
+    public PlatterToggleScript platterModeToggler;
+
     private void Start()
     {
         OnFoodTakenOutOfPlatter += TakeFoodOutOfPlatter;
@@ -39,7 +41,7 @@ public class PlatterScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (!CheckIfPlayerIsHoldingFood(playerHand))
+        if (!CheckIfPlayerIsHoldingFood(playerHand) || platterModeToggler.currentMode == PlatterToggleScript.PlatterMode.Finished)
         {
             return;
         }
@@ -85,17 +87,20 @@ public class PlatterScript : Interactable
 
         Transform placeParent = placeAreasArray[emptySlotIndex];
 
-        GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true, false);
+        //GameObject newFood = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodData, placeParent, upOffset, true, false, true);
+        GameObject newFood = CookingInputOutputScript.SpawnFoodInsidePlatter(foodData, placeParent, upOffset);
         PlayerHandScript.instance.ClearFoodFromHand();
         newFood.GetComponent<HoldableFoodScript>().platterIn = this;
 
         //foodHeldArray[emptySlotIndex] = foodData;
         foodHeldList.Add(foodData);
+
     }
 
     public void ClearAllInPlatter()
     {
         foodHeldList.Clear();
+
         foreach (Transform placeArea in placeAreasArray)
         {
             if (placeArea.childCount > 0)
@@ -105,5 +110,24 @@ public class PlatterScript : Interactable
         }
 
         currentIndex = 0;
+    }
+
+    public void MakeAllFoodPickupable(bool value, string newLayer)
+    {
+        List<GameObject> foodHeldObjList = new List<GameObject>();
+        foreach (Transform placeArea in placeAreasArray)
+        {
+            if (placeArea.childCount > 0)
+            {
+                foodHeldObjList.Add(placeArea.GetChild(0).gameObject);
+            }
+        }
+
+        foreach (GameObject food in foodHeldObjList)
+        {
+            HoldableFoodScript holdScript = food.GetComponent<HoldableFoodScript>();
+            holdScript.canPickUp = value;
+            holdScript.gameObject.layer = LayerMask.NameToLayer(newLayer);
+        }
     }
 }
