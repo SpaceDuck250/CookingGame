@@ -49,6 +49,8 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        PlayerStateManager.UnPauseGame();
     }
 
     public void OpenShop()
@@ -56,6 +58,8 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        PlayerStateManager.PauseGame();
     }
 
     public void TryBuy()
