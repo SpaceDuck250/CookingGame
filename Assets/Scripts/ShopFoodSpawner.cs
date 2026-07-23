@@ -62,7 +62,7 @@ public class ShopFoodSpawner : MonoBehaviour
 
 namespace Delivery
 {
-    public class FoodDeliveryData
+    public struct FoodDeliveryData
     {
         public FoodData food;
         public int amount;
