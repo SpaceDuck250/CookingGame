@@ -2060,6 +2060,9 @@ GameObject:
   m_Component:
   - component: {fileID: 760337573}
   - component: {fileID: 760337572}
+  - component: {fileID: 760337577}
+  - component: {fileID: 760337576}
+  - component: {fileID: 760337575}
   - component: {fileID: 760337574}
   m_Layer: 0
   m_Name: EventAIManager
@@ -2080,11 +2083,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7de2bb256201642b9d8eb191051724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIEventSystemScript
-  customerSpawner: {fileID: 0}
-  currentEvent: 0
-  rushHourCustomerAmount: 4
-  rushHourSpawnDelay: 1
+  customerSpawner: {fileID: 1283293908}
+  eventData: {fileID: 760337577}
+  minimumCustomersBeforeRushHour: 4
+  minimumDishesForFussyCustomer: 4
+  minimumFoodForInspector: 4
+  eventDuration: 30
+  eventCooldown: 300
+  checkInterval: 10
   fussyCustomerAmount: 2
+  servedDishWindow: 10
+  foodLyingAround: 0
+  currentEvent: 0
+  nextCheckTime: 0
+  nextEventAllowedTime: 120
+  fussyCustomerEventArmed: 1
+  inspectorEventArmed: 1
 --- !u!4 &760337573
 Transform:
   m_ObjectHideFlags: 0
@@ -2116,6 +2130,60 @@ MonoBehaviour:
   specialCompanionCount: 2
   fedrickChildrenPrefabs:
   - {fileID: 2443635628423385213, guid: 3e38f565dcb51df429191ffca583fbd2, type: 3}
+--- !u!114 &760337575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760337571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca33ab93f48f43488fe2fef4ac98294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialCustomerEventScript
+  eventSystem: {fileID: 760337572}
+  customerSpawner: {fileID: 1283293908}
+  specialCustomerPrefab: {fileID: 0}
+  customerAmount: 1
+  spawnDelay: 5
+  maximumEventDuration: 120
+  spawnedCustomerCount: 0
+  eventRunning: 0
+  spawningFinished: 0
+  eventType: 0
+--- !u!114 &760337576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760337571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20926718ceb92241919531b3200004e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RushHourEventScript
+  eventSystem: {fileID: 760337572}
+  customerSpawner: {fileID: 1283293908}
+  customersToSpawn: 4
+  spawnedCustomerCount: 0
+  maximumDuration: 60
+  eventRunning: 0
+--- !u!114 &760337577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760337571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a6875335905e648824b8554029813b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIEventDataScript
+  servedDishWindow: 10
+  foodLyingAround: 0
 --- !u!1 &834755698
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,7 +3699,7 @@ MonoBehaviour:
   spawnInterval: 2
   maxCustomers: 10
   emptyQueueIndex: 1
-  eventRushHour: 1
+  eventRushHour: 0
 --- !u!4 &1283293909
 Transform:
   m_ObjectHideFlags: 0

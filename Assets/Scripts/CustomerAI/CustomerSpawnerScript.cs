@@ -38,7 +38,8 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     // New event - fires after the spawner instantiates and registers a customer.
     // Parameters: spawned customer's state machine, the prefab that was instantiated.
-    public Action<CustomerStateMachine, GameObject> OnCustomerSpawned;
+    public event Action<CustomerStateMachine, GameObject> OnCustomerSpawned;
+    public event Action<int> OnActiveCustomerCountChanged;
 
     public static CustomerSpawnerScript instance;
 

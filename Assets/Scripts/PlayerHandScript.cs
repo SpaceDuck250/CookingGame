@@ -216,7 +216,7 @@ public class PlayerHandScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, interactableLayer))
         {
-            print(hit.collider);
+            //print(hit.collider);
 
             Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
             if (interactable != null)
