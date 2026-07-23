@@ -1,15 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Delivery;
 
 public class ShopFoodSpawner : MonoBehaviour
 {
+   
+
     // Add limitations later
-    public Queue<FoodData> foodsToSpawn = new Queue<FoodData>();
+    public Queue<FoodDeliveryData> deliveryList = new Queue<FoodDeliveryData>();
 
     public Transform spawnPoint;
 
     public float waitTimer;
     public float waitTime;
+
+    public GameObject deliveryBoxPrefab;
 
     private void Start()
     {
@@ -23,7 +28,7 @@ public class ShopFoodSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (foodsToSpawn.Count == 0)
+        if (deliveryList.Count == 0)
         {
             return;
         }
@@ -32,23 +37,34 @@ public class ShopFoodSpawner : MonoBehaviour
         if (waitTimer >= waitTime)
         {
             waitTimer = 0;
-            SpawnNewFood();
+            PackageAndDeliver();
         }
 
     }
 
     public void AddFoodToList(FoodData newFood, int amount)
     {
-        for (int i = 0; i < amount; i++)
-        {
-            foodsToSpawn.Enqueue(newFood);
-        }
+
+        FoodDeliveryData newDelivery = new FoodDeliveryData { food = newFood, amount = amount};
+        deliveryList.Enqueue(newDelivery);
     }
 
-    public void SpawnNewFood()
+    public void PackageAndDeliver()
     {
-        FoodData foodToSpawn = foodsToSpawn.Dequeue();
+        FoodDeliveryData boxToSpawn = deliveryList.Dequeue();
+        GameObject newDeliveryBox = Instantiate(deliveryBoxPrefab, spawnPoint.position, Quaternion.identity, spawnPoint);
 
-        Instantiate(foodToSpawn.foodModel, spawnPoint.position, Quaternion.identity, spawnPoint);
+        DeliveryBoxScript deliveryBoxScript = newDeliveryBox.GetComponent<DeliveryBoxScript>();
+        deliveryBoxScript.SetupDeliveryData(boxToSpawn);
+        //Instantiate(foodToSpawn.foodModel, spawnPoint.position, Quaternion.identity, spawnPoint);
+    }
+}
+
+namespace Delivery
+{
+    public class FoodDeliveryData
+    {
+        public FoodData food;
+        public int amount;
     }
 }
