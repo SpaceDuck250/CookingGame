@@ -127,6 +127,94 @@ MonoBehaviour:
   - {fileID: 7331725690964378565}
   currentIndex: 0
   upOffset: {x: 0, y: 0.57, z: 0}
+  platterModeToggler: {fileID: 5382220827750179418}
+--- !u!1 &4684308533493103723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757223200109663148}
+  - component: {fileID: 4856512558107700435}
+  - component: {fileID: 5382220827750179418}
+  - component: {fileID: 8190213732462758956}
+  m_Layer: 0
+  m_Name: TriggerZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &757223200109663148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684308533493103723}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 968594597091291095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4856512558107700435
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684308533493103723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5382220827750179418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684308533493103723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d32784ea231ebe4c816fd5f0806f6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatterToggleScript
+  interactKeyCode: 101
+  currentMode: 0
+  clickObject: {fileID: 2439192805910825523}
+  platterScript: {fileID: 7353468931285883465}
+  toggleText: {fileID: 4763684111042866204}
+--- !u!114 &8190213732462758956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684308533493103723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9e81ccfe3d3374b939067afbd8911d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractAreaScript
+  withinRange: 0
+  interactable: {fileID: 5382220827750179418}
+  active: 1
 --- !u!1001 &791396420698523708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,6 +294,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f4aa9b896c238c4192c37b91792ec9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 757223200109663148}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f4aa9b896c238c4192c37b91792ec9f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3121093148810106630}
@@ -303,6 +394,8 @@ MonoBehaviour:
   holdOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   canPickUp: 1
+  platterScaleModifier: 1
+  changeScaleOnPlatter: 0
 --- !u!114 &7604222923712812724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +766,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8989133293717977408, guid: 76368b6352409d24a872236263356641, type: 3}
   m_PrefabInstance: {fileID: 6303827678029993233}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4763684111042866204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1542395643713108237, guid: 76368b6352409d24a872236263356641, type: 3}
+  m_PrefabInstance: {fileID: 6303827678029993233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &7076629282628625454
 PrefabInstance:
   m_ObjectHideFlags: 0
