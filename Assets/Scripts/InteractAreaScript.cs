@@ -29,6 +29,7 @@ public class InteractAreaScript : MonoBehaviour
 
         PlayerHandScript playerHand = PlayerHandScript.instance;
         interactable.CheckInput(playerHand);
+        print("in Range");
     }
 
     // Check if the player entered interactable range

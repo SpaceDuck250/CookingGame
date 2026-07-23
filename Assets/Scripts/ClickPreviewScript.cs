@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ClickPreviewScript : MonoBehaviour
 {
@@ -61,4 +62,5 @@ public class ClickPreviewScript : MonoBehaviour
     {
         previewObject.SetActive(value);
     }
+
 }

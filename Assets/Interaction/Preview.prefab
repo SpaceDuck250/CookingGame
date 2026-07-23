@@ -323,8 +323,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7403198115947280646}
-  - component: {fileID: 6987867541606700333}
-  - component: {fileID: 8595381317557359330}
+  - component: {fileID: 1942134496117799034}
+  - component: {fileID: 6521417840248013173}
   m_Layer: 0
   m_Name: ClickPreview
   m_TagString: Untagged
@@ -354,7 +354,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6987867541606700333
+--- !u!114 &1942134496117799034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,11 +365,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0663af1878547794f857444331b2e87e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::BillBoardScript
   player: {fileID: 0}
-  self: {fileID: 7002507381359385950}
-  clickPreview: {fileID: 8595381317557359330}
---- !u!114 &8595381317557359330
+  self: {fileID: 4280542075424678991}
+  clickPreview: {fileID: 0}
+--- !u!114 &6521417840248013173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,9 +380,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54702188fc2dfa84a9e3d8c6ffbd8ae1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  previewText: Flip
-  clickCharacter: 84
+  m_EditorClassIdentifier: Assembly-CSharp::ClickPreviewScript
+  previewText: Edit Mode
+  clickCharacter: 69
   previewObject: {fileID: 7002507381359385950}
   previewTextComp: {fileID: 1542395643713108237}
   previewCharComp: {fileID: 5820593329074351832}

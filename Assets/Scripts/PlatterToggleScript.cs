@@ -9,12 +9,18 @@ public class PlatterToggleScript : Interactable
         Finished
     }
 
-    public PlatterMode currentMode = PlatterMode.Edit;
+    public PlatterMode currentMode;
 
     public GameObject clickObject;
     public PlatterScript platterScript;
 
     public TextMeshProUGUI toggleText;
+
+    public ScreenControlPreview controlPreview;
+
+    private void Start()
+    {
+    }
 
     public override void Interact(PlayerHandScript playerHand)
     {
@@ -29,7 +35,6 @@ public class PlatterToggleScript : Interactable
             currentMode = PlatterMode.Edit;
             platterScript.MakeAllFoodPickupable(true, "Food");
             toggleText.text = "Edit Mode";
-
 
         }
     }
