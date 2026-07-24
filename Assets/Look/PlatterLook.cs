@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlatterLook : MonoBehaviour, ILookable
 {
-    public GameObject controlsTextObj;
     public InteractAreaScript interactAreaScript;
 
     private void Start()
@@ -19,16 +18,16 @@ public class PlatterLook : MonoBehaviour, ILookable
     public void DoLookEffect()
     {
         //print("platter");
-        //if (!interactAreaScript.withinRange)
-        //{
-        //    return;
-        //}
-        controlsTextObj.SetActive(true);
+        if (!interactAreaScript.withinRange)
+        {
+            return;
+        }
+
     }
 
     public void StopLookEffect()
     {
-        controlsTextObj.SetActive(false);
+        
     }
 
 }

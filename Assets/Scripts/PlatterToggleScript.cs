@@ -28,13 +28,13 @@ public class PlatterToggleScript : Interactable
         {
             currentMode = PlatterMode.Finished;
             platterScript.MakeAllFoodPickupable(false, "Default");
-            toggleText.text = "Finished";
+            //toggleText.text = "Finished";
         }
         else
         {
             currentMode = PlatterMode.Edit;
             platterScript.MakeAllFoodPickupable(true, "Food");
-            toggleText.text = "Edit Mode";
+            //toggleText.text = "Edit Mode";
 
         }
     }
