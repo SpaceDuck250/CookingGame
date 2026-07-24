@@ -147,6 +147,7 @@ MonoBehaviour:
   customerNameText: {fileID: 1244919740156487693}
   customerImage: {fileID: 6853152106957535693}
   patienceImage: {fileID: 2575670491910760954}
+  displayColor: {r: 0, g: 0, b: 0, a: 0}
   profile: {fileID: 0}
   runTimer: 0
   timer: 0
@@ -161,6 +162,7 @@ GameObject:
   - component: {fileID: 1937672319058621692}
   - component: {fileID: 2583971273860919580}
   - component: {fileID: 7302707699590765301}
+  - component: {fileID: 5957463306304170523}
   m_Layer: 5
   m_Name: SliderBackground
   m_TagString: Untagged
@@ -184,8 +186,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -10.4, y: 63.9}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -10.7684, y: 67}
+  m_SizeDelta: {x: 99.7544, y: 39.8521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2583971273860919580
 CanvasRenderer:
@@ -225,6 +227,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5957463306304170523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276772035987099044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.77, y: 11.66}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5761888002131979454
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,8 +413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.4655, y: 63.9001}
-  m_SizeDelta: {x: 73.7106, y: 100.0001}
+  m_AnchoredPosition: {x: 26.664, y: 67.008896}
+  m_SizeDelta: {x: 75.9631, y: 78.9151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8201767895776390564
 CanvasRenderer:
@@ -471,8 +488,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.4655, y: 63.9001}
-  m_SizeDelta: {x: 73.7106, y: 100.0001}
+  m_AnchoredPosition: {x: 25.9804, y: 67.008896}
+  m_SizeDelta: {x: 75.5072, y: 78.9137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8387903584291147488
 CanvasRenderer:
@@ -507,7 +524,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.817
+  m_FillAmount: 0.702
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
