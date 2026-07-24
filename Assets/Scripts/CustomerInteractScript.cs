@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
-using UnityEditorInternal;
 
 public class CustomerInteractScript : Interactable
 {
