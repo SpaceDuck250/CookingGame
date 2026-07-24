@@ -3460,6 +3460,7 @@ GameObject:
   - component: {fileID: 379215039}
   - component: {fileID: 379215041}
   - component: {fileID: 379215040}
+  - component: {fileID: 379215042}
   m_Layer: 0
   m_Name: PlayerHandManager
   m_TagString: Untagged
@@ -3522,6 +3523,20 @@ MonoBehaviour:
   throwStrength: 8.2
   spinStrength: 13.9
   currentInteractable: {fileID: 0}
+--- !u!114 &379215042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379215038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc42287c947286f44b1a461656d80549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLooker
+  cam: {fileID: 75082314}
+  maxDistance: 10
 --- !u!1 &388831812
 GameObject:
   m_ObjectHideFlags: 0
