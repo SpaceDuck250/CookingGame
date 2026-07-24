@@ -42,6 +42,8 @@ public class MealChecker : MonoBehaviour
 
         if (CheckIfMealMatchesOrder())
         {
+            PlayerHandScript.OnStopHoldSomething?.Invoke();
+
             print("correct");
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetTalk?.Invoke(customerScript.heldCustomerData);
@@ -52,6 +54,7 @@ public class MealChecker : MonoBehaviour
         }
         else
         {
+
             OnWrongOrderServed?.Invoke();
 
             customerScript.OnInteractWithCustomer?.Invoke();
