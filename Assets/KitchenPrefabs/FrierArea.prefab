@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 1457012533265654738}
   - component: {fileID: 6795425462283420379}
   - component: {fileID: 2282071457401401906}
+  - component: {fileID: 5196094161532170825}
   m_Layer: 6
   m_Name: FirerStation
   m_TagString: CookingStation
@@ -273,6 +274,23 @@ MonoBehaviour:
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
   hasFood: 0
+--- !u!114 &5196094161532170825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479921031609787339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d71f834a2db7ad4683bb3488a1d3d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrierParticleScript
+  frierScript: {fileID: 5331465338394060037}
+  smokeParticlePrefab: {fileID: 4009940424612552130, guid: 7176a069d3656ab4693191596c23684e, type: 3}
+  particleSpawnPoint: {fileID: 4785357608159639421}
+  baseScale: 1
+  scalePerHeatLevel: 0.5
 --- !u!1 &1618922237263843375
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +321,8 @@ Transform:
   m_LocalPosition: {x: 2.400001, y: 1.0100002, z: -0.50000083}
   m_LocalScale: {x: 0.59999996, y: 0.6, z: 0.59999996}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4785357608159639421}
   m_Father: {fileID: 3955296740216796750}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5315924972431512167
@@ -634,6 +653,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6534459713467896445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4785357608159639421}
+  m_Layer: 0
+  m_Name: Particle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4785357608159639421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534459713467896445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8152794398536566489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6912193151892157859
 GameObject:
   m_ObjectHideFlags: 0
