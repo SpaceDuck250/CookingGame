@@ -2062,6 +2062,7 @@ GameObject:
   - component: {fileID: 760337572}
   - component: {fileID: 760337577}
   - component: {fileID: 760337576}
+  - component: {fileID: 760337578}
   - component: {fileID: 760337575}
   - component: {fileID: 760337574}
   m_Layer: 0
@@ -2184,6 +2185,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIEventDataScript
   servedDishWindow: 10
   foodLyingAround: 0
+--- !u!114 &760337578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760337571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6fe11da9541414583dec3369164a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FussyCustomerOrderEventScript
+  eventSystem: {fileID: 760337572}
+  customerSpawner: {fileID: 1283293908}
+  completeEventAfterOrderChange: 1
+  eventRunning: 0
+  orderChanged: 0
+  orderChangeInProgress: 0
+  subscribedToSpawner: 0
 --- !u!1 &834755698
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3688,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
   customerPrefabList:
   - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   - {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   spawnPoint: {fileID: 713421322}
   exitTransform: {fileID: 736042597}
   platterPoint: {fileID: 106437547}

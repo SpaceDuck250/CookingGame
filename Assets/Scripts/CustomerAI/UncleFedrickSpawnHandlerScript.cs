@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Customer;
 
 [DisallowMultipleComponent]
 public class UncleFedrickSpawnHandler : MonoBehaviour

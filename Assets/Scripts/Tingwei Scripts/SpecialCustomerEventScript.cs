@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Customer;
 using UnityEngine;
 
 public class SpecialCustomerEventScript : MonoBehaviour
@@ -9,6 +8,7 @@ public class SpecialCustomerEventScript : MonoBehaviour
     public CustomerSpawnerScript customerSpawner;
 
     // The prefab of the special customer to spawn during the event
+    // mostly used for the Inspect if we putting it in
     public GameObject specialCustomerPrefab;
     public int customerAmount = 1;
     public float spawnDelay = 5f;

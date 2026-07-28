@@ -1,5 +1,4 @@
 using System.Collections;
-using Customer;
 using UnityEngine;
 
 public class RushHourEventScript : MonoBehaviour
