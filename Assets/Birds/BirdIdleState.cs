@@ -16,12 +16,6 @@ public class BirdIdleState : BirdState
 
     public override void DoAction()
     {
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    BirdState moveState = transitionStates[0];
-
-        //    stateManager.TransitionToNewState(moveState);
-        //}
 
         if (currentFlyPoint == null)
         {

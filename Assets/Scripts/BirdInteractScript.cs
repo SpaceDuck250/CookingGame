@@ -13,11 +13,11 @@ public class BirdInteractScript : Interactable
             return;
         }
 
-        if (playerHand.currentFoodHeld != null && SearchState.searchFood == null)
+        if (playerHand.currentFoodHeld != null && manager.searchFood == null)
         {
             manager.TransitionToNewState(SearchState);
 
-            SearchState.CreateSearchItem(playerHand.currentFoodHeld);
+            manager.CreateSearchItem(playerHand.currentFoodHeld);
             playerHand.ClearFoodFromHand();
         }
 

@@ -7,6 +7,9 @@ public class BirdAIManager : MonoBehaviour
 
     public BirdMovementScript movementScript;
 
+    public Transform foodSpawnParent;
+    public FoodData searchFood;
+
     private void Start()
     {
         TransitionToNewState(currentState);
@@ -25,6 +28,10 @@ public class BirdAIManager : MonoBehaviour
 
     }
 
-
+    public void CreateSearchItem(FoodData foodData)
+    {
+        searchFood = foodData;
+        CookingInputOutputScript.SpawnDisplayFoodInPosition(searchFood, foodSpawnParent, Vector3.zero, false);
+    }
 
 }

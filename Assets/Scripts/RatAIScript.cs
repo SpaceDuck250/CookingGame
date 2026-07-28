@@ -158,7 +158,7 @@ public class RatAIScript : MonoBehaviour
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
         // Food is too far away
-        if (distanceToFood >= tooFarDistance)
+        if (distanceToFood >= tooFarDistance || PlayerHandScript.instance.currentFoodHeld == foodTarget)
         {
             agent.isStopped = false;
 

@@ -14,9 +14,6 @@ public class BirdFlyIntoTheSunsetState : BirdState
     public float moveSpeed;
     public float rotateSpeed;
 
-    public Transform foodSpawnParent;
-    public FoodData searchFood;
-
     private void Start()
     {
         BirdMovementScript.FillListWithChildrenFromTransform(parentWithExitPoints, ref flyPointsList);
@@ -59,8 +56,8 @@ public class BirdFlyIntoTheSunsetState : BirdState
         {
             currentFlyIndex = 0;
 
-            BirdState idleState = transitionStates[0];
-            stateManager.TransitionToNewState(idleState);
+            BirdState returnState = transitionStates[0];
+            stateManager.TransitionToNewState(returnState);
             return;
         }
 
@@ -69,9 +66,4 @@ public class BirdFlyIntoTheSunsetState : BirdState
 
     }
 
-    public void CreateSearchItem(FoodData foodData)
-    {
-        searchFood = foodData;
-        CookingInputOutputScript.SpawnDisplayFoodInPosition(searchFood, foodSpawnParent, Vector3.zero, false);
-    }
 }
