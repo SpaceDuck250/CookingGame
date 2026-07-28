@@ -96,6 +96,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
         //pickupFoodStore = pickupFood;
         //spawnedPickupFood = true;
 
+
         return pickupFood;
     }
 
@@ -126,14 +127,18 @@ public class CookingInputOutputScript : Interactable, ICookStation
             Destroy(newDisplayFood.GetComponent<Collider>());
         }
 
-        //if (clearHand)
-        //{
-        //    PlayerHandScript.instance.currentFoodHeld = null;
-        //    Destroy(PlayerHandScript.instance.currentFoodHeldObj);
-        //}
+        return newDisplayFood;
+    }
 
+    public static GameObject SpawnFoodInsidePlatter(FoodData foodData, Transform parent, Vector3 localPositionOffset)
+    {
+        GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false);
+
+        HoldableFoodScript holdScript = newDisplayFood.GetComponent<HoldableFoodScript>();
+        newDisplayFood.transform.localScale *= holdScript.platterScaleModifier;
 
         return newDisplayFood;
+
     }
 
     public override void Interact(PlayerHandScript playerHand)

@@ -8,11 +8,23 @@ public class MoneyManager : MonoBehaviour
     public static Action<MealData, CustomerMood, CustomerData> OnPayForOrder;
     public static Action<decimal, decimal, decimal> OnMoneyChanged;
 
-    public decimal PlayerMoneyAmount;
+    public static decimal playerMoneyAmount;
+
+    public decimal moneyStartAmount;
+
+    public static MoneyManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         OnPayForOrder += PayForOrder;
+
+        moneyStartAmount = 1000;
+        ChangeMoneyAmount(moneyStartAmount);
     }
 
     private void OnDestroy()
@@ -27,9 +39,9 @@ public class MoneyManager : MonoBehaviour
 
         decimal totalPayAmount = foodPayAmount + tipAmount;
 
-        PlayerMoneyAmount += totalPayAmount;
+        playerMoneyAmount += totalPayAmount;
 
-        decimal totalMoneyAmount = PlayerMoneyAmount;
+        decimal totalMoneyAmount = playerMoneyAmount;
         decimal earnedAmount = foodPayAmount;
 
         OnMoneyChanged?.Invoke(totalMoneyAmount, earnedAmount, tipAmount);
@@ -64,5 +76,15 @@ public class MoneyManager : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public void ChangeMoneyAmount(decimal change)
+    {
+        playerMoneyAmount += (decimal)change;
+
+        print("LP");
+
+        OnMoneyChanged?.Invoke(playerMoneyAmount, (decimal)change, 0);
+
     }
 }

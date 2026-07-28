@@ -4,12 +4,18 @@ using System;
 using System.Linq;
 using Customer;
 using System.Collections;
+using CustomerUtils;
 
 public class CustomerSpawnerScript : MonoBehaviour
 {
     //public GameObject customerPrefab;
 
-    public List<GameObject> customerPrefabList = new List<GameObject>();
+    
+    public List<GameObject> customerPrefabListToSpawn = new List<GameObject>();
+
+    // For static utility use
+    public List<CustomerNamePair> everyCustomerPrefabList = new List<CustomerNamePair>();
+    public static Dictionary<string,  GameObject> customerDictionary = new Dictionary<string, GameObject>();
 
     public Transform spawnPoint;
     public Transform exitTransform;
@@ -55,6 +61,8 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void Start()
     {
+        AddEveryCustomerToDictionary();
+
         spawnTimer = 0f;
 
         OnCustomerLeftQueue += OnCustomerOrderFinish;
@@ -119,12 +127,12 @@ public class CustomerSpawnerScript : MonoBehaviour
         GameObject prefabToInstantiate = overridePrefab;
         if (prefabToInstantiate == null)
         {
-            if (customerPrefabList == null || customerPrefabList.Count == 0)
+            if (customerPrefabListToSpawn == null || customerPrefabListToSpawn.Count == 0)
             {
                 Debug.LogWarning("No customer prefab available to spawn.");
                 return;
             }
-            prefabToInstantiate = customerPrefabList[UnityEngine.Random.Range(0, customerPrefabList.Count)];
+            prefabToInstantiate = customerPrefabListToSpawn[UnityEngine.Random.Range(0, customerPrefabListToSpawn.Count)];
         }
 
         // small scatter so spawned objects don't stack exactly on top of each other
@@ -273,5 +281,25 @@ public class CustomerSpawnerScript : MonoBehaviour
     public Transform GetFreeChair()
     {
         return FindFreeChair();
+    }
+
+    private void AddEveryCustomerToDictionary()
+    {
+        foreach (CustomerNamePair customer in everyCustomerPrefabList)
+        {
+            customerDictionary.Add(customer.customerName, customer.customerPrefab);
+        }
+    }
+}
+
+namespace CustomerUtils
+{
+    [Serializable]
+    public class CustomerNamePair
+    {
+        public GameObject customerPrefab;
+
+        // Should be unique
+        public string customerName;
     }
 }

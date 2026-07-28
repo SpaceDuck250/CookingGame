@@ -30,6 +30,12 @@ public class PlayerHandScript : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
         CheckForFoodInputs();
@@ -171,8 +177,12 @@ public class PlayerHandScript : MonoBehaviour
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
 
-        InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
-        interactArea.HideDisplay();
+        if (objectToCarry.tag == "Platter")
+        {
+            InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+            interactArea.HideDisplay();
+        }
+        
 
     }
 

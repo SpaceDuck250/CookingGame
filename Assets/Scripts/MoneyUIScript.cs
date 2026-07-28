@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class MoneyUIScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MoneyUIScript : MonoBehaviour
     public GameObject tipObj;
     public TextMeshProUGUI tipTextComponent;
 
-    private void Start()
+    private void Awake()
     {
         MoneyManager.OnMoneyChanged += OnMoneyChanged;
     }
@@ -30,12 +31,28 @@ public class MoneyUIScript : MonoBehaviour
 
     private void ShowEarnTextObj(decimal amount, decimal tipAmount)
     {
+        if (amount == 0)
+        {
+            return;
+        }
+
+        print("ShowMoney");
+
+        CancelInvoke("HideBothEarnObj");
         StopAllCoroutines();
 
-        earnTextComponent.text = "+" + amount + "$";
+        HideBothEarnObj();
 
-        
-        tipTextComponent.text = "+" + tipAmount + "$ Tip";
+        string sign = amount < 0 ? "-" : "+";
+        Color color = amount < 0 ? Color.red : Color.green;
+
+        amount = amount < 0 ? -amount : amount;
+
+        earnTextComponent.text = sign + amount + "$";
+
+        tipTextComponent.text = sign + tipAmount + "$ Tip";
+
+        earnTextComponent.color = color;
 
         earnObj.SetActive(true);
 
@@ -53,5 +70,6 @@ public class MoneyUIScript : MonoBehaviour
         earnObj.SetActive(false);
         tipObj.SetActive(false);
     }
+
 }
 

@@ -20,6 +20,10 @@ public class HoldableFoodScript : MonoBehaviour
 
     public bool canPickUp = true;
 
+    public float platterScaleModifier = 1;
+    public bool changeScaleOnPlatter = false;
+
+
     public void Start()
     {
         if (objectToDelete == null)
@@ -29,6 +33,7 @@ public class HoldableFoodScript : MonoBehaviour
 
         originalScale = transform.localScale;
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
+        platterScaleModifier = !changeScaleOnPlatter ? 1 : platterScaleModifier;
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
     }
     
