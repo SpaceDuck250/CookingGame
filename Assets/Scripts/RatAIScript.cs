@@ -98,7 +98,7 @@ public class RatAIScript : MonoBehaviour
 
         foreach (Collider food in foodsInRange)
         {
-            if (food.gameObject.tag == "Platter")
+            if (food.gameObject.tag == "Platter" || PlayerHandScript.instance.currentFoodHeldObj == food.gameObject)
             {
                 continue;
             }
@@ -158,7 +158,8 @@ public class RatAIScript : MonoBehaviour
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
         // Food is too far away
-        if (distanceToFood >= tooFarDistance || PlayerHandScript.instance.currentFoodHeld == foodTarget)
+        print(PlayerHandScript.instance.currentFoodHeld == foodTarget);
+        if (distanceToFood >= tooFarDistance || PlayerHandScript.instance.currentFoodHeldObj == foodTarget)
         {
             agent.isStopped = false;
 
