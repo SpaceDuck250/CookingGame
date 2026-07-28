@@ -27,6 +27,8 @@ public class BirdReturnState : BirdState
         {
             spawnedBox.GetComponent<Rigidbody>().useGravity = true;
             spawnedBox.GetComponent<HoldableFoodScript>().canPickUp = true;
+            spawnedBox.GetComponent<Collider>().isTrigger = false;
+
 
 
             spawnedBox.transform.parent = null;
@@ -50,6 +52,8 @@ public class BirdReturnState : BirdState
         deliveryBoxScript.SetupDeliveryData(randomDeliveryData);
 
         spawnedBox.GetComponent<Rigidbody>().useGravity = false;
+        spawnedBox.GetComponent<Collider>().isTrigger = true;
+
         spawnedBox.GetComponent<HoldableFoodScript>().canPickUp = false;
 
         stateManager.searchFood = null;
