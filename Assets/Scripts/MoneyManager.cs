@@ -82,7 +82,7 @@ public class MoneyManager : MonoBehaviour
     {
         playerMoneyAmount += (decimal)change;
 
-        print("LP");
+        //print("LP");
 
         OnMoneyChanged?.Invoke(playerMoneyAmount, (decimal)change, 0);
 

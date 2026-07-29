@@ -108,9 +108,9 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
                 // If no child specific prefab provided, fall back to spawner's consumer prefabs list
                 if (childPrefab == null)
                 {
-                    if (spawner.customerPrefabList != null && spawner.customerPrefabList.Count > 0)
+                    if (spawner.customerPrefabListToSpawn != null && spawner.customerPrefabListToSpawn.Count > 0)
                     {
-                        childPrefab = spawner.customerPrefabList[UnityEngine.Random.Range(0, spawner.customerPrefabList.Count)];
+                        childPrefab = spawner.customerPrefabListToSpawn[UnityEngine.Random.Range(0, spawner.customerPrefabListToSpawn.Count)];
                     }
                     else
                     {

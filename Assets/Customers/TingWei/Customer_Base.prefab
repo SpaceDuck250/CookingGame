@@ -769,6 +769,7 @@ GameObject:
   - component: {fileID: 1303847898872302087}
   - component: {fileID: 5866104269560528319}
   - component: {fileID: 95440999740362058}
+  - component: {fileID: -8735232166270148879}
   - component: {fileID: 8305492917439897951}
   - component: {fileID: 5572442997843537308}
   - component: {fileID: 3171387887883017947}
@@ -923,6 +924,20 @@ MonoBehaviour:
   customerHand: {fileID: 647629985983982532}
   platterHeld: {fileID: 0}
   stateMachine: {fileID: 3171387887883017947}
+--- !u!114 &-8735232166270148879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772638863480983493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c86eda1be4eff144a3250626e577e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MealServedEventReporterScript
+  mealChecker: {fileID: 486669025331925746, guid: 3e38f565dcb51df429191ffca583fbd2, type: 3}
+  eventData: {fileID: 0}
 --- !u!114 &8305492917439897951
 MonoBehaviour:
   m_ObjectHideFlags: 0

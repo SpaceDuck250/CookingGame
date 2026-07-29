@@ -1282,6 +1282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8735232166270148879, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      propertyPath: mealChecker
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_Name
       value: PandaVariant
@@ -1380,8 +1384,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8585688551322646921, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5343390603487618424}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 2877015271352144557}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+--- !u!1 &4421438175129792586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 1956390464203292559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2877015271352144557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4421438175129792586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c86eda1be4eff144a3250626e577e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MealServedEventReporterScript
+  mealChecker: {fileID: 486669025331925746, guid: 3e38f565dcb51df429191ffca583fbd2, type: 3}
+  eventData: {fileID: 0}
 --- !u!4 &7782221241002558982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8585688551322646921, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}

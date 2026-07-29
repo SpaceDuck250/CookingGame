@@ -10,7 +10,7 @@ public class PlayerLooker : MonoBehaviour
     private void Update()
     {
         TryLookAt();
-        print(currentLookComponent);
+        //print(currentLookComponent);
     }
 
     private void TryLookAt()

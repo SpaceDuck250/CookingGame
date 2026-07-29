@@ -16,7 +16,7 @@ public class AIEventSystemScript : MonoBehaviour
     public int minimumDishesForFussyCustomer = 4;
     public int minimumFoodForInspector = 4;
     public float eventDuration = 30f;
-    public float eventCooldown = 300f;
+    public float eventCooldown = 100f;
     public float checkInterval = 10f;
 
     // Event parameters for Fussy Customer
@@ -153,5 +153,19 @@ public class AIEventSystemScript : MonoBehaviour
         nextEventAllowedTime = Time.time + eventCooldown;
 
         OnEventFinished?.Invoke(eventType);
+    }
+
+    // Testing purposes
+    [ContextMenu("Test Fussy Customer Event")]
+    public void TestFussyCustomerEvent()
+    {
+        if (currentEvent != HawkerEventType.None)
+        {
+            Debug.Log("Cannot test Fussy Customer because another event is active.");
+
+            return;
+        }
+
+        StartEvent(HawkerEventType.FussyCustomer);
     }
 }
