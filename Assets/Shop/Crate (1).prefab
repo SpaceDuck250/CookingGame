@@ -802,6 +802,8 @@ GameObject:
   - component: {fileID: 2502368950076739933}
   - component: {fileID: 3812308199881571037}
   - component: {fileID: 2808660004519842441}
+  - component: {fileID: 6188226626875825371}
+  - component: {fileID: 2583612130748618178}
   m_Layer: 7
   m_Name: Crate (1)
   m_TagString: Untagged
@@ -856,7 +858,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5043821237217690778}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -870,7 +872,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -890,6 +892,9 @@ MonoBehaviour:
   interactKeyCode: 101
   spawnPoint: {fileID: 2117893206458594467}
   upOffsetValue: 0.6
+  tapsNeeded: 5
+  tapsMade: 0
+  boxAnimator: {fileID: 2583612130748618178}
 --- !u!114 &2808660004519842441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +921,40 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+--- !u!114 &6188226626875825371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043821237217690778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9100c421b585c0f4591a3b8b522feb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!95 &2583612130748618178
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043821237217690778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 972be0fb72affb94e96c34531955c043, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5263839408311271853
 GameObject:
   m_ObjectHideFlags: 0

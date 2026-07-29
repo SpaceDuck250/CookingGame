@@ -23,6 +23,7 @@ public class HoldableFoodScript : MonoBehaviour
     public float platterScaleModifier = 1;
     public bool changeScaleOnPlatter = false;
 
+
     public void Start()
     {
         if (objectToDelete == null)

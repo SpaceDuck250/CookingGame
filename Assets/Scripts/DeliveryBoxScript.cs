@@ -9,6 +9,11 @@ public class DeliveryBoxScript : Interactable
 
     public float upOffsetValue;
 
+    public int tapsNeeded = 5;
+    public int tapsMade = 0;
+
+    public Animator boxAnimator;
+
     public void SetupDeliveryData(FoodDeliveryData deliveryData)
     {
         this.deliveryData = deliveryData;
@@ -16,8 +21,16 @@ public class DeliveryBoxScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        SpawnAllFoodsInside();
-        Destroy(gameObject);
+        tapsMade++;
+        if (tapsMade == tapsNeeded)
+        {
+            SpawnAllFoodsInside();
+            Destroy(gameObject);
+        }
+
+        boxAnimator.SetTrigger("Tap");
+
+       
     }
 
     public void SpawnAllFoodsInside()
