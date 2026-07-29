@@ -154,18 +154,4 @@ public class AIEventSystemScript : MonoBehaviour
 
         OnEventFinished?.Invoke(eventType);
     }
-
-    // Testing purposes
-    [ContextMenu("Test Fussy Customer Event")]
-    public void TestFussyCustomerEvent()
-    {
-        if (currentEvent != HawkerEventType.None)
-        {
-            Debug.Log("Cannot test Fussy Customer because another event is active.");
-
-            return;
-        }
-
-        StartEvent(HawkerEventType.FussyCustomer);
-    }
 }
