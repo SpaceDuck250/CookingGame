@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 1484444076114946706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,6 +248,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2394984787021862795, guid: 5326de580c4f82f47ada5e52897a09bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1712318906854506408}
+    - targetCorrespondingSourceObject: {fileID: 2394984787021862795, guid: 5326de580c4f82f47ada5e52897a09bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2584993631553085974}
   m_SourcePrefab: {fileID: 100100000, guid: 5326de580c4f82f47ada5e52897a09bc, type: 3}
 --- !u!4 &5682495867654575001 stripped
 Transform:
@@ -300,6 +303,21 @@ MonoBehaviour:
   currentRecipeUsed: {fileID: 0}
   invisiblePickupObject: {fileID: 2857888251841912128, guid: 356252127a29c5046b151dca10e7aaca, type: 3}
   hasFood: 0
+--- !u!114 &2584993631553085974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306234371516839346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8362db53c764b3469b3d033b0f97acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChopParticleScript
+  cutterScript: {fileID: 8850819861859194436}
+  chopParticlePrefab: {fileID: 4025702623158786883, guid: 3f8210f324cd7d348b0d42a83c739c4a, type: 3}
+  particleSpawnPoint: {fileID: 7791301753168661660}
 --- !u!4 &8826412348813835415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4478253473746312878, guid: 5326de580c4f82f47ada5e52897a09bc, type: 3}

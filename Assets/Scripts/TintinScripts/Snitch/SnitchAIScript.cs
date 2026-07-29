@@ -59,13 +59,16 @@ public class SnitchAIScript : MonoBehaviour
 
     private void OnMoodChanged(CustomerMood newMood)
     {
-        if (newMood != CustomerMood.Angry || hasDeductedForWait)
+        if (newMood == CustomerMood.Angry && !hasDeductedForWait)
         {
-            return;
+            hasDeductedForWait = true;
+            DeductPoints(longWaitDeduction, "customer got angry from waiting too long");
         }
 
-        hasDeductedForWait = true;
-        DeductPoints(longWaitDeduction, "customer got angry from waiting too long");
+        if (newMood == CustomerMood.ReallyAngry)
+        {
+            ForceReportStall("left really angry without being served");
+        }
     }
 
     private void OnWrongOrderGiven()
@@ -114,6 +117,11 @@ public class SnitchAIScript : MonoBehaviour
 
     private void OnServed()
     {
+        TryReportStall("was served");
+    }
+
+    private void TryReportStall(string context)
+    {
         if (hasReported)
         {
             return;
@@ -121,12 +129,27 @@ public class SnitchAIScript : MonoBehaviour
 
         string customerName = customerStateMachine.profile != null ? customerStateMachine.profile.customerName : gameObject.name;
 
-        Debug.Log("[Snitch] " + customerName + " was served. Final score: " + currentScore);
+        Debug.Log("[Snitch] " + customerName + " " + context + ". Final score: " + currentScore);
 
         if (currentScore < reportThreshold)
         {
             hasReported = true;
             HealthInspectorManager.ReportStall(customerName, currentScore);
         }
+    }
+
+    private void ForceReportStall(string context)
+    {
+        if (hasReported)
+        {
+            return;
+        }
+
+        string customerName = customerStateMachine.profile != null ? customerStateMachine.profile.customerName : gameObject.name;
+
+        Debug.Log("[Snitch] " + customerName + " " + context + ". Final score: " + currentScore + " (reporting regardless of score)");
+
+        hasReported = true;
+        HealthInspectorManager.ReportStall(customerName, currentScore);
     }
 }
