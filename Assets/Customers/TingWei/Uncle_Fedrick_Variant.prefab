@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8735232166270148879, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: mealChecker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 262773795950372829}
     - target: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: inputFoodDataList.Array.size
       value: 0
@@ -81,31 +81,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      insertIndex: 7
-      addedObject: {fileID: 1050157420339459526}
-    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3081443663729558874}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+--- !u!114 &262773795950372829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 213530060507802263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633752760055850322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MealChecker
 --- !u!1 &2633752760055850322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   m_PrefabInstance: {fileID: 213530060507802263}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1050157420339459526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2633752760055850322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c86eda1be4eff144a3250626e577e5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MealServedEventReporterScript
-  mealChecker: {fileID: 486669025331925746, guid: 3e38f565dcb51df429191ffca583fbd2, type: 3}
-  eventData: {fileID: 0}
 --- !u!114 &-3081443663729558874
 MonoBehaviour:
   m_ObjectHideFlags: 0

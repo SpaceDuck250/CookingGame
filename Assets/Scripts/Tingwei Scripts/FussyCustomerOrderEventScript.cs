@@ -190,6 +190,10 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
             yield break;
         }
 
+        int timeInSeconds = Random.Range(5, 15);
+
+        yield return new WaitForSeconds(timeInSeconds);
+
         // Attempt to change the customer's order to a different one
         bool changedSuccessfully = TryChangeToDifferentOrder(mealChecker);
 
