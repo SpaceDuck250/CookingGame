@@ -295,4 +295,6 @@ public class PlayerHandScript : MonoBehaviour
     {
         obj.transform.localScale = scaleAmount;
     }
+
+
 }
