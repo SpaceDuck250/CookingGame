@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2984459958774343602}
   - component: {fileID: 7703108222761402374}
   - component: {fileID: 6518200453447533196}
+  - component: {fileID: -4438815086082320473}
   m_Layer: 7
   m_Name: BurntSteak
   m_TagString: Untagged
@@ -74,7 +75,16 @@ MonoBehaviour:
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
   CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  changeRotationOnHand: 0
+  pickupScaleModifier: 0
   holdOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  canPickUp: 1
+  platterScaleModifier: 1
+  changeScaleOnPlatter: 0
 --- !u!54 &6518200453447533196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102,6 +112,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4438815086082320473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860735640173846947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  renderersList: []
 --- !u!1 &5316588540011574841
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +242,8 @@ GameObject:
   - component: {fileID: 3441452561966909961}
   - component: {fileID: 2991919341301636275}
   - component: {fileID: 4823127838027357792}
+  - component: {fileID: 6511083215165075110}
+  - component: {fileID: 3929313979666690863}
   m_Layer: 7
   m_Name: Plane.009
   m_TagString: Untagged
@@ -274,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 791d38ab4df68e74299003569570c530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -298,6 +323,32 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6511083215165075110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322136718231278232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  renderersList: []
+--- !u!114 &3929313979666690863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322136718231278232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  renderersList: []
 --- !u!1 &8186090511067176310
 GameObject:
   m_ObjectHideFlags: 0

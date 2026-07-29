@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5094597778107896111}
   - component: {fileID: 7432635932983758622}
   - component: {fileID: 686876068717902546}
+  - component: {fileID: -5586296078893390481}
   m_Layer: 7
   m_Name: BreadWhole
   m_TagString: Untagged
@@ -77,6 +78,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
   foodData: {fileID: 0}
   objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  changeRotationOnHand: 0
+  pickupScaleModifier: 0
+  holdOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  canPickUp: 1
+  platterScaleModifier: 1
+  changeScaleOnPlatter: 0
+--- !u!114 &-5586296078893390481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062613110505822880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  renderersList: []
 --- !u!1 &7488542530332746717
 GameObject:
   m_ObjectHideFlags: 0

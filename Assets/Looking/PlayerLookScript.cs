@@ -18,28 +18,34 @@ public class PlayerLooker : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, cam.transform.forward, out hit, maxDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-            if (hit.collider != null)
+
+            if (hit.collider == null)
             {
-                ILookable lookObj = hit.collider.GetComponentInParent<ILookable>();
-                if (lookObj == null)
-                {
-                    if (currentLookComponent != null)
-                    {
-                        currentLookComponent.StopLookEffect();
+                return;
+            }
 
-                    }
-                    currentLookComponent = null;
-                    return;
-                }
-
+            ILookable lookObj = hit.collider.GetComponentInParent<ILookable>();
+            if (lookObj == null)
+            {
                 if (currentLookComponent != null)
                 {
                     currentLookComponent.StopLookEffect();
 
                 }
-                currentLookComponent = lookObj;
-                currentLookComponent.DoLookEffect();
+                currentLookComponent = null;
+                return;
             }
+
+            if (currentLookComponent != null)
+            {
+                currentLookComponent.StopLookEffect();
+
+            }
+            currentLookComponent = lookObj;
+            currentLookComponent.DoLookEffect();
         }
+
+        
     }
+
 }
