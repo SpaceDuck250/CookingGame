@@ -92,7 +92,7 @@ public class CustomerSpawnerScript : MonoBehaviour
             }
             else // Normal spawn interval
             {
-                spawnInterval = UnityEngine.Random.Range(15f, 35f);
+                spawnInterval = UnityEngine.Random.Range(15f, 30f);
             }
 
             TrySpawnCustomer();

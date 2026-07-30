@@ -7,6 +7,7 @@ public class AIEventSystemScript : MonoBehaviour
 
     public static event Action<HawkerEventType> OnEventStarted;
     public static event Action<HawkerEventType> OnEventFinished;
+    public HawkerEventType lastCompletedEvent = HawkerEventType.None;
 
     public CustomerSpawnerScript customerSpawner;
     public AIEventDataScript eventData;
@@ -97,14 +98,14 @@ public class AIEventSystemScript : MonoBehaviour
     private void CheckForEvent()
     {
         // First decision in the eveet list, the RushHour
-        if (customerSpawner.ActiveCustomerCount < minimumCustomersBeforeRushHour)
+        if (lastCompletedEvent != HawkerEventType.RushHour && customerSpawner.ActiveCustomerCount < minimumCustomersBeforeRushHour)
         {
             StartEvent(HawkerEventType.RushHour);
             return;
         }
 
         // Second decision in the eveet list, the FussyCustomer
-        if (fussyCustomerEventArmed && eventData.DishesServedAtOnce >= minimumDishesForFussyCustomer)
+        if (lastCompletedEvent != HawkerEventType.FussyCustomer && fussyCustomerEventArmed && eventData.DishesServedAtOnce >= minimumDishesForFussyCustomer)
         {
             fussyCustomerEventArmed = false;
 
@@ -116,7 +117,7 @@ public class AIEventSystemScript : MonoBehaviour
         }
 
         // Third decision in the eveet list, the Inspector
-        if (inspectorEventArmed && eventData.FoodLyingAround >= minimumFoodForInspector)
+        if (lastCompletedEvent != HawkerEventType.Inspector && inspectorEventArmed && eventData.FoodLyingAround >= minimumFoodForInspector)
         {
             inspectorEventArmed = false;
 
@@ -149,6 +150,7 @@ public class AIEventSystemScript : MonoBehaviour
 
         Debug.Log("Finished Hawker Event: " + eventType);
 
+        lastCompletedEvent = eventType;
         currentEvent = HawkerEventType.None;
         nextEventAllowedTime = Time.time + eventCooldown;
 

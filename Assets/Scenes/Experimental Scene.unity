@@ -3669,15 +3669,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7de2bb256201642b9d8eb191051724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIEventSystemScript
+  lastCompletedEvent: 0
   customerSpawner: {fileID: 1283293908}
   eventData: {fileID: 760337577}
   minimumCustomersBeforeRushHour: 4
-  minimumDishesForFussyCustomer: 2
-  minimumFoodForInspector: 2
+  minimumDishesForFussyCustomer: 1
+  minimumFoodForInspector: 5
   eventDuration: 30
-  eventCooldown: 100
+  eventCooldown: 40
   checkInterval: 10
-  fussyCustomerAmount: 2
+  fussyCustomerAmount: 4
   servedDishWindow: 30
   foodLyingAround: 0
   currentEvent: 0
@@ -6461,7 +6462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
   customerPrefabListToSpawn:
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   - {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
+  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   - {fileID: 6557922557914966985, guid: 217a8e0eacc699d418e5db35ffbd5454, type: 3}
   - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   everyCustomerPrefabList:

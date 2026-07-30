@@ -190,7 +190,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
             yield break;
         }
 
-        int timeInSeconds = Random.Range(5, 15);
+        int timeInSeconds = Random.Range(15, 30);
 
         yield return new WaitForSeconds(timeInSeconds);
 
