@@ -98,7 +98,7 @@ public class AIEventSystemScript : MonoBehaviour
     private void CheckForEvent()
     {
         // First decision in the eveet list, the RushHour
-        if (lastCompletedEvent != HawkerEventType.RushHour && customerSpawner.ActiveCustomerCount < minimumCustomersBeforeRushHour)
+        if (lastCompletedEvent != HawkerEventType.RushHour && (customerSpawner.ActiveCustomerCount == 0 || customerSpawner.ActiveCustomerCount < minimumCustomersBeforeRushHour))
         {
             StartEvent(HawkerEventType.RushHour);
             return;

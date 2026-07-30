@@ -88,11 +88,11 @@ public class CustomerSpawnerScript : MonoBehaviour
             // Rush Hour event spawns interval
             if (eventRushHour)
             {
-                spawnInterval = UnityEngine.Random.Range(2f, 8f);
+                spawnInterval = UnityEngine.Random.Range(3f, 6f);
             }
             else // Normal spawn interval
             {
-                spawnInterval = UnityEngine.Random.Range(15f, 30f);
+                spawnInterval = UnityEngine.Random.Range(9f, 18f);
             }
 
             TrySpawnCustomer();
