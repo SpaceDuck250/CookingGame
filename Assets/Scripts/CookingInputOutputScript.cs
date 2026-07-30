@@ -136,6 +136,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
     {
         GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false);
 
+        newDisplayFood.GetComponent<Collider>().isTrigger = false;
+
         HoldableFoodScript holdScript = newDisplayFood.GetComponent<HoldableFoodScript>();
         newDisplayFood.transform.localScale *= holdScript.platterScaleModifier;
 
