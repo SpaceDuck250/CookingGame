@@ -27,7 +27,7 @@ public class PickupObjectSpawner : MonoBehaviour
             Destroy(pickupObject);
         }
 
-        pickupObject = inputOutputScript.SpawnPickupableOutputFood(spawnPosition, deleteObject, parent);
+        pickupObject = inputOutputScript.SpawnInvisiblePickupableOutputFood(spawnPosition, deleteObject, parent);
     }
 
     private void SpawnFailObject(Vector3 spawnPosition, GameObject deleteObject, Transform parent)
@@ -37,6 +37,6 @@ public class PickupObjectSpawner : MonoBehaviour
             Destroy(pickupObject);
         }
 
-        pickupObject = inputOutputScript.SpawnPickupableOutputFood(spawnPosition, deleteObject, parent, false);
+        pickupObject = inputOutputScript.SpawnInvisiblePickupableOutputFood(spawnPosition, deleteObject, parent, false);
     }
 }

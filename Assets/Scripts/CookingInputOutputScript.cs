@@ -73,7 +73,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
         PlayerHandScript.OnStopHoldSomething?.Invoke();
     }
 
-    public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
+    public GameObject SpawnInvisiblePickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
     {
         GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
 
@@ -101,7 +101,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false, float downScaleAmount = 1)
     {
         GameObject foodToSpawn;
         if (!useAlternate)
@@ -119,6 +119,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
 
         newDisplayFood.GetComponent<Rigidbody>().isKinematic = true;
         newDisplayFood.GetComponent<Collider>().isTrigger = true;
+
+        newDisplayFood.transform.localScale *= downScaleAmount;
 
         newDisplayFood.transform.localPosition = localPositionOffset;
 
