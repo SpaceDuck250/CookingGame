@@ -127,7 +127,7 @@ public class PlatterScript : Interactable
         {
             HoldableFoodScript holdScript = food.GetComponent<HoldableFoodScript>();
             holdScript.canPickUp = value;
-            food.GetComponent<Collider>().isTrigger = !value;
+            //food.GetComponent<Collider>().isTrigger = !value;
         }
     }
 }

@@ -75,9 +75,12 @@ public class PlayerHandScript : MonoBehaviour
             return false;
         }
 
+        int layerMask = ~(1 << 10);
+
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, layerMask, QueryTriggerInteraction.Collide))
         {
+            print(hit.collider.gameObject + " hit");
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponentInParent<HoldableFoodScript>();
             if (holdableFoodScript == null)
             {

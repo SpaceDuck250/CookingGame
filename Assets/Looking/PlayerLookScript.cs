@@ -15,8 +15,10 @@ public class PlayerLooker : MonoBehaviour
 
     private void TryLookAt()
     {
+        int layerMask = ~(1 << 10);
+
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistance, layerMask, QueryTriggerInteraction.Collide))
         {
 
             if (hit.collider == null)

@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CookingInputOutputScript : Interactable, ICookStation
 {
@@ -135,8 +136,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
     public static GameObject SpawnFoodInsidePlatter(FoodData foodData, Transform parent, Vector3 localPositionOffset)
     {
         GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false);
+        //newDisplayFood.GetComponent<Collider>().isTrigger = false;
 
-        newDisplayFood.GetComponent<Collider>().isTrigger = false;
 
         HoldableFoodScript holdScript = newDisplayFood.GetComponent<HoldableFoodScript>();
         newDisplayFood.transform.localScale *= holdScript.platterScaleModifier;
