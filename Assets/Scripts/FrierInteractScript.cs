@@ -29,6 +29,8 @@ public class FrierInteractScript : Interactable
 
     public bool cooking = false;
 
+    public float downScaleAmount = 1;
+
     private void Start()
     {
         SetupHeatLevels();
@@ -53,7 +55,7 @@ public class FrierInteractScript : Interactable
 
     private void OnCookingGameStart(FoodData food)
     {
-        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false, true);
+        foodHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, spawn, spawnOffset, false, true, downScaleAmount);
         CheckIfCooking();
     }
 

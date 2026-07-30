@@ -7,6 +7,8 @@ public class SteakGameSetupper : MonoBehaviour
 
     public bool alreadyCooking = false;
 
+    public float downScaleAmount = 1f;
+
     private void Start()
     {
         cookingInputOutput.OnCookingStart += OnCookingGameStart;
@@ -26,7 +28,7 @@ public class SteakGameSetupper : MonoBehaviour
         }
 
 
-        flipperScript.steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipperScript.flipObject.transform, flipperScript.localPositionOffset, false);
+        flipperScript.steakHeld = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodCooked, flipperScript.flipObject.transform, flipperScript.localPositionOffset, false, false, downScaleAmount);
 
         flipperScript.SetTopAndBottom();
     }
