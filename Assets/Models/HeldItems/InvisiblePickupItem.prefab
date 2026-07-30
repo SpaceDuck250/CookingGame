@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5549047748775026682}
   - component: {fileID: 5368840704151197881}
   - component: {fileID: 7991491705497927578}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: InvisiblePickupItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,17 @@ MonoBehaviour:
   foodData: {fileID: 0}
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
-  CreateMode: 0
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  changeRotationOnHand: 0
+  pickupScaleModifier: 0
+  holdOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  canPickUp: 1
+  platterScaleModifier: 1
+  changeScaleOnPlatter: 0
 --- !u!54 &7991491705497927578
 Rigidbody:
   m_ObjectHideFlags: 0

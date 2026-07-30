@@ -76,9 +76,14 @@ public class PlayerHandScript : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, foodLayer))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-            HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponent<HoldableFoodScript>();
+            HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponentInParent<HoldableFoodScript>();
+            if (holdableFoodScript == null)
+            {
+                return false;
+            }
+
             FoodData foodData = holdableFoodScript.foodData;
 
             if (!holdableFoodScript.canPickUp)
@@ -204,10 +209,10 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.GetComponent<Collider>().isTrigger = false;
 
 
-        Vector3 throwForce = cam.transform.forward * throwStrength;
-        rb.AddForce(throwForce, ForceMode.Impulse);
+        //Vector3 throwForce = cam.transform.forward * throwStrength;
+        //rb.AddForce(throwForce, ForceMode.Impulse);
 
-        rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
+        //rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
 
         ScaleObject(currentFoodHeldObj, currentFoodHeldObj.GetComponent<HoldableFoodScript>().originalScale);
 

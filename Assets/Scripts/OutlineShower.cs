@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 public class OutlineShower : MonoBehaviour, ILookable
 {
-    public List<Renderer> renderersList = new List<Renderer>();
+    public List<GameObject> objectsToOutlineList = new List<GameObject>();
+
+    public bool setManually = false;
 
     private void Start()
     {
+        if (setManually)
+        {
+            return;
+        }
+
         FillRenderersList();
     }
 
@@ -22,35 +29,39 @@ public class OutlineShower : MonoBehaviour, ILookable
 
     public void FillRenderersList()
     {
-        Renderer selfRenderer = gameObject.GetComponent<Renderer>();
-        if (selfRenderer != null)
+        objectsToOutlineList.Add(gameObject);
+
+        if (transform.childCount == 0)
         {
-            renderersList.Add(selfRenderer);
+            return;
         }
 
         foreach (Transform child in transform)
         {
-            Renderer childRenderer = child.GetComponent<Renderer>();
-            if (childRenderer != null)
-            {
-                renderersList.Add(childRenderer);
-            }
+            objectsToOutlineList.Add(child.gameObject);
         }
     }
 
     public void ShowOutline(bool show)
     {
-        if (renderersList.Count == 0)
+        if (objectsToOutlineList.Count == 0)
         {
             return;
         }
 
-        foreach (Renderer rend in renderersList)
+        if (objectsToOutlineList.Count == 0)
         {
-            if (rend != null)
+            return;
+        }
+
+        foreach (GameObject obj in objectsToOutlineList)
+        {
+            if (obj == null)
             {
-                rend.renderingLayerMask = show ? (1u << 3) : (1u << 0);
+                continue;
             }
+
+            obj.layer = show ? LayerMask.NameToLayer("Outlined") : LayerMask.NameToLayer("Default");
         }
     }
 
