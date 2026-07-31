@@ -227,10 +227,10 @@ MonoBehaviour:
   changeRotationOnHand: 0
   pickupScaleModifier: 0
   holdOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   canPickUp: 1
-  platterScaleModifier: 1
-  changeScaleOnPlatter: 0
+  platterScaleModifier: 0.5
+  changeScaleOnPlatter: 1
 --- !u!114 &2150952024611543958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,3 +244,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
+  setManually: 0
