@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.16
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.16
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.16
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       propertyPath: m_LocalPosition.x
@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -89,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1899260079706403902}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1202506407153095223}
   m_SourcePrefab: {fileID: 100100000, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
 --- !u!1 &3848448053501629172 stripped
 GameObject:
@@ -119,6 +122,8 @@ MonoBehaviour:
   holdOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   canPickUp: 1
+  platterScaleModifier: 1
+  changeScaleOnPlatter: 0
 --- !u!54 &6777695444376857742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,3 +172,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1202506407153095223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848448053501629172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  objectsToOutlineList: []
+  setManually: 0

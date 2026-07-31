@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CookingInputOutputScript : Interactable, ICookStation
 {
@@ -73,7 +74,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
         PlayerHandScript.OnStopHoldSomething?.Invoke();
     }
 
-    public GameObject SpawnPickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
+    public GameObject SpawnInvisiblePickupableOutputFood(Vector3 spawnPosition, GameObject deleteObject, Transform parent, bool success = true)
     {
         GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
 
@@ -101,7 +102,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
     }
 
     // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false)
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false, float downScaleAmount = 1)
     {
         GameObject foodToSpawn;
         if (!useAlternate)
@@ -120,6 +121,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
         newDisplayFood.GetComponent<Rigidbody>().isKinematic = true;
         newDisplayFood.GetComponent<Collider>().isTrigger = true;
 
+        newDisplayFood.transform.localScale *= downScaleAmount;
+
         newDisplayFood.transform.localPosition = localPositionOffset;
 
         if (!canPickUp)
@@ -133,6 +136,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
     public static GameObject SpawnFoodInsidePlatter(FoodData foodData, Transform parent, Vector3 localPositionOffset)
     {
         GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false);
+        //newDisplayFood.GetComponent<Collider>().isTrigger = false;
+
 
         HoldableFoodScript holdScript = newDisplayFood.GetComponent<HoldableFoodScript>();
         newDisplayFood.transform.localScale *= holdScript.platterScaleModifier;

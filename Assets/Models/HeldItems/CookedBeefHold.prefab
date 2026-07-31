@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4507418852758849157}
   - component: {fileID: 1412384938983259934}
   - component: {fileID: 4352274225110313086}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 791d38ab4df68e74299003569570c530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7327141820490797610}
   - component: {fileID: 4986747360417569486}
   - component: {fileID: 3897981207964921770}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,8 @@ GameObject:
   - component: {fileID: 4663680939244188353}
   - component: {fileID: 6660413458728303906}
   - component: {fileID: 2147714847089238212}
-  m_Layer: 7
+  - component: {fileID: 6338026860059301874}
+  m_Layer: 0
   m_Name: CookedBeefHold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +253,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   foodData: {fileID: 11400000, guid: 954bd5a3ac9a79044937555a2925a050, type: 2}
   objectToDelete: {fileID: 0}
+  platterIn: {fileID: 0}
+  CarryType: 0
+  cookingStationIn: {fileID: 0}
+  originalScale: {x: 0, y: 0, z: 0}
+  changeScaleOnHand: 0
+  changeRotationOnHand: 0
+  pickupScaleModifier: 0
+  holdOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  canPickUp: 1
+  platterScaleModifier: 0.5
+  changeScaleOnPlatter: 1
 --- !u!54 &2147714847089238212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -279,6 +292,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6338026860059301874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012672096107418222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  objectsToOutlineList: []
+  setManually: 0
 --- !u!1 &7919913943548653801
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +317,7 @@ GameObject:
   - component: {fileID: 2853781357634469267}
   - component: {fileID: 8961220276370663174}
   - component: {fileID: 3254314140777023211}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}

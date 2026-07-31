@@ -33,7 +33,7 @@ public class MealChecker : MonoBehaviour
         {
             return;
         }
-
+         
         PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
         inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
         platterHeld = platterGiver.platterScript;
@@ -47,7 +47,7 @@ public class MealChecker : MonoBehaviour
 
             // print("correct");
             OnMealOrderFulfilled?.Invoke();
-            NpcDialogueScript.OnOrderMetTalk?.Invoke(customerScript.heldCustomerData);
+            NpcDialogueScript.OnOrderMetDialogue?.Invoke(customerScript.heldCustomerData);
             stateMachine.OnCustomerChangeState?.Invoke(CustomerState.PayingForFood);    
 
             playerHand.TransferPlatterToCustomer(customerHand, Quaternion.identity * Quaternion.Euler(0, 90 + 90, 0));
@@ -61,7 +61,7 @@ public class MealChecker : MonoBehaviour
             customerScript.OnInteractWithCustomer?.Invoke();
 
             bool servedBurntFood = CheckIfMealContainsCookType(CookAmount.Burnt);
-            NpcDialogueScript.OnWrongMealServedTalk?.Invoke(stateMachine.profile, servedBurntFood);
+            NpcDialogueScript.OnWrongMealServedDialogue?.Invoke(stateMachine.profile, servedBurntFood);
         }
 
     }

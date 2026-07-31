@@ -22,6 +22,9 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     public Transform platterPoint;
 
+    // For rotation
+    public Transform mainCounterPoint;
+
     public List<Transform> chairTransforms = new List<Transform>();
     //public List<Transform> stallQueuePointList = new List<Transform>();
     public Transform[] stallQueuePointList = new Transform[4];
@@ -151,7 +154,7 @@ public class CustomerSpawnerScript : MonoBehaviour
         //CustomerMovementScript customerScript = newCustomer.GetComponent<CustomerMovementScript>();
         CustomerStateMachine customerStateMachine = newCustomer.GetComponent<CustomerStateMachine>();
 
-        customerStateMachine.counterPoint = queuePoint;
+        customerStateMachine.queuePoint = queuePoint;
         customerStateMachine.seatPoint = table;
         customerStateMachine.exitPoint = exitTransform;
         customerStateMachine.trayReturnPoint = platterPoint;
@@ -174,15 +177,15 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         for (int i = emptyQueueIndex + 1; i < stallQueuePointList.Length; i++)
         {
-            CustomerStateMachine customer = activeCustomers.FirstOrDefault(n => n.counterPoint == stallQueuePointList[i]);
+            CustomerStateMachine customer = activeCustomers.FirstOrDefault(n => n.queuePoint == stallQueuePointList[i]);
             if (customer != null && i != 0)
             {
-                customer.counterPoint = stallQueuePointList[i - 1];
+                customer.queuePoint = stallQueuePointList[i - 1];
 
                 CustomerMovementScript movementScript = customer.GetComponent<CustomerMovementScript>();
                 //movementScript.OnNewDestinationChange?.Invoke(customer.counterPoint);
 
-                StartCoroutine(MoveToNextPoint(movementScript, customer.counterPoint));
+                StartCoroutine(MoveToNextPoint(movementScript, customer.queuePoint));
             }
         }
     }
@@ -193,9 +196,9 @@ public class CustomerSpawnerScript : MonoBehaviour
 
         foreach (CustomerStateMachine customer in activeCustomers)
         {
-            if (customer.counterPoint != null)
+            if (customer.queuePoint != null)
             {
-                takenQueuePoints.Add(customer.counterPoint);
+                takenQueuePoints.Add(customer.queuePoint);
             }
         }
 
@@ -260,8 +263,8 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     public void OnCustomerOrderFinish(CustomerStateMachine customer)
     {
-        emptyQueueIndex = FindEmptyQueueIndex(customer.counterPoint);
-        customer.counterPoint = null;
+        emptyQueueIndex = FindEmptyQueueIndex(customer.queuePoint);
+        customer.queuePoint = null;
         customer.orderDone = true;
 
         //float waitTime = 2;

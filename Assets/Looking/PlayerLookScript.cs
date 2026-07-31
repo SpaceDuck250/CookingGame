@@ -15,31 +15,39 @@ public class PlayerLooker : MonoBehaviour
 
     private void TryLookAt()
     {
+        int layerMask = ~(1 << 10);
+
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, cam.transform.forward, out hit, maxDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistance, layerMask, QueryTriggerInteraction.Collide))
         {
-            if (hit.collider != null)
+
+            if (hit.collider == null)
             {
-                ILookable lookObj = hit.collider.GetComponentInParent<ILookable>();
-                if (lookObj == null)
-                {
-                    if (currentLookComponent != null)
-                    {
-                        currentLookComponent.StopLookEffect();
+                return;
+            }
 
-                    }
-                    currentLookComponent = null;
-                    return;
-                }
-
+            ILookable lookObj = hit.collider.GetComponentInParent<ILookable>();
+            if (lookObj == null)
+            {
                 if (currentLookComponent != null)
                 {
                     currentLookComponent.StopLookEffect();
 
                 }
-                currentLookComponent = lookObj;
-                currentLookComponent.DoLookEffect();
+                currentLookComponent = null;
+                return;
             }
+
+            if (currentLookComponent != null)
+            {
+                currentLookComponent.StopLookEffect();
+
+            }
+            currentLookComponent = lookObj;
+            currentLookComponent.DoLookEffect();
         }
+
+        
     }
+
 }

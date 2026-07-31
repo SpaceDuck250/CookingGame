@@ -75,10 +75,18 @@ public class PlayerHandScript : MonoBehaviour
             return false;
         }
 
+        int layerMask = ~(1 << 10);
+
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, foodLayer))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, layerMask, QueryTriggerInteraction.Collide))
         {
-            HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponent<HoldableFoodScript>();
+            print(hit.collider.gameObject + " hit");
+            HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponentInParent<HoldableFoodScript>();
+            if (holdableFoodScript == null)
+            {
+                return false;
+            }
+
             FoodData foodData = holdableFoodScript.foodData;
 
             if (!holdableFoodScript.canPickUp)
@@ -204,10 +212,10 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.GetComponent<Collider>().isTrigger = false;
 
 
-        Vector3 throwForce = cam.transform.forward * throwStrength;
-        rb.AddForce(throwForce, ForceMode.Impulse);
+        //Vector3 throwForce = cam.transform.forward * throwStrength;
+        //rb.AddForce(throwForce, ForceMode.Impulse);
 
-        rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
+        //rb.AddTorque(Vector3.up * spinStrength, ForceMode.Impulse);
 
         ScaleObject(currentFoodHeldObj, currentFoodHeldObj.GetComponent<HoldableFoodScript>().originalScale);
 
@@ -295,4 +303,6 @@ public class PlayerHandScript : MonoBehaviour
     {
         obj.transform.localScale = scaleAmount;
     }
+
+
 }
