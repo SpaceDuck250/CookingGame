@@ -100,7 +100,7 @@ public class UncleFedrickHandler : MonoBehaviour
 
         if (freeQueue != null && freeChair != null)
         {
-            stateMachine.counterPoint = freeQueue;
+            stateMachine.queuePoint = freeQueue;
             stateMachine.seatPoint = freeChair;
 
             // Change state back to walking to counter

@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
-using UnityEditorInternal;
 
 public class CustomerInteractScript : Interactable
 {
@@ -70,7 +69,8 @@ public class CustomerInteractScript : Interactable
 
         if (movementScript.agent.isStopped)
         {
-            RotateToPlayer();
+            //RotateToPlayer();
+            RotateTo(playerHand.gameObject);
         }
 
         if (CheckIfHoldingFood(playerHand) && talkedTo)
@@ -120,7 +120,7 @@ public class CustomerInteractScript : Interactable
         OnInteractWithCustomer?.Invoke();
         OnAnyCustomerInteract?.Invoke(customerStateMachine);
 
-        NpcDialogueScript.OnTalkToCustomer?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
+        NpcDialogueScript.OnShowDialogue?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
 
         OnCheckIfNeedToLeave?.Invoke(this);
     }
@@ -129,7 +129,7 @@ public class CustomerInteractScript : Interactable
     {
         OnEndInteractWithCustomer?.Invoke();
 
-        NpcDialogueScript.OnEndTalkToCustomer?.Invoke();
+        NpcDialogueScript.OnHideDialogue?.Invoke();
         if (orderComplete && !finishedInteract)
         {
 
@@ -160,9 +160,17 @@ public class CustomerInteractScript : Interactable
         }
     }
 
-    public void RotateToPlayer()
+    //public void RotateToPlayer()
+    //{
+    //    Vector3 rotateVector = (PlayerHandScript.instance.transform.position - transform.position).normalized;
+    //    float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
+
+    //    transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
+    //}
+
+    public void RotateTo(GameObject obj)
     {
-        Vector3 rotateVector = (PlayerHandScript.instance.transform.position - transform.position).normalized;
+        Vector3 rotateVector = (obj.transform.position - transform.position).normalized;
         float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, rotateAngle, 0);

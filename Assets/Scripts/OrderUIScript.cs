@@ -13,16 +13,16 @@ public class OrderUIScript : MonoBehaviour
 
     private void Start()
     {
-        NpcDialogueScript.OnTalkToCustomer += ShowOrder;
-        NpcDialogueScript.OnEndTalkToCustomer += HideOrder;
-        NpcDialogueScript.OnOrderMetTalk += FinishOrder;
+        NpcDialogueScript.OnShowDialogue += ShowOrder;
+        NpcDialogueScript.OnHideDialogue += HideOrder;
+        NpcDialogueScript.OnOrderMetDialogue += FinishOrder;
     }
 
     private void OnDestroy()
     {
-        NpcDialogueScript.OnTalkToCustomer -= ShowOrder;
-        NpcDialogueScript.OnEndTalkToCustomer -= HideOrder;
-        NpcDialogueScript.OnOrderMetTalk -= FinishOrder;
+        NpcDialogueScript.OnShowDialogue -= ShowOrder;
+        NpcDialogueScript.OnHideDialogue -= HideOrder;
+        NpcDialogueScript.OnOrderMetDialogue -= FinishOrder;
     }
 
     public void ShowOrder(CustomerData customerData, MealData mealOrdered, CustomerMood mood)
