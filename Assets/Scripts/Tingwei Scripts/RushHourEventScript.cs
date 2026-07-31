@@ -73,7 +73,7 @@ public class RushHourEventScript : MonoBehaviour
 
         spawnedCustomerCount++;
 
-        Debug.Log("Rush Hour customers spawned: " + spawnedCustomerCount + "/" + customersToSpawn);
+        //Debug.Log("Rush Hour customers spawned: " + spawnedCustomerCount + "/" + customersToSpawn);
 
         if (spawnedCustomerCount >= customersToSpawn)
         {

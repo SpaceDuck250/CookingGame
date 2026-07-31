@@ -54,7 +54,7 @@ public class MealServedEventReporterScript : MonoBehaviour
         // Record the dish served in the event data
         eventData.RecordDishServed();
 
-        Debug.Log("Dish recorded. Recent dishes served: " + eventData.DishesServedAtOnce);
+        //Debug.Log("Dish recorded. Recent dishes served: " + eventData.DishesServedAtOnce);
     }
 
     private void FindEventData()

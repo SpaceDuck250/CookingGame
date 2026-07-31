@@ -10,12 +10,12 @@ public class CustomerSpawnerScript : MonoBehaviour
 {
     //public GameObject customerPrefab;
 
-    
+
     public List<GameObject> customerPrefabListToSpawn = new List<GameObject>();
 
     // For static utility use
     public List<CustomerNamePair> everyCustomerPrefabList = new List<CustomerNamePair>();
-    public static Dictionary<string,  GameObject> customerDictionary = new Dictionary<string, GameObject>();
+    public static Dictionary<string, GameObject> customerDictionary = new Dictionary<string, GameObject>();
 
     public Transform spawnPoint;
     public Transform exitTransform;
@@ -79,6 +79,11 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void Update()
     {
+        CustomerSpawnerInterval();
+    }
+
+    public void CustomerSpawnerInterval()
+    {
         spawnTimer += Time.deltaTime;
 
         if (spawnTimer >= spawnInterval)
@@ -90,9 +95,13 @@ public class CustomerSpawnerScript : MonoBehaviour
             {
                 spawnInterval = UnityEngine.Random.Range(3f, 6f);
             }
+            else if (activeCustomers.Count == 1)
+            {
+                spawnInterval = UnityEngine.Random.Range(2f, 4f);
+            }
             else // Normal spawn interval
             {
-                spawnInterval = UnityEngine.Random.Range(9f, 18f);
+                spawnInterval = UnityEngine.Random.Range(12f, 24f);
             }
 
             TrySpawnCustomer();
