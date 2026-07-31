@@ -8,11 +8,11 @@ using System.Collections.Generic;
 
 public class NpcDialogueScript : MonoBehaviour
 {
-    public static Action<CustomerData, MealData, CustomerMood> OnTalkToCustomer;
-    public static Action OnEndTalkToCustomer;
-    public static Action<CustomerData> OnOrderMetTalk;
+    public static Action<CustomerData, MealData, CustomerMood> OnShowDialogue;
+    public static Action OnHideDialogue;
+    public static Action<CustomerData> OnOrderMetDialogue;
 
-    public static Action<CustomerData, bool> OnWrongMealServedTalk;
+    public static Action<CustomerData, bool> OnWrongMealServedDialogue;
 
     public CustomerData heldCustomerData;
 
@@ -23,25 +23,27 @@ public class NpcDialogueScript : MonoBehaviour
 
     public SlowTyper slowTyper;
 
+    public CustomerStateMachine currentCustomer;
+
     // Add slowtalk later
 
     private void Start()
     {
-        OnTalkToCustomer += TalkToCustomer;
-        OnEndTalkToCustomer += StopTalkToCustomer;
-        OnOrderMetTalk += OnOrderMetTalkFunction;
+        OnShowDialogue += TalkToCustomer;
+        OnHideDialogue += StopTalkToCustomer;
+        OnOrderMetDialogue += OnOrderMetTalkFunction;
 
-        OnWrongMealServedTalk += TalkWrongMeal;
+        OnWrongMealServedDialogue += TalkWrongMeal;
 
     }
 
     private void OnDestroy()
     {
-        OnTalkToCustomer -= TalkToCustomer;
-        OnEndTalkToCustomer -= StopTalkToCustomer;
-        OnOrderMetTalk -= OnOrderMetTalkFunction;
+        OnShowDialogue -= TalkToCustomer;
+        OnHideDialogue -= StopTalkToCustomer;
+        OnOrderMetDialogue -= OnOrderMetTalkFunction;
 
-        OnWrongMealServedTalk -= TalkWrongMeal;
+        OnWrongMealServedDialogue -= TalkWrongMeal;
 
     }
 
@@ -68,6 +70,8 @@ public class NpcDialogueScript : MonoBehaviour
         conversationOpen = false;
 
         dialogueObject.SetActive(false);
+
+        CustomerInteractScript.OnEndInteractWithCustomer?.Invoke();
     }
 
     public void OnOrderMetTalkFunction(CustomerData customer)

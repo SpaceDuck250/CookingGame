@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using Customer;
 
 public class CustomerMovementScript : MonoBehaviour
 {
@@ -55,6 +56,12 @@ public class CustomerMovementScript : MonoBehaviour
             return;
         }
         WalkToDestination();
+
+        // For a bug fix dumb as fuck
+        if (customerStateMachine.currentState == CustomerState.WalkingToCounter && CheckIfCloseEnoughToDestination())
+        {
+            customerStateMachine.interactScript.RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
+        }
     }
 
     private void SetNewDestination(Transform destination)

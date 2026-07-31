@@ -10,6 +10,7 @@ namespace Customer
     public enum CustomerState
     {
         WalkingToCounter,
+        IdleAtCounter,
         WalkingToSeat,
         Seated,
         WaitingForFood,
@@ -46,7 +47,7 @@ public class CustomerStateMachine : MonoBehaviour
     public CustomerInteractScript interactScript;
 
     // Points for the customer to move to
-    public Transform counterPoint;
+    public Transform queuePoint;
     public Transform seatPoint;
     public Transform exitPoint;
     public Transform trayReturnPoint;
@@ -157,7 +158,7 @@ public class CustomerStateMachine : MonoBehaviour
     // Customer sets counter as destination and walks to it
     private void GoToCounter()
     {
-        if (counterPoint == null)
+        if (queuePoint == null)
         {
             Debug.Log("Customer has no counterPoint.");
             return;
@@ -165,7 +166,8 @@ public class CustomerStateMachine : MonoBehaviour
 
         print("here3");
 
-        movementScript.OnNewDestinationChange?.Invoke(counterPoint);
+
+        movementScript.OnNewDestinationChange?.Invoke(queuePoint);
     }
 
     // Customer waits at the counter for the player to take their order
