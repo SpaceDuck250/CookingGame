@@ -15,6 +15,8 @@ public class CarrotCutter : Interactable
     public int chops;
     public int requiredChops;
 
+    public KnifeAnimatorScript knifeAnimator;
+
     private void Start()
     {
         cookingInputOutput.OnCookingStart += OnCookingGameStart;
@@ -49,6 +51,17 @@ public class CarrotCutter : Interactable
 
     public void Chop()
     {
+        if (knifeAnimator.animator.GetCurrentAnimatorStateInfo(0).IsName("KnifeCut"))
+        {
+            return;
+        }
+
+        knifeAnimator.PlayKnifeChop();
+    }
+
+    // Using Unity Event
+    public void ActuallyChop()
+    {
         chops++;
         if (chops >= requiredChops)
         {
@@ -62,7 +75,7 @@ public class CarrotCutter : Interactable
 
             ICookStation cookStation = cookingInputOutput.GetComponent<ICookStation>();
             cookStation.CallFoodSuccessEvent(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
-                
+
             //OnCookingSuccess?.Invoke(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
 
             Destroy(cutObj);
@@ -70,6 +83,7 @@ public class CarrotCutter : Interactable
             chops = 0;
             canCut = false;
             cutFoodData = null;
+
         }
     }
 }
