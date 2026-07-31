@@ -127,6 +127,7 @@ public class CustomerInteractScript : Interactable
 
     public void CloseConversation()
     {
+        RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnHideDialogue?.Invoke();
