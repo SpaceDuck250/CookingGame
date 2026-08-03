@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &213530060507802263
+--- !u!1001 &5254072891408476751
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,45 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8735232166270148879, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: mealChecker
-      value: 
-      objectReference: {fileID: 262773795950372829}
-    - target: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: inputFoodDataList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1071675866152844183, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c0e48b866f84289458d11e0b0cafc56a, type: 2}
+      objectReference: {fileID: 2100000, guid: a53826eae77e1f448aa886ec1e8cf22e, type: 2}
     - target: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_Name
-      value: Uncle_Fedrick_Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: profile
-      value: 
-      objectReference: {fileID: 11400000, guid: 83e0c7113bc051144a0aab70881a3569, type: 2}
-    - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: maxWaitTime
-      value: 60
+      value: Customer_AuntMerry_Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3256582981443802495, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.764471
+      value: 0.6704463
       objectReference: {fileID: 0}
     - target: {fileID: 3256582981443802495, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.22
+      value: 0.4999998
       objectReference: {fileID: 0}
     - target: {fileID: 3256582981443802495, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.111725
+      value: 9.1762085
       objectReference: {fileID: 0}
     - target: {fileID: 3256582981443802495, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -76,45 +56,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5572442997843537308, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: heldCustomerData
-      value: 
-      objectReference: {fileID: 11400000, guid: 83e0c7113bc051144a0aab70881a3569, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3081443663729558874}
+      addedObject: {fileID: 2168846002699757042}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
---- !u!114 &262773795950372829 stripped
+--- !u!114 &7271412403438826644 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  m_PrefabInstance: {fileID: 213530060507802263}
+  m_CorrespondingSourceObject: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 5254072891408476751}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2633752760055850322}
+  m_GameObject: {fileID: 7966959198528562570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5877293004989fc4484560aa3b8291b3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MealChecker
---- !u!1 &2633752760055850322 stripped
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
+--- !u!1 &7966959198528562570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  m_PrefabInstance: {fileID: 213530060507802263}
+  m_PrefabInstance: {fileID: 5254072891408476751}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-3081443663729558874
+--- !u!114 &2168846002699757042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2633752760055850322}
+  m_GameObject: {fileID: 7966959198528562570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948fd1989c598f246be9dc97e5792c9a, type: 3}
+  m_Script: {fileID: 11500000, guid: f31ec96e68bdeac4da15f212909cae95, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UncleFedrickHandler
-  uncleFedrickReturn: 1
-  returnChance: 0.3
+  m_EditorClassIdentifier: Assembly-CSharp::AuntMerryCustomerScript
+  stateMachine: {fileID: 7271412403438826644}
+  eventSystem: {fileID: 0}
+  eventData: {fileID: 0}
+  hasCheckedFloor: 0
+  inspectorRequestPending: 0

@@ -156,4 +156,21 @@ public class AIEventSystemScript : MonoBehaviour
 
         OnEventFinished?.Invoke(eventType);
     }
+
+    // Force start event
+    public bool TryStartPriorityEvent(HawkerEventType eventType)
+    {
+        if (eventType == HawkerEventType.None)
+        {
+            return false;
+        }
+
+        if (currentEvent != HawkerEventType.None)
+        {
+            return false;
+        }
+
+        StartEvent(eventType);
+        return true;
+    }
 }
