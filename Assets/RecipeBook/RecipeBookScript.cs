@@ -1,50 +1,59 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class RecipeBookScript : Interactable
+namespace RecipeBook
 {
-    public List<RecipeData> normalRecipeDataList = new List<RecipeData>();
-
-    public List<SpecialRecipe> specialRecipeDataList = new List<SpecialRecipe>();
-
-    public bool opened = false;
-
-    public GameObject closedBook;
-    public GameObject openBook;
-
-    public TurnScript turnScript;
-    public Transform lookPoint;
-
-    public override void Interact(PlayerHandScript playerHand)
+    public class RecipeBookScript : Interactable
     {
-        if (opened)
+        public List<RecipeData> normalRecipeDataList = new List<RecipeData>();
+
+        public List<SpecialRecipe> specialRecipeDataList = new List<SpecialRecipe>();
+
+        public List<Page> pageList = new List<Page>();
+
+        public bool opened = false;
+
+        public GameObject closedBook;
+        public GameObject openBook;
+
+        public TurnScript turnScript;
+        public Transform lookPoint;
+
+        public override void Interact(PlayerHandScript playerHand)
         {
-            CloseBook();
+            if (opened)
+            {
+                CloseBook();
+            }
+            else
+            {
+                OpenBook();
+
+            }
         }
-        else
+
+        public void OpenBook()
         {
-            OpenBook();
+            opened = true;
+            openBook.SetActive(true);
+            closedBook.SetActive(false);
 
+            turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(61f, 0, 0)), transform);
         }
+
+        public void CloseBook()
+        {
+            opened = false;
+            openBook.SetActive(false);
+            closedBook.SetActive(true);
+
+            turnScript.ReturnBackToPlayer();
+        }
+
     }
 
-    public void OpenBook()
+    public class Page
     {
-        opened = true;
-        openBook.SetActive(true);
-        closedBook.SetActive(false);
-
-        turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(61f, 0, 0)), transform);
+        public RecipeData[] recipeArray = new RecipeData[3];
     }
-
-    public void CloseBook()
-    {
-        opened = false;
-        openBook.SetActive(false);
-        closedBook.SetActive(true);
-
-        turnScript.ReturnBackToPlayer();
-
-    }
-
 }
