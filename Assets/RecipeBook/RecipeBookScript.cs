@@ -12,6 +12,9 @@ public class RecipeBookScript : Interactable
     public GameObject closedBook;
     public GameObject openBook;
 
+    public TurnScript turnScript;
+    public Transform lookPoint;
+
     public override void Interact(PlayerHandScript playerHand)
     {
         if (opened)
@@ -23,8 +26,6 @@ public class RecipeBookScript : Interactable
             OpenBook();
 
         }
-
-
     }
 
     public void OpenBook()
@@ -32,6 +33,8 @@ public class RecipeBookScript : Interactable
         opened = true;
         openBook.SetActive(true);
         closedBook.SetActive(false);
+
+        turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(61f, 0, 0)), transform);
     }
 
     public void CloseBook()
@@ -40,5 +43,8 @@ public class RecipeBookScript : Interactable
         openBook.SetActive(false);
         closedBook.SetActive(true);
 
+        turnScript.ReturnBackToPlayer();
+
     }
+
 }

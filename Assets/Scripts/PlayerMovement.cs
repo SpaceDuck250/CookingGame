@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 refVelocity;
 
+    public bool canMove = true;
+
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
@@ -24,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     } 
     private void Update()
     {
+        if (!canMove)
+        {
+            return;
+        }
+
         moveX = Input.GetAxisRaw("Horizontal");
         moveZ = Input.GetAxisRaw("Vertical");
 

@@ -1124,6 +1124,7 @@ GameObject:
   - component: {fileID: 75082316}
   - component: {fileID: 75082314}
   - component: {fileID: 75082315}
+  - component: {fileID: 75082317}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1205,6 +1206,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 955200649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &75082317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75082313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &77110727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3364,7 @@ Transform:
   m_Children:
   - {fileID: 931995171694162315}
   - {fileID: 441177986}
+  - {fileID: 851537543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &257556252
@@ -3339,6 +3385,8 @@ MonoBehaviour:
   opened: 0
   closedBook: {fileID: 441177985}
   openBook: {fileID: 550789385680186161}
+  turnScript: {fileID: 955200643}
+  lookPoint: {fileID: 851537543}
 --- !u!1 &284527605
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,6 +7883,37 @@ MonoBehaviour:
   shopSideScript: {fileID: 836164755}
   totalCost: 0
   costAmountText: {fileID: 1788282174}
+--- !u!1 &851537542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 851537543}
+  m_Layer: 6
+  m_Name: BookLookPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &851537543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851537542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.762, z: -0.726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 257556251}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &854008150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,6 +8759,13 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 75082314}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 21.01
+  rotateSpeed: 260.41
+  playerMove: {fileID: 955200644}
+  lockMode: 0
 --- !u!114 &955200644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8700,6 +8786,7 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!54 &955200645
 Rigidbody:
   m_ObjectHideFlags: 0
