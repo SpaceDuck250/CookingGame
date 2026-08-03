@@ -67,24 +67,8 @@ public class MealChecker : MonoBehaviour
 
     public bool CheckIfMealMatchesOrder()
     {
-        foreach (FoodData foodIngredient in mealToCheck.foodIngredients)
-        {
-            if (!inputFoodDataList.Contains(foodIngredient))
-            {
-                return false;
-            }
-        }
-
-        int correctIngredientsCount = mealToCheck.foodIngredients.Count;
-
-        if (correctIngredientsCount == inputFoodDataList.Count)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return inputFoodDataList.Select(f => f.foodName).OrderBy(name => name).SequenceEqual(
+        mealToCheck.foodIngredients.Select(f => f.foodName).OrderBy(name => name));
     }
 
     public bool CheckIfMealContainsCookType(CookAmount cookedAmountToCheckFor)
