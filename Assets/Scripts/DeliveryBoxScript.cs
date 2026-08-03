@@ -21,6 +21,11 @@ public class DeliveryBoxScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (playerHand.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         tapsMade++;
         if (tapsMade == tapsNeeded)
         {

@@ -15,8 +15,31 @@ public class TurnScript : MonoBehaviour
 
     public Camera cam;
 
+    public Vector3 originalPosition;
+
+    public Vector3 destination;
+    public Quaternion newRotation;
+
+    public float smoothValue;
+    public float rotateSpeed;
+
+    public PlayerMovement playerMove;
+
+    public bool lockMode = false;
+
+    private void Start()
+    {
+        originalPosition = cam.transform.localPosition;
+    }
+
     private void Update()
     {
+        if (lockMode)
+        {
+            MoveCamera();
+            return;
+        }
+
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
@@ -28,6 +51,41 @@ public class TurnScript : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(yTurn, 0, 0);
 
         transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
+
+
+    }
+
+    public void LockCameraToPoint(Vector3 newPoint, Quaternion turnAngle, Transform newParent)
+    {
+        lockMode = true;
+
+        playerMove.canMove = false;
+
+        cam.transform.parent = newParent;
+
+        destination = newPoint;
+        newRotation = turnAngle;
+
+    }
+
+    public void MoveCamera()
+    {
+        cam.transform.position = Vector3.MoveTowards(cam.transform.position, destination, Time.deltaTime * smoothValue);
+        cam.transform.localRotation = Quaternion.RotateTowards(cam.transform.localRotation, newRotation, Time.deltaTime * rotateSpeed);
+    }
+
+    public void ReturnBackToPlayer()
+    {
+        lockMode = false;
+
+        cam.transform.parent = transform;
+
+        cam.transform.localPosition = originalPosition;
+
+        playerMove.canMove = true;
+
+
+
 
     }
 }
