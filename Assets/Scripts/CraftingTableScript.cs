@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Collections;
 
 public class CraftingTableScript : Interactable
 {
@@ -23,10 +24,8 @@ public class CraftingTableScript : Interactable
     public Transform spawnParent;
     public float downScaleAmount = 1f;
 
-    private void Start()
-    {
-        CycleThroughRecipeList();
-    }
+    public Transform returnPoint;
+    public bool busyReturning = false;
 
     public override void Interact(PlayerHandScript playerHand)
     {
@@ -79,6 +78,8 @@ public class CraftingTableScript : Interactable
 
         OutputFoodResult();
 
+        craftingMode = false;
+
     }
 
     public void OutputFoodResult()
@@ -90,17 +91,21 @@ public class CraftingTableScript : Interactable
         newFoodObj.GetComponent<Collider>().isTrigger = false;
     }
 
-    public void CycleThroughRecipeList()
+    public void CycleThroughRecipeList(int amount)
     {
         if (craftingMode)
         {
             return;
         }
 
-        currentCycleIndex++;
+        currentCycleIndex += amount;
         if (currentCycleIndex >= specialRecipeList.Count)
         {
             currentCycleIndex = 0;
+        }
+        else if (currentCycleIndex < 0)
+        { 
+            currentCycleIndex = specialRecipeList.Count - 1;
         }
 
         currentRecipeUsed = specialRecipeList[currentCycleIndex];
@@ -108,5 +113,24 @@ public class CraftingTableScript : Interactable
         OnCycleThroughRecipe?.Invoke(currentRecipeUsed);
     }
 
+    public IEnumerator ReturnAllInputFoodBack()
+    {
+        busyReturning = true;
+        float waitTime = 0.5f;
+        foreach (FoodData food in foodInputList)
+        {
+            GameObject newFoodObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, returnPoint, Vector3.zero, true, false, downScaleAmount);
+            newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
+            newFoodObj.GetComponent<Collider>().isTrigger = false;
+
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        foodInputList.Clear();
+        craftingMode = false;
+        busyReturning = false;
+
+
+    }
 
 }

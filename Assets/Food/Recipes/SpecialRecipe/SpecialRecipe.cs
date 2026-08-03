@@ -6,6 +6,8 @@ public class SpecialRecipe : ScriptableObject
 {
     public string recipeName;
 
+    public Sprite recipeSprite;
+
     public List<FoodData> foodsNeededForRecipe = new List<FoodData>();
 
     public FoodData outputFood;
