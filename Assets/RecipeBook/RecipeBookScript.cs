@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace RecipeBook
 {
@@ -9,6 +10,7 @@ namespace RecipeBook
 
         public List<SpecialRecipe> specialRecipeDataList = new List<SpecialRecipe>();
 
+        public int maxItemsPerPage;
         public List<Page> pageList = new List<Page>();
 
         public bool opened = false;
@@ -16,8 +18,15 @@ namespace RecipeBook
         public GameObject closedBook;
         public GameObject openBook;
 
+        public GameObject crossHair;
+
         public TurnScript turnScript;
         public Transform lookPoint;
+
+        private void Start()
+        {
+            AutoFillPageList();
+        }
 
         public override void Interact(PlayerHandScript playerHand)
         {
@@ -30,6 +39,8 @@ namespace RecipeBook
                 OpenBook();
 
             }
+
+            //OpenBook();
         }
 
         public void OpenBook()
@@ -37,6 +48,11 @@ namespace RecipeBook
             opened = true;
             openBook.SetActive(true);
             closedBook.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            crossHair.SetActive(false);
 
             turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(61f, 0, 0)), transform);
         }
@@ -47,13 +63,40 @@ namespace RecipeBook
             openBook.SetActive(false);
             closedBook.SetActive(true);
 
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            crossHair.SetActive(true);
+
             turnScript.ReturnBackToPlayer();
+        }
+
+        private void AutoFillPageList()
+        {
+            if (normalRecipeDataList.Count == 0)
+            {
+                return;
+            }
+
+            int currentPageIndex = 0;
+            pageList.Add(new Page());
+
+            foreach (RecipeData recipe in normalRecipeDataList)
+            {
+                pageList[currentPageIndex].recipeArray.Add(recipe);
+                if (pageList[currentPageIndex].recipeArray.Count >= maxItemsPerPage)
+                {
+                    pageList.Add(new Page());
+                    currentPageIndex++;
+                }
+            }
         }
 
     }
 
+    [Serializable]
     public class Page
     {
-        public RecipeData[] recipeArray = new RecipeData[3];
+        public List<RecipeData> recipeArray = new List<RecipeData>();
     }
 }
