@@ -13,60 +13,89 @@ namespace RecipeBook
         public int maxItemsPerPage;
         public List<Page> pageList = new List<Page>();
 
+        public int currentShownPageIndex = 0;
+
         public bool opened = false;
+
+        public event Action OnBookOpen;
+        public event Action OnBookClose;
+        public Action OnPageTurn;
 
         public GameObject closedBook;
         public GameObject openBook;
 
         public GameObject crossHair;
+        public GameObject moneyBar;
 
         public TurnScript turnScript;
         public Transform lookPoint;
 
+        public RecipeBookUIScript recipeBookUI;
+
         private void Start()
         {
             AutoFillPageList();
+
+            recipeBookUI.GeneratePage(pageList[currentShownPageIndex]);
+        }
+
+        private void Update()
+        {
+            if (!opened)
+            {
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseBook();
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                recipeBookUI.FlipPage(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                recipeBookUI.FlipPage(-1);
+            }
         }
 
         public override void Interact(PlayerHandScript playerHand)
         {
             if (opened)
             {
-                CloseBook();
-            }
-            else
-            {
-                OpenBook();
-
+                return;
             }
 
-            //OpenBook();
+            OpenBook();
         }
 
         public void OpenBook()
         {
+            OnBookOpen?.Invoke();
+
             opened = true;
             openBook.SetActive(true);
             closedBook.SetActive(false);
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            // replace with event later
 
-            crossHair.SetActive(false);
 
             turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(61f, 0, 0)), transform);
         }
 
         public void CloseBook()
         {
+            OnBookClose?.Invoke();
+
             opened = false;
             openBook.SetActive(false);
             closedBook.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            // replace with event later
 
-            crossHair.SetActive(true);
 
             turnScript.ReturnBackToPlayer();
         }

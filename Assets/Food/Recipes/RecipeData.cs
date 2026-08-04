@@ -8,4 +8,14 @@ public class RecipeData : ScriptableObject
     public FoodData outputFood;
 
     public FoodData failedOutputFood;
+
+    // For recipe book
+    public CookingStation cookingStationUsed;
+}
+
+public enum CookingStation
+{
+    Cut,
+    Pan,
+    Skewer
 }
