@@ -29,10 +29,7 @@ public class RecipeBookUIScript : MonoBehaviour
 
     public void GeneratePage(Page pageData)
     {
-        foreach (Transform child in pageContentsContainer)
-        {
-            Destroy(child.gameObject);
-        }
+        ClearContainer();
 
         foreach (RecipeData recipeItem in pageData.recipeArray)
         {
@@ -72,12 +69,16 @@ public class RecipeBookUIScript : MonoBehaviour
         }
         else
         {
-            foreach (Transform child in pageContentsContainer)
-            {
-                Destroy(child.gameObject);
-            }
-
+         
             pageAnimator.SetTrigger("TurnBack");
+        }
+    }
+
+    public void ClearContainer()
+    {
+        foreach (Transform child in pageContentsContainer)
+        {
+            Destroy(child.gameObject);
         }
     }
 
@@ -102,8 +103,8 @@ public class RecipeBookUIScript : MonoBehaviour
     public void OnBookClose()
     {
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         crossHair.SetActive(true);
         moneyBar.SetActive(true);
@@ -112,8 +113,8 @@ public class RecipeBookUIScript : MonoBehaviour
     public void OnBookOpen()
     {
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
 
         crossHair.SetActive(false);
         moneyBar.SetActive(false);
