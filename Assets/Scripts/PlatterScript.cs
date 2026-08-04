@@ -15,11 +15,14 @@ public class PlatterScript : Interactable
 
     public Action<FoodData> OnFoodTakenOutOfPlatter;
 
-    public PlatterToggleScript platterModeToggler;
+    public HoldableFoodScript holdScript;
 
     private void Start()
     {
         OnFoodTakenOutOfPlatter += TakeFoodOutOfPlatter;
+
+        MakeAllFoodPickupable(false, "Default");
+        holdScript.canPickUp = true;
     }
 
     private void OnDestroy()
@@ -41,8 +44,9 @@ public class PlatterScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        if (!CheckIfPlayerIsHoldingFood(playerHand) || platterModeToggler.currentMode == PlatterToggleScript.PlatterMode.Finished)
+        if (!CheckIfPlayerIsHoldingFood(playerHand))
         {
+
             return;
         }
 

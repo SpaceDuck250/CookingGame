@@ -45,7 +45,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412716299812575864}
-  - component: {fileID: 2815793688029163826}
   - component: {fileID: 3347178455897151639}
   - component: {fileID: 1438227358317045207}
   m_Layer: 10
@@ -70,27 +69,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 590257948791415596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2815793688029163826
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793991715904695607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.3, y: 16.72, z: 5.14}
-  m_Center: {x: -0.0024681482, y: 3.0994918, z: 0}
 --- !u!114 &3347178455897151639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +493,7 @@ MonoBehaviour:
   - {fileID: 283545360708184732}
   currentIndex: 0
   upOffset: {x: 0, y: 0.57, z: 0}
-  platterModeToggler: {fileID: 3347178455897151639}
+  holdScript: {fileID: 0}
 --- !u!1001 &316908378117229943
 PrefabInstance:
   m_ObjectHideFlags: 0
