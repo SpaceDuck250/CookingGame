@@ -16,6 +16,8 @@ public class CarrotCutter : Interactable
     public int chops;
     public int requiredChops;
 
+    public event Action<int, int> OnChopped;
+
     public KnifeAnimatorScript knifeAnimator;
 
     private void Start()
