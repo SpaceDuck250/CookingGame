@@ -195,8 +195,8 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
             return;
         }
 
+        // Make sure that the spawn list is set to include Aunt Merry
         int safeIndex = Mathf.Clamp(auntMerryOriginalIndex, 0, customerSpawner.customerPrefabListToSpawn.Count);
-
         customerSpawner.customerPrefabListToSpawn.Insert(safeIndex, auntMerryPrefab);
 
         auntMerryRemovedFromSpawnList = false;
