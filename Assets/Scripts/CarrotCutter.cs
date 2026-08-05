@@ -9,6 +9,7 @@ public class CarrotCutter : Interactable
     public FoodData cutFoodData;
 
     public CookingInputOutputScript cookingInputOutput;
+    public event Action<int, int> OnChopped;
 
     public Transform foodSpawnArea;
     public Vector3 spawnOffset;

@@ -23,13 +23,13 @@ public class ChairScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other);
+        //print(other);
         if (other.gameObject.tag != "Customer" || heldCustomer != null)
         {
             return;
         }
 
-        print("hit");
+        //print("hit");
 
         //CustomerMovementScript movementScript = other.gameObject.GetComponent<CustomerMovementScript>();
         CustomerStateMachine customer = other.gameObject.GetComponent<CustomerStateMachine>();

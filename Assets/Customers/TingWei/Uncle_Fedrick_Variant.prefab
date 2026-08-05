@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8735232166270148879, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      propertyPath: mealChecker
+      value: 
+      objectReference: {fileID: 262773795950372829}
     - target: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: inputFoodDataList.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1071675866152844183, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c0e48b866f84289458d11e0b0cafc56a, type: 2}
     - target: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_Name
       value: Uncle_Fedrick_Variant
@@ -20,6 +28,10 @@ PrefabInstance:
       propertyPath: profile
       value: 
       objectReference: {fileID: 11400000, guid: 83e0c7113bc051144a0aab70881a3569, type: 2}
+    - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: maxWaitTime
       value: 60
@@ -76,6 +88,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -3081443663729558874}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+--- !u!114 &262773795950372829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 213530060507802263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633752760055850322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MealChecker
 --- !u!1 &2633752760055850322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
