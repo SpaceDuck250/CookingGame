@@ -9,6 +9,8 @@ public class RecipeDataItemScript : MonoBehaviour
 
     public Image cookingStationImage;
 
+    public TextMeshProUGUI recipeNameText;
+
     public void SetupRecipeItem(RecipeData recipe, Sprite cookingStationIcon)
     {
         outPutFood.sprite = recipe.outputFood.foodSprite;
@@ -16,5 +18,7 @@ public class RecipeDataItemScript : MonoBehaviour
         ingredientFood.sprite = recipe.inputFood.foodSprite;
 
         cookingStationImage.sprite = cookingStationIcon;
+
+        recipeNameText.text = recipe.recipeName;
     }
 }

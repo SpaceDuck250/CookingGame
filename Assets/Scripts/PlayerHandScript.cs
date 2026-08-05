@@ -80,14 +80,11 @@ public class PlayerHandScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, layerMask, QueryTriggerInteraction.Collide))
         {
-            print(hit.collider.gameObject + " hit");
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponentInParent<HoldableFoodScript>();
             if (holdableFoodScript == null)
             {
                 return false;
             }
-
-            FoodData foodData = holdableFoodScript.foodData;
 
             if (!holdableFoodScript.canPickUp)
             {
@@ -96,6 +93,7 @@ public class PlayerHandScript : MonoBehaviour
 
             if (!holdableFoodScript.CarryType)
             {
+                FoodData foodData = holdableFoodScript.foodData;
                 SwitchFoodItem(foodData, hit.collider.gameObject);
             }
             else
@@ -185,11 +183,11 @@ public class PlayerHandScript : MonoBehaviour
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
 
-        if (objectToCarry.tag == "Platter")
-        {
-            InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
-            interactArea.HideDisplay();
-        }
+        //if (objectToCarry.tag == "Platter")
+        //{
+        //    InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+        //    interactArea.HideDisplay();
+        //}
         
 
     }
@@ -221,7 +219,7 @@ public class PlayerHandScript : MonoBehaviour
 
         if (currentFoodHeldObj.tag == "Platter")
         {
-            currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
+            //currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
         }
 
         currentFoodHeldObj = null;

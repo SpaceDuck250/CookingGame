@@ -53,4 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+    public void FreezeMovement(bool value)
+    {
+        rb.constraints = value ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.FreezeRotation;
+    }
 }

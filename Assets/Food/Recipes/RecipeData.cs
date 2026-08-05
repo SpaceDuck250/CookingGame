@@ -11,6 +11,8 @@ public class RecipeData : ScriptableObject
 
     // For recipe book
     public CookingStation cookingStationUsed;
+
+    public string recipeName;
 }
 
 public enum CookingStation
