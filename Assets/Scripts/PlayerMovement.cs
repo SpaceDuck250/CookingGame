@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 targetVelocity = new Vector3(moveX, 0, moveZ) * moveSpeed; // Change later
         Vector3 targetVelocity = zLook * moveZ + xLook * moveX;
         targetVelocity *= moveSpeed;
-        targetVelocity.y = 0;
+        targetVelocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref refVelocity, smoothValue * Time.deltaTime);
 
