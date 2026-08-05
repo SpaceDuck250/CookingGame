@@ -27,6 +27,8 @@ public class CustomerData : ScriptableObject
 
     public float tipRange;
 
+    public bool isSpecialCustomer;
+
     public enum PersonalityTrait
     { 
         OnlyOrderChickenMeal, 

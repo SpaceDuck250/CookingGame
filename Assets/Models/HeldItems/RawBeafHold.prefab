@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1068802943684012631}
   m_Layer: 0
   m_Name: RawBeafHold
-  m_TagString: Untagged
+  m_TagString: HealthViolation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,8 +57,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.796812, y: 1, z: 1.8422531}
-  m_Center: {x: 0.015161226, y: 0, z: 0.112217195}
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8583355108117077176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
+  setManually: 0
 --- !u!1 &3403827375747520139
 GameObject:
   m_ObjectHideFlags: 0

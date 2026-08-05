@@ -33,7 +33,7 @@ public class MealChecker : MonoBehaviour
         {
             return;
         }
-
+         
         PlatterGiverScript platterGiver = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
         inputFoodDataList = platterGiver.GiveFoodDataListFromPlatter();
         platterHeld = platterGiver.platterScript;
@@ -42,9 +42,10 @@ public class MealChecker : MonoBehaviour
 
         if (CheckIfMealMatchesOrder())
         {
+            //print("correct");
             PlayerHandScript.OnStopHoldSomething?.Invoke();
 
-            print("correct");
+            // print("correct");
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetDialogue?.Invoke(customerScript.heldCustomerData);
             stateMachine.OnCustomerChangeState?.Invoke(CustomerState.PayingForFood);    

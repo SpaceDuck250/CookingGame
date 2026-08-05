@@ -164,7 +164,7 @@ public class CustomerStateMachine : MonoBehaviour
             return;
         }
 
-        print("here3");
+        //print("here3");
 
 
         movementScript.OnNewDestinationChange?.Invoke(queuePoint);

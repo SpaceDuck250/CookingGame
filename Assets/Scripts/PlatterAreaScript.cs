@@ -65,7 +65,7 @@ public class PlatterAreaScript : MonoBehaviour
 
             // spawn platter visual
             GameObject newPlatter = Instantiate(platterPrefab, spawnPoint.position, Quaternion.identity);
-            newPlatter.transform.localScale = new Vector3(2.209f, 0.14f, 1.58f);
+            newPlatter.transform.localScale = new Vector3(2, 2, 2);
 
             // Tell the customer's state machine to leave the map
             CustomerStateMachine csm = other.gameObject.GetComponent<CustomerStateMachine>();

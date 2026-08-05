@@ -36,7 +36,7 @@ public class MoneyUIScript : MonoBehaviour
             return;
         }
 
-        print("ShowMoney");
+        //print("ShowMoney");
 
         CancelInvoke("HideBothEarnObj");
         StopAllCoroutines();

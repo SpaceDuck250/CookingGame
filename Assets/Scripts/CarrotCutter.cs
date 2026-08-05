@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CarrotCutter : Interactable
 {
@@ -14,6 +15,8 @@ public class CarrotCutter : Interactable
 
     public int chops;
     public int requiredChops;
+
+    public event Action<int, int> OnChopped;
 
     public KnifeAnimatorScript knifeAnimator;
 
@@ -63,6 +66,9 @@ public class CarrotCutter : Interactable
     public void ActuallyChop()
     {
         chops++;
+
+        OnChopped?.Invoke(chops, requiredChops);
+
         if (chops >= requiredChops)
         {
             // DO whatever
