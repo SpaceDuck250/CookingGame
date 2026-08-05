@@ -60,6 +60,7 @@ public class TurnScript : MonoBehaviour
         lockMode = true;
 
         playerMove.canMove = false;
+        playerMove.FreezeMovement(true);
 
         cam.transform.parent = newParent;
 
@@ -83,6 +84,9 @@ public class TurnScript : MonoBehaviour
         cam.transform.localPosition = originalPosition;
 
         playerMove.canMove = true;
+
+        playerMove.FreezeMovement(false);
+
 
 
 
