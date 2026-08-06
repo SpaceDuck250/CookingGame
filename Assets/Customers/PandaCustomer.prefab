@@ -166,6 +166,7 @@ MonoBehaviour:
   interactScript: {fileID: 22514874436649540}
   interactRange: 5.81
   interacting: 0
+  inRange: 0
 --- !u!1 &8618742163773262691
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +512,7 @@ MonoBehaviour:
   customerScript: {fileID: 22514874436649540}
   customerHand: {fileID: 4637945670082920916}
   platterHeld: {fileID: 0}
+  stateMachine: {fileID: 0}
 --- !u!114 &22514874436649540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,11 +527,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerInteractScript
   interactKeyCode: 0
   heldCustomerData: {fileID: 11400000, guid: af99073f881ea5f4cbf454cf89c368a2, type: 2}
-  currentMealOrder: {fileID: 0}
   mealChecker: {fileID: 6552173289180411797}
   orderComplete: 0
   movementScript: {fileID: 97479266907034945}
   finishedInteract: 0
+  customerStateMachine: {fileID: 0}
+  talkedTo: 0
+  talkingTo: 0
+  talkRange: {fileID: 0}
 --- !u!114 &97479266907034945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,10 +548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 0}
-  stallQueuePointTransform: {fileID: 0}
-  chairTransform: {fileID: 0}
-  exitTransform: {fileID: 0}
-  platterAreaTransform: {fileID: 0}
   destinationPoint: {fileID: 0}
   sitTime: 0
   agent: {fileID: 5418247178881778052}
@@ -557,6 +558,8 @@ MonoBehaviour:
   normalTrayLocalPosition: {x: 0, y: 1.1133199, z: 0.807}
   seatedTrayLocalPosition: {x: 0, y: 0.937, z: 0.807}
   mealChecker: {fileID: 6552173289180411797}
+  customerStateMachine: {fileID: 0}
+  leaveWhenAngryScript: {fileID: 0}
 --- !u!4 &3367321358933645165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad0820df2b7cecd479d1b49f4001914d, type: 3}
