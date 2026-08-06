@@ -3,7 +3,9 @@ using UnityEngine;
 public class PlayerSoundManager : MonoBehaviour
 {
     public AudioSource walkingSrc;
+
     public AudioClip walkingClip;
+    public AudioClip pickupSound;
 
     public PlayerMovement playerMoveScript;
 
@@ -13,6 +15,8 @@ public class PlayerSoundManager : MonoBehaviour
 
         playerMoveScript.OnStopMove += PauseWalkingSound;
 
+        PlayerHandScript.OnHoldSomething += PlayPickupSound;
+
         walkingSrc.clip = walkingClip;
     }
 
@@ -21,6 +25,9 @@ public class PlayerSoundManager : MonoBehaviour
         playerMoveScript.OnMove -= PlayWalkingSound;
 
         playerMoveScript.OnStopMove -= PauseWalkingSound;
+
+        PlayerHandScript.OnHoldSomething -= PlayPickupSound;
+
 
     }
 
@@ -34,4 +41,11 @@ public class PlayerSoundManager : MonoBehaviour
     {
         walkingSrc.Pause();
     }
+
+    public void PlayPickupSound()
+    {
+        GeneralSoundManager.instance.PlaySoundEffect(pickupSound);
+    }
+
+ 
 }
