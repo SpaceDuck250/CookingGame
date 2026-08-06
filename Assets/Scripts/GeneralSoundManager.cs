@@ -1,14 +1,18 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class SoundManager : MonoBehaviour
+public class GeneralSoundManager : MonoBehaviour
 {
     public AudioClip musicClip1, musicClip2, storeClip;
 
+    public List<AudioClip> morningMusicList = new List<AudioClip>();
+    public List<AudioClip> afternoonMusicList = new List<AudioClip>();
+
     public AudioClip pickupClip, sizzleClip;
 
-    public AudioSource musicSrc, effectsSrx, longEffectsSrc;
+    public AudioSource musicSrc, effectsSrc;
 
-    public static SoundManager instance;
+    public static GeneralSoundManager instance;
 
     private void Awake()
     {
@@ -34,4 +38,12 @@ public class SoundManager : MonoBehaviour
         musicSrc.clip = newClip;
         musicSrc.Play();
     }
+
+    // Only for general sounds like pickup or click
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        effectsSrc.PlayOneShot(soundEffect);
+    }
+
+
 }
