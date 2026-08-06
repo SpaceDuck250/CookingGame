@@ -27,6 +27,9 @@ public class TurnScript : MonoBehaviour
 
     public bool lockMode = false;
 
+    public bool lockXNeg = false;
+    public bool lockXPos = false;
+
     private void Start()
     {
         originalPosition = cam.transform.localPosition;
@@ -50,7 +53,11 @@ public class TurnScript : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(yTurn, 0, 0);
 
-        transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
+
+
+        //transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
+        transform.Rotate(Vector3.up * TryLockDirection(mouseX) * Time.deltaTime * senseX);
+
 
 
     }
@@ -86,10 +93,19 @@ public class TurnScript : MonoBehaviour
         playerMove.canMove = true;
 
         playerMove.FreezeMovement(false);
+    }
 
+    public float TryLockDirection(float mouseX)
+    {
+        if (lockXNeg && mouseX < 0)
+        {
+            return 0;
+        }
+        else if (lockXPos && mouseX > 0)
+        {
+            return 0;
+        }
 
-
-
-
+        return mouseX;
     }
 }

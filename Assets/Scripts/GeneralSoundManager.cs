@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GeneralSoundManager : MonoBehaviour
 {
@@ -29,12 +30,12 @@ public class GeneralSoundManager : MonoBehaviour
 
     private void Start()
     {
-        SwitchBackgroundMusic(musicClip1);
+        StartCoroutine(PlaySong());
     }
 
     public void SwitchBackgroundMusic(AudioClip newClip)
     {
-        musicSrc.loop = true;
+        //musicSrc.loop = true;
         musicSrc.clip = newClip;
         musicSrc.Play();
     }
@@ -43,6 +44,45 @@ public class GeneralSoundManager : MonoBehaviour
     public void PlaySoundEffect(AudioClip soundEffect)
     {
         effectsSrc.PlayOneShot(soundEffect);
+    }
+
+    public IEnumerator PlaySong()
+    {
+        while (true)
+        {
+            List<AudioClip> audioListToUse = GetListFromTimeOfDay(TimeCycleScript.currentTimeOfDay);
+
+            AudioClip randomClip = PickRandomSongFromList(audioListToUse);
+
+            SwitchBackgroundMusic(randomClip);
+
+            yield return new WaitUntil(() => !musicSrc.isPlaying);
+        }
+        
+    }
+
+    public AudioClip PickRandomSongFromList(List<AudioClip> musicList)
+    {
+        int ranVal = Random.Range(0, musicList.Count);
+
+        return musicList[ranVal];
+    }
+
+    public List<AudioClip> GetListFromTimeOfDay(TimeOfDay currentTime)
+    {
+        switch (currentTime)
+        {
+            case TimeOfDay.Day:
+                return morningMusicList;
+
+            case TimeOfDay.Afternoon:
+                return afternoonMusicList;
+
+            case TimeOfDay.Evening:
+                return afternoonMusicList;
+            default:
+                return null;
+        }
     }
 
 

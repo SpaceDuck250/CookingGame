@@ -8,7 +8,7 @@ public class TimeCycleScript : MonoBehaviour
 
     // Time Cycle
     public float timePeriodDuration = 200f;
-    public TimeOfDay currentTimeOfDay = TimeOfDay.Day;
+    public static TimeOfDay currentTimeOfDay = TimeOfDay.Day;
     public float timePeriodTimer;
 
     private void Awake()
