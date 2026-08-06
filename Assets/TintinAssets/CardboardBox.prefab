@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6551291731801366060}
   - component: {fileID: 8788282963077282170}
   - component: {fileID: 7690905042362324166}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InteractArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -184,10 +184,10 @@ PrefabInstance:
       addedObject: {fileID: 7840324446407972183}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1786827261854774926}
+      addedObject: {fileID: 3217392867086917269}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3217392867086917269}
+      addedObject: {fileID: 8621442918812341907}
   m_SourcePrefab: {fileID: 100100000, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
 --- !u!4 &2419824108407028332 stripped
 Transform:
@@ -291,18 +291,6 @@ MonoBehaviour:
   tapsNeeded: 5
   tapsMade: 0
   boxAnimator: {fileID: 3217392867086917269}
---- !u!114 &-1786827261854774926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089224806826418390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9100c421b585c0f4591a3b8b522feb24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnlyInteractIfLookScript
 --- !u!95 &3217392867086917269
 Animator:
   serializedVersion: 7
@@ -325,3 +313,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8621442918812341907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089224806826418390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
+  objectsToOutlineList:
+  - {fileID: 3089224806826418390}
+  setManually: 1
