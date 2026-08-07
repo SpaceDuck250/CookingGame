@@ -48,7 +48,5 @@ public class TimeLightingScript : MonoBehaviour
                 directionalLight.intensity = eveningIntensity;
                 break;
         }
-
-        Debug.Log("Lighting changed for: " + timeOfDay);
     }
 }

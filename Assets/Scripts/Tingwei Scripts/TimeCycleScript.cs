@@ -22,8 +22,6 @@ public class TimeCycleScript : MonoBehaviour
 
         // The starting period
         OnTimeOfDayChanged?.Invoke(currentTimeOfDay);
-
-        Debug.Log("Current time of day: " + currentTimeOfDay);
     }
 
     private void Update()
