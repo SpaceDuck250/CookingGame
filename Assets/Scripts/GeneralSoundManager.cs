@@ -30,7 +30,8 @@ public class GeneralSoundManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(PlaySong());
+        //StartCoroutine(PlaySong());
+        StartCoroutine(SetupMusic());
     }
 
     public void SwitchBackgroundMusic(AudioClip newClip)
@@ -44,6 +45,26 @@ public class GeneralSoundManager : MonoBehaviour
     public void PlaySoundEffect(AudioClip soundEffect)
     {
         effectsSrc.PlayOneShot(soundEffect);
+    }
+    public IEnumerator SetupMusic()
+    {
+        foreach (AudioClip clip in morningMusicList)
+        {
+            clip.LoadAudioData();
+
+            while (clip.loadState == AudioDataLoadState.Loading)
+                yield return null;
+        }
+
+        foreach (AudioClip clip in afternoonMusicList)
+        {
+            clip.LoadAudioData();
+
+            while (clip.loadState == AudioDataLoadState.Loading)
+                yield return null;
+        }
+
+        StartCoroutine(PlaySong());
     }
 
     public IEnumerator PlaySong()
