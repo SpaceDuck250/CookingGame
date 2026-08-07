@@ -1358,7 +1358,7 @@ GameObject:
   - component: {fileID: 349854246}
   - component: {fileID: 349854245}
   - component: {fileID: 349854244}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Stall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 413685685}
   - component: {fileID: 413685684}
   - component: {fileID: 413685683}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2557,7 +2557,7 @@ GameObject:
   - component: {fileID: 642118259}
   - component: {fileID: 642118258}
   - component: {fileID: 642118257}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4154,6 +4154,9 @@ MonoBehaviour:
   customerSpawner: {fileID: 1283293908}
   auntMerryPrefab: {fileID: 7966959198528562570, guid: f9105fa712d7eae4195ee1b40c43a1c2, type: 3}
   activeAuntMerry: {fileID: 0}
+  inspectionPoints:
+  - {fileID: 1640052381}
+  - {fileID: 1817241711}
   inspectorRequestPending: 0
 --- !u!1001 &795257276
 PrefabInstance:
@@ -7000,12 +7003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
   customerPrefabListToSpawn:
-  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  - {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
-  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  - {fileID: 6557922557914966985, guid: 217a8e0eacc699d418e5db35ffbd5454, type: 3}
-  - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   - {fileID: 7966959198528562570, guid: f9105fa712d7eae4195ee1b40c43a1c2, type: 3}
+  - {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
+  - {fileID: 6557922557914966985, guid: 217a8e0eacc699d418e5db35ffbd5454, type: 3}
   - {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   everyCustomerPrefabList:
   - customerPrefab: {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
@@ -7016,6 +7016,8 @@ MonoBehaviour:
     customerName: Jovan
   - customerPrefab: {fileID: 2443635628423385213, guid: 3e38f565dcb51df429191ffca583fbd2, type: 3}
     customerName: Child
+  - customerPrefab: {fileID: 7966959198528562570, guid: f9105fa712d7eae4195ee1b40c43a1c2, type: 3}
+    customerName: Aunt Merry
   spawnPoint: {fileID: 713421322}
   exitTransform: {fileID: 736042597}
   platterPoint: {fileID: 106437547}
@@ -8021,7 +8023,7 @@ GameObject:
   - component: {fileID: 1546899633}
   - component: {fileID: 1546899632}
   - component: {fileID: 1546899631}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8116,7 +8118,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -11.07, y: 0.74, z: -2.03}
-  m_LocalScale: {x: 15, y: 1, z: 0.5}
+  m_LocalScale: {x: 16, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8133,7 +8135,7 @@ GameObject:
   - component: {fileID: 1579525743}
   - component: {fileID: 1579525742}
   - component: {fileID: 1579525741}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8227,7 +8229,7 @@ Transform:
   m_GameObject: {fileID: 1579525740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.181, y: 0.74, z: 3.55}
+  m_LocalPosition: {x: -10.181, y: 0.74, z: 5.52}
   m_LocalScale: {x: 2, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8489,6 +8491,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619077792}
   m_CullTransparentMesh: 1
+--- !u!1 &1640052380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640052381}
+  m_Layer: 0
+  m_Name: Inspection Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1640052381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640052380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 2.07, y: 0.8, z: -8.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &1642916108
 GameObject:
   m_ObjectHideFlags: 0
@@ -9284,7 +9317,7 @@ GameObject:
   - component: {fileID: 1817236618}
   - component: {fileID: 1817236623}
   - component: {fileID: 1817236622}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FoodOnFloorTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9431,6 +9464,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1817241710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817241711}
+  m_Layer: 0
+  m_Name: Inspection Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1817241711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817241710}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.79408723, z: -0, w: 0.6078039}
+  m_LocalPosition: {x: 3.12, y: 0.8, z: -3.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -105.138, z: 0}
 --- !u!1 &1830613340
 GameObject:
   m_ObjectHideFlags: 0
@@ -9966,7 +10030,7 @@ GameObject:
   - component: {fileID: 1922790514}
   - component: {fileID: 1922790513}
   - component: {fileID: 1922790512}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10658,7 +10722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541313654270402701, guid: 885af02525c9a0c4091309acdb4a8d3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2541313654270402701, guid: 885af02525c9a0c4091309acdb4a8d3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10705,6 +10769,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1062438682081386237, guid: 65416259b9ebcd44383199d73029b950, type: 3}
+      propertyPath: spawnItem
+      value: 
+      objectReference: {fileID: 1516176318025884226, guid: 7a49636414cb9ee43acdde978b7ef6d5, type: 3}
     - target: {fileID: 5789885893817106215, guid: 65416259b9ebcd44383199d73029b950, type: 3}
       propertyPath: m_Name
       value: Chicken Spawner
@@ -10719,7 +10787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392533093142023789, guid: 65416259b9ebcd44383199d73029b950, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6392533093142023789, guid: 65416259b9ebcd44383199d73029b950, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10877,7 +10945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8914519063637873286, guid: 8b15341a86bd9ab41bc9727909de7cec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.5
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 8914519063637873286, guid: 8b15341a86bd9ab41bc9727909de7cec, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10934,7 +11002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7088790384934026223, guid: 3534d5e1d6c3f1d4b96f491d95f7b2f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7088790384934026223, guid: 3534d5e1d6c3f1d4b96f491d95f7b2f2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10987,7 +11055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4989059256145773427, guid: cb4849e1e529e8442b09d99af54a37ac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 4989059256145773427, guid: cb4849e1e529e8442b09d99af54a37ac, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11048,7 +11116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8301156451218678314, guid: 41f0c0c84a40d534e9cb35b4a3fa08c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.5
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 8301156451218678314, guid: 41f0c0c84a40d534e9cb35b4a3fa08c3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11195,3 +11263,5 @@ SceneRoots:
   - {fileID: 895429744}
   - {fileID: 415886231}
   - {fileID: 1809652132}
+  - {fileID: 1640052381}
+  - {fileID: 1817241711}

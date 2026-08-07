@@ -6,6 +6,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
     public GameObject auntMerryPrefab;
     public CustomerStateMachine activeAuntMerry;
+    public Transform[] inspectionPoints;
 
     public bool inspectorRequestPending;
     private int auntMerryOriginalIndex = -1;
@@ -46,6 +47,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
         subscribedToSpawner = true;
 
+        CustomerSpawnerScript.OnCustomerExit -= HandleCustomerExit;
         CustomerSpawnerScript.OnCustomerExit += HandleCustomerExit;
 
         RememberAuntMerryListIndex();
@@ -112,6 +114,22 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
         RemoveAuntMerryFromSpawnList();
 
         Debug.Log("Aunt Merry spawned and was temporarily removed from the random customer list.");
+
+        AuntMerryCustomerScript auntMerryScript = spawnedCustomer.GetComponent<AuntMerryCustomerScript>();
+
+        if (auntMerryScript == null)
+        {
+            auntMerryScript = spawnedCustomer.GetComponentInChildren<AuntMerryCustomerScript>();
+        }
+
+        if (auntMerryScript != null)
+        {
+            auntMerryScript.SetInspectionPoints(inspectionPoints);
+        }
+        else
+        {
+            Debug.Log("Aunt Merry does not have AuntMerryCustomerScript.");
+        }
     }
 
     // Resets Aunt Merry spawn
