@@ -9,6 +9,8 @@ public class SlowTyper : MonoBehaviour
     public string dialogueLine;
     public float typeTime;
 
+    public DialogueSoundManager soundManager;
+
     private void Start()
     {
         typeTime = 0.01f;
@@ -22,6 +24,8 @@ public class SlowTyper : MonoBehaviour
 
     public IEnumerator TypeLine(string name, string newLine)
     {
+        soundManager.PlayTalkingAudio(soundManager.normalCustomerTalkingClip);
+
         dialogueTextComponent.text = string.Empty;
 
         dialogueLine = newLine;
@@ -34,5 +38,9 @@ public class SlowTyper : MonoBehaviour
             dialogueTextComponent.text += chars[i];
             yield return new WaitForSeconds(typeTime);
         }
+
+        soundManager.PauseTalkingAudio();
+
+        
     }
 }
