@@ -161,14 +161,6 @@ public class CustomerInteractScript : Interactable
         }
     }
 
-    //public void RotateToPlayer()
-    //{
-    //    Vector3 rotateVector = (PlayerHandScript.instance.transform.position - transform.position).normalized;
-    //    float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
-
-    //    transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
-    //}
-
     public void RotateTo(GameObject obj)
     {
         Vector3 rotateVector = (obj.transform.position - transform.position).normalized;

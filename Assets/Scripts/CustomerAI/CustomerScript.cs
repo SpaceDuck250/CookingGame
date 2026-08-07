@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using Customer;
+using System.Collections;
 
 public class CustomerMovementScript : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class CustomerMovementScript : MonoBehaviour
     public CustomerStateMachine customerStateMachine;
     public LeaveWhenAngryScript leaveWhenAngryScript;
 
+    public bool paused = false;
+
     private void Awake()
     {
         OnNewDestinationChange += SetNewDestination;
@@ -66,7 +69,14 @@ public class CustomerMovementScript : MonoBehaviour
 
     private void SetNewDestination(Transform destination)
     {
+        if (paused)
+        {
+            return;
+        }
+
         this.destinationPoint = destination;
+
+        StartCoroutine(DontAllowAbruptDestinationChange());
     }
 
     public void WalkToDestination()
@@ -113,4 +123,18 @@ public class CustomerMovementScript : MonoBehaviour
 
         return false;
     }
+
+    // To fix some stupid bugs, the customer isnt able to change its destination within a short amount of time
+    public IEnumerator DontAllowAbruptDestinationChange()
+    {
+        paused = true;
+
+        float waitTime = 0.2f;
+        yield return new WaitForSeconds(waitTime);
+
+        paused = false;
+
+
+    }
+
 }
