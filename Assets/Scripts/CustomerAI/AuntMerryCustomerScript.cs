@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class AuntMerryCustomerScript : MonoBehaviour
 {
-    public CustomerStateMachine stateMachine; public CustomerMovementScript movementScript; public AIEventSystemScript eventSystem;
+    public CustomerStateMachine stateMachine;
+    public CustomerMovementScript movementScript;
+    public AIEventSystemScript eventSystem;
+    public AuntMerrySpawnHandlerScript spawnHandler;
 
     public Transform visionOrigin;
     public LayerMask obstacleLayer;
@@ -22,6 +25,8 @@ public class AuntMerryCustomerScript : MonoBehaviour
     public float lookDurationAtPoint = 1.5f;
     public float pointTravelTimeout = 15f;
     public float inspectionTurnSpeed = 360f;
+    // Time check during queuing
+    public float queueVisionCheckInterval = 0.5f;
 
     // How close food must be to the floor to count as lying on it
     public float foodGroundDistance = 0.1f;
@@ -30,6 +35,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
     // Maximum number of food colliders examined during one scan
     public int visionBufferSize = 32;
 
+    public bool shouldInspectThisVisit = true;
     public bool inspectorRequestPending;
     public bool returnAfterSpottingFood = true;
     public bool inspectionStarted;
@@ -38,6 +44,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
     private Collider[] visionColliderBuffer;
     private Coroutine inspectionRouteCoroutine;
+    private Coroutine queueVisionCoroutine;
 
     private void Awake()
     {
@@ -71,6 +78,12 @@ public class AuntMerryCustomerScript : MonoBehaviour
         {
             StopCoroutine(inspectionRouteCoroutine);
             inspectionRouteCoroutine = null;
+        }
+
+        if (queueVisionCoroutine != null)
+        {
+            StopCoroutine(queueVisionCoroutine);
+            queueVisionCoroutine = null;
         }
 
         inspectionStarted = false;
@@ -111,17 +124,68 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
     private void HandleCustomerStateChanged(CustomerState newState)
     {
-        if (newState != CustomerState.WalkingToCounter)
+        switch (newState)
+        {
+            case CustomerState.WalkingToCounter:
+                // Aunt Merry performs the full inspection route only when her previous visit told her the store needs another inspection
+                if (shouldInspectThisVisit && !inspectionFinished)
+                {
+                    StartInspectionRoute();
+                }
+                else
+                {
+                    // She is going directly to the queue, but she can still notice food while walking toward it
+                    StartQueueVision();
+                }
+
+                break;
+
+            case CustomerState.IdleAtCounter:
+                // Aunt Merry has reached her queue/counter position and keeps watching for food while she waits
+                StartQueueVision();
+
+                break;
+
+            default:
+                // Once Aunt Merry leaves the queue-related states, stop her passive queue vision
+                StopQueueVision();
+                break;
+        }
+    }
+
+    private void StartQueueVision()
+    {
+        // Do not run passive queue vision while Aunt Merry is performing her inspection route
+        if (inspectionStarted)
         {
             return;
         }
 
-        StartInspectionRoute();
+        if (queueVisionCoroutine != null)
+        {
+            return;
+        }
+
+        queueVisionCoroutine = StartCoroutine(QueueVisionRoutine());
     }
 
-    public void SetInspectionPoints(Transform[] suppliedPoints)
+    private void StopQueueVision()
+    {
+        if (queueVisionCoroutine == null)
+        {
+            return;
+        }
+
+        StopCoroutine(queueVisionCoroutine);
+
+        queueVisionCoroutine = null;
+    }
+
+    public void SetInspectionSetup(Transform[] suppliedPoints, bool shouldInspect, AuntMerrySpawnHandlerScript suppliedSpawnHandler)
     {
         inspectionPoints = suppliedPoints;
+        shouldInspectThisVisit = shouldInspect;
+        spawnHandler = suppliedSpawnHandler;
     }
 
     private void StartInspectionRoute()
@@ -131,6 +195,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
             return;
         }
 
+        StopQueueVision();
         ResolveReferences();
 
         if (movementScript == null)
@@ -159,6 +224,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
         yield return null;
 
         bool stopRoute = false;
+        bool sawFoodThisVisit = false;
 
         for (int i = 0; i < inspectionPoints.Length; i++)
         {
@@ -188,6 +254,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
                 if (TrySeeFoodOnGround(out GameObject visibleFood))
                 {
                     spottedFood = visibleFood;
+                    sawFoodThisVisit = true;
                     inspectorRequestPending = true;
 
                     Debug.Log($"Aunt Merry saw food while inspecting: {visibleFood.name}");
@@ -216,6 +283,12 @@ public class AuntMerryCustomerScript : MonoBehaviour
         inspectionStarted = false;
         inspectionFinished = true;
         inspectionRouteCoroutine = null;
+
+        // Tell the persistent spawn handler what Aunt Merry found during this visit
+        if (spawnHandler != null)
+        {
+            spawnHandler.SetLastInspectionResult(sawFoodThisVisit);
+        }
 
         ReturnToQueue();
     }
@@ -339,6 +412,54 @@ public class AuntMerryCustomerScript : MonoBehaviour
         {
             agent.updateRotation = true;
         }
+    }
+
+    private IEnumerator QueueVisionRoutine()
+    {
+        while (true)
+        {
+            // Only keep scanning while Aunt Merry is either walking toward the queue or waiting there
+            if (stateMachine == null)
+            {
+                break;
+            }
+
+            bool isQueueing = stateMachine.currentState == CustomerState.WalkingToCounter || stateMachine.currentState == CustomerState.IdleAtCounter;
+
+            if (!isQueueing)
+            {
+                break;
+            }
+
+            // Don't perform the passive scan while her full inspection route is running
+            if (!inspectionStarted)
+            {
+                if (TrySeeFoodOnGround(out GameObject visibleFood))
+                {
+                    spottedFood = visibleFood;
+
+                    Debug.Log($"Aunt Merry spotted food while queueing: {visibleFood.name}");
+
+                    // Seeing food while queueing means Aunt Merry will perform a full inspection on her next visit
+                    if (spawnHandler != null)
+                    {
+                        spawnHandler.SetLastInspectionResult(true);
+                    }
+
+                    inspectorRequestPending = true;
+
+                    TrySummonInspector();
+
+                    // Stops this queue scan after the violation has already been reported
+                    // As this prevents repeatedly detecting the same food every 0.5 seconds
+                    break;
+                }
+            }
+
+            yield return new WaitForSeconds(queueVisionCheckInterval);
+        }
+
+        queueVisionCoroutine = null;
     }
 
     private void ReturnToQueue()

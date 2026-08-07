@@ -10,6 +10,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
     public bool inspectorRequestPending;
     private int auntMerryOriginalIndex = -1;
+    public bool shouldInspectNextVisit;
     private bool auntMerryRemovedFromSpawnList;
     private bool subscribedToSpawner;
 
@@ -88,6 +89,21 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
         }
     }
 
+    public void SetLastInspectionResult(bool sawFood)
+    {
+        shouldInspectNextVisit = sawFood;
+
+        if (sawFood)
+        {
+            Debug.Log(
+                "Aunt Merry saw food this visit, she will inspect again next time.");
+        }
+        else
+        {
+            Debug.Log("Aunt Merry saw no food this visit, she will skip inspection next time.");
+        }
+    }
+
     private void HandleCustomerSpawned(CustomerStateMachine spawnedCustomer, GameObject spawnedPrefab)
     {
         if (spawnedPrefab != auntMerryPrefab)
@@ -124,7 +140,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
         if (auntMerryScript != null)
         {
-            auntMerryScript.SetInspectionPoints(inspectionPoints);
+            auntMerryScript.SetInspectionSetup(inspectionPoints, shouldInspectNextVisit, this);
         }
         else
         {
