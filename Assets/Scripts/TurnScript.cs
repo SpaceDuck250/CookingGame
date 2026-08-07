@@ -56,7 +56,7 @@ public class TurnScript : MonoBehaviour
 
 
         //transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
-        transform.Rotate(Vector3.up * TryLockDirection(mouseX) * Time.deltaTime * senseX);
+        transform.Rotate(Vector3.up * mouseX * Time.deltaTime * senseX);
 
 
 
