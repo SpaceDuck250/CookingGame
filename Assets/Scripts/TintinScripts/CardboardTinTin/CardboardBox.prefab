@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -245,7 +249,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &-6708101921626599646
 MonoBehaviour:
@@ -301,7 +305,7 @@ Animator:
   m_GameObject: {fileID: 3089224806826418390}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 972be0fb72affb94e96c34531955c043, type: 2}
+  m_Controller: {fileID: 9100000, guid: 22646f82b08a7c141b0147c7f76d1d75, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
