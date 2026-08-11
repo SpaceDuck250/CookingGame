@@ -57,6 +57,7 @@ public class RatAIScript : MonoBehaviour
 
         if (foodTarget != null)
         {
+            RotateToFood();
             TryGoToEatFood();
             return;
         }
@@ -235,6 +236,15 @@ public class RatAIScript : MonoBehaviour
         angleVector.y = 0;
 
         // z because its 3d
+        float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, angle + 90, 0);
+    }
+
+    public void RotateToFood()
+    {
+        Vector3 angleVector = foodTarget.transform.position - transform.position;
+
         float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, angle + 90, 0);

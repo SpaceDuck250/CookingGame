@@ -5,7 +5,7 @@ public class RatSpawnerScript : MonoBehaviour
 {
     public GameObject ratPrefab;
 
-    public float changeOfSpawning = 0;
+    public float chanceOfSpawning = 0;
 
     public float spawnTimer;
     public float waitTime = 20;
@@ -15,9 +15,11 @@ public class RatSpawnerScript : MonoBehaviour
 
     public FloorManager coldRoomFloorManager;
 
+    public int daysUntilCanSpawn;
+
     private void Update()
     {
-        if (ratContainer.childCount >= 1)
+        if (ratContainer.childCount >= 1 || TimeCycleScript.daysPassed < daysUntilCanSpawn)
         {
             return;
         }
@@ -43,9 +45,10 @@ public class RatSpawnerScript : MonoBehaviour
 
         float extraSpawnChance = CalculateExtraSpawnrateFromDaysPassed(TimeCycleScript.daysPassed);
 
-        changeOfSpawning = baseSpawnChance + extraSpawnChance;
+        chanceOfSpawning = baseSpawnChance + extraSpawnChance;
+        chanceOfSpawning = Mathf.Clamp(chanceOfSpawning, 0, 0.9f);
 
-        if (Random.value < changeOfSpawning)
+        if (Random.value < chanceOfSpawning)
         {
             SpawnRat();
         }
@@ -82,7 +85,7 @@ public class RatSpawnerScript : MonoBehaviour
     {
         int interval = 10;
 
-        float extraSpawnFloat = (daysPassed / interval) * 0.05f;
+        float extraSpawnFloat = (daysPassed - daysUntilCanSpawn / interval) * 0.05f;
 
         return extraSpawnFloat;
     }
