@@ -465,6 +465,15 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 1293720460}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
+  lockXNeg: 0
+  lockXPos: 0
 --- !u!114 &360722289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +494,7 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!54 &360722290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3045,6 +3055,15 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 361137247}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
+  lockXNeg: 0
+  lockXPos: 0
 --- !u!114 &1302139501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,6 +3084,7 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!54 &1302139502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4276,6 +4296,7 @@ MonoBehaviour:
   dialogueObject: {fileID: 254616091}
   dialogueTextComponent: {fileID: 218648087}
   slowTyper: {fileID: 0}
+  currentCustomer: {fileID: 0}
 --- !u!1 &2058551467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4625,7 +4646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &919132148145921881
 Animator:
   serializedVersion: 7
