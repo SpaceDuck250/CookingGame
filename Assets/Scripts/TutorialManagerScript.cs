@@ -11,8 +11,17 @@ public class TutorialManagerScript : MonoBehaviour
 
     public Camera playerCam;
 
+    public bool tutorialOn = false;
+    public GameObject tutorialBus;
+
     private void Start()
     {
+        if (!tutorialOn)
+        {
+            tutorialBus.SetActive(false);
+            return;
+        }
+
         foreach (GameObject obj in InactiveGameObjectList)
         {
             obj.SetActive(false);

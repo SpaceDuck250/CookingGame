@@ -18,8 +18,6 @@ public class RatAIScript : MonoBehaviour
 
     public Vector3 destination;
 
-    public LayerMask foodLayer;
-
     public GameObject foodTarget;
 
     public float smellRadius;
@@ -85,7 +83,7 @@ public class RatAIScript : MonoBehaviour
 
     public bool LookForFood(out GameObject foodChosen)
     {
-        List<Collider> foodsInRange = new List<Collider>(Physics.OverlapSphere(transform.position, smellRadius, foodLayer));
+        List<Collider> foodsInRange = new List<Collider>(Physics.OverlapSphere(transform.position, smellRadius));
 
         float closestDistance = float.MaxValue;
         GameObject closestFood = null;
@@ -104,6 +102,11 @@ public class RatAIScript : MonoBehaviour
             }
 
             HoldableFoodScript holdScript = food.gameObject.GetComponent<HoldableFoodScript>();
+            if (holdScript == null)
+            {
+                continue;
+            }
+
             if (holdScript.platterIn != null)
             {
                 continue;
