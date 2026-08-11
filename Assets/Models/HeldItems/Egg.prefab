@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1117667824759541516}
   - component: {fileID: 7561364989308665224}
   - component: {fileID: -565738762874982114}
-  - component: {fileID: 1439998080274878217}
   m_Layer: 0
   m_Name: Egg
   m_TagString: HealthViolation
@@ -142,6 +141,7 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 1
 --- !u!54 &7561364989308665224
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -183,15 +183,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
---- !u!114 &1439998080274878217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3804285432222242834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript

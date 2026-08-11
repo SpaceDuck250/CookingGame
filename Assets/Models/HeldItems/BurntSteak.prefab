@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7703108222761402374}
   - component: {fileID: 6518200453447533196}
   - component: {fileID: -4438815086082320473}
+  - component: {fileID: 4281663745679246920}
   m_Layer: 0
   m_Name: BurntSteak
   m_TagString: Untagged
@@ -85,6 +86,7 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 1
 --- !u!54 &6518200453447533196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,6 +127,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
+  setManually: 0
+--- !u!114 &4281663745679246920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860735640173846947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript
 --- !u!1 &5316588540011574841
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
+  setManually: 0
 --- !u!114 &3929313979666690863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
+  setManually: 0
 --- !u!1 &8186090511067176310
 GameObject:
   m_ObjectHideFlags: 0
