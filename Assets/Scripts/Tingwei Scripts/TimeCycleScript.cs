@@ -11,6 +11,8 @@ public class TimeCycleScript : MonoBehaviour
     public static TimeOfDay currentTimeOfDay = TimeOfDay.Day;
     public float timePeriodTimer;
 
+    public static int daysPassed = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -52,6 +54,7 @@ public class TimeCycleScript : MonoBehaviour
 
             case TimeOfDay.Evening:
                 SetTimeOfDay(TimeOfDay.Day);
+                daysPassed++;
                 break;
         }
     }

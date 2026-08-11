@@ -37,6 +37,8 @@ public class HoldableFoodScript : MonoBehaviour
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
         platterScaleModifier = !changeScaleOnPlatter ? 1 : platterScaleModifier;
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
+
+        doFloorChecks = CarryType ? false : true; // Checks if food
     }
     
     public void DeleteObjectToDelete()

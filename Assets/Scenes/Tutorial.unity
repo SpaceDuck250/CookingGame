@@ -11938,7 +11938,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1348566852}
   m_Father: {fileID: 1106317598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1302657771
@@ -11948,17 +11949,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302657769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01d7be2f5a1da7d4bb0cc87a6d8577b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ratPrefab: {fileID: 0}
-  changeOfSpawning: 0.1
-  maxRats: 0
+  ratPrefab: {fileID: 6634268862550480712, guid: 10e868b4605f3e04b9fa1e69645b5108, type: 3}
+  changeOfSpawning: 0
+  maxRats: 1
   spawnTimer: 0
-  waitTime: 20
-  ratContainer: {fileID: 0}
+  waitTime: 10
+  ratContainer: {fileID: 1348566852}
+  spawnPoint: {fileID: 1348566852}
+  coldRoomFloorManager: {fileID: 599576413}
 --- !u!1 &1317092952
 GameObject:
   m_ObjectHideFlags: 0
@@ -12271,6 +12274,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.000001, y: 2.9999998, z: 2.000001}
   m_Center: {x: -0.0000022649765, y: 0.49999988, z: 0.0000021457672}
+--- !u!1 &1348566851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348566852}
+  m_Layer: 0
+  m_Name: ratContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1348566852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348566851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.387, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1302657770}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361327227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3439465940874540214, guid: a41747ae80fc607428f3eb6d6605f4a2, type: 3}
