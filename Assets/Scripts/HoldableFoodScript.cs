@@ -37,8 +37,6 @@ public class HoldableFoodScript : MonoBehaviour
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
         platterScaleModifier = !changeScaleOnPlatter ? 1 : platterScaleModifier;
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
-
-        doFloorChecks = true;
     }
     
     public void DeleteObjectToDelete()
@@ -58,6 +56,11 @@ public class HoldableFoodScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!doFloorChecks)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "Floor")
         {
             other.gameObject.GetComponent<FloorManager>().OnFoodHitThisFloor?.Invoke(gameObject);
@@ -67,6 +70,11 @@ public class HoldableFoodScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!doFloorChecks)
+        {
+            return;
+        }
+
         FloorManager.OnFoodPickupFromFloor?.Invoke(gameObject);
         print("Left floor");
     }

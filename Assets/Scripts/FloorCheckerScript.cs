@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
+// The logic for hitting floor is in holdablefoodscript
 public class FloorManager : MonoBehaviour
 {
     public bool foodOnFloor = false;
