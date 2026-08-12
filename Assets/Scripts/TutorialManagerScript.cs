@@ -11,6 +11,7 @@ public class TutorialManagerScript : MonoBehaviour
     public List<Camera> allCamerasList = new List<Camera>();
 
     public Camera playerCam;
+    public Camera gameCamera;
 
     public bool tutorialOn = false;
     public GameObject tutorialBus;
