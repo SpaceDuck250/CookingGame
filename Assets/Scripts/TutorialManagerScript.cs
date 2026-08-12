@@ -6,6 +6,7 @@ public class TutorialManagerScript : MonoBehaviour
     public List<GameObject> InactiveGameObjectList = new List<GameObject>();
 
     public GameObject playerObj;
+    public GameObject gameCanvas;
 
     public List<Camera> allCamerasList = new List<Camera>();
 
@@ -31,6 +32,8 @@ public class TutorialManagerScript : MonoBehaviour
     public void ActivatePlayer()
     {
         playerObj.SetActive(true);
+        gameCanvas.SetActive(true);
+
     }
 
     public void SetPlayerCamOn()
