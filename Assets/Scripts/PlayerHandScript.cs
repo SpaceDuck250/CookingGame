@@ -103,6 +103,7 @@ public class PlayerHandScript : MonoBehaviour
 
             BringFoodToHand(holdableFoodScript);
             OnHoldSomething?.Invoke();
+            //NpcDialogueScript.OnHideDialogue?.Invoke();
 
             return true;
         }

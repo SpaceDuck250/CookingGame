@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 6660413458728303906}
   - component: {fileID: 2147714847089238212}
   - component: {fileID: 6338026860059301874}
+  - component: {fileID: 3765825527592842171}
   m_Layer: 0
   m_Name: CookedBeefHold
   m_TagString: Untagged
@@ -265,6 +266,7 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 0.5
   changeScaleOnPlatter: 1
+  doFloorChecks: 1
 --- !u!54 &2147714847089238212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -306,6 +308,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+--- !u!114 &3765825527592842171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012672096107418222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript
 --- !u!1 &7919913943548653801
 GameObject:
   m_ObjectHideFlags: 0

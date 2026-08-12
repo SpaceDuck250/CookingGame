@@ -9,6 +9,10 @@ public class SlowTyper : MonoBehaviour
     public string dialogueLine;
     public float typeTime;
 
+    public DialogueSoundManager soundManager;
+
+    public GameObject dialogueContainer;
+
     private void Start()
     {
         typeTime = 0.01f;
@@ -16,12 +20,16 @@ public class SlowTyper : MonoBehaviour
 
     public void StartWritingSlowly(string name, string newLine)
     {
+        dialogueContainer.SetActive(true);
+
         StopAllCoroutines();
         StartCoroutine(TypeLine(name, newLine));
     }
 
     public IEnumerator TypeLine(string name, string newLine)
     {
+        soundManager.PlayTalkingAudio(soundManager.normalCustomerTalkingClip);
+
         dialogueTextComponent.text = string.Empty;
 
         dialogueLine = newLine;
@@ -34,5 +42,13 @@ public class SlowTyper : MonoBehaviour
             dialogueTextComponent.text += chars[i];
             yield return new WaitForSeconds(typeTime);
         }
+
+        soundManager.PauseTalkingAudio();
+    }
+
+    public void CloseDialogue()
+    {
+        dialogueContainer.SetActive(false);
+
     }
 }

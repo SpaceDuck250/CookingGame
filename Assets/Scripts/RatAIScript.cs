@@ -18,8 +18,6 @@ public class RatAIScript : MonoBehaviour
 
     public Vector3 destination;
 
-    public LayerMask foodLayer;
-
     public GameObject foodTarget;
 
     public float smellRadius;
@@ -59,6 +57,7 @@ public class RatAIScript : MonoBehaviour
 
         if (foodTarget != null)
         {
+            RotateToFood();
             TryGoToEatFood();
             return;
         }
@@ -85,7 +84,7 @@ public class RatAIScript : MonoBehaviour
 
     public bool LookForFood(out GameObject foodChosen)
     {
-        List<Collider> foodsInRange = new List<Collider>(Physics.OverlapSphere(transform.position, smellRadius, foodLayer));
+        List<Collider> foodsInRange = new List<Collider>(Physics.OverlapSphere(transform.position, smellRadius));
 
         float closestDistance = float.MaxValue;
         GameObject closestFood = null;
@@ -104,6 +103,11 @@ public class RatAIScript : MonoBehaviour
             }
 
             HoldableFoodScript holdScript = food.gameObject.GetComponent<HoldableFoodScript>();
+            if (holdScript == null)
+            {
+                continue;
+            }
+
             if (holdScript.platterIn != null)
             {
                 continue;
@@ -232,6 +236,15 @@ public class RatAIScript : MonoBehaviour
         angleVector.y = 0;
 
         // z because its 3d
+        float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, angle + 90, 0);
+    }
+
+    public void RotateToFood()
+    {
+        Vector3 angleVector = foodTarget.transform.position - transform.position;
+
         float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, angle + 90, 0);

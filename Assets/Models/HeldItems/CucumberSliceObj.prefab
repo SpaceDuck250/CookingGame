@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2491946988179680552}
   - component: {fileID: 1160099175719153639}
   - component: {fileID: 4867480698903233052}
+  - component: {fileID: 6717510871726278123}
   m_Layer: 0
   m_Name: CucumberSliceObj
   m_TagString: Untagged
@@ -116,6 +117,7 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 1
 --- !u!114 &4867480698903233052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +132,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+--- !u!114 &6717510871726278123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885965574645366953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript
 --- !u!1001 &47603690866881696
 PrefabInstance:
   m_ObjectHideFlags: 0

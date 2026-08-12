@@ -39,6 +39,10 @@ public class TalkRangeScript : MonoBehaviour
 
     public void CheckIfExitRange()
     {
+        if (PlayerHandScript.instance == null)
+        {
+            return;
+        }
         float distanceToPlayer = Vector3.Distance(transform.position, PlayerHandScript.instance.gameObject.transform.position);
 
         if (distanceToPlayer > interactRange)

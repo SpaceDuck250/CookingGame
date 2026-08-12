@@ -62,6 +62,11 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseConversation();
+        }
+
         if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {
             return;
@@ -75,6 +80,7 @@ public class CustomerInteractScript : Interactable
 
         if (CheckIfHoldingFood(playerHand) && talkedTo)
         {
+            CloseConversation();
             CheckIfFoodMatchesOrder(playerHand);
         }
         else if (!CheckIfHoldingFood(playerHand))
