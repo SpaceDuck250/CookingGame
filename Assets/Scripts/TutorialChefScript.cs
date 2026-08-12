@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 public class TutorialChefScript : Interactable
 {
@@ -32,6 +34,9 @@ public class TutorialChefScript : Interactable
     public Camera playerCam;
 
     public TutorialManagerScript tutorialManager;
+
+    public PlayerMovement playerMove;
+    public Image slideShowImage;
 
     private void Update()
     {
@@ -76,7 +81,7 @@ public class TutorialChefScript : Interactable
 
     public void PlayExplainationDialogue()
     {
-
+        playerMove.canMove = false;
 
         currentExlainIndex++;
 
@@ -87,18 +92,22 @@ public class TutorialChefScript : Interactable
 
         if (currentExlainIndex >= explainationLines.Count)
         {
-            tutorialManager.SetCameraAsMain(tutorialManager.playerCam);
+            //tutorialManager.SetCameraAsMain(tutorialManager.playerCam);
+            //playerMove.canMove = true;
 
-            return;
+            currentExlainIndex = 0;
+
+
+            //return;
         }
 
         ExplainationObj explainObj = explainationLines[currentExlainIndex];
 
-        tutorialManager.gameCamera.transform.position = explainObj.cameraPoint.position;
-        tutorialManager.gameCamera.transform.localRotation = Quaternion.Euler(explainObj.cameraRotation);
-
         string chefNameShown = nameOfChef + ": ";
         slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine);
+
+        slideShowImage.sprite = explainObj.backgroundImage;
+        slideShowImage.gameObject.SetActive(true);
     }
 
     public void TryWalkToStallPoint()
@@ -141,7 +150,6 @@ public class TutorialChefScript : Interactable
 [Serializable]
 public class ExplainationObj
 {
-    public Transform cameraPoint;
-    public Vector3 cameraRotation;
+    public Sprite backgroundImage;
     public string dialogueLine;
 }
