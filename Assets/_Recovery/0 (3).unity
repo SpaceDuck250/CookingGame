@@ -2673,6 +2673,7 @@ MonoBehaviour:
   spawn: {fileID: 489747305}
   spawnOffset: {x: 0, y: 0, z: 0}
   cooking: 0
+  downScaleAmount: 1
 --- !u!114 &284527609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5108,6 +5109,7 @@ MonoBehaviour:
   OrderObj: {fileID: 1487144977}
   mealOrderName: {fileID: 741242902}
   mealOrderSprite: {fileID: 1007067518}
+  foodsWantedParent: {fileID: 0}
 --- !u!114 &636529625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +5126,7 @@ MonoBehaviour:
   dialogueObject: {fileID: 1567409385}
   dialogueTextComponent: {fileID: 118830539}
   slowTyper: {fileID: 636529623}
+  currentCustomer: {fileID: 0}
 --- !u!1 &657663036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7338,6 +7341,15 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 75082314}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
+  lockXNeg: 0
+  lockXPos: 0
 --- !u!114 &955200644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7358,6 +7370,7 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!54 &955200645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8953,6 +8966,7 @@ MonoBehaviour:
   shopObj: {fileID: 1886377856}
   shopCostScript: {fileID: 836164756}
   shopSideScript: {fileID: 836164755}
+  maxBuyAmount: 5
 --- !u!1 &1088206139
 GameObject:
   m_ObjectHideFlags: 0
@@ -9136,6 +9150,7 @@ MonoBehaviour:
   shopObj: {fileID: 942732672}
   shopCostScript: {fileID: 790075118}
   shopSideScript: {fileID: 790075116}
+  maxBuyAmount: 5
 --- !u!114 &1097903348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9327,6 +9342,7 @@ MonoBehaviour:
   OrderObj: {fileID: 2013173600}
   mealOrderName: {fileID: 1065134072}
   mealOrderSprite: {fileID: 1524011844}
+  foodsWantedParent: {fileID: 0}
 --- !u!114 &1100975249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9343,6 +9359,7 @@ MonoBehaviour:
   dialogueObject: {fileID: 1121539617}
   dialogueTextComponent: {fileID: 770170240}
   slowTyper: {fileID: 1100975247}
+  currentCustomer: {fileID: 0}
 --- !u!1 &1121539617
 GameObject:
   m_ObjectHideFlags: 0
@@ -10016,6 +10033,7 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 0, z: 0}
   chops: 0
   requiredChops: 0
+  knifeAnimator: {fileID: 0}
 --- !u!65 &1211745670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13831,6 +13849,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 233406499}
   exitTransform: {fileID: 353749090}
   platterPoint: {fileID: 587797716}
+  mainCounterPoint: {fileID: 0}
   chairTransforms:
   - {fileID: 878636747}
   - {fileID: 878636746}
@@ -13846,9 +13865,6 @@ MonoBehaviour:
   spawnInterval: 2
   maxCustomers: 4
   emptyQueueIndex: 0
-  specialCustomerName: Uncle Fedrick
-  specialCompanionCount: 2
-  fedrickChildrenPrefabs: []
   eventRushHour: 0
 --- !u!4 &1833731580
 Transform:
@@ -14705,6 +14721,7 @@ MonoBehaviour:
   cookingInputOutput: {fileID: 661603685}
   flipperScript: {fileID: 2033944866}
   alreadyCooking: 0
+  downScaleAmount: 1
 --- !u!114 &2033944868
 MonoBehaviour:
   m_ObjectHideFlags: 0
