@@ -64,7 +64,10 @@ public class TutorialChefScript : Interactable
         {
             startTalkFinish = true;
             goingToStall = true;
+
             chefAnimator.SetBool("Walking", true);
+
+
 
             currentIndex = -1;
             slowTyper.CloseDialogue();
@@ -130,7 +133,7 @@ public class TutorialChefScript : Interactable
             if (currentDestinationIndex >= movePoints.Count)
             {
                 reachedStall = true;
-                transform.localRotation = Quaternion.Euler(0, 150, 0);
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
                 chefAnimator.SetBool("Walking", false);
 
             }
@@ -143,7 +146,7 @@ public class TutorialChefScript : Interactable
 
         float angle = Mathf.Atan2(angleVector.x, angleVector.z) * Mathf.Rad2Deg;
 
-        transform.localRotation = Quaternion.Euler(0, angle + 30, 0);
+        transform.localRotation = Quaternion.Euler(0, angle, 0);
     }
 }
 
