@@ -12,6 +12,7 @@ public class RatSpawnerScript : MonoBehaviour
 
     public Transform ratContainer;
     public Transform spawnPoint;
+    public float spawnOffsetRange;
 
     public FloorManager coldRoomFloorManager;
 
@@ -19,7 +20,7 @@ public class RatSpawnerScript : MonoBehaviour
 
     private void Update()
     {
-        if (ratContainer.childCount >= 1 || TimeCycleScript.daysPassed < daysUntilCanSpawn)
+        if (TimeCycleScript.daysPassed < daysUntilCanSpawn)
         {
             return;
         }
@@ -28,13 +29,31 @@ public class RatSpawnerScript : MonoBehaviour
         if (spawnTimer >= waitTime)
         {
             spawnTimer = 0;
-
+            CheckIfNeedToDespawnRat();
             TrySpawningRat();
+        }
+    }
+
+    public void CheckIfNeedToDespawnRat()
+    {
+        if (ratContainer.childCount == 0)
+        {
+            return;
+        }
+
+        if (coldRoomFloorManager.foodOnFloorList.Count == 0)
+        {
+            Destroy(ratContainer.transform.GetChild(0).gameObject);
         }
     }
 
     public void TrySpawningRat()
     {
+        if (ratContainer.childCount == 1)
+        {
+            return;
+        }
+
         int foodOnFloorAmount = coldRoomFloorManager.foodOnFloorList.Count;
 
         float baseSpawnChance = CalculateBaseSpawnrateFromFoodOnFloor(foodOnFloorAmount);
@@ -46,7 +65,7 @@ public class RatSpawnerScript : MonoBehaviour
         float extraSpawnChance = CalculateExtraSpawnrateFromDaysPassed(TimeCycleScript.daysPassed);
 
         chanceOfSpawning = baseSpawnChance + extraSpawnChance;
-        chanceOfSpawning = Mathf.Clamp(chanceOfSpawning, 0, 0.9f);
+        chanceOfSpawning = Mathf.Clamp(chanceOfSpawning, 0, 1f);
 
         if (Random.value < chanceOfSpawning)
         {
@@ -57,6 +76,12 @@ public class RatSpawnerScript : MonoBehaviour
     public void SpawnRat()
     {
         GameObject newRat = Instantiate(ratPrefab, spawnPoint.position, Quaternion.identity, ratContainer);
+
+        float offsetX = Random.Range(-spawnOffsetRange, spawnOffsetRange);
+        float offsetZ = Random.Range(-spawnOffsetRange, spawnOffsetRange);
+
+        newRat.transform.position += new Vector3(offsetX, 0, offsetZ);
+
     }
 
 

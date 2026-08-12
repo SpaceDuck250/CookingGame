@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 // The logic for hitting floor is in holdablefoodscript
 public class FloorManager : MonoBehaviour
@@ -27,6 +28,11 @@ public class FloorManager : MonoBehaviour
 
     public void AddFoodToList(GameObject foodToAdd)
     {
+        if (foodOnFloorList.Contains(foodToAdd))
+        {
+            return;
+        }
+
         foodOnFloorList.Add(foodToAdd);
 
         foodOnFloor = foodOnFloorList.Count > 0 ? true : false;
@@ -34,6 +40,7 @@ public class FloorManager : MonoBehaviour
 
     public void TryRemoveFoodFromList(GameObject foodToRemove)
     {
+        print(foodToRemove);
         if (foodOnFloorList.Contains(foodToRemove))
         {
             foodOnFloorList.Remove(foodToRemove);
@@ -41,6 +48,8 @@ public class FloorManager : MonoBehaviour
             foodOnFloor = foodOnFloorList.Count > 0 ? true : false;
 
         }
+
+        foodOnFloorList.RemoveAll(n => n == null || !n);
     }
 
 

@@ -70,6 +70,20 @@ public class HoldableFoodScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (!doFloorChecks)
+        {
+            return;
+        }
+
+        if (other.gameObject.tag == "Floor")
+        {
+            FloorManager.OnFoodPickupFromFloor?.Invoke(gameObject);
+            print("left floor");
+        }
+    }
+
     private void OnDestroy()
     {
         if (!doFloorChecks)
