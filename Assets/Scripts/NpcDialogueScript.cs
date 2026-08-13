@@ -69,7 +69,8 @@ public class NpcDialogueScript : MonoBehaviour
     {
         conversationOpen = false;
 
-        dialogueObject.SetActive(false);
+        //dialogueObject.SetActive(false);
+        slowTyper.CloseDialogue();
 
         CustomerInteractScript.OnEndInteractWithCustomer?.Invoke();
     }

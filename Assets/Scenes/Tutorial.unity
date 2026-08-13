@@ -1437,7 +1437,7 @@ Transform:
   m_GameObject: {fileID: 182868802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.16504757, z: 0, w: 0.9862857}
-  m_LocalPosition: {x: 36.461, y: 0.316, z: 5.8530006}
+  m_LocalPosition: {x: 36.461, y: 0.24, z: 5.8530006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1486,12 +1486,45 @@ MonoBehaviour:
   - Follow me
   currentIndex: -1
   explainationLines:
+  - backgroundImage: {fileID: 0}
+    dialogueLine: Well here it is! Let me give you a tour of your new home!
   - backgroundImage: {fileID: 21300000, guid: 9bd6fdfc872987a439b0bf30bc2ca7ea, type: 3}
     dialogueLine: This is the recipe book. You can right click on it to open it and
       in there you can find all the recipes!
   - backgroundImage: {fileID: 21300000, guid: 1883d127b16fab541a1613a6ac1a2505, type: 3}
     dialogueLine: This is the chopping board. Right click to place food and then
       press E to Chop!
+  - backgroundImage: {fileID: 21300000, guid: a187682ef06506e47a3c215476b8aa56, type: 3}
+    dialogueLine: This is meat skewer. Press T to flip meats! (Make sure not to burn
+      it)
+  - backgroundImage: {fileID: 21300000, guid: 415343116336e444fbaf789e9c1769f4, type: 3}
+    dialogueLine: This is the laptop and the trashcan.
+  - backgroundImage: {fileID: 21300000, guid: 415343116336e444fbaf789e9c1769f4, type: 3}
+    dialogueLine: 'Right click on the laptop to open up the shop where you can buy
+      more food! '
+  - backgroundImage: {fileID: 21300000, guid: 415343116336e444fbaf789e9c1769f4, type: 3}
+    dialogueLine: Right click on the trashcan while holding food to throw it away!
+  - backgroundImage: {fileID: 21300000, guid: 4b4e732469d704545b3b03c221ed2167, type: 3}
+    dialogueLine: This is the frying pan. Right click to place food and E to change
+      the temperature of it!
+  - backgroundImage: {fileID: 21300000, guid: cbcb6dc586db7f94292591ba168610b9, type: 3}
+    dialogueLine: 'At the back is the cold storage room. This is where we keep all
+      our foods. You can right the boxes to access the foods inside and store them
+      back! '
+  - backgroundImage: {fileID: 21300000, guid: cbcb6dc586db7f94292591ba168610b9, type: 3}
+    dialogueLine: But uhh.. Make sure not to leave food on the floor. Otherwise rats
+      may spawn!
+  - backgroundImage: {fileID: 21300000, guid: 2453ad5309e5ad745aaab1baa8765bb0, type: 3}
+    dialogueLine: Lastly is our state of the art vending machine. Pick a meal and
+      input the correct foods and it will dispense your desired meal!
+  - backgroundImage: {fileID: 21300000, guid: 2453ad5309e5ad745aaab1baa8765bb0, type: 3}
+    dialogueLine: How does it work? I don't know!
+  - backgroundImage: {fileID: 0}
+    dialogueLine: That concludes the tour.
+  - backgroundImage: {fileID: 0}
+    dialogueLine: But it doesn't conclude your training!
+  - backgroundImage: {fileID: 0}
+    dialogueLine: I want you to cook me a perfect steak. Alright go.
   currentExlainIndex: -1
   nameOfChef: Chef Totori Al
   goingToStall: 0
@@ -1499,7 +1532,9 @@ MonoBehaviour:
   reachedStall: 0
   movePoints:
   - {fileID: 1769438510}
-  - {fileID: 556479991}
+  - {fileID: 396561089}
+  - {fileID: 796317105}
+  - {fileID: 917901349}
   currentDestinationIndex: 0
   chefTransform: {fileID: 1897456044}
   smoothValue: 3.8
@@ -1507,6 +1542,7 @@ MonoBehaviour:
   playerCam: {fileID: 955018307}
   tutorialManager: {fileID: 1690745852}
   playerMove: {fileID: 813669314}
+  playerTurn: {fileID: 813669313}
   slideShowImage: {fileID: 835756341}
 --- !u!54 &182868806
 Rigidbody:
@@ -4408,6 +4444,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d34e8533c8de8ec45869f9144584d929, type: 3}
   m_PrefabInstance: {fileID: 389165100}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &396561088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 396561089}
+  m_Layer: 0
+  m_Name: P1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &396561089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396561088}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.26, y: 0.24, z: -6.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 449438295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &397317127
 GameObject:
   m_ObjectHideFlags: 0
@@ -5020,7 +5087,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1769438510}
-  - {fileID: 556479991}
+  - {fileID: 396561089}
+  - {fileID: 796317105}
+  - {fileID: 917901349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &457347255
@@ -5870,37 +5939,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 484404636ac422042a24ac95512dc2d3, type: 3}
---- !u!1 &556479990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 556479991}
-  m_Layer: 0
-  m_Name: P1 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &556479991
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556479990}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.2, y: 0.266, z: -6.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 449438295}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &559504405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 246bcb60ae5be3744a4ea86bab749f44, type: 3}
@@ -7742,6 +7780,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1946472715173811399, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
   m_PrefabInstance: {fileID: 636625677}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &796317104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796317105}
+  m_Layer: 0
+  m_Name: P1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796317105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796317104}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.338, y: 0.06, z: -6.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 449438295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809479692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7881,6 +7950,7 @@ MonoBehaviour:
   lockMode: 0
   lockXNeg: 0
   lockXPos: 0
+  canTurn: 1
 --- !u!114 &813669314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9156,6 +9226,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
   m_PrefabInstance: {fileID: 1849095793}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &917901348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917901349}
+  m_Layer: 0
+  m_Name: P1 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917901349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917901348}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -30.19, y: 0.06, z: -6.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 449438295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928767634
 GameObject:
   m_ObjectHideFlags: 0
@@ -13615,6 +13716,7 @@ MonoBehaviour:
   typeTime: 0.1
   soundManager: {fileID: 1475323319}
   dialogueContainer: {fileID: 1024870309}
+  playerFrozen: 0
 --- !u!114 &1475323316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15394,6 +15496,8 @@ MonoBehaviour:
   throwStrength: 8.2
   spinStrength: 13.9
   currentInteractable: {fileID: 0}
+  playerMove: {fileID: 813669314}
+  playerTurn: {fileID: 813669313}
 --- !u!1 &1618685882
 GameObject:
   m_ObjectHideFlags: 0
@@ -16135,7 +16239,7 @@ MonoBehaviour:
   - {fileID: 955018307}
   playerCam: {fileID: 955018307}
   gameCamera: {fileID: 37764837}
-  tutorialOn: 1
+  tutorialOn: 0
   tutorialBus: {fileID: 388321161}
 --- !u!4 &1690745853
 Transform:
@@ -16656,7 +16760,7 @@ Transform:
   m_GameObject: {fileID: 1769438509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3584404, y: 0.266, z: -6.65}
+  m_LocalPosition: {x: 3.3584404, y: 0.24, z: -6.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

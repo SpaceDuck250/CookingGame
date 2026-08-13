@@ -36,7 +36,13 @@ public class TutorialChefScript : Interactable
     public TutorialManagerScript tutorialManager;
 
     public PlayerMovement playerMove;
+    public TurnScript playerTurn;
     public Image slideShowImage;
+
+    private void Start()
+    {
+        chefAnimator.SetBool("Dancing", true);
+    }
 
     private void Update()
     {
@@ -62,6 +68,10 @@ public class TutorialChefScript : Interactable
         currentIndex++;
         if (currentIndex >= dialogueLines.Count)
         {
+            chefAnimator.SetBool("Dancing", false);
+            chefTransform.localRotation = Quaternion.Euler(0, 0, 0);
+            chefTransform.localPosition = Vector3.zero;
+
             startTalkFinish = true;
             goingToStall = true;
 
@@ -85,23 +95,28 @@ public class TutorialChefScript : Interactable
     public void PlayExplainationDialogue()
     {
         playerMove.canMove = false;
+        playerTurn.canTurn = false;
 
         currentExlainIndex++;
 
-        if (currentExlainIndex == 0)
-        {
-            tutorialManager.SetCameraAsMain(tutorialManager.gameCamera);
-        }
+        //if (currentExlainIndex == 0)
+        //{
+        //    tutorialManager.SetCameraAsMain(tutorialManager.gameCamera);
+        //}
 
         if (currentExlainIndex >= explainationLines.Count)
         {
             //tutorialManager.SetCameraAsMain(tutorialManager.playerCam);
-            //playerMove.canMove = true;
+            playerMove.canMove = true;
+            playerTurn.canTurn = true;
+            slideShowImage.gameObject.SetActive(false);
+            slowTyper.CloseDialogue();
 
-            currentExlainIndex = 0;
+
+            //currentExlainIndex = 0;
 
 
-            //return;
+            return;
         }
 
         ExplainationObj explainObj = explainationLines[currentExlainIndex];
@@ -109,6 +124,11 @@ public class TutorialChefScript : Interactable
         string chefNameShown = nameOfChef + ": ";
         slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine);
 
+        if (explainObj.backgroundImage == null)
+        {
+            slideShowImage.gameObject.SetActive(false);
+            return;
+        }
         slideShowImage.sprite = explainObj.backgroundImage;
         slideShowImage.gameObject.SetActive(true);
     }
@@ -133,7 +153,7 @@ public class TutorialChefScript : Interactable
             if (currentDestinationIndex >= movePoints.Count)
             {
                 reachedStall = true;
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                transform.localRotation = Quaternion.Euler(0, 90, 0);
                 chefAnimator.SetBool("Walking", false);
 
             }
