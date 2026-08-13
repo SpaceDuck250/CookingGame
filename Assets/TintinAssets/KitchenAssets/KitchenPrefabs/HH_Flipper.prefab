@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f41a821eb9ac946804301345c0d3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CookingInputOutputScript
-  interactKeyCode: 0
+  interactKeyCode: 101
   recipeStored:
   - {fileID: 11400000, guid: 3cdf422631c1ac44585f8f9e27f0fa45, type: 2}
   - {fileID: 11400000, guid: 8acfc5316a0430746b3588aa43fef491, type: 2}
@@ -385,7 +385,7 @@ RectTransform:
   m_GameObject: {fileID: 3565496645112238385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.010000001, z: 0.010000001}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7403198115947280646}
@@ -551,7 +551,7 @@ RectTransform:
   m_GameObject: {fileID: 4280542075424678991}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7403198115947280646}
@@ -559,7 +559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3278729905967056345
@@ -652,7 +652,7 @@ RectTransform:
   m_GameObject: {fileID: 4548357093963842647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7403198115947280646}
@@ -717,8 +717,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.55
-  m_fontSizeBase: 88.55
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f856a8b3b06614a8df587597d2fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  interactKeyCode: 116
+  interactKeyCode: 101
   flipObject: {fileID: 7493802066141562184}
   steakHeld: {fileID: 0}
   rotateAmount: -180
@@ -950,6 +950,7 @@ MonoBehaviour:
   cookingInputOutput: {fileID: 677963054074506679}
   flipperScript: {fileID: 2589690323727006133}
   alreadyCooking: 0
+  downScaleAmount: 1
 --- !u!1 &6719633334304194244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1068,7 @@ RectTransform:
   m_GameObject: {fileID: 7002507381359385950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7157873751296405706}
@@ -1108,7 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   previewText: Flip
-  clickCharacter: 84
+  clickCharacter: 69
   previewObject: {fileID: 7002507381359385950}
   previewTextComp: {fileID: 1542395643713108237}
   previewCharComp: {fileID: 5820593329074351832}
@@ -1324,14 +1325,14 @@ RectTransform:
   m_GameObject: {fileID: 8940669289760155676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7403198115947280646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5201721017173806502
@@ -1389,8 +1390,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.68
-  m_fontSizeBase: 60.68
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1428,7 +1429,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -156.78734, y: -24.672186, z: -158.92473, w: -23.174593}
+  m_margin: {x: 1.3116227, y: -24.672186, z: 0.123878404, w: -23.174593}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
