@@ -1478,6 +1478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialChefScript
   interactKeyCode: 0
+  teleportSceneName: RatAi
   slowTyper: {fileID: 1475323315}
   dialogueLines:
   - Buongiorno! You must be the new intern chef?
@@ -1509,8 +1510,8 @@ MonoBehaviour:
       the temperature of it!
   - backgroundImage: {fileID: 21300000, guid: cbcb6dc586db7f94292591ba168610b9, type: 3}
     dialogueLine: 'At the back is the cold storage room. This is where we keep all
-      our foods. You can right the boxes to access the foods inside and store them
-      back! '
+      our foods. You can right click the boxes to access the foods inside and store
+      them back! '
   - backgroundImage: {fileID: 21300000, guid: cbcb6dc586db7f94292591ba168610b9, type: 3}
     dialogueLine: But uhh.. Make sure not to leave food on the floor. Otherwise rats
       may spawn!
@@ -1524,12 +1525,22 @@ MonoBehaviour:
   - backgroundImage: {fileID: 0}
     dialogueLine: But it doesn't conclude your training!
   - backgroundImage: {fileID: 0}
-    dialogueLine: I want you to cook me a perfect steak. Alright go.
+    dialogueLine: I want you to serve me a perfect steak and fried egg,
+  - backgroundImage: {fileID: 0}
+    dialogueLine: When you are done cooking, put them in those blue trays and you
+      can serve it to me.
+  - backgroundImage: {fileID: 0}
+    dialogueLine: Oh yeah I forgot to tell you. Right click to hold things and left
+      click to throw it.
+  - backgroundImage: {fileID: 0}
+    dialogueLine: Sadly the devs didn't have time to code this so this is actually
+      the end of your training lol.
   currentExlainIndex: -1
   nameOfChef: Chef Totori Al
   goingToStall: 0
   startTalkFinish: 0
   reachedStall: 0
+  doingServingQuest: 0
   movePoints:
   - {fileID: 1769438510}
   - {fileID: 396561089}
@@ -1544,6 +1555,7 @@ MonoBehaviour:
   playerMove: {fileID: 813669314}
   playerTurn: {fileID: 813669313}
   slideShowImage: {fileID: 835756341}
+  customerSpawner: {fileID: 1833731578}
 --- !u!54 &182868806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12654,7 +12666,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1348566852}
   spawnOffsetRange: 0.5
   coldRoomFloorManager: {fileID: 599576413}
-  daysUntilCanSpawn: 0
+  daysUntilCanSpawn: 10000
 --- !u!1 &1317092952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17641,7 +17653,7 @@ MonoBehaviour:
   - {fileID: 1618685883}
   - {fileID: 2044867591}
   spawnInterval: 2
-  maxCustomers: 4
+  maxCustomers: 1
   emptyQueueIndex: 0
   eventRushHour: 0
 --- !u!4 &1833731580
