@@ -1,7 +1,5 @@
 using System;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHandScript : MonoBehaviour
 {
@@ -24,6 +22,9 @@ public class PlayerHandScript : MonoBehaviour
 
     public static Action OnHoldSomething;
     public static Action OnStopHoldSomething;
+
+    public PlayerMovement playerMove;
+    public TurnScript playerTurn;
 
     private void Awake()
     {
@@ -303,5 +304,19 @@ public class PlayerHandScript : MonoBehaviour
         obj.transform.localScale = scaleAmount;
     }
 
+    public void FreezePlayer(bool value)
+    {
+        playerMove.canMove = !value;
+        playerTurn.canTurn = !value;
 
+        if (value == true)
+        {
+            playerMove.rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            playerMove.rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        }
+    }
 }

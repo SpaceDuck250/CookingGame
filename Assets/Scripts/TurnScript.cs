@@ -30,6 +30,8 @@ public class TurnScript : MonoBehaviour
     public bool lockXNeg = false;
     public bool lockXPos = false;
 
+    public bool canTurn = true;
+
     private void Start()
     {
         originalPosition = cam.transform.localPosition;
@@ -37,6 +39,11 @@ public class TurnScript : MonoBehaviour
 
     private void Update()
     {
+        if (!canTurn)
+        {
+            return;
+        }
+
         if (lockMode)
         {
             MoveCamera();
