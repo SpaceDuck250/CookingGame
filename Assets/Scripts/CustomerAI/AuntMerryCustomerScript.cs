@@ -1,5 +1,6 @@
 using Customer;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
     public CustomerMovementScript movementScript;
     public AIEventSystemScript eventSystem;
     public AuntMerrySpawnHandlerScript spawnHandler;
+    public MealChecker mealChecker;
 
     public Transform visionOrigin;
     public LayerMask obstacleLayer;
@@ -34,6 +36,12 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
     // Maximum number of food colliders examined during one scan
     public int visionBufferSize = 32;
+
+    // Aunt Merry's order change chance
+    public float changeMindChance = 0.3f;
+    public int maxChangeMindAttempts = 3;
+    public int changeMindAttempts;
+    public bool hasChangedMind;
 
     public bool shouldInspectThisVisit = true;
     public bool inspectorRequestPending;
@@ -109,6 +117,16 @@ public class AuntMerryCustomerScript : MonoBehaviour
         if (visionOrigin == null)
         {
             visionOrigin = transform;
+        }
+
+        if (mealChecker == null)
+        {
+            mealChecker = GetComponent<MealChecker>();
+
+            if (mealChecker == null)
+            {
+                mealChecker = GetComponentInChildren<MealChecker>();
+            }
         }
     }
 
@@ -704,6 +722,115 @@ public class AuntMerryCustomerScript : MonoBehaviour
         inspectorRequestPending = false;
 
         Debug.Log("Aunt Merry summoned the Inspector after seeing food lying on the floor.");
+    }
+
+    public void TryChangeMindWhenTalkedTo()
+    {
+        // Aunt Merry has already used all of her chances to reconsider her order during this visit
+        if (changeMindAttempts >= maxChangeMindAttempts)
+        {
+            Debug.Log("Aunt Merry has already used all of her chances to change her order.");
+            return;
+        }
+
+        ResolveReferences();
+
+        if (mealChecker == null)
+        {
+            Debug.Log("Aunt Merry cannot change her order because MealChecker was not found.");
+            return;
+        }
+
+        // Use one of Aunt Merry's three attempts
+        changeMindAttempts++;
+
+        Debug.Log($"Aunt Merry is reconsidering her order. Attempt ${changeMindAttempts} / ${maxChangeMindAttempts}.");
+
+        // Roll the chance that Aunt Merry actually changes her mind
+        if (Random.value > changeMindChance)
+        {
+            Debug.Log("Aunt Merry thought about changing her order but decided to keep it.");
+            return;
+        }
+
+        bool changedSuccessfully = TryChangeToDifferentOrder();
+
+        if (!changedSuccessfully)
+        {
+            Debug.Log("Aunt Merry wanted to change her order, but there was no different meal available.");
+            return;
+        }
+
+        hasChangedMind = true;
+
+        Debug.Log($"Aunt Merry changed her mind and now wants: ${mealChecker.mealToCheck.name}");
+    }
+
+    private bool TryChangeToDifferentOrder()
+    {
+        if (mealChecker == null)
+        {
+            return false;
+        }
+
+        if (mealChecker.customerScript == null)
+        {
+            Debug.Log("Aunt Merry's MealChecker does not have a CustomerInteractScript.");
+            return false;
+        }
+
+        if (mealChecker.customerScript.heldCustomerData == null)
+        {
+            Debug.Log("Aunt Merry does not have CustomerData.");
+            return false;
+        }
+
+        // Use Aunt Merry's normal possible meal orders
+        List<MealData> possibleOrders = mealChecker.customerScript.heldCustomerData.possibleMealOrders;
+
+        if (possibleOrders == null || possibleOrders.Count == 0)
+        {
+            Debug.Log("Aunt Merry has no possible meal orders.");
+            return false;
+        }
+
+        MealData currentOrder = mealChecker.mealToCheck;
+
+        List<MealData> alternativeOrders = new List<MealData>();
+
+        foreach (MealData possibleOrder in possibleOrders)
+        {
+            if (possibleOrder == null)
+            {
+                continue;
+            }
+
+            // Aunt Merry changes her mind, it does not let her choose the meal she already ordered.
+            if (possibleOrder == currentOrder)
+            {
+                continue;
+            }
+
+            alternativeOrders.Add(possibleOrder);
+        }
+
+        if (alternativeOrders.Count == 0)
+        {
+            Debug.Log("Aunt Merry has no meal different from her current order.");
+            return false;
+        }
+
+        int randomIndex = Random.Range(0, alternativeOrders.Count);
+
+        MealData newOrder = alternativeOrders[randomIndex];
+
+        string previousOrder = currentOrder != null ? currentOrder.name : "None";
+
+        mealChecker.mealToCheck = newOrder;
+
+        Debug.Log($"Aunt Merry changed her order from ${previousOrder} to {newOrder.name}.");
+
+        return true;
     }
 
     private void OnDrawGizmosSelected()

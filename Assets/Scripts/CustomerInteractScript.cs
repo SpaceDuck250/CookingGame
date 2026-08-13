@@ -33,7 +33,7 @@ public class CustomerInteractScript : Interactable
     public static Action<CustomerInteractScript> OnCheckIfNeedToLeave;
 
     public TalkRangeScript talkRange;
-    
+
     private void Start()
     {
         //PickNewMeal();
@@ -104,8 +104,15 @@ public class CustomerInteractScript : Interactable
     {
         talkedTo = true;
 
+        AuntMerryCustomerScript auntMerryScript = GetComponent<AuntMerryCustomerScript>();
+
         if (!NpcDialogueScript.conversationOpen)
         {
+            if (auntMerryScript != null)
+            {
+                auntMerryScript.TryChangeMindWhenTalkedTo();
+            }
+
             OpenConversation();
             customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WaitingForFood);
         }

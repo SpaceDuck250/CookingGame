@@ -95,8 +95,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
         if (sawFood)
         {
-            Debug.Log(
-                "Aunt Merry saw food this visit, she will inspect again next time.");
+            Debug.Log("Aunt Merry saw food this visit, she will inspect again next time.");
         }
         else
         {
