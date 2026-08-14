@@ -18,7 +18,9 @@ public class ControlsHelpScript : MonoBehaviour
         OnShowControlsHelp += DisplayControlsOnScreen;
         OnHideControlsHelp += HideControlsOnScreen;
 
-        PlayerHandScript.OnHoldSomething += HideControlsOnScreen;
+        PlayerHandScript.OnHoldSomething += ShowHoldText;
+
+        PlayerHandScript.OnStopHoldSomething += HideControlsOnScreen;
     }
 
     private void OnDestroy()
@@ -26,7 +28,10 @@ public class ControlsHelpScript : MonoBehaviour
         OnShowControlsHelp -= DisplayControlsOnScreen;
         OnHideControlsHelp -= HideControlsOnScreen;
 
-        PlayerHandScript.OnHoldSomething -= HideControlsOnScreen;
+        PlayerHandScript.OnHoldSomething -= ShowHoldText;
+
+        PlayerHandScript.OnStopHoldSomething -= HideControlsOnScreen;
+
 
 
 
@@ -43,8 +48,19 @@ public class ControlsHelpScript : MonoBehaviour
         controlsHelpObj?.SetActive(false);
     }
 
+    public void ShowHoldText()
+    {
+        controlsHelpObj?.SetActive(true);
+        controlsHelpTextComponent.text = "Left Click (Drop)";
+    }
+
     public static void ShowControls(bool show, string controlText = "")
     {
+        if (PlayerHandScript.instance.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         if (show)
         {
             ControlsHelpScript.OnShowControlsHelp?.Invoke(controlText);

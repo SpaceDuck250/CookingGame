@@ -981,6 +981,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1605480600852178841}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7396440792503314423}
   m_SourcePrefab: {fileID: 100100000, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
 --- !u!1 &7012500987306424632 stripped
 GameObject:
@@ -1082,7 +1085,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7012500987306424632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 620707a7ebf7c4643b51d0fc1b765c2f, type: 3}
   m_Name: 
@@ -1093,6 +1096,19 @@ MonoBehaviour:
   lockImage: {fileID: 3468621667369279380}
   lockedSprite: {fileID: 353762657, guid: 3920fba144fa19b4f9a66cd730fc1452, type: 3}
   unlockedSprite: {fileID: -1665193770, guid: 3920fba144fa19b4f9a66cd730fc1452, type: 3}
+--- !u!114 &7396440792503314423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012500987306424632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click (Hold)
 --- !u!4 &7645626533352694658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
