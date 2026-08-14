@@ -73,6 +73,11 @@ public class OutlineShower : MonoBehaviour, ILookable
 
     public void ShowControls(bool value)
     {
+        if (PlayerHandScript.instance.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         ControlsHelpScript.ShowControls(value, controlsText);
     }
 

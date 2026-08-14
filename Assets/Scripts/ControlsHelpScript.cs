@@ -11,16 +11,23 @@ public class ControlsHelpScript : MonoBehaviour
     public GameObject controlsHelpObj;
     public TextMeshProUGUI controlsHelpTextComponent;
 
+    public bool hidden = false;
+
     private void Start()
     {
         OnShowControlsHelp += DisplayControlsOnScreen;
         OnHideControlsHelp += HideControlsOnScreen;
+
+        PlayerHandScript.OnHoldSomething += HideControlsOnScreen;
     }
 
     private void OnDestroy()
     {
         OnShowControlsHelp -= DisplayControlsOnScreen;
         OnHideControlsHelp -= HideControlsOnScreen;
+
+        PlayerHandScript.OnHoldSomething -= HideControlsOnScreen;
+
 
 
     }
