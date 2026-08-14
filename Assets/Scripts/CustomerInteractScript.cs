@@ -104,10 +104,23 @@ public class CustomerInteractScript : Interactable
     {
         talkedTo = true;
 
-        AuntMerryCustomerScript auntMerryScript = GetComponent<AuntMerryCustomerScript>();
-
         if (!NpcDialogueScript.conversationOpen)
         {
+            // Check this specific customer when the player talks to them
+            // Normal customers will not have AuntMerryCustomerScript
+            AuntMerryCustomerScript auntMerryScript = GetComponent<AuntMerryCustomerScript>();
+
+            if (auntMerryScript == null)
+            {
+                auntMerryScript = GetComponentInParent<AuntMerryCustomerScript>();
+            }
+
+            if (auntMerryScript == null)
+            {
+                auntMerryScript = GetComponentInChildren<AuntMerryCustomerScript>();
+            }
+
+            // Only Aunt Merry will enter this section.
             if (auntMerryScript != null)
             {
                 auntMerryScript.TryChangeMindWhenTalkedTo();
