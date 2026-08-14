@@ -8,8 +8,10 @@ public class TimeCycleScript : MonoBehaviour
 
     // Time Cycle
     public float timePeriodDuration = 200f;
-    public TimeOfDay currentTimeOfDay = TimeOfDay.Day;
+    public static TimeOfDay currentTimeOfDay = TimeOfDay.Day;
     public float timePeriodTimer;
+
+    public static int daysPassed = 0;
 
     private void Awake()
     {
@@ -22,8 +24,6 @@ public class TimeCycleScript : MonoBehaviour
 
         // The starting period
         OnTimeOfDayChanged?.Invoke(currentTimeOfDay);
-
-        Debug.Log("Current time of day: " + currentTimeOfDay);
     }
 
     private void Update()
@@ -54,6 +54,7 @@ public class TimeCycleScript : MonoBehaviour
 
             case TimeOfDay.Evening:
                 SetTimeOfDay(TimeOfDay.Day);
+                daysPassed++;
                 break;
         }
     }

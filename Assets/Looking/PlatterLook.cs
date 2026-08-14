@@ -13,18 +13,18 @@ public class PlatterLook : MonoBehaviour, ILookable
 
     public void DoLookEffect()
     {
-        if (interactAreaScript.withinRange)
-        {
-            lockImage.sprite = togglerScript.currentMode == PlatterToggleScript.PlatterMode.Edit ? unlockedSprite : lockedSprite;
-            lockObj.SetActive(true);
+        //if (interactAreaScript.withinRange)
+        //{
+        //    lockImage.sprite = togglerScript.currentMode == PlatterToggleScript.PlatterMode.Edit ? unlockedSprite : lockedSprite;
+        //    lockObj.SetActive(true);
 
-            GeneralControlsTextScript.OnControlsTextChanged?.Invoke("E to Switch Mode \n Current Mode: " + togglerScript.currentMode.ToString());
-        }
+        //    GeneralControlsTextScript.OnControlsTextChanged?.Invoke("E to Switch Mode \n Current Mode: " + togglerScript.currentMode.ToString());
+        //}
     }
 
     public void StopLookEffect()
     {
-        lockObj.SetActive(false);
-        GeneralControlsTextScript.OnControlsTextChanged?.Invoke("");
+        //lockObj.SetActive(false);
+        //GeneralControlsTextScript.OnControlsTextChanged?.Invoke("");
     }
 }

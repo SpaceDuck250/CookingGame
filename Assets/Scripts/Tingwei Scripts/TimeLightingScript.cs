@@ -12,7 +12,7 @@ public class TimeLightingScript : MonoBehaviour
     {
         if (TimeCycleScript.Instance != null)
         {
-            HandleTimeOfDayChanged(TimeCycleScript.Instance.currentTimeOfDay);
+            HandleTimeOfDayChanged(TimeCycleScript.currentTimeOfDay);
         }
     }
 
@@ -48,7 +48,5 @@ public class TimeLightingScript : MonoBehaviour
                 directionalLight.intensity = eveningIntensity;
                 break;
         }
-
-        Debug.Log("Lighting changed for: " + timeOfDay);
     }
 }

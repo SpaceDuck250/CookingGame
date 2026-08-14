@@ -20,6 +20,7 @@ public class ShopScript : MonoBehaviour
 
     public static Action<FoodData, int> OnSucessfullyBoughtFood;
 
+    public int maxBuyAmount = 5;
 
     private void Start()
     {
@@ -65,6 +66,16 @@ public class ShopScript : MonoBehaviour
     public void TryBuy()
     {
         if (!shopCostScript.canAfford)
+        {
+            return;
+        }
+
+        if (ShopIncreaserScript.buyAmount == 0)
+        {
+            return;
+        }
+
+        if (ShopIncreaserScript.buyAmount > maxBuyAmount)
         {
             return;
         }

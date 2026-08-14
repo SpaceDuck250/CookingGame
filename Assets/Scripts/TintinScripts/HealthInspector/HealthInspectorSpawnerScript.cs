@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class HealthInspectorSpawnerScript : MonoBehaviour
 {
-    public GameObject inspectorPrefab;
+    // Chill and Strict prefab variants go here - one is picked at random each time an inspector is spawned
+    public List<GameObject> inspectorPrefabs = new List<GameObject>();
 
     public Transform spawnPoint;
     public Transform exitPoint;
@@ -51,14 +52,16 @@ public class HealthInspectorSpawnerScript : MonoBehaviour
 
     private void SpawnInspector()
     {
-        if (inspectorPrefab == null || spawnPoint == null)
+        GameObject chosenPrefab = PickRandomInspectorPrefab();
+
+        if (chosenPrefab == null || spawnPoint == null)
         {
-            Debug.LogWarning("[Health Inspector] Missing inspectorPrefab or spawnPoint - cannot spawn.");
+            Debug.LogWarning("[Health Inspector] Missing inspectorPrefabs or spawnPoint - cannot spawn.");
             inspectionInProgress = false;
             return;
         }
 
-        GameObject newInspector = Instantiate(inspectorPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject newInspector = Instantiate(chosenPrefab, spawnPoint.position, spawnPoint.rotation);
         HealthInspectorAIScript inspectorAI = newInspector.GetComponent<HealthInspectorAIScript>();
 
         if (inspectorAI == null)
@@ -69,7 +72,20 @@ public class HealthInspectorSpawnerScript : MonoBehaviour
             return;
         }
 
+        Debug.Log("[Health Inspector] Spawning " + chosenPrefab.name + " (strictness: " + inspectorAI.strictness + ")");
+
         inspectorAI.BeginInspection(exitPoint, inspectionPoints);
+    }
+
+    private GameObject PickRandomInspectorPrefab()
+    {
+        if (inspectorPrefabs == null || inspectorPrefabs.Count == 0)
+        {
+            return null;
+        }
+
+        int randomIndex = Random.Range(0, inspectorPrefabs.Count);
+        return inspectorPrefabs[randomIndex];
     }
 
     private void OnInspectionComplete()

@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af47ba3b211e174aa19175049d01d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeCycleScript
-  timePeriodDuration: 100
+  timePeriodDuration: 6.1
   currentTimeOfDay: 0
   timePeriodTimer: 0
 --- !u!4 &160354616
@@ -1445,11 +1445,12 @@ MonoBehaviour:
   musicClip1: {fileID: 8300000, guid: 09e410b54cbfeb944afbc5f2bc638fb6, type: 3}
   musicClip2: {fileID: 0}
   storeClip: {fileID: 0}
+  morningMusicList: []
+  afternoonMusicList: []
   pickupClip: {fileID: 0}
   sizzleClip: {fileID: 0}
   musicSrc: {fileID: 1742168976}
-  effectsSrx: {fileID: 718222748}
-  longEffectsSrc: {fileID: 0}
+  effectsSrc: {fileID: 0}
 --- !u!4 &298762606
 Transform:
   m_ObjectHideFlags: 0
@@ -5356,6 +5357,7 @@ MonoBehaviour:
   shopObj: {fileID: 2047949483}
   shopCostScript: {fileID: 719452758}
   shopSideScript: {fileID: 719452756}
+  maxBuyAmount: 5
 --- !u!114 &980700598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7553,6 +7555,13 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 1771003184}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
 --- !u!114 &1320097907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7573,6 +7582,7 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
 --- !u!54 &1320097908
 Rigidbody:
   m_ObjectHideFlags: 0

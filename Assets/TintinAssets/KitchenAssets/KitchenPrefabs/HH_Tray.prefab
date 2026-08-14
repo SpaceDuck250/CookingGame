@@ -77,7 +77,7 @@ MonoBehaviour:
   - {fileID: 5150214571920177828}
   currentIndex: 0
   upOffset: {x: 0, y: 0.05, z: 0}
-  platterModeToggler: {fileID: 2264938179096651237}
+  holdScript: {fileID: 4736436962316159817}
 --- !u!1 &4269382106098692072
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 823766420385370501}
   - component: {fileID: 7570132639168407933}
   - component: {fileID: 2264938179096651237}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TriggerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 1.0424955, z: 2}
+  m_Center: {x: 0, y: 0.47875223, z: 0}
 --- !u!114 &7570132639168407933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.769
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1033,7 +1033,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4736436962316159817
 MonoBehaviour:
@@ -1056,11 +1056,12 @@ MonoBehaviour:
   changeScaleOnHand: 1
   changeRotationOnHand: 0
   pickupScaleModifier: 0.67
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0, y: 0.03, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   canPickUp: 0
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 0
 --- !u!114 &6155223426165234483
 MonoBehaviour:
   m_ObjectHideFlags: 0

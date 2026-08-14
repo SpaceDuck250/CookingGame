@@ -1,7 +1,5 @@
 using System;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHandScript : MonoBehaviour
 {
@@ -24,6 +22,9 @@ public class PlayerHandScript : MonoBehaviour
 
     public static Action OnHoldSomething;
     public static Action OnStopHoldSomething;
+
+    public PlayerMovement playerMove;
+    public TurnScript playerTurn;
 
     private void Awake()
     {
@@ -87,8 +88,6 @@ public class PlayerHandScript : MonoBehaviour
                 return false;
             }
 
-            FoodData foodData = holdableFoodScript.foodData;
-
             if (!holdableFoodScript.canPickUp)
             {
                 return false;
@@ -96,6 +95,7 @@ public class PlayerHandScript : MonoBehaviour
 
             if (!holdableFoodScript.CarryType)
             {
+                FoodData foodData = holdableFoodScript.foodData;
                 SwitchFoodItem(foodData, hit.collider.gameObject);
             }
             else
@@ -105,6 +105,7 @@ public class PlayerHandScript : MonoBehaviour
 
             BringFoodToHand(holdableFoodScript);
             OnHoldSomething?.Invoke();
+            //NpcDialogueScript.OnHideDialogue?.Invoke();
 
             return true;
         }
@@ -185,11 +186,11 @@ public class PlayerHandScript : MonoBehaviour
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier);
 
-        if (objectToCarry.tag == "Platter")
-        {
-            InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
-            interactArea.HideDisplay();
-        }
+        //if (objectToCarry.tag == "Platter")
+        //{
+        //    InteractAreaScript interactArea = currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>();
+        //    interactArea.HideDisplay();
+        //}
         
 
     }
@@ -221,7 +222,7 @@ public class PlayerHandScript : MonoBehaviour
 
         if (currentFoodHeldObj.tag == "Platter")
         {
-            currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
+            //currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
         }
 
         currentFoodHeldObj = null;
@@ -304,5 +305,19 @@ public class PlayerHandScript : MonoBehaviour
         obj.transform.localScale = scaleAmount;
     }
 
+    public void FreezePlayer(bool value)
+    {
+        playerMove.canMove = !value;
+        playerTurn.canTurn = !value;
 
+        if (value == true)
+        {
+            playerMove.rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            playerMove.rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        }
+    }
 }

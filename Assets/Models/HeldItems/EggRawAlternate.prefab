@@ -96,6 +96,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3677056110006775172}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7281728015030476287}
   m_SourcePrefab: {fileID: 100100000, guid: 0bade026299a2c44ebfa78578a277250, type: 3}
 --- !u!1 &6961841274360367941 stripped
 GameObject:
@@ -128,6 +131,7 @@ MonoBehaviour:
   canPickUp: 0
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 1
 --- !u!54 &772265956748214044
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -190,3 +194,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+--- !u!114 &-7281728015030476287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961841274360367941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript

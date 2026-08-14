@@ -9,13 +9,14 @@ public class CarrotCutter : Interactable
     public FoodData cutFoodData;
 
     public CookingInputOutputScript cookingInputOutput;
-    public event Action<int, int> OnChopped;
 
     public Transform foodSpawnArea;
     public Vector3 spawnOffset;
 
     public int chops;
     public int requiredChops;
+
+    public event Action<int, int> OnChopped;
 
     public KnifeAnimatorScript knifeAnimator;
 

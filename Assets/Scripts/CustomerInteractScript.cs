@@ -62,6 +62,11 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    CloseConversation();
+        //}
+
         if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {
             return;
@@ -75,6 +80,7 @@ public class CustomerInteractScript : Interactable
 
         if (CheckIfHoldingFood(playerHand) && talkedTo)
         {
+            //CloseConversation();
             CheckIfFoodMatchesOrder(playerHand);
         }
         else if (!CheckIfHoldingFood(playerHand))
@@ -180,14 +186,6 @@ public class CustomerInteractScript : Interactable
             finishedInteract = true;
         }
     }
-
-    //public void RotateToPlayer()
-    //{
-    //    Vector3 rotateVector = (PlayerHandScript.instance.transform.position - transform.position).normalized;
-    //    float rotateAngle = Mathf.Atan2(rotateVector.x, rotateVector.z) * Mathf.Rad2Deg;
-
-    //    transform.rotation = Quaternion.Euler(0, rotateAngle, 0);
-    //}
 
     public void RotateTo(GameObject obj)
     {

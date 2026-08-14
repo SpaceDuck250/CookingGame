@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 686876068717902546}
   - component: {fileID: -5586296078893390481}
   m_Layer: 13
+  - component: {fileID: -2671102977358372884}
+  m_Layer: 0
   m_Name: BreadWhole
   m_TagString: HealthViolation
   m_Icon: {fileID: 0}
@@ -90,6 +92,7 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  doFloorChecks: 1
 --- !u!114 &-5586296078893390481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+--- !u!114 &-2671102977358372884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062613110505822880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript
 --- !u!1 &7488542530332746717
 GameObject:
   m_ObjectHideFlags: 0
