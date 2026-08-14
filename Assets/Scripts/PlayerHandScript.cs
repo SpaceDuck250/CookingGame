@@ -304,7 +304,7 @@ public class PlayerHandScript : MonoBehaviour
         obj.transform.localScale = scaleAmount;
     }
 
-    public void FreezePlayer(bool value)
+    public void FreezePlayer(bool value, Transform rotateToTransform)
     {
         playerMove.canMove = !value;
         playerTurn.canTurn = !value;
@@ -316,7 +316,8 @@ public class PlayerHandScript : MonoBehaviour
         else
         {
             playerMove.rb.constraints = RigidbodyConstraints.FreezeRotation;
-
         }
+
+
     }
 }

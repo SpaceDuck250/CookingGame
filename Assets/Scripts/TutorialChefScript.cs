@@ -93,7 +93,7 @@ public class TutorialChefScript : Interactable
         string chefNameShown = nameOfChef + ": ";
 
         string currentLine = dialogueLines[currentIndex];
-        slowTyper.StartWritingSlowly(chefNameShown, currentLine);
+        slowTyper.StartWritingSlowly(chefNameShown, currentLine, transform);
 
     }
 
@@ -118,8 +118,6 @@ public class TutorialChefScript : Interactable
             slideShowImage.gameObject.SetActive(false);
             slowTyper.CloseDialogue();
 
-            SceneManager.LoadScene(teleportSceneName);
-
             
             //currentExlainIndex = 0;
 
@@ -130,7 +128,7 @@ public class TutorialChefScript : Interactable
         ExplainationObj explainObj = explainationLines[currentExlainIndex];
 
         string chefNameShown = nameOfChef + ": ";
-        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine);
+        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine, transform);
 
         if (explainObj.backgroundImage == null)
         {

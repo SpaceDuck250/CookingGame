@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 // The logic for hitting floor is in holdablefoodscript
 public class FloorManager : MonoBehaviour
