@@ -25,6 +25,9 @@ public class HoldableFoodScript : MonoBehaviour
 
     public bool doFloorChecks = true;
 
+    // Fuck the trays
+    public GameObject anotherThingToChangeLayer;
+
 
     public void Start()
     {

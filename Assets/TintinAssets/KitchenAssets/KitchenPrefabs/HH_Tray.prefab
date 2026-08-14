@@ -55,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44, y: 0.1, z: 0.69}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.44, y: 0.22334735, z: 0.69000006}
+  m_Center: {x: 0, y: -0.061673697, z: 0}
 --- !u!114 &7036617835652098494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,9 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
-  customControlsText: Right Click (Drop)
+  customControlsText: Left Click (Hold)
   doAltTextIfHoldingFood: 1
   altText: Left Click (Place Food)
+  self: {fileID: 7012500987306424632}
 --- !u!1 &4269382106098692072
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,9 +998,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1605480600852178841}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7396440792503314423}
   m_SourcePrefab: {fileID: 100100000, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}
 --- !u!1 &7012500987306424632 stripped
 GameObject:
@@ -1081,6 +1079,7 @@ MonoBehaviour:
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
   doFloorChecks: 0
+  anotherThingToChangeLayer: {fileID: 3033032256040148207}
 --- !u!114 &6155223426165234483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,21 +1111,6 @@ MonoBehaviour:
   lockImage: {fileID: 3468621667369279380}
   lockedSprite: {fileID: 353762657, guid: 3920fba144fa19b4f9a66cd730fc1452, type: 3}
   unlockedSprite: {fileID: -1665193770, guid: 3920fba144fa19b4f9a66cd730fc1452, type: 3}
---- !u!114 &7396440792503314423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7012500987306424632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
-  customControlsText: Left Click (Hold)
-  doAltTextIfHoldingFood: 0
-  altText: 
 --- !u!4 &7645626533352694658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}

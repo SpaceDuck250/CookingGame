@@ -7,6 +7,8 @@ public class LookControlsScript : MonoBehaviour, ILookable
     public bool doAltTextIfHoldingFood = false;
     public string altText;
 
+    public GameObject self;
+
     public void DoLookEffect()
     {
         ShowControls(true);
@@ -21,6 +23,14 @@ public class LookControlsScript : MonoBehaviour, ILookable
 
     public void ShowControls(bool value)
     {
+        // FUCK PLATTERS
+        if (PlayerHandScript.instance.currentFoodHeldObj != null && PlayerHandScript.instance.currentFoodHeldObj.tag == "Platter")
+        {
+            ControlsHelpScript.ShowControls(value, "Right Click (Drop)");
+
+            return;
+        }
+
         if (doAltTextIfHoldingFood && PlayerHandScript.instance.currentFoodHeld != null)
         {
             ControlsHelpScript.ShowControls(value, altText);
