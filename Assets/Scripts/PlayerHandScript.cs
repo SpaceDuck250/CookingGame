@@ -165,11 +165,14 @@ public class PlayerHandScript : MonoBehaviour
         {
             holdableScript.DeleteObjectToDelete();
         }
+
+        currentFoodHeldObj.layer = LayerMask.NameToLayer("IgnoreLayer");
     }
 
     private void CarryInstead(GameObject objectToCarry)
     {
         currentFoodHeldObj = objectToCarry;
+        currentFoodHeldObj.layer = LayerMask.NameToLayer("IgnoreLayer");
         currentFoodHeldObj.transform.SetParent(heldContainer.transform, true);
 
         Rigidbody rb = currentFoodHeldObj.GetComponent<Rigidbody>();
@@ -180,6 +183,8 @@ public class PlayerHandScript : MonoBehaviour
         currentFoodHeldObj.transform.localPosition = Vector3.zero;
         currentFoodHeldObj.transform.localRotation = Quaternion.identity;
         currentFoodHeldObj.transform.localPosition += currentFoodHeldObj.GetComponent<HoldableFoodScript>().holdOffset;
+
+
 
 
         HoldableFoodScript holdScript = currentFoodHeldObj.GetComponent<HoldableFoodScript>();
@@ -224,9 +229,14 @@ public class PlayerHandScript : MonoBehaviour
             //currentFoodHeldObj.transform.GetChild(0).GetComponent<InteractAreaScript>().active = true;
         }
 
+        currentFoodHeldObj.layer = LayerMask.NameToLayer("Default");
+
+
         currentFoodHeldObj = null;
 
         OnStopHoldSomething?.Invoke();
+
+
     }
 
     private void TryInteractWithInteractable()

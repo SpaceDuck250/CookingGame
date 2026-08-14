@@ -191,7 +191,7 @@ PrefabInstance:
       addedObject: {fileID: 3217392867086917269}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8621442918812341907}
+      addedObject: {fileID: 8565091554810514773}
   m_SourcePrefab: {fileID: 100100000, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
 --- !u!4 &2419824108407028332 stripped
 Transform:
@@ -318,7 +318,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8621442918812341907
+--- !u!114 &8565091554810514773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,11 +327,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3089224806826418390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
-  objectsToOutlineList:
-  - {fileID: 3089224806826418390}
-  setManually: 1
-  showControls: 1
-  controlsText: Left Click (Pick)
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click (Hold)
+  showAltTextIfHoldingFood: 0
+  showAltTextIfHolding: 0

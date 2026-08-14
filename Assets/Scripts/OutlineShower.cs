@@ -12,6 +12,8 @@ public class OutlineShower : MonoBehaviour, ILookable
 
     private void Start()
     {
+        controlsText = "Left Click (Hold)";
+
         if (setManually)
         {
             return;

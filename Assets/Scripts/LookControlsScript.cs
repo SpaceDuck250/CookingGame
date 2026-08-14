@@ -4,8 +4,8 @@ public class LookControlsScript : MonoBehaviour, ILookable
 {
     public string customControlsText;
 
-    public bool showAltTextIfHoldingFood = false;
-    public bool showAltTextIfHolding = false;
+    public bool doAltTextIfHoldingFood = false;
+    public string altText;
 
     public void DoLookEffect()
     {
@@ -21,12 +21,17 @@ public class LookControlsScript : MonoBehaviour, ILookable
 
     public void ShowControls(bool value)
     {
-        //if (showAltTextIfHolding && PlayerHandScript.instance.currentFoodHeldObj != null)
-        //{
-        //    string altText = "Right Click (drop)";
-        //    ControlsHelpScript.ShowControls(value, altText);
+        if (doAltTextIfHoldingFood && PlayerHandScript.instance.currentFoodHeld != null)
+        {
+            ControlsHelpScript.ShowControls(value, altText);
 
-        //}
+            return;
+        }
+        else if (PlayerHandScript.instance.currentFoodHeld != null)
+        {
+
+            return;
+        }
 
         ControlsHelpScript.ShowControls(value, customControlsText);
     }

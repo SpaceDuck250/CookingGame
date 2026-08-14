@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5614685786576600870}
   - component: {fileID: 803210797465240089}
   - component: {fileID: 7036617835652098494}
+  - component: {fileID: 6548736408156218386}
   m_Layer: 6
   m_Name: PlatterArea
   m_TagString: CookingStation
@@ -78,6 +79,21 @@ MonoBehaviour:
   currentIndex: 0
   upOffset: {x: 0, y: 0.05, z: 0}
   holdScript: {fileID: 4736436962316159817}
+--- !u!114 &6548736408156218386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033032256040148207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Right Click (Drop)
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Place Food)
 --- !u!1 &4269382106098692072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
   customControlsText: Left Click (Hold)
+  doAltTextIfHoldingFood: 0
+  altText: 
 --- !u!4 &7645626533352694658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d1de59dcf6bacb4e8c69588912430e1, type: 3}

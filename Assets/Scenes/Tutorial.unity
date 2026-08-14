@@ -2780,6 +2780,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1361327237}
   m_SourcePrefab: {fileID: 100100000, guid: a41747ae80fc607428f3eb6d6605f4a2, type: 3}
+--- !u!1 &274042401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5231262311249387368, guid: 342b196c471ecbb4ea79b661b0d8b27b, type: 3}
+  m_PrefabInstance: {fileID: 1900188573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &274067733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4098,6 +4103,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1586216144}
   - {fileID: 760244005}
   - {fileID: 1559334126}
   - {fileID: 1451753677}
@@ -4105,7 +4111,6 @@ RectTransform:
   - {fileID: 2041584726}
   - {fileID: 835756340}
   - {fileID: 1475323314}
-  - {fileID: 1586216144}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4128,6 +4133,7 @@ MonoBehaviour:
   controlsHelpObj: {fileID: 1586216143}
   controlsHelpTextComponent: {fileID: 788889211}
   hidden: 0
+  onLookObj: 0
 --- !u!4 &362051593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6451990430778771712, guid: 984cd3307e745794481b1010f84493ce, type: 3}
@@ -5057,9 +5063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  customControlsText: Left Click (Take/Put)
-  showAltTextIfHoldingFood: 0
-  showAltTextIfHolding: 0
+  customControlsText: Left Click (Take)
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Put)
 --- !u!1001 &432680801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5165,6 +5171,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   interactKeyCode: 0
+--- !u!114 &437863840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437863832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: ' '
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Throw Food)
 --- !u!1001 &444777016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6280,6 +6301,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 803210797465240089, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_Center.x
+      value: 0.00023211342
+      objectReference: {fileID: 0}
+    - target: {fileID: 803210797465240089, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0020170284
+      objectReference: {fileID: 0}
+    - target: {fileID: 803210797465240089, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_Center.z
+      value: 0.009449514
+      objectReference: {fileID: 0}
     - target: {fileID: 2264938179096651237, guid: e7e546e88f76e404892591f607fb5728, type: 3}
       propertyPath: lookScript
       value: 
@@ -6475,6 +6508,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4887247785471559122, guid: 342b196c471ecbb4ea79b661b0d8b27b, type: 3}
   m_PrefabInstance: {fileID: 1900188573}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &577851081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274042401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: ' '
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Place Food)
 --- !u!1 &587797712
 GameObject:
   m_ObjectHideFlags: 0
@@ -7114,7 +7162,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 391557943243232523, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2110347149}
   m_SourcePrefab: {fileID: 100100000, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
 --- !u!1 &650922749
 GameObject:
@@ -8127,7 +8178,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -88.058846, z: 0, w: 0}
+  m_margin: {x: -71.72771, y: -88.058846, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10400,6 +10451,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3fb7a287ba71f9347bc41982dbb83987, type: 3}
       insertIndex: -1
       addedObject: {fileID: 437863836}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3fb7a287ba71f9347bc41982dbb83987, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 437863840}
   m_SourcePrefab: {fileID: 100100000, guid: 3fb7a287ba71f9347bc41982dbb83987, type: 3}
 --- !u!1001 &989023752
 PrefabInstance:
@@ -11359,6 +11413,7 @@ GameObject:
   - component: {fileID: 1108708283}
   - component: {fileID: 1108708282}
   - component: {fileID: 1108708281}
+  - component: {fileID: 1108708288}
   m_Layer: 6
   m_Name: BookTable
   m_TagString: Untagged
@@ -11537,6 +11592,21 @@ Transform:
   - {fileID: 1816615667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1108708288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108708280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click (Open Book)
+  doAltTextIfHoldingFood: 0
+  altText: 
 --- !u!1 &1111190753
 GameObject:
   m_ObjectHideFlags: 0
@@ -11715,7 +11785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLooker
   cam: {fileID: 955018307}
-  maxDistance: 30
+  maxDistance: 10
 --- !u!1 &1135155204
 GameObject:
   m_ObjectHideFlags: 0
@@ -13250,9 +13320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
-  customControlsText: Left Click (Open)
-  showAltTextIfHoldingFood: 0
-  showAltTextIfHolding: 0
+  customControlsText: Left Click (Open Door)
+  doAltTextIfHoldingFood: 0
+  altText: 
 --- !u!4 &1363779575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 484404636ac422042a24ac95512dc2d3, type: 3}
@@ -18563,6 +18633,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5231262311249387368, guid: 342b196c471ecbb4ea79b661b0d8b27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 577851081}
     - targetCorrespondingSourceObject: {fileID: 35206823090225722, guid: 342b196c471ecbb4ea79b661b0d8b27b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1900188576}
@@ -25109,6 +25182,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1b0084fb56aeb6e4e90f88a0def84cf0, type: 3}
   m_PrefabInstance: {fileID: 2057738077}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2059539034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2366242145787112141, guid: 480f4402165b3ae4b880cc58853ec5d5, type: 3}
+  m_PrefabInstance: {fileID: 1647788926118927734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2059539038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059539034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click (Open Shop)
+  doAltTextIfHoldingFood: 0
+  altText: 
 --- !u!4 &2063214500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5dca1204e7e935d408728950a2ad997e, type: 3}
@@ -25584,6 +25677,26 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &2110347148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 391557943243232523, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+  m_PrefabInstance: {fileID: 636625677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2110347149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110347148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: 
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Place Food)
 --- !u!4 &2123512745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8306918204802468173, guid: c042c5f21062481429bcdccc77c79cc4, type: 3}
@@ -27526,7 +27639,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2366242145787112141, guid: 480f4402165b3ae4b880cc58853ec5d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2059539038}
   m_SourcePrefab: {fileID: 100100000, guid: 480f4402165b3ae4b880cc58853ec5d5, type: 3}
 --- !u!224 &1651811571175379658
 RectTransform:
