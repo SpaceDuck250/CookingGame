@@ -103,6 +103,11 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void ChangeCustomerState(CustomerState newState)
     {
+        if (newState == CustomerState.WalkingToCounter && currentState == CustomerState.PayingForFood || newState == CustomerState.WalkingToCounter && currentState == CustomerState.WalkingToSeat)
+        {
+            return;
+        }
+
         currentState = newState;
 
         switch (currentState)

@@ -40,6 +40,8 @@ public class TrayRackScript : Interactable
             return;
         }
 
+        print("Returned");
+
         trayLeft++;
 
         SetTraysActive(trayLeft);
