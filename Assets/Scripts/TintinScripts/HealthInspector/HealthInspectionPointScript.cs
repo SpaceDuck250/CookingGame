@@ -11,11 +11,13 @@ public class HealthInspectionPointScript : MonoBehaviour
 
     public List<string> violationTags = new List<string> { "HealthViolation" };
 
-    public bool CheckForViolation(out string violationDescription)
+    // Returns every individual violating object found at this point (not deduped),
+    // so callers can both count total violations and tally them by name.
+    public bool CheckForViolation(out List<string> foundViolations)
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, checkRadius);
 
-        List<string> foundViolations = new List<string>();
+        foundViolations = new List<string>();
         foreach (Collider hit in hits)
         {
             if (!violationTags.Contains(hit.tag))
@@ -23,26 +25,36 @@ public class HealthInspectionPointScript : MonoBehaviour
                 continue;
             }
 
-            string label = hit.gameObject.name;
-            if (!foundViolations.Contains(label))
+            if (IsProperlyPlated(hit))
             {
-                foundViolations.Add(label);
+                continue;
             }
+
+            foundViolations.Add(CleanViolationLabel(hit.gameObject.name));
         }
 
-        if (foundViolations.Count <= 0)
+        return foundViolations.Count > 0;
+    }
+
+    // Food sitting correctly on a platter shouldn't count as a violation, even if it's tagged
+    private bool IsProperlyPlated(Collider hit)
+    {
+        HoldableFoodScript holdable = hit.GetComponentInParent<HoldableFoodScript>();
+        return holdable != null && holdable.platterIn != null;
+    }
+
+    // Strips Unity's "(Clone)" suffix so spawned violation props show a clean name in reports
+    private const string CloneSuffix = "(Clone)";
+
+    private string CleanViolationLabel(string objectName)
+    {
+        if (!objectName.EndsWith(CloneSuffix))
         {
-            violationDescription = "";
-            return false;
+            return objectName;
         }
 
-        violationDescription = foundViolations[0];
-        if (foundViolations.Count > 1)
-        {
-            violationDescription += " (+" + (foundViolations.Count - 1) + " more)";
-        }
-
-        return true;
+        int cleanLength = objectName.Length - CloneSuffix.Length;
+        return objectName.Substring(0, cleanLength).Trim();
     }
 
     private void OnDrawGizmosSelected()

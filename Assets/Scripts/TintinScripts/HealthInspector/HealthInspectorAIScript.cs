@@ -13,6 +13,12 @@ namespace Inspector
         WalkingToExit,
         Leaving,
     }
+
+    public enum InspectionStrictness
+    {
+        Lenient,   // one fine per point, no matter how many violations are found there
+        Strict     // one fine per violation found at that point
+    }
 }
 
 public class HealthInspectorAIScript : MonoBehaviour
@@ -26,6 +32,8 @@ public class HealthInspectorAIScript : MonoBehaviour
 
     public decimal fineAmountPerViolation = 50;
 
+    public InspectionStrictness strictness = InspectionStrictness.Lenient;
+
     public GameObject floatingTextPrefab;
     public Transform popupSpawnPoint;
 
@@ -34,9 +42,14 @@ public class HealthInspectorAIScript : MonoBehaviour
 
     public static event Action OnInspectionComplete;
 
+    // Fired when the inspector finishes: violation tally by name, total fine, and whether the stall passed
+    public static event Action<Dictionary<string, int>, decimal, bool> OnInspectionReport;
+
     private int currentPointIndex = 0;
     private float inspectTimer = 0f;
     private int violationsFound = 0;
+
+    private Dictionary<string, int> violationTally = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -63,6 +76,7 @@ public class HealthInspectorAIScript : MonoBehaviour
 
         currentPointIndex = 0;
         violationsFound = 0;
+        violationTally.Clear();
 
         if (inspectionPoints == null || inspectionPoints.Count == 0)
         {
@@ -157,11 +171,32 @@ public class HealthInspectorAIScript : MonoBehaviour
     {
         HealthInspectionPointScript point = inspectionPoints[currentPointIndex];
 
-        string violationDescription;
-        if (point.CheckForViolation(out violationDescription))
+        List<string> foundViolations;
+        if (point.CheckForViolation(out foundViolations))
         {
-            violationsFound++;
-            Debug.Log("[Health Inspector] Violation found at " + point.pointName + " - " + violationDescription);
+            int fineUnits = strictness == InspectionStrictness.Strict ? foundViolations.Count : 1;
+            violationsFound += fineUnits;
+
+            TallyViolations(foundViolations);
+
+            Debug.Log("[Health Inspector] Violation found at " + point.pointName + " - " + string.Join(", ", foundViolations)
+                + " (" + fineUnits + " fine unit(s), strictness: " + strictness + ")");
+        }
+    }
+
+    // Records every violating object found (regardless of strictness) so the report shows what was actually there
+    private void TallyViolations(List<string> foundViolations)
+    {
+        foreach (string violationLabel in foundViolations)
+        {
+            if (violationTally.ContainsKey(violationLabel))
+            {
+                violationTally[violationLabel]++;
+            }
+            else
+            {
+                violationTally[violationLabel] = 1;
+            }
         }
     }
 
@@ -179,9 +214,11 @@ public class HealthInspectorAIScript : MonoBehaviour
 
     private void FinishVisit()
     {
-        if (violationsFound > 0)
+        bool passed = violationsFound <= 0;
+        decimal totalFine = fineAmountPerViolation * violationsFound;
+
+        if (!passed)
         {
-            decimal totalFine = fineAmountPerViolation * violationsFound;
             ApplyFine(totalFine);
             Debug.Log("[Health Inspector] Failed inspection - " + violationsFound + " violation(s). Fined $" + totalFine);
         }
@@ -190,6 +227,7 @@ public class HealthInspectorAIScript : MonoBehaviour
             Debug.Log("[Health Inspector] Passed inspection - no violations found.");
         }
 
+        OnInspectionReport?.Invoke(violationTally, totalFine, passed);
         OnInspectionComplete?.Invoke();
         Destroy(gameObject);
     }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa87b0b3acaf2542aa57132ebbf33d6, type: 3}
+  m_Name: James
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerData
+  customerName: James
+  customerSprite: {fileID: 21300000, guid: 812a465fe6db50b4a9b17ba809ea45a1, type: 3}
+  possibleMealOrders:
+  - {fileID: 11400000, guid: 43de31e82536eb94cabc16a2a57d84df, type: 2}
+  - {fileID: 11400000, guid: 64ef968a82121b140bc8ec746e3e6945, type: 2}
+  - {fileID: 11400000, guid: 084235e331c2ca74ba3a7839412ee91c, type: 2}
+  dialogueLines:
+  - dialogueLine: Good Day!
+    moodType: 0
+  - dialogueLine: What to order
+    moodType: 0
+  - dialogueLine: Nice
+    moodType: 1
+  - dialogueLine: Im an angry
+    moodType: 2
+  wrongFoodDialogueLine: Not what I ordered
+  burntFoodDialogueLine: Why food is burnt
+  waitTimeUntilAngry: 20
+  waitTimeUntilReallyAngry: 35
+  fastEnoughTime: 15
+  tipRange: 5
+  isSpecialCustomer: 0

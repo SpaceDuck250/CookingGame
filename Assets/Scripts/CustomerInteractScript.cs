@@ -33,7 +33,7 @@ public class CustomerInteractScript : Interactable
     public static Action<CustomerInteractScript> OnCheckIfNeedToLeave;
 
     public TalkRangeScript talkRange;
-    
+
     private void Start()
     {
         //PickNewMeal();
@@ -108,6 +108,26 @@ public class CustomerInteractScript : Interactable
 
         if (!NpcDialogueScript.conversationOpen)
         {
+            // Check this specific customer when the player talks to them
+            // Normal customers will not have AuntMerryCustomerScript
+            AuntMerryCustomerScript auntMerryScript = GetComponent<AuntMerryCustomerScript>();
+
+            if (auntMerryScript == null)
+            {
+                auntMerryScript = GetComponentInParent<AuntMerryCustomerScript>();
+            }
+
+            if (auntMerryScript == null)
+            {
+                auntMerryScript = GetComponentInChildren<AuntMerryCustomerScript>();
+            }
+
+            // Only Aunt Merry will enter this section.
+            if (auntMerryScript != null)
+            {
+                auntMerryScript.TryChangeMindWhenTalkedTo();
+            }
+
             OpenConversation();
             customerStateMachine.OnCustomerChangeState?.Invoke(CustomerState.WaitingForFood);
         }

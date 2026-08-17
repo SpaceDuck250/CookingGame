@@ -81,6 +81,7 @@ public class PlayerHandScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxRange, layerMask, QueryTriggerInteraction.Collide))
         {
+            //print(hit.collider.gameObject + " hit");
             HoldableFoodScript holdableFoodScript = hit.collider.gameObject.GetComponentInParent<HoldableFoodScript>();
             if (holdableFoodScript == null)
             {
