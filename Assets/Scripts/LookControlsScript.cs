@@ -7,8 +7,6 @@ public class LookControlsScript : MonoBehaviour, ILookable
     public bool doAltTextIfHoldingFood = false;
     public string altText;
 
-    public GameObject self;
-
     public void DoLookEffect()
     {
         ShowControls(true);
