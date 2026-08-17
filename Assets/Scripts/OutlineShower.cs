@@ -52,6 +52,11 @@ public class OutlineShower : MonoBehaviour, ILookable
 
     public void ShowOutline(bool show)
     {
+        if (PlayerHandScript.instance.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
         if (objectsToOutlineList.Count == 0)
         {
             return;
