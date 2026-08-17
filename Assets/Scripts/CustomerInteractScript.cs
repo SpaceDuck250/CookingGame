@@ -62,10 +62,6 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    CloseConversation();
-        //}
 
         if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {

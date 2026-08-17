@@ -7,8 +7,13 @@ public class OutlineShower : MonoBehaviour, ILookable
 
     public bool setManually = false;
 
+    public bool showControls = true;
+    public string controlsText;
+
     private void Start()
     {
+        controlsText = "Left Click (Hold)";
+
         if (setManually)
         {
             return;
@@ -20,11 +25,14 @@ public class OutlineShower : MonoBehaviour, ILookable
     public void DoLookEffect()
     {
         ShowOutline(true);
+        ShowControls(true);
     }
     
     public void StopLookEffect()
     {
         ShowOutline(false);
+        ShowControls(false);
+
     }
 
     public void FillRenderersList()
@@ -63,6 +71,19 @@ public class OutlineShower : MonoBehaviour, ILookable
 
             obj.layer = show ? LayerMask.NameToLayer("Outlined") : LayerMask.NameToLayer("Default");
         }
+    }
+
+    public void ShowControls(bool value)
+    {
+        //if (PlayerHandScript.instance.currentFoodHeldObj != null)
+        //{
+        //    string altText = "Right click (throw)";
+        //    ControlsHelpScript.ShowControls(value, altText);
+
+        //    return;
+        //}
+
+        ControlsHelpScript.ShowControls(value, controlsText);
     }
 
 

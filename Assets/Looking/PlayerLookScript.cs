@@ -23,6 +23,11 @@ public class PlayerLooker : MonoBehaviour
 
             if (hit.collider == null)
             {
+                if (currentLookComponent != null)
+                {
+                    currentLookComponent.StopLookEffect();
+                    currentLookComponent = null;
+                }
                 return;
             }
 
@@ -45,6 +50,14 @@ public class PlayerLooker : MonoBehaviour
             }
             currentLookComponent = lookObj;
             currentLookComponent.DoLookEffect();
+        }
+        else
+        {
+            if (currentLookComponent != null)
+            {
+                currentLookComponent.StopLookEffect();
+                currentLookComponent = null;
+            }
         }
 
         

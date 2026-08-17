@@ -50,7 +50,7 @@ public class NpcDialogueScript : MonoBehaviour
     public void WriteNewText(string name, string newText)
     {
         conversationOpen = true;
-        slowTyper.StartWritingSlowly(name, newText);
+        slowTyper.StartWritingSlowly(name, newText, transform);
         dialogueObject.SetActive(true);
 
     }
