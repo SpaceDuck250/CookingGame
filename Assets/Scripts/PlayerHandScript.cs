@@ -310,6 +310,11 @@ public class PlayerHandScript : MonoBehaviour
         OnHoldSomething?.Invoke();
     }
 
+    //public void BringHoldableObjDirectlyToHand(GameObject obj)
+    //{
+        
+    //}
+
     public void ScaleObject(GameObject obj, Vector3 scaleAmount)
     {
         obj.transform.localScale = scaleAmount;
