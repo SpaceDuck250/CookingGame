@@ -118,6 +118,8 @@ public class TutorialChefScript : Interactable
             slideShowImage.gameObject.SetActive(false);
             slowTyper.CloseDialogue();
 
+            SceneManager.LoadScene(teleportSceneName);
+
             
             //currentExlainIndex = 0;
 
