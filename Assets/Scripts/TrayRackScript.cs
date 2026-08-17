@@ -21,10 +21,14 @@ public class TrayRackScript : Interactable
         if (playerHand.currentFoodHeldObj == null)
         {
             TakeTray(playerHand);
+            return;
         }
-        else
+
+        PlatterGiverScript giverScript = playerHand.currentFoodHeldObj.GetComponent<PlatterGiverScript>();
+        if (playerHand.currentFoodHeldObj.tag == "Platter" && giverScript.platterScript.foodHeldList.Count == 0)
         {
             ReturnTray(playerHand);
+            return;
         }
             
     }
