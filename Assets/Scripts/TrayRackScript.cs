@@ -4,9 +4,6 @@ public class TrayRackScript : Interactable
 {
     public int maxTrays = 8;
 
-    // 1 to 8
-    public int currentTrayIndex;
-
     public int trayLeft;
 
     public GameObject[] trayDisplayList = new GameObject[8];
@@ -16,7 +13,6 @@ public class TrayRackScript : Interactable
 
     private void Start()
     {
-        currentTrayIndex = maxTrays;
         trayLeft = 8;
     }
 
