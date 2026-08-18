@@ -1,17 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Delivery;
+using System.Collections;
 
 public class ShopFoodSpawner : MonoBehaviour
 {
-   
     // Add limitations later
     public Queue<FoodDeliveryData> deliveryList = new Queue<FoodDeliveryData>();
 
     public Transform spawnPoint;
 
     public float waitTimer;
-    public float waitTime;
+    public float waitTimeUntilTruckComes;
+
+    public float timeBetweenBoxSpawns = 1f;
 
     public GameObject deliveryBoxPrefab;
 
@@ -21,43 +23,41 @@ public class ShopFoodSpawner : MonoBehaviour
     private void Start()
     {
         ShopScript.OnSucessfullyBoughtFood += AddFoodToList;
+        ShopScript.OnShopClose += OnShopClose;
     }
 
     private void OnDestroy()
     {
         ShopScript.OnSucessfullyBoughtFood -= AddFoodToList;
+        ShopScript.OnShopClose -= OnShopClose;
     }
 
-    private void Update()
+
+    public void OnShopClose()
+    {
+        ClearAndSendFoodToTruck();
+    }
+
+    public void AddFoodToList(FoodData newFood, int amount)
+    {
+        FoodDeliveryData newDelivery = new FoodDeliveryData { food = newFood, amount = amount};
+        deliveryList.Enqueue(newDelivery);
+    }
+
+    public void ClearAndSendFoodToTruck()
     {
         if (deliveryList.Count == 0)
         {
             return;
         }
 
-        waitTimer += Time.deltaTime;
-        if (waitTimer >= waitTime)
-        {
-            waitTimer = 0;
-            PackageAndDeliver();
-        }
-
-    }
-
-    public void AddFoodToList(FoodData newFood, int amount)
-    {
-
-        FoodDeliveryData newDelivery = new FoodDeliveryData { food = newFood, amount = amount};
-        deliveryList.Enqueue(newDelivery);
-    }
-
-    public void PackageAndDeliver()
-    {
-        FoodDeliveryData boxToSpawn = deliveryList.Dequeue();
-
         GameObject newTruck = Instantiate(deliveryTruckPrefab, truckStartPoint.position, truckStartPoint.rotation);
         TruckDeliveryScript truckScript = newTruck.GetComponent<TruckDeliveryScript>();
-        truckScript.SetupDelivery(boxToSpawn, spawnPoint);
+
+        Queue<FoodDeliveryData> copiedQueue = new Queue<FoodDeliveryData>(deliveryList);
+        truckScript.SetupDelivery(this, spawnPoint);
+
+        deliveryList.Clear();
     }
 }
 
