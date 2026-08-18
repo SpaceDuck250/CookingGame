@@ -111,7 +111,11 @@ public class RecipeBookUIScript : MonoBehaviour
         crossHair.SetActive(true);
         moneyBar.SetActive(true);
 
-        lookControls.customControlsText = "Left Click (Open Book)";
+        if (lookControls != null)
+        {
+            lookControls.customControlsText = "Left Click (Open Book)";
+
+        }
 
     }
 
@@ -124,7 +128,11 @@ public class RecipeBookUIScript : MonoBehaviour
         crossHair.SetActive(false);
         moneyBar.SetActive(false);
 
-        lookControls.customControlsText = "Esc (Close Book) \n < and > (Turn Page)";
+        if (lookControls != null)
+        {
+            lookControls.customControlsText = "Esc (Close Book) \n < and > (Turn Page)";
+
+        }
 
     }
 }

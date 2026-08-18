@@ -227,6 +227,11 @@ public class CustomerStateMachine : MonoBehaviour
 
     private void LeaveMap()
     {
+        if (customerTakingOrder == this)
+        {
+            customerTakingOrder = null;
+        }
+
         movementScript.OnNewDestinationChange?.Invoke(exitPoint);
     }
 
