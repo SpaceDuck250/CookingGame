@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Customer;
+using JetBrains.Annotations;
 
 public class CustomerInteractScript : Interactable
 {
@@ -68,11 +69,11 @@ public class CustomerInteractScript : Interactable
             return;
         }
 
-        if (movementScript.agent.isStopped)
-        {
-            //RotateToPlayer();
-            //RotateTo(playerHand.gameObject);
-        }
+        //if (movementScript.agent.isStopped)
+        //{
+        //    //RotateToPlayer();
+        //    //RotateTo(playerHand.gameObject);
+        //}
 
         if (CheckIfHoldingFood(playerHand) && talkedTo)
         {
@@ -150,10 +151,17 @@ public class CustomerInteractScript : Interactable
         NpcDialogueScript.OnShowDialogue?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
 
         OnCheckIfNeedToLeave?.Invoke(this);
+
+        //CancelInvoke("CloseConversation");
+
+        //float maxTimeInConversation = 10f;
+        //Invoke("CloseConversation", maxTimeInConversation);
     }
 
     public void CloseConversation()
     {
+        //CancelInvoke("CloseConversation");
+
         //RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
