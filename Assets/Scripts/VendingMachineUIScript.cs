@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class VendingMachineUIScript : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class VendingMachineUIScript : MonoBehaviour
     public Transform ingredientContainer;
     public GameObject ingredientItemTemplate;
 
+    private List<IngredientItemScript> spawnedIngredientItems = new List<IngredientItemScript>();
+
     private void Start()
     {
         vendingMachine.OnCycleThroughRecipe += OnNewRecipeSelected;
+        vendingMachine.OnFoodInputListChanged += RefreshHighlights;
 
         vendingMachine.CycleThroughRecipeList(1);
     }
@@ -22,7 +26,7 @@ public class VendingMachineUIScript : MonoBehaviour
     private void OnDestroy()
     {
         vendingMachine.OnCycleThroughRecipe -= OnNewRecipeSelected;
-
+        vendingMachine.OnFoodInputListChanged -= RefreshHighlights;
     }
 
     private void OnNewRecipeSelected(SpecialRecipe newRecipe)
@@ -40,7 +44,10 @@ public class VendingMachineUIScript : MonoBehaviour
         foreach (FoodData ingredient in recipe.foodsNeededForRecipe)
         {
             GameObject newIngredientItem = Instantiate(ingredientItemTemplate, ingredientContainer);
-            newIngredientItem.GetComponent<IngredientItemScript>().SetupIngredientItem(ingredient);
+            IngredientItemScript itemScript = newIngredientItem.GetComponent<IngredientItemScript>();
+            itemScript.SetupIngredientItem(ingredient);
+
+            spawnedIngredientItems.Add(itemScript);
         }
     }
 
@@ -49,6 +56,17 @@ public class VendingMachineUIScript : MonoBehaviour
         foreach (Transform child in ingredientContainer)
         {
             Destroy(child.gameObject);
+        }
+
+        spawnedIngredientItems.Clear();
+    }
+
+    private void RefreshHighlights()
+    {
+        foreach (IngredientItemScript item in spawnedIngredientItems)
+        {
+            bool isInserted = vendingMachine.foodInputList.Contains(item.assignedFood);
+            item.SetHighlight(isInserted);
         }
     }
 }
