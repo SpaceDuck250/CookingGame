@@ -5,7 +5,6 @@ using Delivery;
 public class ShopFoodSpawner : MonoBehaviour
 {
    
-
     // Add limitations later
     public Queue<FoodDeliveryData> deliveryList = new Queue<FoodDeliveryData>();
 
@@ -15,6 +14,9 @@ public class ShopFoodSpawner : MonoBehaviour
     public float waitTime;
 
     public GameObject deliveryBoxPrefab;
+
+    public GameObject deliveryTruckPrefab;
+    public Transform truckStartPoint;
 
     private void Start()
     {
@@ -52,11 +54,10 @@ public class ShopFoodSpawner : MonoBehaviour
     public void PackageAndDeliver()
     {
         FoodDeliveryData boxToSpawn = deliveryList.Dequeue();
-        GameObject newDeliveryBox = Instantiate(deliveryBoxPrefab, spawnPoint.position, Quaternion.identity, spawnPoint);
 
-        DeliveryBoxScript deliveryBoxScript = newDeliveryBox.GetComponent<DeliveryBoxScript>();
-        deliveryBoxScript.SetupDeliveryData(boxToSpawn);
-        //Instantiate(foodToSpawn.foodModel, spawnPoint.position, Quaternion.identity, spawnPoint);
+        GameObject newTruck = Instantiate(deliveryTruckPrefab, truckStartPoint.position, truckStartPoint.rotation);
+        TruckDeliveryScript truckScript = newTruck.GetComponent<TruckDeliveryScript>();
+        truckScript.SetupDelivery(boxToSpawn, spawnPoint);
     }
 }
 
