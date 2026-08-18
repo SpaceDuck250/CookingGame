@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1946472715173811399}
+  - component: {fileID: 2908271239373422223}
   m_Layer: 0
   m_Name: HH_Flipper
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   - {fileID: 489649901719913614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2908271239373422223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391557943243232523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: 
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Place in Skewer)
 --- !u!1 &513564054569819664
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4000388692435999257, guid: f9fc9b0dc2615044286c48b2204cc1fc, type: 3}
+  - {fileID: 2100000, guid: c3d24c3435d901a49a1652aab730a954, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   inputOutputScript: {fileID: 677963054074506679}
-  pickupObject: {fileID: 2921102624289578375}
+  pickupObject: {fileID: 0}
 --- !u!1 &3331323016539062065
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4000388692435999257, guid: f9fc9b0dc2615044286c48b2204cc1fc, type: 3}
+  - {fileID: 2100000, guid: c3d24c3435d901a49a1652aab730a954, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,7 +515,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: f9fc9b0dc2615044286c48b2204cc1fc, type: 3}
+  - {fileID: 2100000, guid: 1a02eac975445304b8ceca82702778e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -828,7 +844,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4000388692435999257, guid: f9fc9b0dc2615044286c48b2204cc1fc, type: 3}
+  - {fileID: 2100000, guid: c3d24c3435d901a49a1652aab730a954, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -910,7 +926,7 @@ MonoBehaviour:
   sideGettingCooked: {fileID: 0}
   cookingInputOutput: {fileID: 677963054074506679}
   rawSteakPrefab: {fileID: 2578625614744778816, guid: 832cf59cac35d1b42a5b9e61425b719f, type: 3}
-  localPositionOffset: {x: 0, y: 0, z: 0}
+  localPositionOffset: {x: 1.5, y: 0, z: 0}
   interactScript: {fileID: 4975148097184279749}
 --- !u!114 &790169301587365495
 MonoBehaviour:
@@ -950,7 +966,7 @@ MonoBehaviour:
   cookingInputOutput: {fileID: 677963054074506679}
   flipperScript: {fileID: 2589690323727006133}
   alreadyCooking: 0
-  downScaleAmount: 1
+  downScaleAmount: 0.5
 --- !u!1 &6719633334304194244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1033,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4000388692435999257, guid: f9fc9b0dc2615044286c48b2204cc1fc, type: 3}
+  - {fileID: 2100000, guid: 5d6c8312d71a68d4c8dfba78d04fbc22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1239,7 +1255,7 @@ GameObject:
   - component: {fileID: 2649787826917750913}
   - component: {fileID: 6730694968633804011}
   - component: {fileID: 4975148097184279749}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InteractArea
   m_TagString: CookingStation
   m_Icon: {fileID: 0}
