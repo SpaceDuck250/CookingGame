@@ -4,8 +4,9 @@ public class MenuDisplayScript : MonoBehaviour
 {
     public class MenuItem
     {
-        public string itemName;
         public Sprite itemImage;
+        public string itemName;
+        public string itemprice;
     }
 
     public MenuItemDisplayScript[] menuDisplays;
@@ -22,7 +23,7 @@ public class MenuDisplayScript : MonoBehaviour
 
         for (int i = 0; i < amountToDisplay; i++)
         {
-            menuDisplays[i].SetMenuItem(menuItems[i].itemImage, menuItems[i].itemName);
+            menuDisplays[i].SetMenuItem(menuItems[i].itemImage, menuItems[i].itemName, menuItems[i].itemprice);
         }
     }
 }

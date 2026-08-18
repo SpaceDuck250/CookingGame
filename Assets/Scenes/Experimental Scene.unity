@@ -518,6 +518,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64028720}
   m_CullTransparentMesh: 1
+--- !u!114 &76956412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741147086419798461, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
+  m_PrefabInstance: {fileID: 2905301436252726327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1 &80520101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1389,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ef6b89d29349c164599394e853fdefc4, type: 3}
     - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_text
-      value: Chicken
+      value: Chicken Rice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2404,6 +2415,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: $10
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (4)
@@ -2414,9 +2429,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 66e7c2a5cf6915e45b2dd96c191ff843, type: 3}
     - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_text
-      value: 'Spring
-
-        Onion'
+      value: Fried Rice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3418,8 +3431,10 @@ MonoBehaviour:
   musicClip1: {fileID: 8300000, guid: 09e410b54cbfeb944afbc5f2bc638fb6, type: 3}
   musicClip2: {fileID: 8300000, guid: f93ec61371c176643ae9927dd9e45a09, type: 3}
   storeClip: {fileID: 0}
-  morningMusicList: []
-  afternoonMusicList: []
+  morningMusicList:
+  - {fileID: 0}
+  afternoonMusicList:
+  - {fileID: 0}
   pickupClip: {fileID: 0}
   sizzleClip: {fileID: 0}
   musicSrc: {fileID: 1742168976}
@@ -10357,6 +10372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: $8
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (5)
@@ -10367,9 +10386,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 91c55db2c63f55040b6f8a15933722df, type: 3}
     - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_text
-      value: 'Cooked
-
-        Egg'
+      value: Porkchop with Rice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10381,6 +10398,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
   m_PrefabInstance: {fileID: 1118000254}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1118000256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 1118000254}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1001 &1127047769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11618,18 +11646,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -11677,17 +11693,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: $6
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6061204587242949832, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ce60bae6edda920429752c6cf540aae8, type: 3}
     - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_text
-      value: Egg
+      value: Chicken Rice with Egg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11699,6 +11715,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
   m_PrefabInstance: {fileID: 1281721923}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281721925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 1281721923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1 &1283052527
 GameObject:
   m_ObjectHideFlags: 0
@@ -12970,6 +12997,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1483625842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 116812558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1 &1508457083
 GameObject:
   m_ObjectHideFlags: 0
@@ -16459,6 +16497,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: '$20
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (3)
@@ -16469,7 +16513,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f3487469c13ebd543b58c8f70b8c7e56, type: 3}
     - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_text
-      value: Rice
+      value: Steak & Chicken
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16481,6 +16525,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
   m_PrefabInstance: {fileID: 1930739358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1930739360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 1930739358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
+--- !u!114 &1933710902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 224797852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1 &1958876626
 GameObject:
   m_ObjectHideFlags: 0
@@ -17652,6 +17718,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3783589527444996207, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783589527444996207, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -61.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4158034707914342681, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -17730,7 +17804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4771465883284323041, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
       propertyPath: m_text
-      value: Steak
+      value: Steak & Rice
       objectReference: {fileID: 0}
     - target: {fileID: 5043412022882525758, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17759,6 +17833,14 @@ PrefabInstance:
     - target: {fileID: 7122700341953320761, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
       propertyPath: m_ConstraintCount
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452952401943406688, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
+      propertyPath: m_text
+      value: $8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741147086419798461, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
+      propertyPath: foodPrice
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8314170683489434472, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
       propertyPath: m_LocalScale.x
@@ -17856,7 +17938,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f4fd427037a6f44912e958209845d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuDisplayScript
-  menuDisplays: []
+  menuDisplays:
+  - {fileID: 76956412}
+  - {fileID: 1281721925}
+  - {fileID: 1483625842}
+  - {fileID: 1930739360}
+  - {fileID: 1933710902}
+  - {fileID: 1118000256}
 --- !u!224 &2905301436252726330 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4107679263548722590, guid: aa9ca2549e7ae424ba1102b632f19404, type: 3}
