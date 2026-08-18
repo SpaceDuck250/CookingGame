@@ -273,17 +273,20 @@ public class PlayerHandScript : MonoBehaviour
         // Summarize into a function
         holdScript.canPickUp = false;
 
-        PlatterScript platterScript = holdScript.transform.GetChild(0).GetComponent<PlatterScript>();
-        if (platterScript != null)
-        {
-            foreach (Transform placeArea in platterScript.placeAreasArray)
-            {
-                if (placeArea.childCount > 0)
-                {
-                    placeArea.GetChild(0).GetComponent<HoldableFoodScript>().canPickUp = false;
-                }
-            }
-        }
+        PlatterScript platterScript = holdScript.transform.GetComponent<PlatterGiverScript>().platterScript;
+
+        platterScript.MakeAllFoodPickupable(false, "Default");
+
+        //if (platterScript != null)
+        //{
+        //    foreach (Transform placeArea in platterScript.placeAreasArray)
+        //    {
+        //        if (placeArea.childCount > 0)
+        //        {
+        //            placeArea.GetChild(0).GetComponent<HoldableFoodScript>().canPickUp = false;
+        //        }
+        //    }
+        //}
 
         ScaleObject(currentFoodHeldObj, holdScript.originalScale * holdScript.pickupScaleModifier * 0.6f);
 

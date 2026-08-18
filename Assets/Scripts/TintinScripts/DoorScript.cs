@@ -38,7 +38,11 @@ public class DoorScript : Interactable
         isOpen = !isOpen;
         targetRotation = isOpen ? openRotation : closedRotation;
 
-        lookControlsScript.customControlsText = isOpen ? "Left Click (Close Door)" : "Left Click (Open Door)";
+        if (lookControlsScript != null)
+        {
+            lookControlsScript.customControlsText = isOpen ? "Left Click (Close Door)" : "Left Click (Open Door)";
+
+        }
 
     }
 
