@@ -13,6 +13,8 @@ public class DoorScript : Interactable
     private Quaternion openRotation;
     private Quaternion targetRotation;
 
+    public LookControlsScript lookControlsScript;
+
     private void Awake()
     {
         closedRotation = doorTransform.localRotation;
@@ -35,6 +37,9 @@ public class DoorScript : Interactable
     {
         isOpen = !isOpen;
         targetRotation = isOpen ? openRotation : closedRotation;
+
+        lookControlsScript.customControlsText = isOpen ? "Left Click (Close Door)" : "Left Click (Open Door)";
+
     }
 
     public void OpenDoor()
@@ -47,5 +52,6 @@ public class DoorScript : Interactable
     {
         isOpen = false;
         targetRotation = closedRotation;
+
     }
 }

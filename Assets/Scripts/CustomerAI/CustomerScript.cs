@@ -129,7 +129,7 @@ public class CustomerMovementScript : MonoBehaviour
     {
         paused = true;
 
-        float waitTime = 0.2f;
+        float waitTime = 0.3f;
         yield return new WaitForSeconds(waitTime);
 
         paused = false;

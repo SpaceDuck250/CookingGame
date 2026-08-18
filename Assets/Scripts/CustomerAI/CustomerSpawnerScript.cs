@@ -178,6 +178,12 @@ public class CustomerSpawnerScript : MonoBehaviour
         for (int i = emptyQueueIndex + 1; i < stallQueuePointList.Length; i++)
         {
             CustomerStateMachine customer = activeCustomers.FirstOrDefault(n => n.queuePoint == stallQueuePointList[i]);
+
+            //if (customer.currentState == CustomerState.WalkingToSeat)
+            //{
+            //    continue;
+            //}
+
             if (customer != null && i != 0)
             {
                 customer.queuePoint = stallQueuePointList[i - 1];

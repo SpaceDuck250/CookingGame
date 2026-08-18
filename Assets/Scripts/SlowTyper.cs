@@ -20,12 +20,12 @@ public class SlowTyper : MonoBehaviour
         typeTime = 0.01f;
     }
 
-    public void StartWritingSlowly(string name, string newLine, bool freezePlayer = true)
+    public void StartWritingSlowly(string name, string newLine, Transform talker, bool freezePlayer = true)
     {
         if (freezePlayer)
         {
             playerFrozen = true;
-            PlayerHandScript.instance.FreezePlayer(true);
+            PlayerHandScript.instance.FreezePlayer(true, talker);
         }
 
         dialogueContainer.SetActive(true);
@@ -59,7 +59,7 @@ public class SlowTyper : MonoBehaviour
         if (playerFrozen)
         {
             playerFrozen = false;
-            PlayerHandScript.instance.FreezePlayer(false);
+            PlayerHandScript.instance.FreezePlayer(false, transform);
 
         }
         dialogueContainer.SetActive(false);

@@ -89,6 +89,8 @@ public class CraftingTableScript : Interactable
         GameObject newFoodObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(outputFood, spawnParent, Vector3.zero, true, false, downScaleAmount);
         newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
         newFoodObj.GetComponent<Collider>().isTrigger = false;
+
+        OnOuputDispensed?.Invoke();
     }
 
     public void CycleThroughRecipeList(int amount)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5614685786576600870}
   - component: {fileID: 803210797465240089}
   - component: {fileID: 7036617835652098494}
+  - component: {fileID: 6548736408156218386}
   m_Layer: 6
   m_Name: PlatterArea
   m_TagString: CookingStation
@@ -54,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44, y: 0.1, z: 0.69}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.44, y: 0.10833821, z: 0.69000006}
+  m_Center: {x: 0, y: -0.004169124, z: 0}
 --- !u!114 &7036617835652098494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +79,22 @@ MonoBehaviour:
   currentIndex: 0
   upOffset: {x: 0, y: 0.05, z: 0}
   holdScript: {fileID: 4736436962316159817}
+--- !u!114 &6548736408156218386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033032256040148207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click (Hold)
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Place Food)
+  self: {fileID: 7012500987306424632}
 --- !u!1 &4269382106098692072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1079,7 @@ MonoBehaviour:
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
   doFloorChecks: 0
+  anotherThingToChangeLayer: {fileID: 3033032256040148207}
 --- !u!114 &6155223426165234483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,7 +1100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7012500987306424632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 620707a7ebf7c4643b51d0fc1b765c2f, type: 3}
   m_Name: 

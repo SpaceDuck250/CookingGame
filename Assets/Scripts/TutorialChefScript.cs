@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialChefScript : Interactable
 {
+    public string teleportSceneName;
+
     public SlowTyper slowTyper;
 
     public List<string> dialogueLines = new List<string>();
@@ -20,6 +23,8 @@ public class TutorialChefScript : Interactable
 
     public bool startTalkFinish = false;
     public bool reachedStall = false;
+
+    public bool doingServingQuest = false;
 
     public List<Transform> movePoints = new List<Transform>();
 
@@ -38,6 +43,8 @@ public class TutorialChefScript : Interactable
     public PlayerMovement playerMove;
     public TurnScript playerTurn;
     public Image slideShowImage;
+
+    public GameObject customerSpawner;
 
     private void Start()
     {
@@ -77,8 +84,6 @@ public class TutorialChefScript : Interactable
 
             chefAnimator.SetBool("Walking", true);
 
-
-
             currentIndex = -1;
             slowTyper.CloseDialogue();
 
@@ -88,21 +93,22 @@ public class TutorialChefScript : Interactable
         string chefNameShown = nameOfChef + ": ";
 
         string currentLine = dialogueLines[currentIndex];
-        slowTyper.StartWritingSlowly(chefNameShown, currentLine);
+        slowTyper.StartWritingSlowly(chefNameShown, currentLine, transform);
 
     }
 
     public void PlayExplainationDialogue()
     {
+
         playerMove.canMove = false;
         playerTurn.canTurn = false;
 
         currentExlainIndex++;
 
-        //if (currentExlainIndex == 0)
-        //{
-        //    tutorialManager.SetCameraAsMain(tutorialManager.gameCamera);
-        //}
+        if (currentExlainIndex == 0)
+        {
+            customerSpawner.SetActive(true);
+        }
 
         if (currentExlainIndex >= explainationLines.Count)
         {
@@ -112,7 +118,9 @@ public class TutorialChefScript : Interactable
             slideShowImage.gameObject.SetActive(false);
             slowTyper.CloseDialogue();
 
+            SceneManager.LoadScene(teleportSceneName);
 
+            
             //currentExlainIndex = 0;
 
 
@@ -122,7 +130,7 @@ public class TutorialChefScript : Interactable
         ExplainationObj explainObj = explainationLines[currentExlainIndex];
 
         string chefNameShown = nameOfChef + ": ";
-        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine);
+        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine, transform);
 
         if (explainObj.backgroundImage == null)
         {
@@ -158,6 +166,11 @@ public class TutorialChefScript : Interactable
 
             }
         }
+    }
+
+    public void CheckIfPlayerServedCustomerAlready()
+    {
+        
     }
 
     public void RotateToDestination(Transform destination)

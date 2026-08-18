@@ -8,6 +8,8 @@ public class PlatterAreaScript : MonoBehaviour
     public GameObject platterPrefab;
     public Transform spawnPoint;
 
+    public TrayRackScript trayRackScript;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Customer")
@@ -64,8 +66,9 @@ public class PlatterAreaScript : MonoBehaviour
             }
 
             // spawn platter visual
-            GameObject newPlatter = Instantiate(platterPrefab, spawnPoint.position, Quaternion.identity);
-            newPlatter.transform.localScale = new Vector3(2, 2, 2);
+            //GameObject newPlatter = Instantiate(platterPrefab, spawnPoint.position, Quaternion.identity);
+            //newPlatter.transform.localScale = new Vector3(2, 2, 2);
+            TryReturnTray();
 
             // Tell the customer's state machine to leave the map
             CustomerStateMachine csm = other.gameObject.GetComponent<CustomerStateMachine>();
@@ -80,5 +83,10 @@ public class PlatterAreaScript : MonoBehaviour
             //     movementScript.OnNewDestinationChange?.Invoke(CustomerSpawnerScript.instance.exitTransform);
             // }
         }
+    }
+
+    public void TryReturnTray()
+    {
+        trayRackScript.ReturnTray(PlayerHandScript.instance);
     }
 }

@@ -15,6 +15,8 @@ public class RecipeBookUIScript : MonoBehaviour
 
     public Animator pageAnimator;
 
+    public LookControlsScript lookControls;
+
     private void Start()
     {
         recipeBookScript.OnBookOpen += OnBookOpen;
@@ -108,6 +110,9 @@ public class RecipeBookUIScript : MonoBehaviour
 
         crossHair.SetActive(true);
         moneyBar.SetActive(true);
+
+        lookControls.customControlsText = "Left Click (Open Book)";
+
     }
 
     public void OnBookOpen()
@@ -118,5 +123,8 @@ public class RecipeBookUIScript : MonoBehaviour
 
         crossHair.SetActive(false);
         moneyBar.SetActive(false);
+
+        lookControls.customControlsText = "Esc (Close Book) \n < and > (Turn Page)";
+
     }
 }

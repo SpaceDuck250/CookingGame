@@ -62,10 +62,6 @@ public class CustomerInteractScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    CloseConversation();
-        //}
 
         if (finishedInteract || !movementScript.agent.isStopped || !talkRange.inRange)
         {
@@ -75,7 +71,7 @@ public class CustomerInteractScript : Interactable
         if (movementScript.agent.isStopped)
         {
             //RotateToPlayer();
-            RotateTo(playerHand.gameObject);
+            //RotateTo(playerHand.gameObject);
         }
 
         if (CheckIfHoldingFood(playerHand) && talkedTo)
@@ -143,6 +139,11 @@ public class CustomerInteractScript : Interactable
 
     public void OpenConversation()
     {
+        if (customerStateMachine != CustomerStateMachine.customerTakingOrder && CustomerStateMachine.customerTakingOrder != null)
+        {
+            return;
+        }
+
         OnInteractWithCustomer?.Invoke();
         OnAnyCustomerInteract?.Invoke(customerStateMachine);
 
@@ -153,7 +154,7 @@ public class CustomerInteractScript : Interactable
 
     public void CloseConversation()
     {
-        RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
+        //RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
         OnEndInteractWithCustomer?.Invoke();
 
         NpcDialogueScript.OnHideDialogue?.Invoke();
