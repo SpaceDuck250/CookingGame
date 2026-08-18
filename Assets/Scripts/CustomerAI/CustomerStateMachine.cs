@@ -74,6 +74,9 @@ public class CustomerStateMachine : MonoBehaviour
 
     public Sprite normalSprite, angrySprite, happySprite, reallyAngrySprite;
 
+    // To make sure we can only interact with 1 customer or otherwise bug
+    public static CustomerStateMachine customerTakingOrder;
+
     private void Awake()
     {
         OnCustomerChangeState += ChangeCustomerState;
@@ -103,6 +106,11 @@ public class CustomerStateMachine : MonoBehaviour
 
     public void ChangeCustomerState(CustomerState newState)
     {
+        if (newState == CustomerState.WalkingToCounter && currentState == CustomerState.PayingForFood || newState == CustomerState.WalkingToCounter && currentState == CustomerState.WalkingToSeat)
+        {
+            return;
+        }
+
         currentState = newState;
 
         switch (currentState)
@@ -173,7 +181,18 @@ public class CustomerStateMachine : MonoBehaviour
     // Customer waits at the counter for the player to take their order
     private void StartWaitingForOrder()
     {
-        StartWaitTimer();
+        if (customerTakingOrder != null)
+        {
+            return;
+        }
+        else
+        {
+            customerTakingOrder = this;
+            StartWaitTimer();
+
+        }
+
+
     }
 
     private void SetupPay()
@@ -189,6 +208,8 @@ public class CustomerStateMachine : MonoBehaviour
 
     private void GoToSeat()
     {
+        customerTakingOrder = null;
+
         movementScript.OnNewDestinationChange?.Invoke(seatPoint);
     }
 
