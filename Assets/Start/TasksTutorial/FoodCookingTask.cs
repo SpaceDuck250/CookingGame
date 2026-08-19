@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This is a special kind of task. It can increment 3 times.
 public class FoodCookingTask : TutorialTask
 {
     public CookingInputOutputScript cookingInputOutput;
@@ -11,13 +12,14 @@ public class FoodCookingTask : TutorialTask
     private void Start()
     {
         cookingInputOutput.OnCookingStart += OnFoodInput;
+        cookingInputOutput.OnCookingSuccess += OnFoodCooked;
         cookingInputOutput.OnFoodTakenOutOfCookingStation += CheckIfCorrectOutputFoodTakenOut;
 
     }
-
     private void OnDestroy()
     {
         cookingInputOutput.OnCookingStart -= OnFoodInput;
+        cookingInputOutput.OnCookingSuccess -= OnFoodCooked;
         cookingInputOutput.OnFoodTakenOutOfCookingStation -= CheckIfCorrectOutputFoodTakenOut;
     }
 
@@ -29,6 +31,14 @@ public class FoodCookingTask : TutorialTask
 
         completed = false;
     }
+
+    private void OnFoodCooked(Vector3 arg1, GameObject arg2, Transform arg3)
+    {
+        taskId++;
+        CompleteTask();
+        completed = false;
+    }
+
 
     private void CheckIfCorrectOutputFoodTakenOut()
     {
