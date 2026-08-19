@@ -10,26 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fa87b0b3acaf2542aa57132ebbf33d6, type: 3}
-  m_Name: Lu Bu
+  m_Name: Mina
   m_EditorClassIdentifier: Assembly-CSharp::CustomerData
-  customerName: Lu Bu
+  customerName: Mina
   customerSprite: {fileID: 21300000, guid: 812a465fe6db50b4a9b17ba809ea45a1, type: 3}
   possibleMealOrders:
-  - {fileID: 11400000, guid: 084235e331c2ca74ba3a7839412ee91c, type: 2}
   - {fileID: 11400000, guid: a0b914631e257f843840847192ab2c78, type: 2}
+  - {fileID: 11400000, guid: de13db9a596095f498b63fdddf04aeaf, type: 2}
+  - {fileID: 11400000, guid: 43de31e82536eb94cabc16a2a57d84df, type: 2}
   dialogueLines:
-  - dialogueLine: Good Day!
+  - dialogueLine: Hello, I am here to order
     moodType: 0
   - dialogueLine: What to order
     moodType: 0
-  - dialogueLine: Nice
+  - dialogueLine: Hmm...
+    moodType: 0
+  - dialogueLine: Thank You!
     moodType: 1
-  - dialogueLine: Im an angry
+  - dialogueLine: Great!
+    moodType: 1
+  - dialogueLine: Very slow
     moodType: 2
-  wrongFoodDialogueLine: Not what I ordered
-  burntFoodDialogueLine: Why food is burnt
-  waitTimeUntilAngry: 55
-  waitTimeUntilReallyAngry: 65
-  fastEnoughTime: 20
+  wrongFoodDialogueLine: Not my order
+  burntFoodDialogueLine: The food is burnt
+  waitTimeUntilAngry: 50
+  waitTimeUntilReallyAngry: 60
+  fastEnoughTime: 25
   tipRange: 2
   isSpecialCustomer: 0
