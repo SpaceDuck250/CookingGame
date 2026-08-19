@@ -4317,6 +4317,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 213621490}
+  - {fileID: 509889292}
   - {fileID: 760244005}
   - {fileID: 1559334126}
   - {fileID: 1451753677}
@@ -6134,6 +6135,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3181f15579d1b0c46872c9980226268b, type: 3}
+--- !u!1 &509889291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509889292}
+  - component: {fileID: 509889293}
+  m_Layer: 5
+  m_Name: TaskContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &509889292
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509889291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 355278239}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 344, y: 181}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &509889293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509889291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c63af3cf45c5941974a661501bdee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  taskBarObj: {fileID: 3377262432076376347, guid: 91656e327b7896b40b15cb9051661c19, type: 3}
 --- !u!1 &523260332
 GameObject:
   m_ObjectHideFlags: 0
@@ -18320,6 +18370,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentTaskId: 0
+  currentTask:
+    taskName: 
+    taskDescription: 
   tutorialArrowList:
   - {fileID: 2011008808}
   - {fileID: 815537406}
@@ -18329,6 +18382,23 @@ MonoBehaviour:
   - {fileID: 2135502664}
   - {fileID: 2101369661}
   - {fileID: 1752947580}
+  taskDataList:
+  - taskName: Grab the Raw Chicken
+    taskDescription: (Left Click to Grab)
+  - taskName: Put on Skewer
+    taskDescription: (Left Click on Skewer)
+  - taskName: Cook Chicken
+    taskDescription: (Make sure not to burn it)
+  - taskName: Grab Cooked Chicken
+    taskDescription: (Left Click to Grab)
+  - taskName: Put on Chopping Board
+    taskDescription: (Left Click on Chopping Board)
+  - taskName: Chop Chicken
+    taskDescription: 
+  - taskName: Grab Chopped Chicken
+    taskDescription: (Left Click to Grab)
+  - taskName: Get tray
+    taskDescription: (Left Click empty-handed on Rack)
 --- !u!4 &1767238403
 Transform:
   m_ObjectHideFlags: 0
@@ -31530,6 +31600,10 @@ PrefabInstance:
     - target: {fileID: 7900021606802828798, guid: 240887c3eb5a4854ba0ee0387766cea3, type: 3}
       propertyPath: m_Name
       value: VendingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900021606802828798, guid: 240887c3eb5a4854ba0ee0387766cea3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8276441084441132057, guid: 240887c3eb5a4854ba0ee0387766cea3, type: 3}
       propertyPath: m_AnchorMax.y

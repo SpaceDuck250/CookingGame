@@ -6,15 +6,21 @@ public class TutorialArrowsManager : MonoBehaviour
 {
     public static Action<int> OnTutorialTaskComplete;
 
-    public int currentTaskId = 0;
+    public static Action<TaskData> OnShowTaskUI;
 
-    public List<GameObject> tutorialArrowList;
+    public int currentTaskId = 0;
+    public TaskData currentTask;
+
+    public List<GameObject> tutorialArrowList = new List<GameObject>();
+    public List<TaskData> taskDataList = new List<TaskData>();
 
     private void Start()
     {
         OnTutorialTaskComplete += CompleteTutorialTask;
 
         ShowNewArrow(0);
+        currentTask = taskDataList[0];
+        OnShowTaskUI?.Invoke(currentTask);
     }
 
     private void OnDestroy()
@@ -33,7 +39,10 @@ public class TutorialArrowsManager : MonoBehaviour
 
         currentTaskId++;
 
+        currentTask = currentTaskId <= taskDataList.Count - 1 ? taskDataList[currentTaskId] : null;
         ShowNewArrow(currentTaskId);
+
+        OnShowTaskUI?.Invoke(currentTask);
     }
 
     private void ShowNewArrow(int index)
