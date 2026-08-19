@@ -29,10 +29,7 @@ public class TalkRangeScript : MonoBehaviour
 
     private void Update()
     {
-        //if (!interacting)
-        //{
-        //    return;
-        //}
+       
 
         CheckIfExitRange();
     }
@@ -58,6 +55,11 @@ public class TalkRangeScript : MonoBehaviour
         }
         else
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                interactScript.CloseConversation();
+            }
+
             inRange = true;
             OnEnterTalkRange?.Invoke();
 

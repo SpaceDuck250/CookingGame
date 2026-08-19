@@ -1,6 +1,7 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlatterScript : Interactable
 {
@@ -131,7 +132,7 @@ public class PlatterScript : Interactable
         {
             HoldableFoodScript holdScript = food.GetComponent<HoldableFoodScript>();
             holdScript.canPickUp = value;
-            //food.GetComponent<Collider>().isTrigger = !value;
+
         }
     }
 }

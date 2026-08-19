@@ -46,17 +46,17 @@ public class ControlsHelpScript : MonoBehaviour
         }
 
 
-        if (PlayerLooker.currentLookComponent == null)
-        {
-            DisplayControlsOnScreen("");
+        //if (PlayerLooker.currentLookComponent == null)
+        //{
+        //    DisplayControlsOnScreen("");
 
-        }
+        //}
 
         if (PlayerHandScript.instance.currentFoodHeldObj != null)
         {
             DisplayControlsOnScreen("Right Click (Drop)");
         }
-        else
+        else if (PlayerLooker.currentLookComponent == null)
         {
             DisplayControlsOnScreen("");
         }

@@ -31,6 +31,11 @@ public class GeneralSoundManager : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(PlaySong());
+        if (morningMusicList.Count == 0)
+        {
+            return;
+        }
+
         StartCoroutine(SetupMusic());
     }
 

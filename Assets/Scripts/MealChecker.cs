@@ -48,9 +48,11 @@ public class MealChecker : MonoBehaviour
             // print("correct");
             OnMealOrderFulfilled?.Invoke();
             NpcDialogueScript.OnOrderMetDialogue?.Invoke(customerScript.heldCustomerData);
-            stateMachine.OnCustomerChangeState?.Invoke(CustomerState.PayingForFood);    
+            stateMachine.OnCustomerChangeState?.Invoke(CustomerState.PayingForFood);
 
             playerHand.TransferPlatterToCustomer(customerHand, Quaternion.identity * Quaternion.Euler(0, 90 + 90, 0));
+
+
             customerScript.movementScript.holdingTray = true;
         }
         else

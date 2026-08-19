@@ -50,6 +50,7 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        OnShopClose?.Invoke();
 
         PlayerStateManager.UnPauseGame();
     }
