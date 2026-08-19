@@ -54,6 +54,11 @@ public class ClickPreviewScript : MonoBehaviour
     }
     public void OnPlayerExitRange()
     {
+        //if (!canShow)
+        //{
+        //    return;
+        //}
+
         ShowClickPreview(false);
         OnPreviewHidden?.Invoke();
     }

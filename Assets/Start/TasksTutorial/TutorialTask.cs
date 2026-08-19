@@ -4,8 +4,6 @@ public abstract class TutorialTask : MonoBehaviour
 {
     public int taskId;
 
-    public string taskName;
-
     public bool completed = false;
 
     public virtual void CompleteTask()

@@ -12,6 +12,7 @@ public class ShowOnlyIfFoodHas : MonoBehaviour
         inputOutputScript.OnFoodTakenOutOfCookingStation += HideControl;
 
         clickPreviewScript.canShow = false;
+        clickPreviewScript.OnPlayerExitRange();
     }
 
 
@@ -25,6 +26,7 @@ public class ShowOnlyIfFoodHas : MonoBehaviour
     public void ShowControl(FoodData inputFood)
     {
         clickPreviewScript.canShow = true;
+        print("Show control" + gameObject);
         clickPreviewScript.OnPlayerEnterRange(PlayerHandScript.instance.gameObject);
     }
 

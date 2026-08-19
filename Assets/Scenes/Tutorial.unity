@@ -1188,6 +1188,70 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2701054191910159079, guid: e9ed55800cb5d4b4a9e285d21a8db914, type: 3}
   m_PrefabInstance: {fileID: 462142454}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &93935766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4736436962316159817, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012500987306424632, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_Name
+      value: HH_Tray
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.344
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.165
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.823
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645626533352694658, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7012500987306424632, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 196330855}
+  m_SourcePrefab: {fileID: 100100000, guid: e7e546e88f76e404892591f607fb5728, type: 3}
 --- !u!4 &108197346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 31bbda51eeab02f44a8e92a7da2f5ff8, type: 3}
@@ -1716,6 +1780,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 121f662ea65e2cf40a50c66470757a9e, type: 3}
   m_PrefabInstance: {fileID: 114710683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &196330846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7012500987306424632, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+  m_PrefabInstance: {fileID: 93935766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &196330855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196330846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7222a2c5a4c60db42a7be65d6def743b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodOnTrayTask
+  taskId: 7
+  completed: 0
+  platterScript: {fileID: 1736883029}
+  correctFoodData: {fileID: 11400000, guid: df61ae1c9bf840b439beef41dce4f151, type: 2}
 --- !u!1 &200156517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2129,7 @@ MonoBehaviour:
   interactKeyCode: 0
   maxTrays: 8
   trayLeft: 0
+  trayStartAmount: 7
   trayDisplayList:
   - {fileID: 1980394515}
   - {fileID: 968208899}
@@ -6168,7 +6254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 344, y: 181}
+  m_AnchoredPosition: {x: 334, y: 181}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509889293
@@ -7543,9 +7629,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3331323016539062065, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 756479817}
-    - targetCorrespondingSourceObject: {fileID: 7002507381359385950, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4280542075424678991, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1640673339}
+      addedObject: {fileID: 1509501882}
   m_SourcePrefab: {fileID: 100100000, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
 --- !u!1001 &649650572
 PrefabInstance:
@@ -8136,6 +8222,112 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ea3e3caeb3c2845bbd9339bdc7a282, type: 3}
+--- !u!1001 &727734249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1687170797}
+    m_Modifications:
+    - target: {fileID: 1649843658755336049, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_Name
+      value: TutorialArrowCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873320427477426026, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.316
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4.6581
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.8944
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.685
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.653
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79775454686221849aeff846d4010457, type: 3}
+--- !u!224 &727734250 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7225084764366808271, guid: 79775454686221849aeff846d4010457, type: 3}
+  m_PrefabInstance: {fileID: 727734249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &735123257
 GameObject:
   m_ObjectHideFlags: 0
@@ -8508,7 +8700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkewerTask
   taskId: 1
-  taskName: Skewer Chicken Task
   completed: 0
   cookingInputOutput: {fileID: 756479812}
   inputFood: 0
@@ -15568,6 +15759,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d34e8533c8de8ec45869f9144584d929, type: 3}
   m_PrefabInstance: {fileID: 1507870770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1509501877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4280542075424678991, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+  m_PrefabInstance: {fileID: 636625677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1509501882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509501877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f759a7e4629774190c834090c7c800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowOnlyIfFoodHas
+  inputOutputScript: {fileID: 756479812}
+  clickPreviewScript: {fileID: 1640673337}
 --- !u!1001 &1526189456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17304,36 +17514,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &1640673335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7002507381359385950, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
-  m_PrefabInstance: {fileID: 636625677}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1640673337 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8595381317557359330, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
   m_PrefabInstance: {fileID: 636625677}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640673335}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54702188fc2dfa84a9e3d8c6ffbd8ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &1640673339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640673335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f759a7e4629774190c834090c7c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShowOnlyIfFoodHas
-  inputOutputScript: {fileID: 756479812}
-  clickPreviewScript: {fileID: 1640673337}
 --- !u!1 &1649713339
 GameObject:
   m_ObjectHideFlags: 0
@@ -17627,6 +17818,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5471932495117595494, guid: 0de399e57b40241449b5f761acee9cc7, type: 3}
   m_PrefabInstance: {fileID: 2031334735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1687170796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687170797}
+  m_Layer: 0
+  m_Name: TutorialArrowsContainer (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687170797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687170796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.384, y: -1.063, z: -2.498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 727734250}
+  m_Father: {fileID: 1767238403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688407075
 GameObject:
   m_ObjectHideFlags: 0
@@ -18001,7 +18224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChickenHoldTask
   taskId: 0
-  taskName: Hold the chicken
   completed: 0
 --- !u!1 &1730306684
 GameObject:
@@ -18171,6 +18393,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3211397664477415501, guid: d72a9fcc8188ef7449039f5d5419f8ec, type: 3}
   m_PrefabInstance: {fileID: 1736120494}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1736883029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7036617835652098494, guid: e7e546e88f76e404892591f607fb5728, type: 3}
+  m_PrefabInstance: {fileID: 93935766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b2b5924d235e543ad4949d73ee1846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1738381894
 GameObject:
   m_ObjectHideFlags: 0
@@ -18333,7 +18566,7 @@ Transform:
   m_GameObject: {fileID: 1752947580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.719, y: 0, z: 3.495}
+  m_LocalPosition: {x: 2.773, y: -0.72, z: 2.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18382,6 +18615,7 @@ MonoBehaviour:
   - {fileID: 2135502664}
   - {fileID: 2101369661}
   - {fileID: 1752947580}
+  - {fileID: 1687170796}
   taskDataList:
   - taskName: Grab the Raw Chicken
     taskDescription: (Left Click to Grab)
@@ -18397,8 +18631,10 @@ MonoBehaviour:
     taskDescription: 
   - taskName: Grab Chopped Chicken
     taskDescription: (Left Click to Grab)
-  - taskName: Get tray
-    taskDescription: (Left Click empty-handed on Rack)
+  - taskName: Place Chicken On Tray
+    taskDescription: (Left Click on tray with Chicken)
+  - taskName: Buy Eggs
+    taskDescription: (Left Click on Computer)
 --- !u!4 &1767238403
 Transform:
   m_ObjectHideFlags: 0
@@ -18420,6 +18656,7 @@ Transform:
   - {fileID: 2135502665}
   - {fileID: 2101369662}
   - {fileID: 1752947581}
+  - {fileID: 1687170797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769438509
@@ -27473,7 +27710,6 @@ GameObject:
   - component: {fileID: 148796920281647341}
   - component: {fileID: 311935802506257606}
   - component: {fileID: 1433620983262389001}
-  - component: {fileID: 1433620983262389002}
   m_Layer: 0
   m_Name: ClickPreview
   m_TagString: Untagged
@@ -28739,20 +28975,6 @@ MonoBehaviour:
   previewCharComp: {fileID: 3777171809461575475}
   interactArea: {fileID: 2805715236459759108}
   canShow: 1
---- !u!114 &1433620983262389002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396374114099899573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f759a7e4629774190c834090c7c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShowOnlyIfFoodHas
-  inputOutputScript: {fileID: 1712318907110255669}
-  clickPreviewScript: {fileID: 1433620983262389001}
 --- !u!1 &1454266247043054279
 GameObject:
   m_ObjectHideFlags: 0
@@ -30064,6 +30286,7 @@ GameObject:
   - component: {fileID: 4654280489888202204}
   - component: {fileID: 6333043670847503879}
   - component: {fileID: 698762223238859130}
+  - component: {fileID: 6989721146397206066}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -34055,6 +34278,7 @@ GameObject:
   - component: {fileID: 5273064315185951794}
   - component: {fileID: 4144766608281588550}
   - component: {fileID: 3382490967749808285}
+  - component: {fileID: 6902427382739801509}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -34062,6 +34286,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6902427382739801509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902427382739801508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f759a7e4629774190c834090c7c800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowOnlyIfFoodHas
+  inputOutputScript: {fileID: 1712318907110255669}
+  clickPreviewScript: {fileID: 1433620983262389001}
 --- !u!1 &6915632454899351764
 GameObject:
   m_ObjectHideFlags: 0
@@ -34148,6 +34386,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6989721146397206066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799023543754816318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f759a7e4629774190c834090c7c800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowOnlyIfFoodHas
+  inputOutputScript: {fileID: 7073937212363802622}
+  clickPreviewScript: {fileID: 7707706834222697875}
 --- !u!33 &6990355812263377736
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35807,7 +36059,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodCookingTask
   taskId: 4
-  taskName: Chop Chicken
   completed: 0
   cookingInputOutput: {fileID: 1712318907110255669}
   inputFood: 0
@@ -36149,3 +36400,4 @@ SceneRoots:
   - {fileID: 224153618}
   - {fileID: 1688851127}
   - {fileID: 1503957016}
+  - {fileID: 93935766}
