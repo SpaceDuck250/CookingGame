@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlatterScript : Interactable
 {
@@ -15,6 +14,7 @@ public class PlatterScript : Interactable
     public Vector3 upOffset;
 
     public Action<FoodData> OnFoodTakenOutOfPlatter;
+    public Action<FoodData> OnFoodPlacedOnPlatter;
 
     public HoldableFoodScript holdScript;
 
@@ -99,6 +99,8 @@ public class PlatterScript : Interactable
 
         //foodHeldArray[emptySlotIndex] = foodData;
         foodHeldList.Add(foodData);
+
+        OnFoodPlacedOnPlatter?.Invoke(foodData);
 
     }
 

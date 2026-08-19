@@ -16,6 +16,8 @@ public class ClickPreviewScript : MonoBehaviour
 
     public InteractAreaScript interactArea;
 
+    public bool canShow = true;
+
     private void Awake()
     {
         Subscribe();
@@ -40,13 +42,23 @@ public class ClickPreviewScript : MonoBehaviour
         interactArea.OnPlayerExitRange += OnPlayerExitRange;
     }
 
-    private void OnPlayerEnterRange(GameObject player)
+    public void OnPlayerEnterRange(GameObject player)
     {
+        if (!canShow)
+        {
+            return;
+        }
+
         ShowClickPreview(true);
         OnPreviewShown?.Invoke(player);
     }
-    private void OnPlayerExitRange()
+    public void OnPlayerExitRange()
     {
+        //if (!canShow)
+        //{
+        //    return;
+        //}
+
         ShowClickPreview(false);
         OnPreviewHidden?.Invoke();
     }
