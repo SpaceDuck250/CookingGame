@@ -25,6 +25,8 @@ public class SteakFlipperScript : Interactable
 
     public InteractAreaScript interactScript;
 
+    public bool canFlip = true;
+
     private void Start()
     {
         desiredRotation = Quaternion.Euler(0, 0, 90);
@@ -59,6 +61,8 @@ public class SteakFlipperScript : Interactable
         topPart = steakHeld.transform.Find("Top").gameObject;
 
         sideGettingCooked = bottomPart;
+
+        canFlip = true;
     }
 
     public override void Interact(PlayerHandScript playerHand)
@@ -69,6 +73,11 @@ public class SteakFlipperScript : Interactable
         }
 
         if (steakHeld == null || playerHand.currentFoodHeldObj != null)
+        {
+            return;
+        }
+
+        if (!canFlip)
         {
             return;
         }
