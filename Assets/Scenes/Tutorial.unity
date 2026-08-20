@@ -2440,7 +2440,7 @@ Transform:
   m_GameObject: {fileID: 233406498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36, y: 1, z: 2.4}
+  m_LocalPosition: {x: -3.9, y: 0.29, z: -11.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6295,7 +6295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: 181}
+  m_AnchoredPosition: {x: -196, y: -170}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509889293
@@ -19037,6 +19037,8 @@ MonoBehaviour:
   - {fileID: 1155945166}
   - {fileID: 1002636465}
   - {fileID: 1216801676}
+  - {fileID: 1002636465}
+  - {fileID: 1002636465}
   taskDataList:
   - taskName: Grab the Raw Chicken
     taskDescription: (Left Click to Grab)
@@ -19064,10 +19066,10 @@ MonoBehaviour:
     taskDescription: (Higher Temp Lets It Cook Faster)
   - taskName: Grab Fried Egg
     taskDescription: (Left Click to Grab)
-  - taskName: Check Customer Order
-    taskDescription: '(Left Click empty handed on Customer) '
   - taskName: Serve Customer
     taskDescription: '(Left Click with Tray) '
+  - taskName: Talk to Chef
+    taskDescription: '(Left Click on Chef) '
 --- !u!4 &1767238403
 Transform:
   m_ObjectHideFlags: 0
@@ -19901,11 +19903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
   customerPrefabListToSpawn:
-  - {fileID: 4421438175129792586, guid: d59fe7a51cb4a54498eb3f3bac152fe9, type: 3}
-  - {fileID: 6975965895809106563, guid: 781b8aeb5bbaf234cb7a2528a55d34dc, type: 3}
-  - {fileID: 529560765777421346, guid: 4cabbdb14e804d24dbd96cc4b1b0815e, type: 3}
-  - {fileID: 529560765777421346, guid: 8706073c2021ae34c8921beaa7af0e4f, type: 3}
-  - {fileID: 529560765777421346, guid: 8671b2d2c785d5148a9a8664d881e1b1, type: 3}
+  - {fileID: 529560765777421346, guid: 89cacb7135b05394d8ab267b4e57c944, type: 3}
   everyCustomerPrefabList: []
   spawnPoint: {fileID: 233406499}
   exitTransform: {fileID: 353749090}
@@ -19924,7 +19922,7 @@ MonoBehaviour:
   - {fileID: 1618685883}
   - {fileID: 2044867591}
   spawnInterval: 0.6
-  maxCustomers: 4
+  maxCustomers: 1
   emptyQueueIndex: 0
   eventRushHour: 0
 --- !u!4 &1833731580
