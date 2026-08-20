@@ -8,7 +8,7 @@ public class TutorialArrowsManager : MonoBehaviour
 
     public static Action<TaskData> OnShowTaskUI;
 
-    public int currentTaskId = 0;
+    public static int currentTaskId = 0;
     public TaskData currentTask;
 
     public List<GameObject> tutorialArrowList = new List<GameObject>();
