@@ -122,6 +122,6 @@ public class NpcDialogueScript : MonoBehaviour
 
     public string GetName(CustomerData customer)
     {
-        return customer.name + ": ";
+        return customer.customerName + ": ";
     }
 }

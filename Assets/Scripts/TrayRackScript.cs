@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class TrayRackScript : Interactable
 {
@@ -6,14 +7,20 @@ public class TrayRackScript : Interactable
 
     public int trayLeft;
 
+    public int trayStartAmount = 8;
+
     public GameObject[] trayDisplayList = new GameObject[8];
 
     public GameObject platterObj;
     public Transform spawnPoint;
 
+    public event Action OnTrayTakenOut;
+    public event Action OnTrayPlacedBack;
+
     private void Start()
     {
-        trayLeft = 8;
+        trayLeft = trayStartAmount;
+        SetTraysActive(trayLeft);
     }
 
     public override void Interact(PlayerHandScript playerHand)
@@ -47,6 +54,24 @@ public class TrayRackScript : Interactable
         SetTraysActive(trayLeft);
 
         playerHand.ClearFoodFromHand();
+
+        OnTrayPlacedBack?.Invoke();
+    }
+
+    public void ReturnTrayByCustomer()
+    {
+        if (trayLeft >= maxTrays)
+        {
+            return;
+        }
+
+
+        trayLeft++;
+
+        SetTraysActive(trayLeft);
+
+        OnTrayPlacedBack?.Invoke();
+
     }
 
     public void TakeTray(PlayerHandScript playerHand)
@@ -61,6 +86,8 @@ public class TrayRackScript : Interactable
         SetTraysActive(trayLeft);
 
         Instantiate(platterObj, spawnPoint.position, Quaternion.identity);
+
+        OnTrayTakenOut?.Invoke();
     }
 
     public void SetTraysActive(int maxIndex)
