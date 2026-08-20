@@ -34,6 +34,11 @@ public class FoodCookingTask : TutorialTask
 
     private void OnFoodInput(FoodData foodData)
     {
+        if (taskId != TutorialArrowsManager.currentTaskId)
+        {
+            return;
+        }
+
         if (foodData != correctInputFood)
         {
             correctFoodWasInput = false;
@@ -44,25 +49,37 @@ public class FoodCookingTask : TutorialTask
         inputFood = true;
 
         CompleteTask();
+        taskId = secondTaskId;
 
         completed = false;
     }
 
     private void OnFoodCooked(Vector3 arg1, GameObject arg2, Transform arg3)
     {
+        if (taskId != TutorialArrowsManager.currentTaskId)
+        {
+            return;
+        }
+
         if (!correctFoodWasInput)
         {
             return;
         }
 
-        taskId = secondTaskId;
+
         CompleteTask();
+        taskId = thirdTaskId;
         completed = false;
     }
 
 
     private void CheckIfCorrectOutputFoodTakenOut()
     {
+        if (taskId != TutorialArrowsManager.currentTaskId)
+        {
+            return;
+        }
+
         if (!correctFoodWasInput)
         {
             return;
@@ -70,7 +87,7 @@ public class FoodCookingTask : TutorialTask
 
         if (PlayerHandScript.instance.currentFoodHeld == correctOutputFoodNeeded && inputFood)
         {
-            taskId = thirdTaskId;
+
             CompleteTask();
         }
     }
