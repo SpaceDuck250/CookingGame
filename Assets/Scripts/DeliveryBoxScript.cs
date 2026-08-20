@@ -1,5 +1,6 @@
 using UnityEngine;
 using Delivery;
+using System;
 
 public class DeliveryBoxScript : Interactable
 {
@@ -11,6 +12,8 @@ public class DeliveryBoxScript : Interactable
 
     public int tapsNeeded = 5;
     public int tapsMade = 0;
+
+    public event Action OnBoxOpen;
 
     public Animator boxAnimator;
 
@@ -29,6 +32,7 @@ public class DeliveryBoxScript : Interactable
         tapsMade++;
         if (tapsMade == tapsNeeded)
         {
+            OnBoxOpen?.Invoke();
             SpawnAllFoodsInside();
             Destroy(gameObject);
         }

@@ -16,6 +16,8 @@ public class TruckDeliveryScript : MonoBehaviour
 
     public void SetupDelivery(ShopFoodSpawner foodSpawner, Transform spawnPoint)
     {
+        deliveryBoxPrefab = foodSpawner.deliveryBoxPrefab;
+
         while (foodSpawner.deliveryList.Count > 0)
         {
             FoodDeliveryData deliveryData = foodSpawner.deliveryList.Dequeue();
