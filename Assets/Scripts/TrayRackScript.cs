@@ -58,6 +58,22 @@ public class TrayRackScript : Interactable
         OnTrayPlacedBack?.Invoke();
     }
 
+    public void ReturnTrayByCustomer()
+    {
+        if (trayLeft >= maxTrays)
+        {
+            return;
+        }
+
+
+        trayLeft++;
+
+        SetTraysActive(trayLeft);
+
+        OnTrayPlacedBack?.Invoke();
+
+    }
+
     public void TakeTray(PlayerHandScript playerHand)
     {
         if (trayLeft <= 0)

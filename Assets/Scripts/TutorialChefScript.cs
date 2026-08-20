@@ -46,6 +46,8 @@ public class TutorialChefScript : Interactable
 
     public GameObject customerSpawner;
 
+    public TutorialArrowsManager tutorialArrowManager;
+
     private void Start()
     {
         chefAnimator.SetBool("Dancing", true);
@@ -59,6 +61,11 @@ public class TutorialChefScript : Interactable
 
     public override void Interact(PlayerHandScript playerHand)
     {
+        if (tutorialArrowManager.allTasksFinished)
+        {
+            SceneManager.LoadScene(teleportSceneName);
+        }
+
         if (!startTalkFinish)
         {
             PlayChefDialogue();
@@ -67,6 +74,7 @@ public class TutorialChefScript : Interactable
         {
             PlayExplainationDialogue();
         }
+       
 
     }
 
@@ -118,10 +126,12 @@ public class TutorialChefScript : Interactable
             slideShowImage.gameObject.SetActive(false);
             slowTyper.CloseDialogue();
 
-            SceneManager.LoadScene(teleportSceneName);
+            if (!tutorialArrowManager.allTasksFinished)
+            {
+                tutorialArrowManager.Setup();
 
-            
-            //currentExlainIndex = 0;
+            }
+            //SceneManager.LoadScene(teleportSceneName);
 
 
             return;

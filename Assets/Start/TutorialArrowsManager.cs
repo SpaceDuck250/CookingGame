@@ -14,13 +14,19 @@ public class TutorialArrowsManager : MonoBehaviour
     public List<GameObject> tutorialArrowList = new List<GameObject>();
     public List<TaskData> taskDataList = new List<TaskData>();
 
+    public bool allTasksFinished = false;
+
     private void Start()
     {
-        OnTutorialTaskComplete += CompleteTutorialTask;
+        foreach (GameObject arrow in tutorialArrowList)
+        {
+            arrow.SetActive(false);
+        }
+        //OnTutorialTaskComplete += CompleteTutorialTask;
 
-        ShowNewArrow(0);
-        currentTask = taskDataList[0];
-        OnShowTaskUI?.Invoke(currentTask);
+        //ShowNewArrow(0);
+        //currentTask = taskDataList[0];
+        //OnShowTaskUI?.Invoke(currentTask);
     }
 
     private void OnDestroy()
@@ -29,9 +35,23 @@ public class TutorialArrowsManager : MonoBehaviour
 
     }
 
+    public void Setup()
+    {
+        OnTutorialTaskComplete += CompleteTutorialTask;
+
+        ShowNewArrow(0);
+        currentTask = taskDataList[0];
+        OnShowTaskUI?.Invoke(currentTask);
+    }
+
     // Can have more ui like side bar later
     public void CompleteTutorialTask(int taskID)
     {
+        if (taskID >= tutorialArrowList.Count - 2)
+        {
+            allTasksFinished = true;
+        }
+
         if (taskID != currentTaskId || taskID >= tutorialArrowList.Count - 1)
         {
             return;
@@ -49,7 +69,10 @@ public class TutorialArrowsManager : MonoBehaviour
     {
         foreach (GameObject arrow in tutorialArrowList)
         {
-            arrow.SetActive(false);
+            if (arrow != null)
+            {
+                arrow.SetActive(false);
+            }
         }
 
         tutorialArrowList[index].SetActive(true);

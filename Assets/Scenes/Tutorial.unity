@@ -1628,7 +1628,7 @@ MonoBehaviour:
     dialogueLine: This is the chopping board. Right click to place food and then
       press E to Chop!
   - backgroundImage: {fileID: 21300000, guid: a187682ef06506e47a3c215476b8aa56, type: 3}
-    dialogueLine: This is meat skewer. Press T to flip meats! (Make sure not to burn
+    dialogueLine: This is meat skewer. Press E to flip meats! (Make sure not to burn
       it)
   - backgroundImage: {fileID: 21300000, guid: 415343116336e444fbaf789e9c1769f4, type: 3}
     dialogueLine: This is the laptop and the trashcan.
@@ -1657,7 +1657,9 @@ MonoBehaviour:
   - backgroundImage: {fileID: 0}
     dialogueLine: But it doesn't conclude your training!
   - backgroundImage: {fileID: 0}
-    dialogueLine: I want you to cook me a perfect steak. Alright go.
+    dialogueLine: I want you to serve 1 customer.
+  - backgroundImage: {fileID: 0}
+    dialogueLine: Good Luck!
   currentExlainIndex: -1
   nameOfChef: Chef Totori Al
   goingToStall: 0
@@ -1679,6 +1681,7 @@ MonoBehaviour:
   playerTurn: {fileID: 813669313}
   slideShowImage: {fileID: 835756341}
   customerSpawner: {fileID: 397317127}
+  tutorialArrowManager: {fileID: 1767238402}
 --- !u!54 &182868806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1720,6 +1723,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 121f662ea65e2cf40a50c66470757a9e, type: 3}
   m_PrefabInstance: {fileID: 114710683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &196330863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8598680212218547006, guid: 7a18ced6a841f2a468d18f7e4fb95e6b, type: 3}
+  m_PrefabInstance: {fileID: 4196843097142759872}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &200156517
 GameObject:
@@ -7824,6 +7832,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 822050742}
+  - {fileID: 2020471802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &657791175
@@ -18237,7 +18246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   InactiveGameObjectList:
   - {fileID: 355278231}
-  - {fileID: 1833731578}
   - {fileID: 813669312}
   playerObj: {fileID: 813669312}
   gameCanvas: {fileID: 355278231}
@@ -18246,7 +18254,7 @@ MonoBehaviour:
   - {fileID: 955018307}
   playerCam: {fileID: 955018307}
   gameCamera: {fileID: 37764837}
-  tutorialOn: 0
+  tutorialOn: 1
   tutorialBus: {fileID: 388321161}
 --- !u!4 &1690745853
 Transform:
@@ -18872,7 +18880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1752947581}
   m_Layer: 0
-  m_Name: TutorialArrowsContainer (3)
+  m_Name: PlatterArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18886,13 +18894,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752947580}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.773, y: -0.72, z: 2.511}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.19341499, y: -0.8875, z: 0.28057998}
+  m_LocalScale: {x: 0.49999988, y: 0.5, z: 0.49999988}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1901231438}
-  m_Father: {fileID: 1767238403}
+  m_Father: {fileID: 196330863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1767238401
 GameObject:
@@ -18976,7 +18984,8 @@ MonoBehaviour:
   - taskName: Serve Customer
     taskDescription: '(Left Click with Tray) '
   - taskName: Talk to Chef
-    taskDescription: '(Left Click on Chef) '
+    taskDescription: '(Left Click on Chef to Finish Tutorial) '
+  allTasksFinished: 0
 --- !u!4 &1767238403
 Transform:
   m_ObjectHideFlags: 0
@@ -18998,7 +19007,6 @@ Transform:
   - {fileID: 2095662990}
   - {fileID: 2135502665}
   - {fileID: 2101369662}
-  - {fileID: 1752947581}
   - {fileID: 1687170797}
   - {fileID: 387560000}
   - {fileID: 1155945167}
@@ -26417,6 +26425,52 @@ Transform:
   - {fileID: 708389267}
   m_Father: {fileID: 2073432658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2020471801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020471802}
+  - component: {fileID: 2020471803}
+  m_Layer: 0
+  m_Name: FailChickenSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2020471802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020471801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.51, y: 3.082, z: -1.399}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 653531985}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2020471803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020471801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5da7ee44a9569b4ebc5afe4e249ed16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  skewerScript: {fileID: 756479812}
+  rawChickenPrefab: {fileID: 1516176318025884226, guid: 7a49636414cb9ee43acdde978b7ef6d5, type: 3}
 --- !u!1 &2021020843
 GameObject:
   m_ObjectHideFlags: 0
@@ -32393,7 +32447,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8598680212218547006, guid: 7a18ced6a841f2a468d18f7e4fb95e6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1752947581}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a18ced6a841f2a468d18f7e4fb95e6b, type: 3}
 --- !u!1 &4272362445436147443
