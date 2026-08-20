@@ -75,6 +75,10 @@ public class TutorialArrowsManager : MonoBehaviour
             }
         }
 
-        tutorialArrowList[index].SetActive(true);
+        if (tutorialArrowList[index] != null)
+        {
+            tutorialArrowList[index].SetActive(true);
+
+        }
     }
 }
