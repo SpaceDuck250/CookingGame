@@ -20,6 +20,7 @@ public class TrayRackScript : Interactable
     private void Start()
     {
         trayLeft = trayStartAmount;
+        SetTraysActive(trayLeft);
     }
 
     public override void Interact(PlayerHandScript playerHand)

@@ -168,13 +168,76 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8585688551322646921, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6092466609997591363}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6697556071732142542}
+    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2631020164740985107}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+--- !u!1 &529560765777421346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 2387757651025964007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6697556071732142542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529560765777421346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c036b5f38260743abc0694d388b0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ServeCustomerTask
+  taskId: 14
+  completed: 0
+  mealChecker: {fileID: 2337394576120604333}
+--- !u!114 &2631020164740985107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529560765777421346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fb2fab58a9f8c409420807bd1ac896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TalkCustomerTask
+  taskId: 0
+  completed: 0
+  customerInteract: {fileID: 7815521679727920763}
+--- !u!114 &2337394576120604333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 2387757651025964007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529560765777421346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MealChecker
 --- !u!4 &6198495501732991598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8585688551322646921, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   m_PrefabInstance: {fileID: 2387757651025964007}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7815521679727920763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5572442997843537308, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 2387757651025964007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529560765777421346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523e094dd31e13a4caf3f2a6ab43eaf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerInteractScript
 --- !u!1001 &4163825163158511237
 PrefabInstance:
   m_ObjectHideFlags: 0
