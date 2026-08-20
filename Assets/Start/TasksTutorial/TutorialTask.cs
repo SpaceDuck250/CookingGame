@@ -8,6 +8,11 @@ public abstract class TutorialTask : MonoBehaviour
 
     public virtual void CompleteTask()
     {
+        if (TutorialArrowsManager.currentTaskId != taskId)
+        {
+            return;
+        }
+
         if (completed)
         {
             return;
