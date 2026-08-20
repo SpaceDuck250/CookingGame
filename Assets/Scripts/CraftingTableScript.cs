@@ -20,6 +20,9 @@ public class CraftingTableScript : Interactable
     public event Action OnRecipeReady;
     public event Action OnOuputDispensed;
     public event Action<SpecialRecipe> OnCycleThroughRecipe;
+
+    public event Action OnFoodReturned;
+
     public event Action OnFoodInputListChanged;  
 
     public Transform spawnParent;
@@ -125,6 +128,8 @@ public class CraftingTableScript : Interactable
             GameObject newFoodObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(food, returnPoint, Vector3.zero, true, false, downScaleAmount);
             newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
             newFoodObj.GetComponent<Collider>().isTrigger = false;
+
+            OnFoodReturned?.Invoke();
 
             yield return new WaitForSeconds(waitTime);
         }

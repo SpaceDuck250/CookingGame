@@ -8,14 +8,17 @@ public class CookingSoundManager : MonoBehaviour
     public AudioSource steakSrc;
     public AudioClip steakClip;
 
-    public AudioClip dispenseClip;
-
     public AudioClip successClip;
     public AudioClip failClip;
 
+    public AudioClip dispenseClip;
+    public AudioClip buttonClip;
+    public AudioClip insertClip;
+    public AudioClip returnClip;
+    public CraftingTableScript vendingMachine;
+
     public FrierInteractScript frierScript;
     public CookingInputOutputScript steakInputOutputScript;
-    public CraftingTableScript vendingMachine;
 
     private void Start()
     {
@@ -34,13 +37,16 @@ public class CookingSoundManager : MonoBehaviour
         steakInputOutputScript.OnCookingSuccess += PlaySuccessSound;
         steakInputOutputScript.OnCookingFail += PlayFailSound;
 
+        vendingMachine.OnOuputDispensed += PlayDispenseSound;
+        vendingMachine.OnCycleThroughRecipe += PlayButtonSound;
+        vendingMachine.OnFoodInputListChanged += PlayInsertSound;
+        vendingMachine.OnFoodReturned += PlayReturnSound;
+
         frierSrc.Play();
         frierSrc.Pause();
 
         steakSrc.Play();
         steakSrc.Pause();
-
-        vendingMachine.OnOuputDispensed += PlayDispenseSound;
     }
 
     private void OnDestroy()
@@ -56,6 +62,11 @@ public class CookingSoundManager : MonoBehaviour
 
         steakInputOutputScript.OnCookingSuccess -= PlaySuccessSound;
         steakInputOutputScript.OnCookingFail -= PlayFailSound;
+
+        vendingMachine.OnOuputDispensed -= PlayDispenseSound;
+        vendingMachine.OnCycleThroughRecipe -= PlayButtonSound;
+        vendingMachine.OnFoodInputListChanged -= PlayInsertSound;
+        vendingMachine.OnFoodReturned -= PlayReturnSound;
     }
 
     public void PlayFrierSound(GameObject foodBeingFried)
@@ -91,5 +102,20 @@ public class CookingSoundManager : MonoBehaviour
     public void PlayDispenseSound()
     {
         GeneralSoundManager.instance.PlaySoundEffect(dispenseClip);
+    }
+
+    public void PlayButtonSound(SpecialRecipe newRecipe)
+    {
+        GeneralSoundManager.instance.PlaySoundEffect(buttonClip);
+    }
+
+    public void PlayInsertSound()
+    {
+        GeneralSoundManager.instance.PlaySoundEffect(insertClip);
+    }
+
+    public void PlayReturnSound()
+    {
+        GeneralSoundManager.instance.PlaySoundEffect(returnClip);
     }
 }
