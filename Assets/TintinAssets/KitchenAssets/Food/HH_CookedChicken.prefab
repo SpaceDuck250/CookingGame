@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 449872232302463665, guid: 99d2e37a02968c046a0376a71df324bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     - target: {fileID: 919132149155446097, guid: 99d2e37a02968c046a0376a71df324bb, type: 3}
       propertyPath: m_Name
       value: HH_CookedChicken
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HealthViolation
       objectReference: {fileID: 0}
+    - target: {fileID: 5146720307312966807, guid: 99d2e37a02968c046a0376a71df324bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2, y: 0.9, z: 0.6}
+  m_Center: {x: 0.05, y: 0, z: 0}
 --- !u!54 &7270179519166742317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -145,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33190c6c5668d14eaeb5f6b0c8656a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
-  foodData: {fileID: 0}
+  foodData: {fileID: 11400000, guid: 891fba26ae651a344a7e03abf8c31ca7, type: 2}
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
   CarryType: 0

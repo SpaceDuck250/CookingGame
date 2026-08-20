@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8863667214212606868, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -895306380916907690, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     - target: {fileID: 919132149155446097, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_Name
       value: HH_RawChicken
@@ -79,7 +87,53 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2333296809945237109}
+    - targetCorrespondingSourceObject: {fileID: -6303116636865536453, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8410956929770055012}
+    - targetCorrespondingSourceObject: {fileID: 243041194690276544, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4060123664235731970}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+--- !u!1 &1140631364263967284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6303116636865536453, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+  m_PrefabInstance: {fileID: 2833471146749928463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8410956929770055012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140631364263967284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteakSideScript
+  cooked: 0
+  burnt: 0
+  cookedTimer: 0
+--- !u!1 &2598003396742334671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 243041194690276544, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
+  m_PrefabInstance: {fileID: 2833471146749928463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4060123664235731970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598003396742334671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c103002d6471ef41ad1761957c7f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteakSideScript
+  cooked: 0
+  burnt: 0
+  cookedTimer: 0
 --- !u!1 &3140111953298725214 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
@@ -145,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33190c6c5668d14eaeb5f6b0c8656a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
-  foodData: {fileID: 0}
+  foodData: {fileID: 11400000, guid: 829f2d914c60e7d4480cfb818519d343, type: 2}
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
   CarryType: 0

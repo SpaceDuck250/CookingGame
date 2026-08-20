@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7442891295567232853, guid: e13e228957591ec4c9e6ba153998e227, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     - target: {fileID: 919132149155446097, guid: e13e228957591ec4c9e6ba153998e227, type: 3}
       propertyPath: m_Name
       value: HH_BurntChicken
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HealthViolation
       objectReference: {fileID: 0}
+    - target: {fileID: 6489687064275510629, guid: e13e228957591ec4c9e6ba153998e227, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cae8cb8e6bb3ee4dbb30982e4840f69, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2, y: 0.9, z: 0.6}
+  m_Center: {x: 0.05, y: 0, z: 0}
 --- !u!54 &1657436454019139919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -145,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33190c6c5668d14eaeb5f6b0c8656a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldableFoodScript
-  foodData: {fileID: 0}
+  foodData: {fileID: 11400000, guid: 0061f5361f0c9ae468945b4d54224a90, type: 2}
   objectToDelete: {fileID: 0}
   platterIn: {fileID: 0}
   CarryType: 0
