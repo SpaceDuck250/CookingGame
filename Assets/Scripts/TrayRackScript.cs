@@ -20,6 +20,7 @@ public class TrayRackScript : Interactable
     private void Start()
     {
         trayLeft = trayStartAmount;
+        SetTraysActive(trayLeft);
     }
 
     public override void Interact(PlayerHandScript playerHand)
@@ -55,6 +56,22 @@ public class TrayRackScript : Interactable
         playerHand.ClearFoodFromHand();
 
         OnTrayPlacedBack?.Invoke();
+    }
+
+    public void ReturnTrayByCustomer()
+    {
+        if (trayLeft >= maxTrays)
+        {
+            return;
+        }
+
+
+        trayLeft++;
+
+        SetTraysActive(trayLeft);
+
+        OnTrayPlacedBack?.Invoke();
+
     }
 
     public void TakeTray(PlayerHandScript playerHand)

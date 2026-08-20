@@ -87,6 +87,6 @@ public class PlatterAreaScript : MonoBehaviour
 
     public void TryReturnTray()
     {
-        trayRackScript.ReturnTray(PlayerHandScript.instance);
+        trayRackScript.ReturnTrayByCustomer();
     }
 }

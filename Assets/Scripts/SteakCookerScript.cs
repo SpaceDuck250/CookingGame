@@ -103,6 +103,7 @@ public class SteakCookerScript : MonoBehaviour
     private void EndCooking()
     {
         canRunTimer = false;
+        steakFlipper.canFlip = false;
     }
 
     private void OnSideSwitched(GameObject cookSide)
