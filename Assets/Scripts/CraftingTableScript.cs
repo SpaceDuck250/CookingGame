@@ -21,6 +21,10 @@ public class CraftingTableScript : Interactable
     public event Action OnOuputDispensed;
     public event Action<SpecialRecipe> OnCycleThroughRecipe;
 
+    public event Action OnFoodReturned;
+
+    public event Action OnFoodInputListChanged;  
+
     public Transform spawnParent;
     public float downScaleAmount = 1f;
 
@@ -54,6 +58,7 @@ public class CraftingTableScript : Interactable
 
                 foodInputList.Add(inputFood);
                 playerHand.ClearFoodFromHand();
+                OnFoodInputListChanged?.Invoke();  
 
                 if (CheckIfRecipeMet())
                 {
@@ -85,12 +90,11 @@ public class CraftingTableScript : Interactable
     public void OutputFoodResult()
     {
         foodInputList.Clear();
+        OnFoodInputListChanged?.Invoke();  
 
         GameObject newFoodObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(outputFood, spawnParent, Vector3.zero, true, false, downScaleAmount);
         newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
         newFoodObj.GetComponent<Collider>().isTrigger = false;
-
-        OnOuputDispensed?.Invoke();
     }
 
     public void CycleThroughRecipeList(int amount)
@@ -106,7 +110,7 @@ public class CraftingTableScript : Interactable
             currentCycleIndex = 0;
         }
         else if (currentCycleIndex < 0)
-        { 
+        {
             currentCycleIndex = specialRecipeList.Count - 1;
         }
 
@@ -125,10 +129,13 @@ public class CraftingTableScript : Interactable
             newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
             newFoodObj.GetComponent<Collider>().isTrigger = false;
 
+            OnFoodReturned?.Invoke();
+
             yield return new WaitForSeconds(waitTime);
         }
 
         foodInputList.Clear();
+        OnFoodInputListChanged?.Invoke(); 
         craftingMode = false;
         busyReturning = false;
 
