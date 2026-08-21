@@ -7,6 +7,8 @@ public class ShopIncreaserScript : MonoBehaviour
     public static int buyAmount = 0;
     public int changeAmount = 1;
 
+    public static int maxBuyAmount = 5;
+
     public static Action<int> OnChangeBuyAmount;
 
     public ShopItemShowerScript shopSideScript;
@@ -39,6 +41,12 @@ public class ShopIncreaserScript : MonoBehaviour
 
     public void Increment()
     {
+        if (buyAmount + changeAmount > maxBuyAmount)
+        {
+            buyAmount = maxBuyAmount;
+            return;
+        }
+
         buyAmount += changeAmount;
         if (buyAmount < 0)
         {
