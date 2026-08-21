@@ -7,6 +7,8 @@ public class TutorialManagerScript : MonoBehaviour
 
     public GameObject playerObj;
     public GameObject gameCanvas;
+    public GameObject controlsBoardCanvas;
+    public GameObject customerSpawner;
 
     public List<Camera> allCamerasList = new List<Camera>();
 
@@ -34,7 +36,8 @@ public class TutorialManagerScript : MonoBehaviour
     {
         playerObj.SetActive(true);
         gameCanvas.SetActive(true);
-
+        controlsBoardCanvas.SetActive(true);
+        customerSpawner.SetActive(true);
     }
 
     public void SetPlayerCamOn()

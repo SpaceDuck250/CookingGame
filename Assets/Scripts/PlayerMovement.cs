@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public Action OnMove;
     public Action OnStopMove;
 
+    public Vector3 downForce;
+
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         CheckIfMoving(moveX, moveZ);
 
+
     }
 
     private void FixedUpdate()
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref refVelocity, smoothValue * Time.deltaTime);
 
+        rb.AddForce(downForce, ForceMode.Acceleration);
 
     }
 

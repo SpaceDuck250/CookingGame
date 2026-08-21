@@ -2,6 +2,7 @@ using UnityEngine;
 using Delivery;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class TruckDeliveryScript : MonoBehaviour
 {
@@ -14,8 +15,14 @@ public class TruckDeliveryScript : MonoBehaviour
 
     public float timeBetweenBoxSpawns = 0.4f;
 
+    public ShopFoodSpawner foodSpawner;
+
+    public static Action OnTruckLeftScene;
+
+
     public void SetupDelivery(ShopFoodSpawner foodSpawner, Transform spawnPoint)
     {
+        this.foodSpawner = foodSpawner;
         deliveryBoxPrefab = foodSpawner.deliveryBoxPrefab;
 
         while (foodSpawner.deliveryList.Count > 0)
@@ -56,6 +63,9 @@ public class TruckDeliveryScript : MonoBehaviour
 
     public void OnTruckLeft()
     {
+        ShopFoodSpawner.truckAlreadyInScene = false;
+
+        OnTruckLeftScene?.Invoke();
         Destroy(gameObject);
     }
 }
