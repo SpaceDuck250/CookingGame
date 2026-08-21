@@ -136,7 +136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.277, y: 3.511, z: -6.21}
-  m_LocalScale: {x: 0.2, y: 1, z: 3}
+  m_LocalScale: {x: 0.20000002, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6699943346007533214}
@@ -233,12 +233,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuDisplayScript
   menuDisplays:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 427762233479409865}
+  - {fileID: 2717030238695340801}
+  - {fileID: 6871019717403185475}
+  - {fileID: 8343665207036915082}
+  - {fileID: 89689287731815040}
+  - {fileID: 3468557339306536555}
 --- !u!1 &6066230162824567203
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +441,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: '$5
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (2)
@@ -463,6 +469,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
   m_PrefabInstance: {fileID: 1718127816960868043}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6871019717403185475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 1718127816960868043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1001 &4271777969947951618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -591,6 +608,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
   m_PrefabInstance: {fileID: 4271777969947951618}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8343665207036915082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 4271777969947951618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!1001 &5313231389477784840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -712,6 +740,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+--- !u!114 &89689287731815040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 5313231389477784840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!224 &6045230538078898724 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
@@ -805,27 +844,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_text
-      value: $8
-      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061204587242949832, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d0ab3a650eea6284887dcf10c7cc1829, type: 3}
-    - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
-      propertyPath: m_text
-      value: Steak & Rice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+--- !u!114 &427762233479409865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 5579246763202633537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!224 &6284190227552458861 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
@@ -919,15 +957,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936755363116478037, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: $6
+      objectReference: {fileID: 0}
     - target: {fileID: 5415520610667999284, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
       propertyPath: m_Name
       value: MealMenuSet (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061204587242949832, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ce60bae6edda920429752c6cf540aae8, type: 3}
+    - target: {fileID: 7051355608057543892, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+      propertyPath: m_text
+      value: Chicken Rice with Egg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+--- !u!114 &2717030238695340801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 7869500186114970761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!224 &8605972416185684901 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
@@ -1054,6 +1115,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+--- !u!114 &3468557339306536555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224949773658681224, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
+  m_PrefabInstance: {fileID: 8691958993207050723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be8a470f1e8fc4b9b28a3038b9bdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuItemDisplayScript
 --- !u!224 &7131608676712859343 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1898437570548598572, guid: 1bf0ae2ac7869c042981c0f15e26bfee, type: 3}
