@@ -36,7 +36,11 @@ public class TutorialManagerScript : MonoBehaviour
     {
         playerObj.SetActive(true);
         gameCanvas.SetActive(true);
-        controlsBoardCanvas.SetActive(true);
+        if (controlsBoardCanvas != null)
+        {
+            controlsBoardCanvas.SetActive(true);
+
+        }
         customerSpawner.SetActive(true);
     }
 
