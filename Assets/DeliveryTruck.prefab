@@ -709,8 +709,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8630013861161461695}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 85, y: 0, z: -46}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -723,7 +723,7 @@ Transform:
   - {fileID: 8504295034044033920}
   - {fileID: 5026653308242032070}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8909348583529404801
 Animator:
   serializedVersion: 7
@@ -760,3 +760,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TruckDeliveryScript
   truckAnimator: {fileID: 8909348583529404801}
   deliveryBoxPrefab: {fileID: 3089224806826418390, guid: eb39262dd6badfd45a62bde8f93fea3c, type: 3}
+  spawnPoint: {fileID: 0}
+  timeBetweenBoxSpawns: 0.4
+  foodSpawner: {fileID: 0}
