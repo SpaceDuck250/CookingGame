@@ -6,6 +6,7 @@ public class FoodCookingTask : TutorialTask
     public CookingInputOutputScript cookingInputOutput;
 
     public bool inputFood = false;
+    public bool cooked = false;
 
     public FoodData correctOutputFoodNeeded;
     public FoodData correctInputFood;
@@ -34,6 +35,11 @@ public class FoodCookingTask : TutorialTask
 
     private void OnFoodInput(FoodData foodData)
     {
+        if (inputFood)
+        {
+            return;
+        }
+
         if (taskId != TutorialArrowsManager.currentTaskId)
         {
             return;
@@ -56,6 +62,11 @@ public class FoodCookingTask : TutorialTask
 
     private void OnFoodCooked(Vector3 arg1, GameObject arg2, Transform arg3)
     {
+        if (cooked)
+        {
+            return;
+        }
+
         if (taskId != TutorialArrowsManager.currentTaskId)
         {
             return;
@@ -65,6 +76,8 @@ public class FoodCookingTask : TutorialTask
         {
             return;
         }
+
+        cooked = true;
 
 
         CompleteTask();
