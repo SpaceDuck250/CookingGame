@@ -7,7 +7,7 @@ public class TimeCycleScript : MonoBehaviour
     public static event Action<TimeOfDay> OnTimeOfDayChanged;
 
     // Time Cycle
-    public float timePeriodDuration = 200f;
+    public float timePeriodDuration = 180f;
     public static TimeOfDay currentTimeOfDay = TimeOfDay.Day;
     public float timePeriodTimer;
 

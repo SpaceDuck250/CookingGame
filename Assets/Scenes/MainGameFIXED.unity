@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af47ba3b211e174aa19175049d01d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeCycleScript
-  timePeriodDuration: 6.1
+  timePeriodDuration: 75
   timePeriodTimer: 0
 --- !u!4 &73655763
 Transform:
@@ -9805,8 +9805,10 @@ MonoBehaviour:
   musicClip1: {fileID: 8300000, guid: 09e410b54cbfeb944afbc5f2bc638fb6, type: 3}
   musicClip2: {fileID: 0}
   storeClip: {fileID: 0}
-  morningMusicList: []
-  afternoonMusicList: []
+  morningMusicList:
+  - {fileID: 8300000, guid: 09e410b54cbfeb944afbc5f2bc638fb6, type: 3}
+  afternoonMusicList:
+  - {fileID: 8300000, guid: f93ec61371c176643ae9927dd9e45a09, type: 3}
   pickupClip: {fileID: 0}
   sizzleClip: {fileID: 0}
   musicSrc: {fileID: 374590822}
