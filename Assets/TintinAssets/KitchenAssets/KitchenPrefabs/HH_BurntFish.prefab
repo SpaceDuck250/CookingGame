@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HH_BurntFish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3706a53d55b95b147ac1fb8639071ec9, type: 3}
+      propertyPath: m_TagString
+      value: HealthViolation
+      objectReference: {fileID: 0}
     - target: {fileID: 2866565244158422450, guid: 3706a53d55b95b147ac1fb8639071ec9, type: 3}
       propertyPath: m_Name
       value: Top
@@ -174,6 +178,7 @@ MonoBehaviour:
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
   doFloorChecks: 1
+  anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &5999205799331727681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+  showControls: 1
+  controlsText: 
 --- !u!114 &7134836620021992426
 MonoBehaviour:
   m_ObjectHideFlags: 0

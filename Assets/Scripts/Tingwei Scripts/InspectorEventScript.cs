@@ -251,7 +251,7 @@ public class InspectorEventScript : MonoBehaviour
 
         eventData.SetFoodLyingAround(currentFoodAmount);
 
-        //Debug.Log("Food currently lying on the floor: " + currentFoodAmount);
+        Debug.Log("Food currently lying on the floor: " + currentFoodAmount);
     }
 
     // --------------------------------------------

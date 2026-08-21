@@ -95,7 +95,7 @@ public class HoldableFoodScript : MonoBehaviour
         }
 
         FloorManager.OnFoodPickupFromFloor?.Invoke(gameObject);
-        print("Left floor");
+        //print("Left floor");
     }
 
 }

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HH_CookedFish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d620c36d5a66d640860d765d11f3988, type: 3}
+      propertyPath: m_TagString
+      value: HealthViolation
+      objectReference: {fileID: 0}
     - target: {fileID: 5146720307312966807, guid: 6d620c36d5a66d640860d765d11f3988, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -214,6 +218,7 @@ MonoBehaviour:
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
   doFloorChecks: 1
+  anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &252838385484347789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+  showControls: 1
+  controlsText: 
 --- !u!114 &3378165365349912783
 MonoBehaviour:
   m_ObjectHideFlags: 0

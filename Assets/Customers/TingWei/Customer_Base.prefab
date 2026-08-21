@@ -654,7 +654,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2813467912831258332, guid: 10c24f43ed93a0d4a963fd43c99ad4e1, type: 3}
+  - {fileID: 2100000, guid: a53826eae77e1f448aa886ec1e8cf22e, type: 2}
   - {fileID: -3846018093981099296, guid: 10c24f43ed93a0d4a963fd43c99ad4e1, type: 3}
   - {fileID: -8274133419916619345, guid: 10c24f43ed93a0d4a963fd43c99ad4e1, type: 3}
   - {fileID: -6922793697723135513, guid: 10c24f43ed93a0d4a963fd43c99ad4e1, type: 3}
@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 5572442997843537308}
   - component: {fileID: 3171387887883017947}
   - component: {fileID: 8018390654948010942}
+  - component: {fileID: 1006765500969312588}
   m_Layer: 6
   m_Name: Customer_Base
   m_TagString: Customer
@@ -977,7 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerInteractScript
   interactKeyCode: 0
-  heldCustomerData: {fileID: 11400000, guid: cc8ed18ff92720e45ae7b14c0865cd23, type: 2}
+  heldCustomerData: {fileID: 11400000, guid: 81b56e731fd0d424484e74835e6d52c5, type: 2}
   mealChecker: {fileID: 95440999740362058}
   orderComplete: 0
   movementScript: {fileID: 8305492917439897951}
@@ -1000,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
   agent: {fileID: 5866104269560528319}
   animator: {fileID: 8922079613626584837}
-  profile: {fileID: 11400000, guid: cc8ed18ff92720e45ae7b14c0865cd23, type: 2}
+  profile: {fileID: 11400000, guid: 81b56e731fd0d424484e74835e6d52c5, type: 2}
   movementScript: {fileID: 8305492917439897951}
   mealChecker: {fileID: 95440999740362058}
   customerAnimator: {fileID: 4080481711999117708}
@@ -1037,6 +1038,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   stateMachine: {fileID: 3171387887883017947}
+--- !u!114 &1006765500969312588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772638863480983493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31ec96e68bdeac4da15f212909cae95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AuntMerryCustomerScript
+  stateMachine: {fileID: 3171387887883017947}
+  movementScript: {fileID: 8305492917439897951}
+  eventSystem: {fileID: 0}
+  spawnHandler: {fileID: 0}
+  mealChecker: {fileID: 0}
+  visionOrigin: {fileID: 1749343281274558135}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  inspectionPoints: []
+  visionDistance: 8
+  fieldOfViewAngle: 120
+  inspectionArrivalDistance: 0.4
+  lookDurationAtPoint: 5
+  pointTravelTimeout: 15
+  inspectionTurnSpeed: 180
+  queueVisionCheckInterval: 0.5
+  foodGroundDistance: 0.1
+  visionCheckInterval: 0.2
+  visionBufferSize: 32
+  changeMindChance: 0.3
+  maxChangeMindAttempts: 3
+  changeMindAttempts: 0
+  hasChangedMind: 0
+  shouldInspectThisVisit: 0
+  inspectorRequestPending: 0
+  returnAfterSpottingFood: 1
+  inspectionStarted: 0
+  inspectionFinished: 0
+  spottedFood: {fileID: 0}
 --- !u!1 &2928518371721769170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1399,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5909964223136678674}
+  - {fileID: 1749343281274558135}
   m_Father: {fileID: 8131099856530828934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5786770948331842591
@@ -1878,6 +1925,37 @@ Transform:
   m_Children:
   - {fileID: 2506883082164212968}
   m_Father: {fileID: 6621549178665796308}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7885188779282616375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749343281274558135}
+  m_Layer: 6
+  m_Name: Vision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1749343281274558135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7885188779282616375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.012, y: 0.239, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8889303024121366524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9192351837363635743
 GameObject:
