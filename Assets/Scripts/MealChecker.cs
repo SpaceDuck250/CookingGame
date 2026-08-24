@@ -16,6 +16,8 @@ public class MealChecker : MonoBehaviour
     public event Action OnMealOrderFulfilled;
     public event Action OnWrongOrderServed;
 
+    public static Action OnAnyCustomerServed;
+
     public Transform customerHand;
 
     public PlatterScript platterHeld;
@@ -54,6 +56,8 @@ public class MealChecker : MonoBehaviour
 
 
             customerScript.movementScript.holdingTray = true;
+
+            OnAnyCustomerServed?.Invoke();
         }
         else
         {
