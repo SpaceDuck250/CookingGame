@@ -83,7 +83,7 @@ namespace RecipeBook
             // replace with event later
 
 
-            turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(60, 0, 0)), transform);
+            turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(70, 180, 0)), transform);
         }
 
         public void CloseBook()

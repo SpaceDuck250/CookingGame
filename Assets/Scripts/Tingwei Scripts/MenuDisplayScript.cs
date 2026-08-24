@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MenuDisplayScript : MonoBehaviour
 {
+    [System.Serializable]
     public class MenuItem
     {
         public Sprite itemImage;
@@ -23,6 +24,12 @@ public class MenuDisplayScript : MonoBehaviour
 
         for (int i = 0; i < amountToDisplay; i++)
         {
+            if (menuDisplays[i] == null)
+            {
+                Debug.Log($"Menu Display {i} has not been assigned.");
+                continue;
+            }
+
             menuDisplays[i].SetMenuItem(menuItems[i].itemImage, menuItems[i].itemName, menuItems[i].itemprice);
         }
     }
