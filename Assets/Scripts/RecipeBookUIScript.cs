@@ -9,7 +9,7 @@ public class RecipeBookUIScript : MonoBehaviour
 
     public GameObject recipeItemTemplate;
 
-    public Sprite cuttingStationSprite, panStationSprite, skewerStationSprite;
+    public Sprite cuttingStationSprite, panStationSprite, skewerStationSprite, vendingMachineSprite;
 
     public RecipeBookScript recipeBookScript;
 
@@ -38,6 +38,7 @@ public class RecipeBookUIScript : MonoBehaviour
             GameObject newRecipeItem = Instantiate(recipeItemTemplate, pageContentsContainer);
 
             Sprite cookingStationSprite = FindIconForCookingUsed(recipeItem.cookingStationUsed);
+
             newRecipeItem.GetComponent<RecipeDataItemScript>().SetupRecipeItem(recipeItem, cookingStationSprite);
         }
     }
@@ -96,6 +97,8 @@ public class RecipeBookUIScript : MonoBehaviour
 
             case CookingStation.Skewer:
                 return skewerStationSprite;
+            case CookingStation.Vending:
+                return vendingMachineSprite;
             default:
                 return null;
 

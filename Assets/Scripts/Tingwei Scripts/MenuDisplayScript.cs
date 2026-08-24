@@ -11,7 +11,7 @@ public class MenuDisplayScript : MonoBehaviour
     }
 
     public MenuItemDisplayScript[] menuDisplays;
-    public MenuItem[] menuItems = new MenuItem[5];
+    public MenuItem[] menuItems = new MenuItem[7];
 
     private void Start()
     {
@@ -20,7 +20,10 @@ public class MenuDisplayScript : MonoBehaviour
 
     public void UpdateMenu()
     {
+
         int amountToDisplay = Mathf.Min(menuDisplays.Length, menuItems.Length);
+
+
 
         for (int i = 0; i < amountToDisplay; i++)
         {

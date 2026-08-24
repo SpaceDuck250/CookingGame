@@ -19,5 +19,6 @@ public enum CookingStation
 {
     Cut,
     Pan,
-    Skewer
+    Skewer,
+    Vending
 }
