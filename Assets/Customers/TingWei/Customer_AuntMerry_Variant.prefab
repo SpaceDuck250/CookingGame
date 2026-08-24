@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6520475143567846457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7917656875890665663}
-  m_Layer: 6
-  m_Name: Vision
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7917656875890665663
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6520475143567846457}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.012, y: 0.239, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3726466413597437363}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5254072891408476751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1006765500969312588, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      propertyPath: mealChecker
+      value: 
+      objectReference: {fileID: 5312317232257246981}
     - target: {fileID: 1071675866152844183, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -47,10 +20,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer_AuntMerry_Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: profile
-      value: 
-      objectReference: {fileID: 11400000, guid: 81b56e731fd0d424484e74835e6d52c5, type: 2}
     - target: {fileID: 3256582981443802495, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6704463
@@ -91,87 +60,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5572442997843537308, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      propertyPath: heldCustomerData
-      value: 
-      objectReference: {fileID: 11400000, guid: 81b56e731fd0d424484e74835e6d52c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8889303024121366524, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7917656875890665663}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2168846002699757042}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
---- !u!4 &3726466413597437363 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8889303024121366524, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  m_PrefabInstance: {fileID: 5254072891408476751}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4299036282667813648 stripped
+--- !u!114 &5312317232257246981 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8305492917439897951, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   m_PrefabInstance: {fileID: 5254072891408476751}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966959198528562570}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d534bf519861fdc4da2b343f9351a4d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
---- !u!114 &7271412403438826644 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  m_PrefabInstance: {fileID: 5254072891408476751}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966959198528562570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5877293004989fc4484560aa3b8291b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
---- !u!1 &7966959198528562570 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
-  m_PrefabInstance: {fileID: 5254072891408476751}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2168846002699757042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966959198528562570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31ec96e68bdeac4da15f212909cae95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AuntMerryCustomerScript
-  stateMachine: {fileID: 7271412403438826644}
-  movementScript: {fileID: 4299036282667813648}
-  eventSystem: {fileID: 0}
-  visionOrigin: {fileID: 7917656875890665663}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  inspectionPoints: []
-  visionDistance: 8
-  fieldOfViewAngle: 120
-  inspectionArrivalDistance: 0.4
-  lookDurationAtPoint: 5
-  pointTravelTimeout: 15
-  inspectionTurnSpeed: 180
-  foodGroundDistance: 0.1
-  visionCheckInterval: 0.2
-  visionBufferSize: 32
-  inspectorRequestPending: 0
-  returnAfterSpottingFood: 1
-  inspectionStarted: 0
-  inspectionFinished: 0
-  spottedFood: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::MealChecker

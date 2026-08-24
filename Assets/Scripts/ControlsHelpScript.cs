@@ -37,7 +37,7 @@ public class ControlsHelpScript : MonoBehaviour
 
     private void Update()
     {
-        print(PlayerLooker.currentLookComponent);
+        //print(PlayerLooker.currentLookComponent);
 
 
         if (onLookObj)
