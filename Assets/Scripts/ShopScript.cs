@@ -20,6 +20,8 @@ public class ShopScript : MonoBehaviour
 
     public static Action<FoodData, int> OnSucessfullyBoughtFood;
 
+    public GameObject notEnoughMoneyObj;
+
     public int maxBuyAmount = 5;
 
     private void Start()
@@ -68,6 +70,7 @@ public class ShopScript : MonoBehaviour
     {
         if (!shopCostScript.canAfford)
         {
+            notEnoughMoneyObj.SetActive(true);
             return;
         }
 

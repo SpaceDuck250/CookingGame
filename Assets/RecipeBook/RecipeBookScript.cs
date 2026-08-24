@@ -8,7 +8,7 @@ namespace RecipeBook
     {
         public List<RecipeData> normalRecipeDataList = new List<RecipeData>();
 
-        public List<SpecialRecipe> specialRecipeDataList = new List<SpecialRecipe>();
+        //public List<SpecialRecipe> specialRecipeDataList = new List<SpecialRecipe>();
 
         public int maxItemsPerPage;
         public List<Page> pageList = new List<Page>();
