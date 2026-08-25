@@ -51,14 +51,14 @@ public class DaySystemManager : MonoBehaviour
 
             print(playerDailyStats);
 
-            //Time.ti
+            Time.timeScale = 1;
         }
     }
 
     public void SetupDayStart()
     {
         // Might change later
-        if (UnityEngine.Random.value < 0.5f && dayCounter != 1)
+        if (UnityEngine.Random.value < 0.4f && dayCounter != 1)
         {
             SetCustomerServeRequirement(customerServeRequirement + 1);
         }
@@ -89,7 +89,7 @@ public class DaySystemManager : MonoBehaviour
 
     public void KeepTrackOfMoneyStatistics(decimal playerTotalMoney, decimal moneyEarned, decimal tipEarned)
     {
-        //playerDailyStats.tipEarned += tipEarned;
+        playerDailyStats.tipEarned += tipEarned;
     }
 
 }
