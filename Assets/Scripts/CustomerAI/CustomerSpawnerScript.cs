@@ -10,6 +10,8 @@ public class CustomerSpawnerScript : MonoBehaviour
 {
     //public GameObject customerPrefab;
 
+    public bool canSpawn = true;
+
 
     public List<GameObject> customerPrefabListToSpawn = new List<GameObject>();
 
@@ -82,6 +84,10 @@ public class CustomerSpawnerScript : MonoBehaviour
 
     private void Update()
     {
+        if (!canSpawn)
+        {
+            return;
+        }
         CustomerSpawnerInterval();
     }
 
@@ -284,7 +290,13 @@ public class CustomerSpawnerScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         if (move.customerStateMachine.currentMood != CustomerMood.ReallyAngry)
         {
-            move.OnNewDestinationChange(point);
+            if ((move.customerStateMachine.currentState != CustomerState.LeavingMap))
+            {
+
+
+
+                move.OnNewDestinationChange(point);
+            }
         }
 
     }
