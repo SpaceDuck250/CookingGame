@@ -12,11 +12,14 @@ public class EndDayStatisticsScript : MonoBehaviour
     private void Start()
     {
         DaySystemManager.OnDayEnd += OnDayEnd;
+        DaySystemManager.OnDayStart += OnDayStart;
     }
 
     private void OnDestroy()
     {
         DaySystemManager.OnDayEnd -= OnDayEnd;
+        DaySystemManager.OnDayStart -= OnDayStart;
+
 
     }
 
@@ -29,6 +32,12 @@ public class EndDayStatisticsScript : MonoBehaviour
         tipsEarnedText.text = "Tips Earned: " + playerStats.tipEarned.ToString() + "$";
 
         shuttersStatsPanel.SetActive(true);
+
+    }
+
+    public void OnDayStart()
+    {
+        shuttersStatsPanel.SetActive(false);
 
     }
 }
