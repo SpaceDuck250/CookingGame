@@ -3,7 +3,7 @@ using System;
 
 public class DaySystemManager : MonoBehaviour
 {
-    public int dayCounter = 1;
+    public static int dayCounter = 1;
 
     //public int customersServedToday = 0;
     public PlayerDailyStats playerDailyStats;
@@ -27,6 +27,7 @@ public class DaySystemManager : MonoBehaviour
     private void Start()
     {
         MealChecker.OnAnyCustomerServed += CountServedCustomers;
+        dayCounter = 0;
         OnDayStart += SetupDayStart;
         MoneyManager.OnMoneyChanged += KeepTrackOfMoneyStatistics;
 
@@ -38,6 +39,7 @@ public class DaySystemManager : MonoBehaviour
     private void OnDestroy()
     {
         MealChecker.OnAnyCustomerServed -= CountServedCustomers;
+
         OnDayStart -= SetupDayStart;
 
         MoneyManager.OnMoneyChanged -= KeepTrackOfMoneyStatistics;
