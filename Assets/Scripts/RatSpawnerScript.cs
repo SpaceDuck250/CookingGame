@@ -20,7 +20,7 @@ public class RatSpawnerScript : MonoBehaviour
 
     private void Update()
     {
-        if (TimeCycleScript.daysPassed < daysUntilCanSpawn)
+        if (DaySystemManager.dayCounter < daysUntilCanSpawn)
         {
             return;
         }
