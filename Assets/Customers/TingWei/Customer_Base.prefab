@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 5572442997843537308}
   - component: {fileID: 3171387887883017947}
   - component: {fileID: 8018390654948010942}
-  - component: {fileID: 1006765500969312588}
+  - component: {fileID: 5194702155998076557}
   m_Layer: 6
   m_Name: Customer_Base
   m_TagString: Customer
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   stateMachine: {fileID: 3171387887883017947}
---- !u!114 &1006765500969312588
+--- !u!114 &5194702155998076557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1047,42 +1047,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2772638863480983493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31ec96e68bdeac4da15f212909cae95, type: 3}
+  m_Script: {fileID: 11500000, guid: 9392a7f003e083842a65f69b4ea40feb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AuntMerryCustomerScript
+  m_EditorClassIdentifier: '::'
   stateMachine: {fileID: 3171387887883017947}
-  movementScript: {fileID: 8305492917439897951}
-  eventSystem: {fileID: 0}
-  spawnHandler: {fileID: 0}
-  mealChecker: {fileID: 0}
-  visionOrigin: {fileID: 1749343281274558135}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  inspectionPoints: []
-  visionDistance: 8
-  fieldOfViewAngle: 120
-  inspectionArrivalDistance: 0.4
-  lookDurationAtPoint: 5
-  pointTravelTimeout: 15
-  inspectionTurnSpeed: 180
-  queueVisionCheckInterval: 0.5
-  foodGroundDistance: 0.1
-  visionCheckInterval: 0.2
-  visionBufferSize: 32
-  changeMindChance: 0.3
-  maxChangeMindAttempts: 3
-  changeMindAttempts: 0
-  hasChangedMind: 0
-  shouldInspectThisVisit: 0
-  inspectorRequestPending: 0
-  returnAfterSpottingFood: 1
-  inspectionStarted: 0
-  inspectionFinished: 0
-  spottedFood: {fileID: 0}
 --- !u!1 &2928518371721769170
 GameObject:
   m_ObjectHideFlags: 0

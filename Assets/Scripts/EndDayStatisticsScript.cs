@@ -29,5 +29,6 @@ public class EndDayStatisticsScript : MonoBehaviour
         tipsEarnedText.text = "Tips Earned: " + playerStats.tipEarned.ToString() + "$";
 
         shuttersStatsPanel.SetActive(true);
+
     }
 }
