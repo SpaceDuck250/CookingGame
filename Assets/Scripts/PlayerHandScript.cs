@@ -261,6 +261,7 @@ public class PlayerHandScript : MonoBehaviour
         if (currentFoodHeldObj != null)
         {
             Destroy(currentFoodHeldObj.gameObject);
+            currentFoodHeldObj = null;
         }
 
         OnStopHoldSomething?.Invoke();
