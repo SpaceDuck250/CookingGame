@@ -6,6 +6,7 @@ public class EndDayStatisticsScript : MonoBehaviour
     public GameObject shuttersStatsPanel;
     public TextMeshProUGUI moneyEarnedText;
     public TextMeshProUGUI currentDayText;
+    public TextMeshProUGUI tipsEarnedText;
 
 
     private void Start()
@@ -24,7 +25,8 @@ public class EndDayStatisticsScript : MonoBehaviour
         currentDayText.text = "Day " + playerStats.day.ToString() + " Complete!";
 
         float profit = (float)(playerStats.totalMoneyEndOfDay - playerStats.totalMoneyStartOfDay);
-        moneyEarnedText.text = profit.ToString() + "$";
+        moneyEarnedText.text = "Total Profit: " + profit.ToString() + "$";
+        tipsEarnedText.text = "Tips Earned: " + playerStats.tipEarned.ToString() + "$";
 
         shuttersStatsPanel.SetActive(true);
     }
