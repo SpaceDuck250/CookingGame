@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HH_RawShrimp
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe2dda2161e1bed468c776232eea115e, type: 3}
+      propertyPath: m_TagString
+      value: HealthViolation
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -176,6 +180,7 @@ MonoBehaviour:
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
   doFloorChecks: 1
+  anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &4623295202962926444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
   objectsToOutlineList: []
   setManually: 0
+  showControls: 1
+  controlsText: 
 --- !u!114 &4781200861394011133
 MonoBehaviour:
   m_ObjectHideFlags: 0

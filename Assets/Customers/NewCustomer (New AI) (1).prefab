@@ -547,6 +547,7 @@ MonoBehaviour:
   customerScript: {fileID: 3266575145390314491}
   customerHand: {fileID: 0}
   platterHeld: {fileID: 0}
+  stateMachine: {fileID: 0}
 --- !u!114 &8731911951660881353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,10 +561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
   orderData: {fileID: 0}
-  stallQueuePointTransform: {fileID: 0}
-  chairTransform: {fileID: 0}
-  exitTransform: {fileID: 0}
-  platterAreaTransform: {fileID: 0}
   destinationPoint: {fileID: 0}
   sitTime: 0
   agent: {fileID: 1582659216779913541}
@@ -574,6 +571,9 @@ MonoBehaviour:
   normalTrayLocalPosition: {x: 0, y: 0, z: 0}
   seatedTrayLocalPosition: {x: 0, y: 0, z: 0}
   mealChecker: {fileID: 0}
+  customerStateMachine: {fileID: 0}
+  leaveWhenAngryScript: {fileID: 0}
+  paused: 0
 --- !u!114 &3266575145390314491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,11 +588,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerInteractScript
   interactKeyCode: 0
   heldCustomerData: {fileID: 11400000, guid: cc8ed18ff92720e45ae7b14c0865cd23, type: 2}
-  currentMealOrder: {fileID: 0}
   mealChecker: {fileID: 8965317737347431291}
   orderComplete: 0
   movementScript: {fileID: 8731911951660881353}
   finishedInteract: 0
+  customerStateMachine: {fileID: 0}
+  talkedTo: 0
+  talkingTo: 0
+  talkRange: {fileID: 0}
 --- !u!114 &3745389926644979104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,20 +611,29 @@ MonoBehaviour:
   agent: {fileID: 1582659216779913541}
   animator: {fileID: 2161549901788536356}
   profile: {fileID: 11400000, guid: 224ba8cb0acc90748ab24366f046f80e, type: 2}
-  counterPoint: {fileID: 0}
+  movementScript: {fileID: 0}
+  mealChecker: {fileID: 0}
+  customerAnimator: {fileID: 0}
+  interactScript: {fileID: 0}
+  queuePoint: {fileID: 0}
   seatPoint: {fileID: 0}
   exitPoint: {fileID: 0}
-  possibleOrders:
-  - {fileID: 11400000, guid: 3e826486cbe7bfe4684c5151891f1105, type: 2}
-  wantedOrders: []
-  servedOrders: []
-  mealRequired: 1
-  timeoutPay: 0
-  preferredMeals: []
+  trayReturnPoint: {fileID: 0}
   maxWaitTime: 30
-  fullPay: 20
-  wrongOrderPay: 8
+  waitTimer: 0
+  canRunTimer: 0
   currentState: 0
+  currentMood: 0
+  orderDone: 0
+  sitting: 0
+  normalTrayLocalPosition: {x: 0, y: 0, z: 0}
+  seatedTrayLocalPosition: {x: 0, y: 0, z: 0}
+  upOffsetChair: 0
+  forwardOffset: 0
+  normalSprite: {fileID: 0}
+  angrySprite: {fileID: 0}
+  happySprite: {fileID: 0}
+  reallyAngrySprite: {fileID: 0}
 --- !u!1 &3816755391380298148
 GameObject:
   m_ObjectHideFlags: 0

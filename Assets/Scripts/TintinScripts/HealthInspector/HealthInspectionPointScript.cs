@@ -30,7 +30,7 @@ public class HealthInspectionPointScript : MonoBehaviour
                 continue;
             }
 
-            foundViolations.Add(CleanViolationLabel(hit.gameObject.name));
+            foundViolations.Add(GetViolationLabel(hit));
         }
 
         return foundViolations.Count > 0;
@@ -41,6 +41,19 @@ public class HealthInspectionPointScript : MonoBehaviour
     {
         HoldableFoodScript holdable = hit.GetComponentInParent<HoldableFoodScript>();
         return holdable != null && holdable.platterIn != null;
+    }
+
+    // Prefer the food's proper display name (FoodData.foodName) over the prefab's
+    // raw GameObject name; falls back to a cleaned prefab name if it isn't food.
+    private string GetViolationLabel(Collider hit)
+    {
+        HoldableFoodScript holdable = hit.GetComponentInParent<HoldableFoodScript>();
+        if (holdable != null && holdable.foodData != null && !string.IsNullOrEmpty(holdable.foodData.foodName))
+        {
+            return holdable.foodData.foodName;
+        }
+
+        return CleanViolationLabel(hit.gameObject.name);
     }
 
     // Strips Unity's "(Clone)" suffix so spawned violation props show a clean name in reports
