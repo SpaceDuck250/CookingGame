@@ -30603,6 +30603,7 @@ MonoBehaviour:
   shopObj: {fileID: 400582680}
   shopCostScript: {fileID: 1409624306}
   shopSideScript: {fileID: 1409624304}
+  notEnoughMoneyObj: {fileID: 0}
   maxBuyAmount: 5
 --- !u!114 &1094170465
 MonoBehaviour:
@@ -38998,6 +38999,7 @@ MonoBehaviour:
   cuttingStationSprite: {fileID: 21300000, guid: 0532926e0881107468c20850697865b8, type: 3}
   panStationSprite: {fileID: 21300000, guid: 1caa3285b317dec468399228175453d6, type: 3}
   skewerStationSprite: {fileID: 21300000, guid: 38c26c3757dfa684aa39eb94afbdee52, type: 3}
+  vendingMachineSprite: {fileID: 0}
   recipeBookScript: {fileID: 1443033037}
   pageAnimator: {fileID: 1443033036}
   lookControls: {fileID: 1443033038}
@@ -39043,7 +39045,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3360bdeb6117e7e48858520f65e706ae, type: 2}
   - {fileID: 11400000, guid: ef4f73e412d09e84980625c1ed823cb7, type: 2}
   - {fileID: 11400000, guid: e962383d7f7de4f4d9cdd11f5b86aa67, type: 2}
-  specialRecipeDataList: []
   maxItemsPerPage: 3
   pageList: []
   currentShownPageIndex: 0
@@ -50054,6 +50055,7 @@ MonoBehaviour:
   cuttingStationSprite: {fileID: 21300000, guid: 0532926e0881107468c20850697865b8, type: 3}
   panStationSprite: {fileID: 21300000, guid: 1caa3285b317dec468399228175453d6, type: 3}
   skewerStationSprite: {fileID: 21300000, guid: fbaf54cec426adf4a9b2b35ff897e96d, type: 3}
+  vendingMachineSprite: {fileID: 0}
   recipeBookScript: {fileID: 1869236455}
   pageAnimator: {fileID: 1869236454}
   lookControls: {fileID: 1869236453}
@@ -50114,7 +50116,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3360bdeb6117e7e48858520f65e706ae, type: 2}
   - {fileID: 11400000, guid: ef4f73e412d09e84980625c1ed823cb7, type: 2}
   - {fileID: 11400000, guid: e962383d7f7de4f4d9cdd11f5b86aa67, type: 2}
-  specialRecipeDataList: []
   maxItemsPerPage: 3
   pageList: []
   currentShownPageIndex: 0
@@ -52949,6 +52950,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HH_Flipper
       objectReference: {fileID: 0}
+    - target: {fileID: 677963054074506679, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+      propertyPath: recipeStored.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 677963054074506679, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+      propertyPath: 'recipeStored.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8acfc5316a0430746b3588aa43fef491, type: 2}
+    - target: {fileID: 677963054074506679, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
+      propertyPath: 'recipeStored.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8acfc5316a0430746b3588aa43fef491, type: 2}
     - target: {fileID: 1946472715173811399, guid: 209e5dbf7f1b28c45bc224122f88098d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.500002
