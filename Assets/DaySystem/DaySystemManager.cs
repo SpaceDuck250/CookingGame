@@ -3,7 +3,7 @@ using System;
 
 public class DaySystemManager : MonoBehaviour
 {
-    public int dayCounter = 1;
+    public static int dayCounter = 1;
 
     //public int customersServedToday = 0;
     public PlayerDailyStats playerDailyStats;
@@ -16,9 +16,18 @@ public class DaySystemManager : MonoBehaviour
     public static Action OnDayStart;
     public static Action<PlayerDailyStats> OnDayEnd;
 
+    public static Action<float, float> OnNightTimerRun;
+
+    public CustomerSpawnerScript customerSpawner;
+
+    public float nightTimer;
+    public float nightTime;
+    public bool isNight;
+
     private void Start()
     {
         MealChecker.OnAnyCustomerServed += CountServedCustomers;
+        dayCounter = 0;
         OnDayStart += SetupDayStart;
         MoneyManager.OnMoneyChanged += KeepTrackOfMoneyStatistics;
 
@@ -30,12 +39,26 @@ public class DaySystemManager : MonoBehaviour
     private void OnDestroy()
     {
         MealChecker.OnAnyCustomerServed -= CountServedCustomers;
+
         OnDayStart -= SetupDayStart;
 
         MoneyManager.OnMoneyChanged -= KeepTrackOfMoneyStatistics;
+    }
 
+    private void Update()
+    {
+        if (!isNight)
+        {
+            return;
+        }
 
+        nightTimer -= Time.deltaTime;
+        if (nightTimer <= 0)
+        {
+            OnDayStart?.Invoke();
+        }
 
+        OnNightTimerRun?.Invoke(nightTimer, nightTime);
     }
 
     public void CountServedCustomers()
@@ -46,12 +69,13 @@ public class DaySystemManager : MonoBehaviour
             playerDailyStats.customersServed = customerServeRequirement;
             playerDailyStats.totalMoneyEndOfDay = MoneyManager.playerMoneyAmount;
 
+            customerSpawner.canSpawn = false;
+            SetupNight();
+
             OnDayEnd?.Invoke(playerDailyStats);
             playerDailyStats = null;
 
             print(playerDailyStats);
-
-            Time.timeScale = 1;
         }
     }
 
@@ -67,8 +91,16 @@ public class DaySystemManager : MonoBehaviour
 
         playerDailyStats = new PlayerDailyStats(dayCounter, MoneyManager.playerMoneyAmount);
 
-        Time.timeScale = 1;
+        customerSpawner.canSpawn = true;
 
+        isNight = false;
+
+    }
+
+    public void SetupNight()
+    {
+        nightTimer = nightTime;
+        isNight = true;
     }
 
     public void SetCustomerServeRequirement(int newValue)
@@ -111,6 +143,5 @@ public class PlayerDailyStats
     public decimal tipEarned = 0;
 
     public int customersServed = 0;
-    public int secondsElapsed = 0;
 
 }

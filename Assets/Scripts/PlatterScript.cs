@@ -35,10 +35,13 @@ public class PlatterScript : Interactable
     {
         for (int i = 0; i < 4; i++)
         {
+
+
             if (foodData == foodHeldList[i])
             {
                 foodHeldList.RemoveAt(i);
-                break;
+                return;
+                //break;
             }
         }
     }

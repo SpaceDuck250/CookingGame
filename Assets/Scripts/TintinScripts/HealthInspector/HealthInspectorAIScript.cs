@@ -30,7 +30,7 @@ public class HealthInspectorAIScript : MonoBehaviour
 
     public float inspectDuration = 2f;
 
-    public decimal fineAmountPerViolation = 50;
+    public decimal fineAmountPerViolation = 2;
 
     public InspectionStrictness strictness = InspectionStrictness.Lenient;
 
