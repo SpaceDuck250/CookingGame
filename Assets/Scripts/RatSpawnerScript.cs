@@ -94,11 +94,11 @@ public class RatSpawnerScript : MonoBehaviour
 
         if (foodOnFloorAmount > 10) // greater than 10 merry christmas everybody
         {
-            return 0.4f;
+            return 1f;
         }
         else if (foodOnFloorAmount > 4) // between 5 and 10 tingwei
         {
-            return 0.2f;
+            return 0.5f;
         }
         else // between 1 and 4 jovens dancing
         {
