@@ -51,7 +51,7 @@ public class DaySystemManager : MonoBehaviour
 
             print(playerDailyStats);
 
-            //Time.ti
+            Time.timeScale = 1;
         }
     }
 
