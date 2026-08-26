@@ -15107,7 +15107,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tips Earned: 129'
+  m_text: 'Tips Earned: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -49405,7 +49405,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3502826944733138154, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
   m_PrefabInstance: {fileID: 2968767259977794343}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2092217362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0dd54e86df3bee468b2dd5d0a9af8c5, type: 3}
@@ -51136,7 +51136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Profit: 19232'
+  m_text: 'Profit: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -53155,6 +53155,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1263520078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2092217362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7746998371924984809, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+  m_PrefabInstance: {fileID: 2968767259977794343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2092217368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092217362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b253d1d261b34fbab89bf8b06a3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookControlsScript
+  customControlsText: Left Click with Food To Input
+  doAltTextIfHoldingFood: 1
+  altText: Left Click (Input Vending)
 --- !u!4 &2092505368 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1827959634098838846, guid: d72a9fcc8188ef7449039f5d5419f8ec, type: 3}
@@ -57824,6 +57844,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3076481321407087895, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 494884034}
+    - targetCorrespondingSourceObject: {fileID: 7746998371924984809, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2092217368}
   m_SourcePrefab: {fileID: 100100000, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
 --- !u!33 &2976606478704702393
 MeshFilter:

@@ -8,7 +8,6 @@ public class EndDayStatisticsScript : MonoBehaviour
     public TextMeshProUGUI currentDayText;
     public TextMeshProUGUI tipsEarnedText;
 
-
     private void Start()
     {
         DaySystemManager.OnDayEnd += OnDayEnd;
@@ -28,6 +27,8 @@ public class EndDayStatisticsScript : MonoBehaviour
         currentDayText.text = "Day " + playerStats.day.ToString() + " Complete!";
 
         float profit = (float)(playerStats.totalMoneyEndOfDay - playerStats.totalMoneyStartOfDay);
+
+        
         moneyEarnedText.text = "Total Profit: " + profit.ToString() + "$";
         tipsEarnedText.text = "Tips Earned: " + playerStats.tipEarned.ToString() + "$";
 
