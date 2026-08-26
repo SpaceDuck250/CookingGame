@@ -24,7 +24,14 @@ public class MoneyUIScript : MonoBehaviour
 
     private void OnMoneyChanged(decimal totalMoneyAmount, decimal earnedAmount, decimal tipAmount)
     {
+        //if (numberChangeEffect == null)
+        //{
+        //    numberChangeEffect = new NumberChangeEffectScript(ref moneyUIText);
+        //}
+        ////StartCoroutine(numberChangeEffect.DoNumberChangeEffect((float)totalMoneyAmount, (float)(totalMoneyAmount - earnedAmount), 0.1f));
         moneyUIText.text = ": " + totalMoneyAmount + "$";
+
+
 
         ShowEarnTextObj(earnedAmount, tipAmount);
     }
