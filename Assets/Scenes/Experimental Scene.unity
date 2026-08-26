@@ -13510,6 +13510,9 @@ MonoBehaviour:
   sizzleClip: {fileID: 0}
   musicSrc: {fileID: 374590822}
   effectsSrc: {fileID: 1405313962}
+  musicFadeDuration: 1.5
+  musicVolume: 1
+  inspectorMusicClip: {fileID: 0}
 --- !u!4 &384047805
 Transform:
   m_ObjectHideFlags: 0
@@ -49077,6 +49080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a029e6d61effe848b84a37c0c92688d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
+  canSpawn: 1
   customerPrefabListToSpawn:
   - {fileID: 7966959198528562570, guid: f9105fa712d7eae4195ee1b40c43a1c2, type: 3}
   - {fileID: 2633752760055850322, guid: db6efdad846df1c40a6a6158cb9207d8, type: 3}
@@ -49859,9 +49863,8 @@ MonoBehaviour:
   customerSpawner: {fileID: 1833731579}
   completeEventAfterOrderChange: 1
   eventRunning: 0
-  orderChanged: 0
-  orderChangeInProgress: 0
   subscribedToSpawner: 0
+  selectedCustomers: []
 --- !u!114 &1864259267
 MonoBehaviour:
   m_ObjectHideFlags: 0

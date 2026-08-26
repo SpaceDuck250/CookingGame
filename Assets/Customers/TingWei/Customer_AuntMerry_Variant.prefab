@@ -63,16 +63,96 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 512784425285665167}
   m_SourcePrefab: {fileID: 100100000, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+--- !u!114 &4299036282667813648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8305492917439897951, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 5254072891408476751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966959198528562570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d534bf519861fdc4da2b343f9351a4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerMovementScript
 --- !u!114 &5312317232257246981 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 95440999740362058, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
   m_PrefabInstance: {fileID: 5254072891408476751}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7966959198528562570}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8df917d3975068a4c9704fc91eee860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MealChecker
+--- !u!4 &5813264242152799480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1749343281274558135, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 5254072891408476751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7271412403438826644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3171387887883017947, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 5254072891408476751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966959198528562570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5877293004989fc4484560aa3b8291b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
+--- !u!1 &7966959198528562570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772638863480983493, guid: 4a7fc2567c46b8f42827d067085d7ea3, type: 3}
+  m_PrefabInstance: {fileID: 5254072891408476751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &512784425285665167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966959198528562570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31ec96e68bdeac4da15f212909cae95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AuntMerryCustomerScript
+  stateMachine: {fileID: 7271412403438826644}
+  movementScript: {fileID: 4299036282667813648}
+  eventSystem: {fileID: 0}
+  spawnHandler: {fileID: 0}
+  mealChecker: {fileID: 5312317232257246981}
+  visionOrigin: {fileID: 5813264242152799480}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  inspectionPoints: []
+  visionDistance: 8
+  fieldOfViewAngle: 120
+  inspectionArrivalDistance: 0.4
+  lookDurationAtPoint: 1.5
+  pointTravelTimeout: 15
+  inspectionTurnSpeed: 360
+  queueVisionCheckInterval: 0.5
+  foodGroundDistance: 0.1
+  visionCheckInterval: 0.2
+  visionBufferSize: 32
+  changeMindChance: 0.3
+  maxChangeMindAttempts: 3
+  changeMindAttempts: 0
+  hasChangedMind: 0
+  shouldInspectThisVisit: 1
+  inspectorRequestPending: 0
+  returnAfterSpottingFood: 1
+  inspectionStarted: 0
+  inspectionFinished: 0
+  spottedFood: {fileID: 0}
