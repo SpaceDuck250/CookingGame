@@ -2,28 +2,19 @@ using UnityEngine;
 
 public class CookingSoundManager : MonoBehaviour
 {
+    public SFXBank cookingBank;
+
     public AudioSource frierSrc;
-    public AudioClip frierClip;
-
     public AudioSource steakSrc;
-    public AudioClip steakClip;
 
-    public AudioClip successClip;
-    public AudioClip failClip;
-
-    public AudioClip dispenseClip;
-    public AudioClip buttonClip;
-    public AudioClip insertClip;
-    public AudioClip returnClip;
     public CraftingTableScript vendingMachine;
-
     public FrierInteractScript frierScript;
     public CookingInputOutputScript steakInputOutputScript;
 
     private void Start()
     {
-        frierSrc.clip = frierClip;
-        steakSrc.clip = steakClip;
+        frierSrc.clip = cookingBank.GetEntry("frier_sizzle").clip;
+        steakSrc.clip = cookingBank.GetEntry("steak_sizzle").clip;
 
         frierScript.OnFry += PlayFrierSound;
         frierScript.OnFryEnd += PauseFrierSound;
@@ -69,53 +60,20 @@ public class CookingSoundManager : MonoBehaviour
         vendingMachine.OnFoodReturned -= PlayReturnSound;
     }
 
-    public void PlayFrierSound(GameObject foodBeingFried)
-    {
-        frierSrc.UnPause();
-    }
+    public void PlayFrierSound(GameObject foodBeingFried) => frierSrc.UnPause();
+    public void PauseFrierSound() => frierSrc.Pause();
 
-    public void PauseFrierSound()
-    {
-        frierSrc.Pause();
-    }
-
-    public void PlaySteakSound(FoodData foodData)
-    {
-        steakSrc.UnPause();
-    }
-
-    public void PauseSteakSound()
-    {
-        steakSrc.Pause();
-    }
+    public void PlaySteakSound(FoodData foodData) => steakSrc.UnPause();
+    public void PauseSteakSound() => steakSrc.Pause();
 
     public void PlaySuccessSound(Vector3 spawnPos, GameObject displayObj, Transform parent)
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(successClip);
-    }
+        => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "success", spawnPos);
 
     public void PlayFailSound(Vector3 spawnPos, GameObject displayObj, Transform parent)
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(failClip);
-    }
+        => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "fail", spawnPos);
 
-    public void PlayDispenseSound()
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(dispenseClip);
-    }
-
-    public void PlayButtonSound(SpecialRecipe newRecipe)
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(buttonClip);
-    }
-
-    public void PlayInsertSound()
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(insertClip);
-    }
-
-    public void PlayReturnSound()
-    {
-        GeneralSoundManager.instance.PlaySoundEffect(returnClip);
-    }
+    public void PlayDispenseSound() => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "dispense", transform.position);
+    public void PlayButtonSound(SpecialRecipe newRecipe) => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "button", transform.position);
+    public void PlayInsertSound() => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "insert", transform.position);
+    public void PlayReturnSound() => GeneralSoundManager.instance.PlaySoundEffect(cookingBank, "return", transform.position);
 }

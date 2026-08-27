@@ -1,5 +1,4 @@
 using Customer;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class LeaveWhenDayEnds : MonoBehaviour

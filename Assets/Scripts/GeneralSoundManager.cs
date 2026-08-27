@@ -4,25 +4,20 @@ using System.Collections;
 
 public class GeneralSoundManager : MonoBehaviour
 {
-    public AudioClip musicClip1, musicClip2, storeClip;
-
-    public List<AudioClip> morningMusicList = new List<AudioClip>();
-    public List<AudioClip> afternoonMusicList = new List<AudioClip>();
-
-    public AudioClip pickupClip, sizzleClip;
-
+    [Header("Music")]
+    public MusicPlaylist musicPlaylist;
     public AudioSource musicSrc, effectsSrc;
 
     [Header("Music Fade")]
     public float musicFadeDuration = 1.5f;
     [Range(0f, 1f)] public float musicVolume = 1f;
 
-    [Header("Health Inspector")]
-    public AudioClip inspectorMusicClip;
-
     private Coroutine fadeRoutine;
     private Coroutine playSongRoutine;
     private bool isFading = false;
+    private AudioClip lastPlayedTrack;
+
+    private bool specialMusicActive = false;
 
     public static GeneralSoundManager instance;
 
@@ -48,21 +43,22 @@ public class GeneralSoundManager : MonoBehaviour
 
         musicSrc.volume = 0f;
 
-        if (morningMusicList.Count == 0)
+        if (musicPlaylist != null && musicPlaylist.tracks.Count > 0)
         {
-            return;
+            playSongRoutine = StartCoroutine(PlaySong());
         }
-
-        StartCoroutine(SetupMusic());
     }
 
-    public void SwitchBackgroundMusic(AudioClip newClip)
+    // ---------------- MUSIC ----------------
+
+    public void SwitchBackgroundMusic(AudioClip newClip, bool loop = false)
     {
         if (fadeRoutine != null)
         {
             StopCoroutine(fadeRoutine);
         }
 
+        musicSrc.loop = loop;
         fadeRoutine = StartCoroutine(FadeToNewSong(newClip));
     }
 
@@ -71,7 +67,6 @@ public class GeneralSoundManager : MonoBehaviour
         isFading = true;
 
         float halfDuration = musicFadeDuration / 2f;
-
         float startVolume = musicSrc.volume;
         float t = 0f;
 
@@ -100,85 +95,82 @@ public class GeneralSoundManager : MonoBehaviour
         isFading = false;
     }
 
-    public void PlaySoundEffect(AudioClip soundEffect)
-    {
-        effectsSrc.PlayOneShot(soundEffect);
-    }
-
-    public IEnumerator SetupMusic()
-    {
-        foreach (AudioClip clip in morningMusicList)
-        {
-            clip.LoadAudioData();
-
-            while (clip.loadState == AudioDataLoadState.Loading)
-                yield return null;
-        }
-
-        foreach (AudioClip clip in afternoonMusicList)
-        {
-            clip.LoadAudioData();
-
-            while (clip.loadState == AudioDataLoadState.Loading)
-                yield return null;
-        }
-
-        playSongRoutine = StartCoroutine(PlaySong());
-    }
-
-    public void StartInspectorMusic()
-    {
-        if (playSongRoutine != null)
-        {
-            StopCoroutine(playSongRoutine);
-            playSongRoutine = null;
-        }
-
-        musicSrc.loop = true;
-        SwitchBackgroundMusic(inspectorMusicClip);
-    }
-
-    public void StopInspectorMusic()
-    {
-        musicSrc.loop = false;
-        playSongRoutine = StartCoroutine(PlaySong());
-    }
-
     public IEnumerator PlaySong()
     {
         while (true)
         {
-            List<AudioClip> audioListToUse = GetListFromTimeOfDay(TimeCycleScript.currentTimeOfDay);
+            if (specialMusicActive)
+            {
+                yield return null;
+                continue;
+            }
 
-            AudioClip randomClip = PickRandomSongFromList(audioListToUse);
-
-            SwitchBackgroundMusic(randomClip);
+            AudioClip nextTrack = PickRandomTrack(musicPlaylist.tracks);
+            SwitchBackgroundMusic(nextTrack);
 
             yield return new WaitUntil(() => !isFading && !musicSrc.isPlaying);
         }
     }
 
-    public AudioClip PickRandomSongFromList(List<AudioClip> musicList)
+    public AudioClip PickRandomTrack(List<AudioClip> trackList)
     {
-        int ranVal = Random.Range(0, musicList.Count);
+        if (trackList == null || trackList.Count == 0) return null;
+        if (trackList.Count == 1) return trackList[0];
 
-        return musicList[ranVal];
+        AudioClip picked;
+        do
+        {
+            picked = trackList[Random.Range(0, trackList.Count)];
+        }
+        while (picked == lastPlayedTrack);
+
+        lastPlayedTrack = picked;
+        return picked;
     }
 
-    public List<AudioClip> GetListFromTimeOfDay(TimeOfDay currentTime)
+    public void PlaySpecialMusic(AudioClip clip)
     {
-        switch (currentTime)
+        specialMusicActive = true;
+        SwitchBackgroundMusic(clip, loop: true);
+    }
+
+    public void StopSpecialMusic()
+    {
+        specialMusicActive = false;
+        musicSrc.loop = false;
+
+        if (playSongRoutine != null)
         {
-            case TimeOfDay.Day:
-                return morningMusicList;
-
-            case TimeOfDay.Afternoon:
-                return afternoonMusicList;
-
-            case TimeOfDay.Evening:
-                return afternoonMusicList;
-            default:
-                return null;
+            StopCoroutine(playSongRoutine);
         }
+
+        playSongRoutine = StartCoroutine(PlaySong());
+    }
+
+    // ---------------- SFX ----------------
+
+    public void PlaySoundEffect(SFXBank bank, string clipName, Vector3 position = default)
+    {
+        SFXBank.Entry entry = bank.GetEntry(clipName);
+        if (entry == null || entry.clip == null) return;
+
+        if (!entry.is3D)
+        {
+            effectsSrc.PlayOneShot(entry.clip);
+            return;
+        }
+
+        GameObject tempGO = new GameObject("OneShotAudio_" + entry.clip.name);
+        tempGO.transform.position = position;
+
+        AudioSource source = tempGO.AddComponent<AudioSource>();
+        source.clip = entry.clip;
+        source.spatialBlend = 1f;
+        source.minDistance = entry.minDistance;
+        source.maxDistance = entry.maxDistance;
+        source.rolloffMode = AudioRolloffMode.Linear;
+        source.Play();
+
+        Destroy(tempGO, entry.clip.length);
     }
 }
