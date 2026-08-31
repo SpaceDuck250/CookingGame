@@ -12,8 +12,11 @@ public class ShopScript : MonoBehaviour
 
     public GameObject shopObj;
 
+    public static bool shopIsOpen = false;
+
     public static Action OnShopOpen;
     public static Action OnShopClose;
+    public static Action OnNotEnoughMoney;
 
     public ShopCostCalculator shopCostScript;
     public ShopItemShowerScript shopSideScript;
@@ -52,6 +55,7 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        shopIsOpen = false;
         OnShopClose?.Invoke();
 
         PlayerStateManager.UnPauseGame();
@@ -62,6 +66,7 @@ public class ShopScript : MonoBehaviour
         shopObj.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        shopIsOpen = true;
 
         PlayerStateManager.PauseGame();
     }
@@ -71,6 +76,7 @@ public class ShopScript : MonoBehaviour
         if (!shopCostScript.canAfford)
         {
             notEnoughMoneyObj.SetActive(true);
+            OnNotEnoughMoney?.Invoke();
             return;
         }
 
