@@ -54,7 +54,6 @@ public class HealthInspectionReportUIScript : MonoBehaviour
         Cursor.visible = true;
     }
 
-    // Hook this up to a "Close" button's OnClick
     public void CloseReport()
     {
         reportPanel.SetActive(false);

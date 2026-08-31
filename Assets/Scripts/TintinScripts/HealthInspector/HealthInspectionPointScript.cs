@@ -11,8 +11,6 @@ public class HealthInspectionPointScript : MonoBehaviour
 
     public List<string> violationTags = new List<string> { "HealthViolation" };
 
-    // Returns every individual violating object found at this point (not deduped),
-    // so callers can both count total violations and tally them by name.
     public bool CheckForViolation(out List<string> foundViolations)
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, checkRadius);
@@ -36,15 +34,12 @@ public class HealthInspectionPointScript : MonoBehaviour
         return foundViolations.Count > 0;
     }
 
-    // Food sitting correctly on a platter shouldn't count as a violation, even if it's tagged
     private bool IsProperlyPlated(Collider hit)
     {
         HoldableFoodScript holdable = hit.GetComponentInParent<HoldableFoodScript>();
         return holdable != null && holdable.platterIn != null;
     }
 
-    // Prefer the food's proper display name (FoodData.foodName) over the prefab's
-    // raw GameObject name; falls back to a cleaned prefab name if it isn't food.
     private string GetViolationLabel(Collider hit)
     {
         HoldableFoodScript holdable = hit.GetComponentInParent<HoldableFoodScript>();
@@ -56,7 +51,6 @@ public class HealthInspectionPointScript : MonoBehaviour
         return CleanViolationLabel(hit.gameObject.name);
     }
 
-    // Strips Unity's "(Clone)" suffix so spawned violation props show a clean name in reports
     private const string CloneSuffix = "(Clone)";
 
     private string CleanViolationLabel(string objectName)

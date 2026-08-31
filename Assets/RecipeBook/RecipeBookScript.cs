@@ -32,6 +32,8 @@ namespace RecipeBook
 
         public RecipeBookUIScript recipeBookUI;
 
+        public Vector3 lookRotationVector;
+
         private void Start()
         {
             AutoFillPageList();
@@ -83,7 +85,7 @@ namespace RecipeBook
             // replace with event later
 
 
-            turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(new Vector3(70, 180, 0)), transform);
+            turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(lookRotationVector), transform);
         }
 
         public void CloseBook()

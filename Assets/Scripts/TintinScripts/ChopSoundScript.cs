@@ -8,8 +8,6 @@ public class ChopSoundScript : MonoBehaviour
     public AudioSource soundSrc;
     public AudioClip chopClip;
 
-    // Temporary safety net in case chopClip hasn't been trimmed down yet -
-    // stops playback after this many seconds instead of playing the full clip.
     public float maxPlayDuration = 0.4f;
 
     private void Start()

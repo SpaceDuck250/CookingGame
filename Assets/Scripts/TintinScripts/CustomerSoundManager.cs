@@ -1,14 +1,10 @@
 using UnityEngine;
 using Customer;
 
-// Attach this to the same customer prefab as CustomerStateMachine.
-// Uses a local AudioSource so the sound plays spatially from that customer's position.
 public class CustomerSoundManager : MonoBehaviour
 {
     public CustomerStateMachine stateMachine;
-    public AudioSource soundSrc;
-
-    public AudioClip angryClip;
+    public SFXBank customerBank;
 
     private void Start()
     {
@@ -24,17 +20,7 @@ public class CustomerSoundManager : MonoBehaviour
     {
         if (newMood == CustomerMood.Angry)
         {
-            PlayClip(angryClip);
+            GeneralSoundManager.instance.PlaySoundEffect(customerBank, "angry", transform.position);
         }
-    }
-
-    private void PlayClip(AudioClip clip)
-    {
-        if (clip == null || soundSrc == null)
-        {
-            return;
-        }
-
-        soundSrc.PlayOneShot(clip);
     }
 }

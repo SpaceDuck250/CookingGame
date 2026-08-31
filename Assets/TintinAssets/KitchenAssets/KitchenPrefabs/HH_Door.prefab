@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 5776793018327466960}
   - component: {fileID: 314649380201076515}
   - component: {fileID: 4250447999114020727}
+  - component: {fileID: 8529801496659108738}
   m_Layer: 0
   m_Name: InteractArea
   m_TagString: Untagged
@@ -235,6 +236,19 @@ MonoBehaviour:
   withinRange: 0
   interactable: {fileID: 2551190096182434715}
   active: 1
+--- !u!114 &8529801496659108738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314595054280190174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f987b1a47c9be849a200788d08219b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorAutoOpenScript
+  door: {fileID: 2551190096182434715}
 --- !u!1 &5512536617392006089
 GameObject:
   m_ObjectHideFlags: 0

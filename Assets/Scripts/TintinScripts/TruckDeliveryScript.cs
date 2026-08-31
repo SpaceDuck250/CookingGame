@@ -18,8 +18,9 @@ public class TruckDeliveryScript : MonoBehaviour
     public ShopFoodSpawner foodSpawner;
 
     public static Action OnTruckLeftScene;
-
-
+    public static Action OnTruckArrived;
+    public SFXBank truckBank;
+   
     public void SetupDelivery(ShopFoodSpawner foodSpawner, Transform spawnPoint)
     {
         this.foodSpawner = foodSpawner;
@@ -37,6 +38,7 @@ public class TruckDeliveryScript : MonoBehaviour
 
     public void DropBoxes()
     {
+        GeneralSoundManager.instance.PlaySoundEffect(truckBank, "truck_arrive", transform.position);
         StartCoroutine(SpawnAllBoxesWithWaitTime());
     }
 
@@ -64,6 +66,8 @@ public class TruckDeliveryScript : MonoBehaviour
     public void OnTruckLeft()
     {
         ShopFoodSpawner.truckAlreadyInScene = false;
+
+        GeneralSoundManager.instance.PlaySoundEffect(truckBank, "truck_leave", transform.position);
 
         OnTruckLeftScene?.Invoke();
         Destroy(gameObject);

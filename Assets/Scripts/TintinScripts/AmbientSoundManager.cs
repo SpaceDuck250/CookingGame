@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Plays a looping background ambience track (e.g. crowd chatter).
-// Put this on its own GameObject anywhere in the scene - it just needs to exist and be active.
 public class AmbientSoundManager : MonoBehaviour
 {
     public AudioSource ambienceSrc;

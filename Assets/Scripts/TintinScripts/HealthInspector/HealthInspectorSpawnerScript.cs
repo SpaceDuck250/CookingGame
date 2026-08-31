@@ -5,10 +5,8 @@ using Action = System.Action;
 
 public class HealthInspectorSpawnerScript : MonoBehaviour
 {
-    // Fired right after the inspector is instantiated and begins their inspection
     public static event Action OnInspectorSpawned;
 
-    // Chill and Strict prefab variants go here - one is picked at random each time an inspector is spawned
     public List<GameObject> inspectorPrefabs = new List<GameObject>();
 
     public Transform spawnPoint;

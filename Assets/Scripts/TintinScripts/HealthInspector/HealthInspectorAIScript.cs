@@ -42,7 +42,6 @@ public class HealthInspectorAIScript : MonoBehaviour
 
     public static event Action OnInspectionComplete;
 
-    // Fired when the inspector finishes: violation tally by name, total fine, and whether the stall passed
     public static event Action<Dictionary<string, int>, decimal, bool> OnInspectionReport;
 
     private int currentPointIndex = 0;
@@ -184,7 +183,6 @@ public class HealthInspectorAIScript : MonoBehaviour
         }
     }
 
-    // Records every violating object found (regardless of strictness) so the report shows what was actually there
     private void TallyViolations(List<string> foundViolations)
     {
         foreach (string violationLabel in foundViolations)
