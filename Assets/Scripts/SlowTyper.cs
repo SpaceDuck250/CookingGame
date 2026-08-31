@@ -15,6 +15,8 @@ public class SlowTyper : MonoBehaviour
 
     public bool playerFrozen = false;
 
+    public bool inDialogue => playerFrozen;
+
     private void Start()
     {
         typeTime = 0.01f;
