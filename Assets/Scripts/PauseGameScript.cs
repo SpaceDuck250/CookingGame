@@ -6,13 +6,16 @@ public class PauseGameScript : MonoBehaviour
     public bool gamePaused = false;
     public string mainMenuName;
 
-    public SlowTyper slowTyper;
+    public UiScreensManager uiScreensManager;
+
+    //public SlowTyper slowTyper;
+    public static bool uiAlreadyOverlayed;
 
     public GameObject pauseObj;
 
     private void Update()
     {
-        if (slowTyper.inDialogue)
+        if (uiAlreadyOverlayed)
         {
             return;
         }
