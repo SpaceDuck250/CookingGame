@@ -23,7 +23,7 @@ public class CraftingTableScript : Interactable
 
     public event Action OnFoodReturned;
 
-    public event Action OnFoodInputListChanged;  
+    public event Action OnFoodInputListChanged;     
 
     public Transform spawnParent;
     public float downScaleAmount = 1f;
@@ -95,6 +95,8 @@ public class CraftingTableScript : Interactable
         GameObject newFoodObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(outputFood, spawnParent, Vector3.zero, true, false, downScaleAmount);
         newFoodObj.GetComponent<Rigidbody>().isKinematic = false;
         newFoodObj.GetComponent<Collider>().isTrigger = false;
+
+        OnOuputDispensed?.Invoke();
     }
 
     public void CycleThroughRecipeList(int amount)

@@ -8,6 +8,8 @@ public class TutorialArrowsManager : MonoBehaviour
 
     public static Action<TaskData> OnShowTaskUI;
 
+    public static Action OnAllTasksComplete;
+
     public static int currentTaskId = 0;
     public TaskData currentTask;
 
@@ -50,6 +52,7 @@ public class TutorialArrowsManager : MonoBehaviour
         if (taskID >= tutorialArrowList.Count - 2)
         {
             allTasksFinished = true;
+            OnAllTasksComplete?.Invoke();
         }
 
         if (taskID != currentTaskId || taskID >= tutorialArrowList.Count - 1)

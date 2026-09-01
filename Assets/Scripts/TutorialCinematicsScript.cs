@@ -15,26 +15,25 @@ public class TutorialCinematicsScript : MonoBehaviour
 
     private void Start()
     {
-        CustomerInteractScript.OnEndInteractWithCustomer += SwitchToEndCamera;
+        //CustomerInteractScript.OnEndInteractWithCustomer += SwitchToEndCamera;
+        TutorialArrowsManager.OnAllTasksComplete += PlayEndScreen;
     }
 
     private void OnDestroy()
     {
 
-        CustomerInteractScript.OnEndInteractWithCustomer -= SwitchToEndCamera;
+        //CustomerInteractScript.OnEndInteractWithCustomer -= SwitchToEndCamera;
+        TutorialArrowsManager.OnAllTasksComplete -= PlayEndScreen;
 
     }
 
-    private void SwitchToEndCamera()
+    private void PlayEndScreen()
     {
-        if (tutorialArrowsManager.allTasksFinished)
-        {
-            PlayerHandScript.instance.FreezePlayer(true, null);
-            actualCanvas.SetActive(false);
-            SetNewCamera(endTutorialCamera);
+        PlayerHandScript.instance.FreezePlayer(true, null);
+        actualCanvas.SetActive(false);
+        //SetNewCamera(endTutorialCamera);
 
-            Invoke("ShowEndAnim", 5);
-        }
+        Invoke("ShowEndAnim", 0.5f);
     }
 
     public void ShowEndAnim()
