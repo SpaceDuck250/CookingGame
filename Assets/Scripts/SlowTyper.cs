@@ -18,6 +18,8 @@ public class SlowTyper : MonoBehaviour
 
     public bool playerFrozen = false;
 
+    public bool inDialogue => playerFrozen;
+
     private void Start()
     {
         typeTime = 0.01f;
@@ -37,6 +39,8 @@ public class SlowTyper : MonoBehaviour
 
         StopAllCoroutines();
         StartCoroutine(TypeLine(name, newLine));
+
+        PauseGameScript.uiAlreadyOverlayed = true;
     }
 
     private void SetPortrait(Sprite customerSprite)
@@ -78,6 +82,9 @@ public class SlowTyper : MonoBehaviour
 
     public void CloseDialogue()
     {
+        PauseGameScript.uiAlreadyOverlayed = false;
+
+
         if (playerFrozen)
         {
             playerFrozen = false;

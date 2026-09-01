@@ -55,7 +55,7 @@ public class TalkRangeScript : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 interactScript.CloseConversation();
             }

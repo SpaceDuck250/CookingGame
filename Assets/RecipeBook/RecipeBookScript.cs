@@ -48,7 +48,7 @@ namespace RecipeBook
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 CloseBook();
             }
@@ -76,6 +76,8 @@ namespace RecipeBook
 
         public void OpenBook()
         {
+
+
             OnBookOpen?.Invoke();
 
             opened = true;
@@ -86,10 +88,15 @@ namespace RecipeBook
 
 
             turnScript.LockCameraToPoint(lookPoint.transform.position, Quaternion.Euler(lookRotationVector), transform);
+
+            PauseGameScript.uiAlreadyOverlayed = true;
+
         }
 
         public void CloseBook()
         {
+            PauseGameScript.uiAlreadyOverlayed = false;
+
             OnBookClose?.Invoke();
 
             opened = false;
@@ -100,6 +107,7 @@ namespace RecipeBook
 
 
             turnScript.ReturnBackToPlayer();
+
         }
 
         private void AutoFillPageList()

@@ -133,7 +133,7 @@ public class RecipeBookUIScript : MonoBehaviour
 
         if (lookControls != null)
         {
-            lookControls.customControlsText = "Esc (Close Book) \n < and > (Turn Page)";
+            lookControls.customControlsText = "X (Close Book) \n < and > (Turn Page)";
 
         }
 

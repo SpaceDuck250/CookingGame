@@ -57,6 +57,8 @@ public class NpcDialogueScript : MonoBehaviour
 
     public void TalkToCustomer(CustomerData newCustomer, MealData pickedMeal, CustomerMood mood)
     {
+        //PauseGameScript.uiAlreadyOverlayed = true;
+
         heldCustomerData = newCustomer;
 
         string randomLineFromCustomer = PickRandomLine(newCustomer, mood);
@@ -67,6 +69,8 @@ public class NpcDialogueScript : MonoBehaviour
 
     public void StopTalkToCustomer()
     {
+        //PauseGameScript.uiAlreadyOverlayed = false;
+
         conversationOpen = false;
 
         //dialogueObject.SetActive(false);
