@@ -47,10 +47,10 @@ public class NpcDialogueScript : MonoBehaviour
 
     }
 
-    public void WriteNewText(string name, string newText)
+    public void WriteNewText(string name, string newText, Sprite customerSprite = null)
     {
         conversationOpen = true;
-        slowTyper.StartWritingSlowly(name, newText, transform);
+        slowTyper.StartWritingSlowly(name, newText, transform, customerSprite);
         dialogueObject.SetActive(true);
 
     }
@@ -61,7 +61,7 @@ public class NpcDialogueScript : MonoBehaviour
 
         string randomLineFromCustomer = PickRandomLine(newCustomer, mood);
 
-        WriteNewText(GetName(newCustomer), randomLineFromCustomer);
+        WriteNewText(GetName(newCustomer), randomLineFromCustomer, newCustomer.customerSprite);
 
     }
 
@@ -78,7 +78,7 @@ public class NpcDialogueScript : MonoBehaviour
     public void OnOrderMetTalkFunction(CustomerData customer)
     {
         heldCustomerData = customer;
-        WriteNewText(GetName(customer) , "Thank you that is the correct meal!");
+        WriteNewText(GetName(customer), "Thank you that is the correct meal!", customer.customerSprite);
 
     }
 
@@ -96,7 +96,7 @@ public class NpcDialogueScript : MonoBehaviour
 
         // Make sure they arent null
         string lineToShow = burntFood ? customer.burntFoodDialogueLine : customer.wrongFoodDialogueLine;
-        WriteNewText(GetName(customer), lineToShow);
+        WriteNewText(GetName(customer), lineToShow, customer.customerSprite);
     }
 
     public string PickRandomLine(CustomerData customer, CustomerMood currentMood)
