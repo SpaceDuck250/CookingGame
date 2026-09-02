@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: a1d32a8263731274d925f37809ac272a, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 106d1ca7c14e2a9448b78b58645c5c21, type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -45529,7 +45529,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -30, y: 5}
-  m_SizeDelta: {x: 259, y: 90}
+  m_SizeDelta: {x: 250, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547016426
 MonoBehaviour:
@@ -45551,7 +45551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3cfb6e1183ce15749a16c0c212373c31, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2245319285d8ecc40ab5cc8b30a47f59, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -58629,7 +58629,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018545782}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -65013,6 +65013,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ef3b334116dec224cabfab4a13d6bbfa, type: 2}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5176674949496232599, guid: ef3b334116dec224cabfab4a13d6bbfa, type: 2}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 339080034340971066, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 525798959368777677, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: m_Name
       value: 'HH_Chopper '
@@ -65225,6 +65253,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 6220476916353786515, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220476916353786515, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220476916353786515, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6347347569360097037, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: recipeStored.Array.size
       value: 5
@@ -65252,6 +65292,10 @@ PrefabInstance:
     - target: {fileID: 7359618202095383676, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: lookRotationVector.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550411282475932307, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7649077771472786259, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -65388,6 +65432,10 @@ PrefabInstance:
     - target: {fileID: 8725811820423805370, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824931346093144705, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8916013092969111315, guid: 8ad24e1974801a84bbc99202c5606bac, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -66102,6 +66150,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileFloor
       objectReference: {fileID: 0}
+    - target: {fileID: 3894416191232610081, guid: 7012a2acb36907c468584927d191be84, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369491955542673789, guid: 7012a2acb36907c468584927d191be84, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4437148471716058774, guid: 7012a2acb36907c468584927d191be84, type: 3}
       propertyPath: m_Size.z
       value: 60
@@ -66146,9 +66202,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5002379770823677480, guid: 7012a2acb36907c468584927d191be84, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5392325055369903068, guid: 7012a2acb36907c468584927d191be84, type: 3}
       propertyPath: m_Name
       value: HH_HawkerCentre
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124437445879216874, guid: 7012a2acb36907c468584927d191be84, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
