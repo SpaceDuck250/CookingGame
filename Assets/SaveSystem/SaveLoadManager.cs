@@ -1,8 +1,9 @@
-using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using System;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor.Overlays;
+using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
 {
@@ -19,16 +20,12 @@ public class SaveLoadManager : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartCoroutine(BeginSavingAllData());
+            print("L");
         }
 
         if (Input.GetKeyDown(KeyCode.N))
@@ -63,10 +60,11 @@ public class SaveLoadManager : MonoBehaviour
 
     public void SaveGameData()
     {
-        SaveTheData(gameData);
+        //SaveTheData(gameData);
+        SaveClass<SaveData>(gameData);
     }
 
-    public void SaveTheData(SaveData saveData)
+    public void SaveClass<T>(T dataClass)
     {
         BinaryFormatter bf = new BinaryFormatter();
 
@@ -74,10 +72,48 @@ public class SaveLoadManager : MonoBehaviour
 
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
-        bf.Serialize(fileStream, saveData);
+        bf.Serialize(fileStream, dataClass);
 
         fileStream.Close();
     }
+
+    public T LoadClass<T>()
+    {
+        string path = Application.persistentDataPath + "/smt.lol";
+
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            FileStream fileStream = new FileStream(path, FileMode.Open);
+
+            T retrievedData = (T)bf.Deserialize(fileStream);
+
+            fileStream.Close();
+
+            return retrievedData;
+        }
+        else
+        {
+            //T newSaveData = new T();
+            ////newSaveData.moneyAmount = 100;
+            //return newSaveData;
+            return default(T);
+        }
+    }
+
+    //public void SaveTheData(SaveData saveData)
+    //{
+    //    BinaryFormatter bf = new BinaryFormatter();
+
+    //    string path = Application.persistentDataPath + "/smt.lol";
+
+    //    FileStream fileStream = new FileStream(path, FileMode.Create);
+
+    //    bf.Serialize(fileStream, saveData);
+
+    //    fileStream.Close();
+    //}
 
     public SaveData LoadTheData()
     {
@@ -95,16 +131,18 @@ public class SaveLoadManager : MonoBehaviour
 
             return retrievedData;
         }
+        else
+        {
+            SaveData newSaveData = new SaveData();
+            newSaveData.moneyAmount = 100;
+            return newSaveData;
+        }
 
-        SaveData newSaveData = new SaveData();
-        newSaveData.moneyAmount = 100;
-        return newSaveData;
+           
     }
 
     public void ClearAllData()
     {
-
-
         string path = Application.persistentDataPath + "/smt.lol";
 
         if (!File.Exists(path))
