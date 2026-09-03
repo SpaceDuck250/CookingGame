@@ -10,7 +10,7 @@ public class MoneyManager : MonoBehaviour
 
     public static decimal playerMoneyAmount;
 
-    public decimal moneyStartAmount;
+    public static decimal moneyStartAmount = 100;
 
     public static MoneyManager instance;
 
@@ -23,8 +23,8 @@ public class MoneyManager : MonoBehaviour
     {
         OnPayForOrder += PayForOrder;
 
-        moneyStartAmount = 100;
-        ChangeMoneyAmount(moneyStartAmount);
+        //moneyStartAmount = 100;
+        //ChangeMoneyAmount(moneyStartAmount);
     }
 
     private void OnDestroy()

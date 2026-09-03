@@ -1,9 +1,9 @@
 using UnityEngine;
 using System;
 
-public class DaySystemManager : MonoBehaviour
+public class DaySystemManager : MonoBehaviour, ISaveable
 {
-    public static int dayCounter = 1;
+    public static int dayCounter = 0;
 
     //public int customersServedToday = 0;
     public PlayerDailyStats playerDailyStats;
@@ -26,8 +26,10 @@ public class DaySystemManager : MonoBehaviour
 
     private void Start()
     {
+        SaveLoadManager.OnSaveGame += SaveSelf;
+
         MealChecker.OnAnyCustomerServed += CountServedCustomers;
-        dayCounter = 0;
+        //dayCounter = 0;
         OnDayStart += SetupDayStart;
         MoneyManager.OnMoneyChanged += KeepTrackOfMoneyStatistics;
 
@@ -38,6 +40,9 @@ public class DaySystemManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        SaveLoadManager.OnSaveGame -= SaveSelf;
+
+
         MealChecker.OnAnyCustomerServed -= CountServedCustomers;
 
         OnDayStart -= SetupDayStart;
@@ -122,6 +127,12 @@ public class DaySystemManager : MonoBehaviour
     public void KeepTrackOfMoneyStatistics(decimal playerTotalMoney, decimal moneyEarned, decimal tipEarned)
     {
         playerDailyStats.tipEarned += tipEarned;
+    }
+
+    public void SaveSelf()
+    {
+        SaveLoadManager.gameData.currentDay = dayCounter;
+        SaveLoadManager.gameData.serveRequirement = customerServeRequirement;
     }
 
 }

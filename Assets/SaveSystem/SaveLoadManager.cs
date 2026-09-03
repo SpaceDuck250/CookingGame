@@ -12,6 +12,8 @@ public class SaveLoadManager : MonoBehaviour
 
     public static bool currentlySavingGame;
 
+    private bool clearedData = false;
+
     private void Start()
     {
         BeginLoadingAllData();
@@ -23,13 +25,15 @@ public class SaveLoadManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             //StartCoroutine(BeginSavingAllData());
-            BeginSavingAllData();
+            //BeginSavingAllData();
+            print(DaySystemManager.dayCounter);
             print("L");
         }
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            ClearAllData(); 
+            ClearAllData();
+            clearedData = true;
         }
     }
 
@@ -137,6 +141,10 @@ public class SaveLoadManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        if (clearedData)
+        {
+            return;
+        }
         BeginSavingAllData();
     }
 }
