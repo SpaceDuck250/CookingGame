@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HoldableFoodScript : MonoBehaviour
+public class HoldableFoodScript : MonoBehaviour, ISaveable
 {
     public FoodData foodData;
     public GameObject objectToDelete;
@@ -42,6 +42,8 @@ public class HoldableFoodScript : MonoBehaviour
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
 
         doFloorChecks = CarryType ? false : true; // Checks if food
+
+        SaveLoadManager.OnSaveGame += SaveSelf;
     }
     
     public void DeleteObjectToDelete()
@@ -89,6 +91,9 @@ public class HoldableFoodScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        SaveLoadManager.OnSaveGame -= SaveSelf;
+
+
         if (!doFloorChecks)
         {
             return;
@@ -96,6 +101,24 @@ public class HoldableFoodScript : MonoBehaviour
 
         FloorManager.OnFoodPickupFromFloor?.Invoke(gameObject);
         //print("Left floor");
+    }
+
+    public void SaveSelf()
+    {
+        if (CarryType)
+        {
+            return;
+        }
+        //SaveLoadManager.gameData.foodIdInMap
+        int idToSave = SaveConverter.MapItemToId<GameObject>(foodData.foodModel, SaveConverter.instance.FoodToIDMap);
+
+        float[] posArray = new float[3];
+
+        posArray[0] = transform.position.x;
+        posArray[1] = transform.position.y;
+        posArray[2] = transform.position.z;
+
+        SaveLoadManager.gameData.foodIdList.Add(new FoodSaveData(idToSave, posArray));
     }
 
 }
