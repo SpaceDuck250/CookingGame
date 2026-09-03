@@ -34,6 +34,8 @@ public class SlowTyper : MonoBehaviour
 
         StopAllCoroutines();
         StartCoroutine(TypeLine(name, newLine));
+
+        PauseGameScript.uiAlreadyOverlayed = true;
     }
 
     public IEnumerator TypeLine(string name, string newLine)
@@ -58,6 +60,9 @@ public class SlowTyper : MonoBehaviour
 
     public void CloseDialogue()
     {
+        PauseGameScript.uiAlreadyOverlayed = false;
+
+
         if (playerFrozen)
         {
             playerFrozen = false;

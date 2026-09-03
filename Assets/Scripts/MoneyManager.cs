@@ -87,4 +87,11 @@ public class MoneyManager : MonoBehaviour
         OnMoneyChanged?.Invoke(playerMoneyAmount, (decimal)change, 0);
 
     }
+
+    public void SetMoney(decimal newAmount)
+    {
+        playerMoneyAmount = (decimal)newAmount;
+
+        OnMoneyChanged?.Invoke(playerMoneyAmount, (decimal)newAmount, 0);
+    }
 }
