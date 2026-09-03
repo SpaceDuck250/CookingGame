@@ -37,11 +37,11 @@ public class SaveLoadManager : MonoBehaviour
         //    print("L");
         //}
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ClearAllData();
-            dataJustCleared = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    ClearAllData();
+        //    dataJustCleared = true;
+        //}
     }
 
     public void BeginSavingAllData()
@@ -109,41 +109,22 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    //public SaveData LoadTheData()
-    //{
-    //    string path = Application.persistentDataPath + "/smt.lol";
-
-    //    if (File.Exists(path))
-    //    {
-    //        BinaryFormatter bf = new BinaryFormatter();
-
-    //        FileStream fileStream = new FileStream(path, FileMode.Open);
-
-    //        SaveData retrievedData = (SaveData)bf.Deserialize(fileStream);
-
-    //        fileStream.Close();
-
-    //        return retrievedData;
-    //    }
-    //    else
-    //    {
-    //        SaveData newSaveData = new SaveData();
-    //        newSaveData.moneyAmount = 100;
-    //        return newSaveData;
-    //    }
-
-           
-    //}
-
     public void ClearAllData()
     {
         string path = Application.persistentDataPath + "/smt.lol";
 
-        if (!File.Exists(path))
+        //if (!File.Exists(path))
+        //{
+        //    return;
+        //}
+        //File.Delete(path);
+        //dataJustCleared = true;
+
+        if (File.Exists(path))
         {
-            return;
+            File.Delete(path);
         }
-        File.Delete(path);
+
         dataJustCleared = true;
     }
 

@@ -26,6 +26,8 @@ public class ShopFoodSpawner : MonoBehaviour
 
     private void Start()
     {
+        truckAlreadyInScene = false;
+
         ShopScript.OnSucessfullyBoughtFood += AddFoodToList;
         ShopScript.OnShopClose += OnShopClose;
 

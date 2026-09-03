@@ -70,6 +70,14 @@ public class PauseGameScript : MonoBehaviour
 
     }
 
+    public void GoToMainMenuTutorialVersion()
+    {
+        UnPauseGame();
+
+        ShowMouse(true);
+        SceneManager.LoadScene(mainMenuName);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Left game");
@@ -84,16 +92,20 @@ public class PauseGameScript : MonoBehaviour
 
     public void TrySaveScene()
     {
-        print(SceneManager.GetActiveScene().name);
-        if (SceneManager.GetActiveScene().name == mainGameName)
-        {
-            SaveLoadManager.instance.BeginSavingAllData();
-        }
+        //print(SceneManager.GetActiveScene().name);
+        //if (SceneManager.GetActiveScene().name == mainGameName)
+        //{
+        //    SaveLoadManager.instance.BeginSavingAllData();
+        //}
+
+        SaveLoadManager.instance.BeginSavingAllData();
+
     }
 
     public void ClearSave()
     {
         SaveLoadManager.instance.ClearAllData();
+
         GoToMainMenu();
     }
 }
