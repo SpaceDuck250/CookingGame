@@ -105,7 +105,7 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
 
     public void SaveSelf()
     {
-        if (CarryType)
+        if (CarryType || !canPickUp && platterIn != null)
         {
             return;
         }
