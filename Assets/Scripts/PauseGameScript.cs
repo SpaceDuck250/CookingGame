@@ -5,6 +5,7 @@ public class PauseGameScript : MonoBehaviour
 {
     public static bool gamePaused = false;
     public string mainMenuName;
+    public string mainGameName;
 
     public UiScreensManager uiScreensManager;
 
@@ -12,6 +13,11 @@ public class PauseGameScript : MonoBehaviour
     public static bool uiAlreadyOverlayed;
 
     public GameObject pauseObj;
+
+    private void Start()
+    {
+        mainGameName = "MainGameFIXED";
+    }
 
     private void Update()
     {
@@ -55,10 +61,13 @@ public class PauseGameScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        TrySaveScene();
+
         UnPauseGame();
 
         ShowMouse(true);
         SceneManager.LoadScene(mainMenuName);
+
     }
 
     public void QuitGame()
@@ -71,5 +80,20 @@ public class PauseGameScript : MonoBehaviour
     {
         Cursor.visible = value;
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+    public void TrySaveScene()
+    {
+        print(SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name == mainGameName)
+        {
+            SaveLoadManager.instance.BeginSavingAllData();
+        }
+    }
+
+    public void ClearSave()
+    {
+        SaveLoadManager.instance.ClearAllData();
+        GoToMainMenu();
     }
 }
