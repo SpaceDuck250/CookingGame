@@ -4,6 +4,7 @@ public class GameLoaderManager : MonoBehaviour
 {
     public GameObject player;
     public MoneyManager moneyManager;
+    public DaySystemManager daySystemManager;
 
     private void Start()
     {
@@ -18,9 +19,22 @@ public class GameLoaderManager : MonoBehaviour
 
     private void LoadEverythingToGame()
     {
+        if (SaveLoadManager.gameData == null)
+        {
+            SetupDefault();
+            return;
+        }
+
         LoadPlayer();
         LoadAllFoods();
         LoadAllFoodBox();
+        LoadDay();
+    }
+
+    public void SetupDefault()
+    {
+        moneyManager.SetMoney(MoneyManager.moneyStartAmount);
+
     }
 
     public void LoadPlayer()
@@ -71,5 +85,13 @@ public class GameLoaderManager : MonoBehaviour
 
             foodBox.OnFoodAmountChangedInBox?.Invoke(foodBox.foodStoredCount, foodBox.maxFoodCount);
         }
+    }
+
+    public void LoadDay()
+    {
+        DaySystemManager.dayCounter = SaveLoadManager.gameData.currentDay;
+        daySystemManager.customerServeRequirement = SaveLoadManager.gameData.serveRequirement;
+
+        daySystemManager.playerDailyStats = new PlayerDailyStats(DaySystemManager.dayCounter, MoneyManager.playerMoneyAmount);
     }
 }

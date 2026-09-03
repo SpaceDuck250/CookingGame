@@ -12,33 +12,44 @@ public class SaveLoadManager : MonoBehaviour
 
     public static bool currentlySavingGame;
 
+    private bool dataJustCleared = false;
+
+    public static SaveLoadManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         BeginLoadingAllData();
-
+        dataJustCleared = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //StartCoroutine(BeginSavingAllData());
-            BeginSavingAllData();
-            print("L");
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    //StartCoroutine(BeginSavingAllData());
+        //    //BeginSavingAllData();
+        //    print(DaySystemManager.dayCounter);
+        //    print("L");
+        //}
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            ClearAllData(); 
+            ClearAllData();
+            dataJustCleared = true;
         }
     }
 
     public void BeginSavingAllData()
     {
-        //if (currentlySavingGame)
-        //{
-        //    yield return null;
-        //}
+        if (dataJustCleared)
+        {
+            return;
+        }
 
         gameData = new SaveData();
 
@@ -133,10 +144,15 @@ public class SaveLoadManager : MonoBehaviour
             return;
         }
         File.Delete(path);
+        dataJustCleared = true;
     }
 
     private void OnApplicationQuit()
     {
         BeginSavingAllData();
     }
+ 
+
+
+
 }

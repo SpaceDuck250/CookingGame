@@ -4,6 +4,9 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SaveData 
 {
+    public int currentDay = 1;
+    public int serveRequirement = 1;
+
     public float moneyAmount = 100;
 
     public float[] playerPos = new float[3];
