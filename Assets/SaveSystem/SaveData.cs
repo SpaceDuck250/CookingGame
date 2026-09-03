@@ -9,8 +9,7 @@ public class SaveData
     public float[] playerPos = new float[3];
 
     public List<FoodSaveData> foodIdList = new List<FoodSaveData>();
-    public List<int> foodBoxList = new List<int>();
-
+    public List<FoodBoxSaveData> foodBoxList = new List<FoodBoxSaveData>();
 }
 
 [Serializable]
@@ -28,4 +27,17 @@ public class FoodSaveData
 
     public int foodId;
     public float[] pos = new float[3];
+}
+
+[Serializable]
+public class FoodBoxSaveData
+{
+    public FoodBoxSaveData(int boxId, int amountStored)
+    {
+        this.boxId = boxId;
+        this.amountStored = amountStored;
+    }
+
+    public int boxId;
+    public int amountStored;
 }

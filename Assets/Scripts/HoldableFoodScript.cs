@@ -105,6 +105,10 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
 
     public void SaveSelf()
     {
+        if (CarryType)
+        {
+            return;
+        }
         //SaveLoadManager.gameData.foodIdInMap
         int idToSave = SaveConverter.MapItemToId<GameObject>(foodData.foodModel, SaveConverter.instance.FoodToIDMap);
 

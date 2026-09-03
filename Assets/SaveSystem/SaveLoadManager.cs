@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
@@ -24,7 +22,8 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(BeginSavingAllData());
+            //StartCoroutine(BeginSavingAllData());
+            BeginSavingAllData();
             print("L");
         }
 
@@ -34,12 +33,12 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    public IEnumerator BeginSavingAllData()
+    public void BeginSavingAllData()
     {
-        if (currentlySavingGame)
-        {
-            yield return null;
-        }
+        //if (currentlySavingGame)
+        //{
+        //    yield return null;
+        //}
 
         gameData = new SaveData();
 
@@ -47,13 +46,13 @@ public class SaveLoadManager : MonoBehaviour
 
         currentlySavingGame = true;
         SaveGameData();
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0f);
         currentlySavingGame = false;
     }
 
     public void BeginLoadingAllData()
     {
-        gameData = LoadTheData();
+        gameData = LoadClass<SaveData>();
 
         OnLoadSave?.Invoke();
     }
@@ -95,51 +94,35 @@ public class SaveLoadManager : MonoBehaviour
         }
         else
         {
-            //T newSaveData = new T();
-            ////newSaveData.moneyAmount = 100;
-            //return newSaveData;
             return default(T);
         }
     }
 
-    //public void SaveTheData(SaveData saveData)
+    //public SaveData LoadTheData()
     //{
-    //    BinaryFormatter bf = new BinaryFormatter();
-
     //    string path = Application.persistentDataPath + "/smt.lol";
 
-    //    FileStream fileStream = new FileStream(path, FileMode.Create);
+    //    if (File.Exists(path))
+    //    {
+    //        BinaryFormatter bf = new BinaryFormatter();
 
-    //    bf.Serialize(fileStream, saveData);
+    //        FileStream fileStream = new FileStream(path, FileMode.Open);
 
-    //    fileStream.Close();
-    //}
+    //        SaveData retrievedData = (SaveData)bf.Deserialize(fileStream);
 
-    public SaveData LoadTheData()
-    {
-        string path = Application.persistentDataPath + "/smt.lol";
+    //        fileStream.Close();
 
-        if (File.Exists(path))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-
-            FileStream fileStream = new FileStream(path, FileMode.Open);
-
-            SaveData retrievedData = (SaveData)bf.Deserialize(fileStream);
-
-            fileStream.Close();
-
-            return retrievedData;
-        }
-        else
-        {
-            SaveData newSaveData = new SaveData();
-            newSaveData.moneyAmount = 100;
-            return newSaveData;
-        }
+    //        return retrievedData;
+    //    }
+    //    else
+    //    {
+    //        SaveData newSaveData = new SaveData();
+    //        newSaveData.moneyAmount = 100;
+    //        return newSaveData;
+    //    }
 
            
-    }
+    //}
 
     public void ClearAllData()
     {
@@ -150,5 +133,10 @@ public class SaveLoadManager : MonoBehaviour
             return;
         }
         File.Delete(path);
+    }
+
+    private void OnApplicationQuit()
+    {
+        BeginSavingAllData();
     }
 }
