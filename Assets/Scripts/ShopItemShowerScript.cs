@@ -45,12 +45,12 @@ public class ShopItemShowerScript : MonoBehaviour
 
     public void EditCostAmountText(decimal newCost)
     {
-        displayCost.text = "Total Cost: " + newCost + "$";
+        displayCost.text = "$" + newCost;
 
     }
 
     public void EditAmountText(int newBuyAmount)
     {
-        amountText.text = "Amount: " + newBuyAmount.ToString();
+        amountText.text = newBuyAmount.ToString();
     }
 }
