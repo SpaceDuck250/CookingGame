@@ -42,7 +42,6 @@ public class DaySystemManager : MonoBehaviour, ISaveable
     {
         SaveLoadManager.OnSaveGame -= SaveSelf;
 
-
         MealChecker.OnAnyCustomerServed -= CountServedCustomers;
 
         OnDayStart -= SetupDayStart;
@@ -56,11 +55,11 @@ public class DaySystemManager : MonoBehaviour, ISaveable
     private void Update()
     {
         //// for testing and checking
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            UpdatePlayerStats();
-            OnDayEnd?.Invoke(playerDailyStats);
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    UpdatePlayerStats();
+        //    OnDayEnd?.Invoke(playerDailyStats);
+        //}
 
 
         if (!isNight)
@@ -124,7 +123,7 @@ public class DaySystemManager : MonoBehaviour, ISaveable
 
     public void TryIncreaseServeRequirement()
     {
-        if (UnityEngine.Random.value < 1f)
+        if (UnityEngine.Random.value < 0.75f)
         {
             SetCustomerServeRequirement(customerServeRequirement + 1);
         }
