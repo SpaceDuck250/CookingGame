@@ -42,7 +42,6 @@ public class DaySystemManager : MonoBehaviour, ISaveable
     {
         SaveLoadManager.OnSaveGame -= SaveSelf;
 
-
         MealChecker.OnAnyCustomerServed -= CountServedCustomers;
 
         OnDayStart -= SetupDayStart;
