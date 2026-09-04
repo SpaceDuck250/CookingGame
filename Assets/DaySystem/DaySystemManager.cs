@@ -124,7 +124,7 @@ public class DaySystemManager : MonoBehaviour, ISaveable
 
     public void TryIncreaseServeRequirement()
     {
-        if (UnityEngine.Random.value < 0.4f)
+        if (UnityEngine.Random.value < 1f)
         {
             SetCustomerServeRequirement(customerServeRequirement + 1);
         }
