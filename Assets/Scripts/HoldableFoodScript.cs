@@ -25,6 +25,8 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
 
     public bool doFloorChecks = true;
 
+    public bool isInvisiblePickupObj = false;
+
     // Fuck the trays
     public GameObject anotherThingToChangeLayer;
 
@@ -105,7 +107,7 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
 
     public void SaveSelf()
     {
-        if (CarryType || !canPickUp && platterIn != null)
+        if (CarryType || !canPickUp && platterIn != null || isInvisiblePickupObj)
         {
             return;
         }

@@ -52,6 +52,8 @@ public class ShopScript : MonoBehaviour
 
     public void CloseShop()
     {
+        PauseGameScript.uiAlreadyOverlayed = false;
+
         shopObj.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -63,6 +65,8 @@ public class ShopScript : MonoBehaviour
 
     public void OpenShop()
     {
+        PauseGameScript.uiAlreadyOverlayed = true;
+
         shopObj.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
