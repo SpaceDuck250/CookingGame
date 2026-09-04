@@ -23,7 +23,7 @@ public class MoneyManager : MonoBehaviour
     {
 
 
-        SetMoney(moneyStartAmount);
+       
         //moneyStartAmount = 100;
         //ChangeMoneyAmount(moneyStartAmount);
     }
