@@ -3,8 +3,11 @@ using UnityEngine;
 public class GameLoaderManager : MonoBehaviour
 {
     public GameObject player;
+
     public MoneyManager moneyManager;
     public DaySystemManager daySystemManager;
+
+    public float defaultMoneyAmount = 100;
 
     private void Start()
     {
@@ -33,7 +36,12 @@ public class GameLoaderManager : MonoBehaviour
 
     public void SetupDefault()
     {
-        moneyManager.SetMoney(MoneyManager.moneyStartAmount);
+        moneyManager.SetMoney((decimal)defaultMoneyAmount);
+
+        DaySystemManager.dayCounter = 0;
+
+
+        DaySystemManager.OnDayStart?.Invoke();
 
     }
 
@@ -92,6 +100,6 @@ public class GameLoaderManager : MonoBehaviour
         DaySystemManager.dayCounter = SaveLoadManager.gameData.currentDay;
         daySystemManager.customerServeRequirement = SaveLoadManager.gameData.serveRequirement;
 
-        daySystemManager.playerDailyStats = new PlayerDailyStats(DaySystemManager.dayCounter, MoneyManager.playerMoneyAmount);
+        DaySystemManager.OnDayStart?.Invoke();
     }
 }

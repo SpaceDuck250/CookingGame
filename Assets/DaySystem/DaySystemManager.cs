@@ -3,7 +3,7 @@ using System;
 
 public class DaySystemManager : MonoBehaviour, ISaveable
 {
-    public static int dayCounter = 0;
+    public static int dayCounter;
 
     //public int customersServedToday = 0;
     public PlayerDailyStats playerDailyStats;
@@ -33,9 +33,9 @@ public class DaySystemManager : MonoBehaviour, ISaveable
         OnDayStart += SetupDayStart;
         MoneyManager.OnMoneyChanged += KeepTrackOfMoneyStatistics;
 
-        customerServeRequirement = serveMin;
+        OnDayEnd += OnDayEndFunction;
 
-        OnDayStart?.Invoke();
+        customerServeRequirement = serveMin;
     }
 
     private void OnDestroy()
@@ -48,10 +48,21 @@ public class DaySystemManager : MonoBehaviour, ISaveable
         OnDayStart -= SetupDayStart;
 
         MoneyManager.OnMoneyChanged -= KeepTrackOfMoneyStatistics;
+
+        OnDayEnd -= OnDayEndFunction;
+
     }
 
     private void Update()
     {
+        //// for testing and checking
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UpdatePlayerStats();
+            OnDayEnd?.Invoke(playerDailyStats);
+        }
+
+
         if (!isNight)
         {
             return;
@@ -60,6 +71,9 @@ public class DaySystemManager : MonoBehaviour, ISaveable
         nightTimer -= Time.deltaTime;
         if (nightTimer <= 0)
         {
+            IncrementDay();
+            TryIncreaseServeRequirement();
+
             OnDayStart?.Invoke();
         }
 
@@ -71,35 +85,49 @@ public class DaySystemManager : MonoBehaviour, ISaveable
         playerDailyStats.customersServed++;
         if (playerDailyStats.customersServed >= customerServeRequirement)
         {
-            playerDailyStats.customersServed = customerServeRequirement;
-            playerDailyStats.totalMoneyEndOfDay = MoneyManager.playerMoneyAmount;
-
-            customerSpawner.canSpawn = false;
-            SetupNight();
-
+            UpdatePlayerStats();
             OnDayEnd?.Invoke(playerDailyStats);
-            playerDailyStats = null;
-
-            print(playerDailyStats);
         }
+    }
+
+    public void OnDayEndFunction(PlayerDailyStats playerStats)
+    {
+        customerSpawner.canSpawn = false;
+        SetupNight();
+
+        //playerDailyStats = null;
     }
 
     public void SetupDayStart()
     {
         // Might change later
-        if (UnityEngine.Random.value < 0.4f && dayCounter != 1)
-        {
-            SetCustomerServeRequirement(customerServeRequirement + 1);
-        }
+        //if (UnityEngine.Random.value < 0.4f)
+        //{
+        //    SetCustomerServeRequirement(customerServeRequirement + 1);
+        //}
 
-        dayCounter++;
+        //dayCounter++;
 
-        playerDailyStats = new PlayerDailyStats(dayCounter, MoneyManager.playerMoneyAmount);
+        SetNewPlayerStatsForNewDay();
+
 
         customerSpawner.canSpawn = true;
 
         isNight = false;
 
+    }
+
+    public void IncrementDay()
+    {
+        dayCounter++;
+    }
+
+    public void TryIncreaseServeRequirement()
+    {
+        if (UnityEngine.Random.value < 0.4f)
+        {
+            SetCustomerServeRequirement(customerServeRequirement + 1);
+        }
     }
 
     public void SetupNight()
@@ -129,11 +157,24 @@ public class DaySystemManager : MonoBehaviour, ISaveable
         playerDailyStats.tipEarned += tipEarned;
     }
 
+    public void SetNewPlayerStatsForNewDay()
+    {
+        playerDailyStats = new PlayerDailyStats(dayCounter, MoneyManager.playerMoneyAmount);
+    }
+
+    public void UpdatePlayerStats()
+    {
+        playerDailyStats.customersServed = customerServeRequirement;
+        playerDailyStats.totalMoneyEndOfDay = MoneyManager.playerMoneyAmount;
+    }
+
     public void SaveSelf()
     {
         SaveLoadManager.gameData.currentDay = dayCounter;
         SaveLoadManager.gameData.serveRequirement = customerServeRequirement;
     }
+
+  
 
 }
 
@@ -150,6 +191,8 @@ public class PlayerDailyStats
     public int day;
     public decimal totalMoneyStartOfDay;
     public decimal totalMoneyEndOfDay;
+
+    public decimal moneyGained => totalMoneyEndOfDay - totalMoneyStartOfDay;
 
     public decimal tipEarned = 0;
 
