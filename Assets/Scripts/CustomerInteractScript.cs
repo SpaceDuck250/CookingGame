@@ -100,6 +100,11 @@ public class CustomerInteractScript : Interactable
 
     private void CheckIfFoodMatchesOrder(PlayerHandScript playerHand)
     {
+        if (customerStateMachine != CustomerStateMachine.customerTakingOrder && CustomerStateMachine.customerTakingOrder != null)
+        {
+            return;
+        }
+
         mealChecker.CheckOrder(playerHand);
     }
 
