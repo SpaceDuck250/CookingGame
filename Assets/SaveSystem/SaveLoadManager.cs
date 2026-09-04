@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
@@ -14,31 +12,43 @@ public class SaveLoadManager : MonoBehaviour
 
     public static bool currentlySavingGame;
 
+    private bool dataJustCleared = false;
+
+    public static SaveLoadManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         BeginLoadingAllData();
-
+        dataJustCleared = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartCoroutine(BeginSavingAllData());
-            print("L");
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    //StartCoroutine(BeginSavingAllData());
+        //    //BeginSavingAllData();
+        //    print(DaySystemManager.dayCounter);
+        //    print("L");
+        //}
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            ClearAllData(); 
+            ClearAllData();
+            dataJustCleared = true;
         }
     }
 
-    public IEnumerator BeginSavingAllData()
+    public void BeginSavingAllData()
     {
-        if (currentlySavingGame)
+        if (dataJustCleared)
         {
-            yield return null;
+            return;
         }
 
         gameData = new SaveData();
@@ -47,13 +57,13 @@ public class SaveLoadManager : MonoBehaviour
 
         currentlySavingGame = true;
         SaveGameData();
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0f);
         currentlySavingGame = false;
     }
 
     public void BeginLoadingAllData()
     {
-        gameData = LoadTheData();
+        gameData = LoadClass<SaveData>();
 
         OnLoadSave?.Invoke();
     }
@@ -95,51 +105,35 @@ public class SaveLoadManager : MonoBehaviour
         }
         else
         {
-            //T newSaveData = new T();
-            ////newSaveData.moneyAmount = 100;
-            //return newSaveData;
             return default(T);
         }
     }
 
-    //public void SaveTheData(SaveData saveData)
+    //public SaveData LoadTheData()
     //{
-    //    BinaryFormatter bf = new BinaryFormatter();
-
     //    string path = Application.persistentDataPath + "/smt.lol";
 
-    //    FileStream fileStream = new FileStream(path, FileMode.Create);
+    //    if (File.Exists(path))
+    //    {
+    //        BinaryFormatter bf = new BinaryFormatter();
 
-    //    bf.Serialize(fileStream, saveData);
+    //        FileStream fileStream = new FileStream(path, FileMode.Open);
 
-    //    fileStream.Close();
-    //}
+    //        SaveData retrievedData = (SaveData)bf.Deserialize(fileStream);
 
-    public SaveData LoadTheData()
-    {
-        string path = Application.persistentDataPath + "/smt.lol";
+    //        fileStream.Close();
 
-        if (File.Exists(path))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-
-            FileStream fileStream = new FileStream(path, FileMode.Open);
-
-            SaveData retrievedData = (SaveData)bf.Deserialize(fileStream);
-
-            fileStream.Close();
-
-            return retrievedData;
-        }
-        else
-        {
-            SaveData newSaveData = new SaveData();
-            newSaveData.moneyAmount = 100;
-            return newSaveData;
-        }
+    //        return retrievedData;
+    //    }
+    //    else
+    //    {
+    //        SaveData newSaveData = new SaveData();
+    //        newSaveData.moneyAmount = 100;
+    //        return newSaveData;
+    //    }
 
            
-    }
+    //}
 
     public void ClearAllData()
     {
@@ -150,5 +144,15 @@ public class SaveLoadManager : MonoBehaviour
             return;
         }
         File.Delete(path);
+        dataJustCleared = true;
     }
+
+    private void OnApplicationQuit()
+    {
+        BeginSavingAllData();
+    }
+ 
+
+
+
 }

@@ -29,7 +29,7 @@ public class MoneyUIScript : MonoBehaviour
         //    numberChangeEffect = new NumberChangeEffectScript(ref moneyUIText);
         //}
         ////StartCoroutine(numberChangeEffect.DoNumberChangeEffect((float)totalMoneyAmount, (float)(totalMoneyAmount - earnedAmount), 0.1f));
-        moneyUIText.text = ": " + totalMoneyAmount + "$";
+        moneyUIText.text = "$" + totalMoneyAmount;
 
 
 

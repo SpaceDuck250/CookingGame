@@ -34,6 +34,14 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene(tutorialSceneName);
     }
 
+    //public void OnClearSaveButtonPressed()
+    //{
+    //    if (SaveLoadManager.instance != null)
+    //    {
+    //        SaveLoadManager.instance.ClearAllData();
+    //    }
+    //}
+
     // Hook this up to the Settings button's OnClick
     public void OnSettingsButtonPressed()
     {

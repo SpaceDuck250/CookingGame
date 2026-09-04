@@ -19,6 +19,8 @@ public class TutorialChefScript : Interactable
 
     public string nameOfChef = "";
 
+    public Sprite chefPortraitSprite;
+
     public bool goingToStall = false;
 
     public bool startTalkFinish = false;
@@ -76,7 +78,7 @@ public class TutorialChefScript : Interactable
         {
             PlayExplainationDialogue();
         }
-       
+
 
     }
 
@@ -104,7 +106,7 @@ public class TutorialChefScript : Interactable
         string chefNameShown = nameOfChef + ": ";
 
         string currentLine = dialogueLines[currentIndex];
-        slowTyper.StartWritingSlowly(chefNameShown, currentLine, transform);
+        slowTyper.StartWritingSlowly(chefNameShown, currentLine, transform, chefPortraitSprite);
 
     }
 
@@ -145,7 +147,7 @@ public class TutorialChefScript : Interactable
         ExplainationObj explainObj = explainationLines[currentExlainIndex];
 
         string chefNameShown = nameOfChef + ": ";
-        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine, transform);
+        slowTyper.StartWritingSlowly(chefNameShown, explainObj.dialogueLine, transform, chefPortraitSprite);
 
         if (explainObj.backgroundImage == null)
         {
@@ -185,7 +187,7 @@ public class TutorialChefScript : Interactable
 
     public void CheckIfPlayerServedCustomerAlready()
     {
-        
+
     }
 
     public void RotateToDestination(Transform destination)

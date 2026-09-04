@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 7545496679853405799}
   - component: {fileID: 747544359937167171}
   - component: {fileID: 2658638369849496951}
+  - component: {fileID: 8029647488475896095}
   m_Layer: 6
   m_Name: StorageBox
   m_TagString: Untagged
@@ -618,7 +619,19 @@ MonoBehaviour:
   customControlsText: Left Click (Take)
   doAltTextIfHoldingFood: 1
   altText: Left Click (Put)
-  self: {fileID: 0}
+--- !u!114 &8029647488475896095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399830194395104092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a129abc328ede14f8323583aca41e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodBoxSaveable
+  foodBox: {fileID: 0}
 --- !u!1 &7866925655260180898
 GameObject:
   m_ObjectHideFlags: 0

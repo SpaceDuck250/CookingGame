@@ -17,7 +17,7 @@ public class ShopItemScript : MonoBehaviour
     {
         foodDataStored = foodData;
         itemName.text = name;
-        costText.text = cost.ToString() + "$";
+        costText.text = "$" + cost.ToString();
 
         if (foodPic != null)
         {
@@ -25,7 +25,7 @@ public class ShopItemScript : MonoBehaviour
 
             RectTransform rt = foodImage.GetComponent<RectTransform>();
 
-            rt.sizeDelta = new Vector2(100, 100);
+            rt.sizeDelta = new Vector2(80, 80);
         }
     }
 

@@ -39,6 +39,11 @@ public class PlayerHandScript : MonoBehaviour
 
     private void Update()
     {
+        if (PauseGameScript.gamePaused)
+        {
+            return;
+        }
+
         CheckForFoodInputs();
     }
 

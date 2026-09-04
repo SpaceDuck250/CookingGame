@@ -9,7 +9,7 @@ public class BrownFoodBox : Interactable
     public int foodStoredCount;
     public int maxFoodCount;
 
-    public event Action<int, int> OnFoodAmountChangedInBox;
+    public Action<int, int> OnFoodAmountChangedInBox;
 
     public override void Interact(PlayerHandScript playerHand)
     {
