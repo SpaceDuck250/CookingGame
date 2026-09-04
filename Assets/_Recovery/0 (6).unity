@@ -3274,6 +3274,8 @@ MonoBehaviour:
   shopObj: {fileID: 1451753676}
   shopCostScript: {fileID: 1981807308}
   shopSideScript: {fileID: 1981807306}
+  notEnoughMoneyObj: {fileID: 0}
+  maxBuyAmount: 5
 --- !u!114 &355278234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3717,6 +3719,8 @@ MonoBehaviour:
   throwStrength: 8.2
   spinStrength: 13.9
   currentInteractable: {fileID: 0}
+  playerMove: {fileID: 0}
+  playerTurn: {fileID: 0}
 --- !u!1001 &380639471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3803,14 +3807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13894c969b12ad244b32f57b72851c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  musicClip1: {fileID: 8300000, guid: 09e410b54cbfeb944afbc5f2bc638fb6, type: 3}
-  musicClip2: {fileID: 0}
-  storeClip: {fileID: 0}
-  pickupClip: {fileID: 0}
-  sizzleClip: {fileID: 0}
+  musicPlaylist: {fileID: 0}
   musicSrc: {fileID: 374590822}
-  effectsSrx: {fileID: 1405313962}
-  longEffectsSrc: {fileID: 0}
+  effectsSrc: {fileID: 0}
+  musicFadeDuration: 1.5
+  musicVolume: 1
 --- !u!4 &384047805
 Transform:
   m_ObjectHideFlags: 0
@@ -5769,6 +5770,10 @@ MonoBehaviour:
   dialogueTextComponent: {fileID: 118830539}
   dialogueLine: 
   typeTime: 0.08
+  soundManager: {fileID: 0}
+  dialogueContainer: {fileID: 0}
+  customerPortraitImage: {fileID: 0}
+  playerFrozen: 0
 --- !u!114 &636529624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5785,6 +5790,7 @@ MonoBehaviour:
   OrderObj: {fileID: 1487144977}
   mealOrderName: {fileID: 741242902}
   mealOrderSprite: {fileID: 1007067518}
+  foodsWantedParent: {fileID: 0}
 --- !u!114 &636529625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5801,6 +5807,7 @@ MonoBehaviour:
   dialogueObject: {fileID: 1567409385}
   dialogueTextComponent: {fileID: 118830539}
   slowTyper: {fileID: 636529623}
+  currentCustomer: {fileID: 0}
 --- !u!1001 &636625677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6207,7 +6214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68753fff50221204c9c546823a78200b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthInspectorSpawnerScript
-  inspectorPrefab: {fileID: 1545605922739849703, guid: 287aeb3e3b54dc444a8379997183d2ac, type: 3}
+  inspectorPrefabs: []
   spawnPoint: {fileID: 233406499}
   exitPoint: {fileID: 353749090}
   inspectionPoints:
@@ -7107,6 +7114,16 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 955018307}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
+  lockXNeg: 0
+  lockXPos: 0
+  canTurn: 1
 --- !u!114 &813669314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7127,6 +7144,8 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
+  downForce: {x: 0, y: 0, z: 0}
 --- !u!54 &813669315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8164,8 +8183,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   spawnPoint: {fileID: 2138794288}
   waitTimer: 0
-  waitTime: 4
+  waitTimeUntilTruckComes: 0
+  timeBetweenBoxSpawns: 1
   deliveryBoxPrefab: {fileID: 3089224806826418390, guid: eb39262dd6badfd45a62bde8f93fea3c, type: 3}
+  deliveryTruckPrefab: {fileID: 0}
+  truckStartPoint: {fileID: 0}
 --- !u!65 &905838226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8559,6 +8581,16 @@ MonoBehaviour:
   senseY: 500
   yRange: 94.6
   cam: {fileID: 75082314}
+  originalPosition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  smoothValue: 0
+  rotateSpeed: 0
+  playerMove: {fileID: 0}
+  lockMode: 0
+  lockXNeg: 0
+  lockXPos: 0
+  canTurn: 1
 --- !u!114 &955200644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8579,6 +8611,8 @@ MonoBehaviour:
   moveZ: 0
   xLook: {x: 0, y: 0, z: 0}
   zLook: {x: 0, y: 0, z: 0}
+  canMove: 1
+  downForce: {x: 0, y: 0, z: 0}
 --- !u!54 &955200645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10512,6 +10546,8 @@ MonoBehaviour:
   shopObj: {fileID: 942732672}
   shopCostScript: {fileID: 790075118}
   shopSideScript: {fileID: 790075116}
+  notEnoughMoneyObj: {fileID: 0}
+  maxBuyAmount: 5
 --- !u!114 &1097903348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11879,6 +11915,7 @@ MonoBehaviour:
   movementScript: {fileID: 0}
   platterPrefab: {fileID: 7012500987306424632, guid: e7e546e88f76e404892591f607fb5728, type: 3}
   spawnPoint: {fileID: 1017427093}
+  trayRackScript: {fileID: 0}
 --- !u!54 &1283392721
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13846,6 +13883,10 @@ MonoBehaviour:
   dialogueTextComponent: {fileID: 200156519}
   dialogueLine: 
   typeTime: 0.08
+  soundManager: {fileID: 0}
+  dialogueContainer: {fileID: 0}
+  customerPortraitImage: {fileID: 0}
+  playerFrozen: 0
 --- !u!114 &1475323316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13862,6 +13903,7 @@ MonoBehaviour:
   OrderObj: {fileID: 1629578832}
   mealOrderName: {fileID: 1530274413}
   mealOrderSprite: {fileID: 1425413300}
+  foodsWantedParent: {fileID: 0}
 --- !u!114 &1475323317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13878,6 +13920,7 @@ MonoBehaviour:
   dialogueObject: {fileID: 1024870309}
   dialogueTextComponent: {fileID: 200156519}
   slowTyper: {fileID: 1475323315}
+  currentCustomer: {fileID: 0}
 --- !u!1001 &1484680118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15366,6 +15409,8 @@ MonoBehaviour:
   throwStrength: 8.2
   spinStrength: 13.9
   currentInteractable: {fileID: 0}
+  playerMove: {fileID: 0}
+  playerTurn: {fileID: 0}
 --- !u!1 &1618685882
 GameObject:
   m_ObjectHideFlags: 0
@@ -16929,12 +16974,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a029e6d61effe848b84a37c0c92688d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawnerScript
+  canSpawn: 1
   customerPrefabListToSpawn:
   - {fileID: 5768746374761250104, guid: 214af93780379ce4b982527475aa42e1, type: 3}
   everyCustomerPrefabList: []
   spawnPoint: {fileID: 233406499}
   exitTransform: {fileID: 353749090}
   platterPoint: {fileID: 587797716}
+  mainCounterPoint: {fileID: 0}
   chairTransforms:
   - {fileID: 878636747}
   - {fileID: 878636746}
@@ -16950,9 +16997,6 @@ MonoBehaviour:
   spawnInterval: 2
   maxCustomers: 4
   emptyQueueIndex: 0
-  specialCustomerName: Uncle Fedrick
-  specialCompanionCount: 2
-  fedrickChildrenPrefabs: []
   eventRushHour: 0
 --- !u!4 &1833731580
 Transform:
@@ -18068,6 +18112,7 @@ MonoBehaviour:
   doorTransform: {fileID: 7272638916690831536}
   openAngle: 90
   rotateSpeed: 3
+  lookControlsScript: {fileID: 0}
 --- !u!1001 &2031334735
 PrefabInstance:
   m_ObjectHideFlags: 0
