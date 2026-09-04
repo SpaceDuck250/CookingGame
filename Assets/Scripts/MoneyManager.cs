@@ -23,6 +23,8 @@ public class MoneyManager : MonoBehaviour
     {
         OnPayForOrder += PayForOrder;
 
+
+        SetMoney(moneyStartAmount);
         //moneyStartAmount = 100;
         //ChangeMoneyAmount(moneyStartAmount);
     }
