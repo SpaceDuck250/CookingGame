@@ -6,6 +6,7 @@ public class FoodOnTrayTask : TutorialTask
 
     public FoodData correctFoodData;
 
+    public GameObject laptop;
     //public HoldableFoodScript holdableFoodScript;
 
     private void Start()
@@ -27,6 +28,7 @@ public class FoodOnTrayTask : TutorialTask
 
         //holdableFoodScript.enabled = true;
         CompleteTask();
+        laptop.layer = LayerMask.NameToLayer("Clickable");
     }
 
 }
