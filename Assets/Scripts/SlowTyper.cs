@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
@@ -13,6 +14,8 @@ public class SlowTyper : MonoBehaviour
 
     public GameObject dialogueContainer;
 
+    public Image customerPortraitImage;
+
     public bool playerFrozen = false;
 
     public bool inDialogue => playerFrozen;
@@ -22,7 +25,7 @@ public class SlowTyper : MonoBehaviour
         typeTime = 0.01f;
     }
 
-    public void StartWritingSlowly(string name, string newLine, Transform talker, bool freezePlayer = true)
+    public void StartWritingSlowly(string name, string newLine, Transform talker, Sprite customerSprite = null, bool freezePlayer = true)
     {
         if (freezePlayer)
         {
@@ -32,10 +35,29 @@ public class SlowTyper : MonoBehaviour
 
         dialogueContainer.SetActive(true);
 
+        SetPortrait(customerSprite);
+
         StopAllCoroutines();
         StartCoroutine(TypeLine(name, newLine));
 
         PauseGameScript.uiAlreadyOverlayed = true;
+    }
+
+    private void SetPortrait(Sprite customerSprite)
+    {
+        if (customerPortraitImage == null)
+        {
+            return;
+        }
+
+        if (customerSprite == null)
+        {
+            customerPortraitImage.enabled = false;
+            return;
+        }
+
+        customerPortraitImage.sprite = customerSprite;
+        customerPortraitImage.enabled = true;
     }
 
     public IEnumerator TypeLine(string name, string newLine)
