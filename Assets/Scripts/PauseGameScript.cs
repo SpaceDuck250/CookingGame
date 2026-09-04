@@ -92,12 +92,6 @@ public class PauseGameScript : MonoBehaviour
 
     public void TrySaveScene()
     {
-        //print(SceneManager.GetActiveScene().name);
-        //if (SceneManager.GetActiveScene().name == mainGameName)
-        //{
-        //    SaveLoadManager.instance.BeginSavingAllData();
-        //}
-
         SaveLoadManager.instance.BeginSavingAllData();
 
     }

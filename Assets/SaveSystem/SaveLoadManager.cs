@@ -29,13 +29,13 @@ public class SaveLoadManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    //StartCoroutine(BeginSavingAllData());
-        //    //BeginSavingAllData();
-        //    print(DaySystemManager.dayCounter);
-        //    print("L");
-        //}
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //StartCoroutine(BeginSavingAllData());
+            //BeginSavingAllData();
+            print(DaySystemManager.dayCounter + " and money is " + MoneyManager.playerMoneyAmount);
+            print("L");
+        }
 
         //if (Input.GetKeyDown(KeyCode.N))
         //{

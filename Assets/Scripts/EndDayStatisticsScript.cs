@@ -26,7 +26,7 @@ public class EndDayStatisticsScript : MonoBehaviour
     {
         currentDayText.text = "Day " + playerStats.day.ToString() + " Complete!";
 
-        float profit = (float)(playerStats.totalMoneyEndOfDay - playerStats.totalMoneyStartOfDay);
+        float profit = (float)playerStats.moneyGained;
 
         
         moneyEarnedText.text = "Total Profit: " + profit.ToString() + "$";
