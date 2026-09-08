@@ -29,7 +29,7 @@ public class FoodOnTrayTask : TutorialTask
 
         //holdableFoodScript.enabled = true;
         CompleteTask();
-        laptop.layer = LayerMask.GetMask("Clickable");
+        laptop.layer = LayerMask.NameToLayer("Clickable");
     }
 
 }
