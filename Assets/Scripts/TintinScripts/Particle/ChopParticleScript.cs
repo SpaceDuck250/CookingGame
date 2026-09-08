@@ -9,11 +9,21 @@ public class ChopParticleScript : MonoBehaviour
 
     private void Start()
     {
+        if (cutterScript == null)
+        {
+            return;
+        }
+
         cutterScript.OnChopped += OnChopped;
     }
 
     private void OnDestroy()
     {
+        if (cutterScript == null)
+        {
+            return;
+        }
+
         cutterScript.OnChopped -= OnChopped;
     }
 

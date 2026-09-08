@@ -148,7 +148,6 @@ public class CookingInputOutputScript : Interactable, ICookStation
     public override void Interact(PlayerHandScript playerHand)
     {
         TryPutFood(playerHand);
-
     }
 
     public void TakeFoodOut()
