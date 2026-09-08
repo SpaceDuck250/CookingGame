@@ -69,14 +69,14 @@ public class CustomerMovementScript : MonoBehaviour
 
     private void SetNewDestination(Transform destination)
     {
-        if (paused)
-        {
-            return;
-        }
+        //if (paused)
+        //{
+        //    return;
+        //}
 
         this.destinationPoint = destination;
 
-        StartCoroutine(DontAllowAbruptDestinationChange());
+        //StartCoroutine(DontAllowAbruptDestinationChange());
     }
 
     public void WalkToDestination()
@@ -125,16 +125,16 @@ public class CustomerMovementScript : MonoBehaviour
     }
 
     // To fix some stupid bugs, the customer isnt able to change its destination within a short amount of time
-    public IEnumerator DontAllowAbruptDestinationChange()
-    {
-        paused = true;
+    //public IEnumerator DontAllowAbruptDestinationChange()
+    //{
+    //    paused = true;
 
-        float waitTime = 0.3f;
-        yield return new WaitForSeconds(waitTime);
+    //    float waitTime = 0.3f;
+    //    yield return new WaitForSeconds(waitTime);
 
-        paused = false;
+    //    paused = false;
 
 
-    }
+    //}
 
 }
