@@ -21,12 +21,9 @@ public class MoneyManager : MonoBehaviour
 
     private void Start()
     {
+
+
         OnPayForOrder += PayForOrder;
-
-
-
-        //moneyStartAmount = 100;
-        //ChangeMoneyAmount(moneyStartAmount);
     }
 
     private void OnDestroy()

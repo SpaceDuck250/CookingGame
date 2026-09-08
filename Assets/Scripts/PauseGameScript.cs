@@ -14,7 +14,10 @@ public class PauseGameScript : MonoBehaviour
 
     public GameObject pauseObj;
 
-    public bool saveGameWhenExit = false;
+    private void Start()
+    {
+        mainGameName = "MainGameFIXED";
+    }
 
     private void Update()
     {
@@ -89,11 +92,6 @@ public class PauseGameScript : MonoBehaviour
 
     public void TrySaveScene()
     {
-        if (!saveGameWhenExit)
-        {
-            return;
-        }
-
         SaveLoadManager.instance.BeginSavingAllData();
 
     }

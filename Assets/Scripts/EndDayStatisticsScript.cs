@@ -7,7 +7,6 @@ public class EndDayStatisticsScript : MonoBehaviour
     public TextMeshProUGUI moneyEarnedText;
     public TextMeshProUGUI currentDayText;
     public TextMeshProUGUI tipsEarnedText;
-    public TextMeshProUGUI servedCustomersText;
 
     private void Start()
     {
@@ -32,7 +31,6 @@ public class EndDayStatisticsScript : MonoBehaviour
         
         moneyEarnedText.text = "Total Profit: " + profit.ToString() + "$";
         tipsEarnedText.text = "Tips Earned: " + playerStats.tipEarned.ToString() + "$";
-        servedCustomersText.text = "Customers Served: " + playerStats.customersServed;
 
         shuttersStatsPanel.SetActive(true);
 
