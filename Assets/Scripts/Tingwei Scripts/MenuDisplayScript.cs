@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class MenuDisplayScript : MonoBehaviour
 {
-    public class MenuItem
-    {
-        public Sprite itemImage;
-        public string itemName;
-        public string itemprice;
-    }
-
     public MenuItemDisplayScript[] menuDisplays;
-    public MenuItem[] menuItems = new MenuItem[7];
+    public MealData[] menuItems;
 
     private void Start()
     {
@@ -19,14 +12,18 @@ public class MenuDisplayScript : MonoBehaviour
 
     public void UpdateMenu()
     {
-
         int amountToDisplay = Mathf.Min(menuDisplays.Length, menuItems.Length);
 
-
-
-        for (int i = 0; i < amountToDisplay; i++)
+        for (int i = 0; i < menuDisplays.Length; i++)
         {
-            menuDisplays[i].SetMenuItem(menuItems[i].itemImage, menuItems[i].itemName, menuItems[i].itemprice);
+            if (i < amountToDisplay && menuItems[i] != null)
+            {
+                menuDisplays[i].SetMenuItem(menuItems[i]);
+            }
+            else
+            {
+                menuDisplays[i].Hide();
+            }
         }
     }
 }

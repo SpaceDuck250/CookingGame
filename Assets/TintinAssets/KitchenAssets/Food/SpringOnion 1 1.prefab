@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5bb3baf0bbfec6649951ddeb6b5b0f98, type: 2}
     - target: {fileID: 919132149155446097, guid: 2ae590cad21fa744f920d2b54b0a0b45, type: 3}
       propertyPath: m_Name
-      value: SpringOnion 1
+      value: SpringOnion 1 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2ae590cad21fa744f920d2b54b0a0b45, type: 3}
       propertyPath: m_Layer
@@ -151,12 +151,15 @@ MonoBehaviour:
   changeScaleOnHand: 0
   changeRotationOnHand: 1
   pickupScaleModifier: 0
-  holdOffset: {x: 0.4, y: 0, z: 0}
+  holdOffset: {x: 0.35, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
+  changeRotationOnPlace: 0
+  placedRotationOffset: {x: 0, y: 0, z: 0, w: 1}
   doFloorChecks: 1
+  isInvisiblePickupObj: 0
   anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &1024640614762768255
 MonoBehaviour:
