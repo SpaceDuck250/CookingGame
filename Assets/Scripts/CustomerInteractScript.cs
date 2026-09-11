@@ -100,6 +100,11 @@ public class CustomerInteractScript : Interactable
 
     private void CheckIfFoodMatchesOrder(PlayerHandScript playerHand)
     {
+        if (customerStateMachine != CustomerStateMachine.customerTakingOrder && CustomerStateMachine.customerTakingOrder != null)
+        {
+            return;
+        }
+
         mealChecker.CheckOrder(playerHand);
     }
 
@@ -150,12 +155,8 @@ public class CustomerInteractScript : Interactable
 
         NpcDialogueScript.OnShowDialogue?.Invoke(heldCustomerData, mealChecker.mealToCheck, customerStateMachine.currentMood);
 
-        OnCheckIfNeedToLeave?.Invoke(this);
+        //OnCheckIfNeedToLeave?.Invoke(this);
 
-        //CancelInvoke("CloseConversation");
-
-        //float maxTimeInConversation = 10f;
-        //Invoke("CloseConversation", maxTimeInConversation);
     }
 
     public void CloseConversation()
@@ -175,7 +176,7 @@ public class CustomerInteractScript : Interactable
             finishedInteract = true;
         }
 
-        OnCheckIfNeedToLeave?.Invoke(this);
+        //OnCheckIfNeedToLeave?.Invoke(this);
     }
 
     public void NotTalking()

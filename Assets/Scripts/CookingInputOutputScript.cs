@@ -78,13 +78,14 @@ public class CookingInputOutputScript : Interactable, ICookStation
         GameObject pickupFood = Instantiate(invisiblePickupObject, spawnPosition, Quaternion.identity);
 
         HoldableFoodScript holdScript = pickupFood.GetComponent<HoldableFoodScript>();
-        if (success)
+        FoodData TargetFoodData = success ? currentRecipeUsed.outputFood : currentRecipeUsed.failedOutputFood;
+        holdScript.foodData = TargetFoodData;
+
+        HoldableFoodScript sourceHoldScript = TargetFoodData.foodModel.GetComponent<HoldableFoodScript>();
+        if (sourceHoldScript != null)
         {
-            holdScript.foodData = currentRecipeUsed.outputFood;
-        }
-        else
-        {
-            holdScript.foodData = currentRecipeUsed.failedOutputFood;
+            holdScript.changeRotationOnHand = sourceHoldScript.changeRotationOnHand;
+            holdScript.rotationOffset = sourceHoldScript.rotationOffset;
         }
 
         holdScript.objectToDelete = deleteObject;
@@ -100,8 +101,8 @@ public class CookingInputOutputScript : Interactable, ICookStation
         return pickupFood;
     }
 
-    // Only for display
-    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false, float downScaleAmount = 1)
+
+    public static GameObject SpawnDisplayFoodInPosition(FoodData foodData, Transform parent, Vector3 localPositionOffset, bool canPickUp, bool useAlternate = false, float downScaleAmount = 1, bool applyPlacedRotationOverride = false)
     {
         GameObject foodToSpawn;
         if (!useAlternate)
@@ -124,6 +125,15 @@ public class CookingInputOutputScript : Interactable, ICookStation
 
         newDisplayFood.transform.localPosition = localPositionOffset;
 
+        if (applyPlacedRotationOverride)
+        {
+            HoldableFoodScript holdableForRotation = newDisplayFood.GetComponent<HoldableFoodScript>();
+            if (holdableForRotation != null && holdableForRotation.changeRotationOnPlace)
+            {
+                newDisplayFood.transform.localRotation = holdableForRotation.placedRotationOffset;
+            }
+        }
+
         if (!canPickUp)
         {
             Destroy(newDisplayFood.GetComponent<Collider>());
@@ -134,7 +144,7 @@ public class CookingInputOutputScript : Interactable, ICookStation
 
     public static GameObject SpawnFoodInsidePlatter(FoodData foodData, Transform parent, Vector3 localPositionOffset)
     {
-        GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false);
+        GameObject newDisplayFood = SpawnDisplayFoodInPosition(foodData, parent, localPositionOffset, true, false, 1, true);
         //newDisplayFood.GetComponent<Collider>().isTrigger = false;
 
 

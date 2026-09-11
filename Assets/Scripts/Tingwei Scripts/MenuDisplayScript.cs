@@ -2,16 +2,8 @@ using UnityEngine;
 
 public class MenuDisplayScript : MonoBehaviour
 {
-    [System.Serializable]
-    public class MenuItem
-    {
-        public Sprite itemImage;
-        public string itemName;
-        public string itemprice;
-    }
-
     public MenuItemDisplayScript[] menuDisplays;
-    public MenuItem[] menuItems = new MenuItem[7];
+    public MealData[] menuItems = new MealData[7];
 
     private void Start()
     {
@@ -20,10 +12,7 @@ public class MenuDisplayScript : MonoBehaviour
 
     public void UpdateMenu()
     {
-
         int amountToDisplay = Mathf.Min(menuDisplays.Length, menuItems.Length);
-
-
 
         for (int i = 0; i < amountToDisplay; i++)
         {
@@ -33,7 +22,13 @@ public class MenuDisplayScript : MonoBehaviour
                 continue;
             }
 
-            menuDisplays[i].SetMenuItem(menuItems[i].itemImage, menuItems[i].itemName, menuItems[i].itemprice);
+            if (menuItems[i] == null)
+            {
+                menuDisplays[i].Hide();
+                continue;
+            }
+
+            menuDisplays[i].SetMenuItem(menuItems[i]);
         }
     }
 }
