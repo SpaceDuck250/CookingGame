@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef7bbd9e7b76364aae4b9bec5a2397e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -221,11 +221,14 @@ MonoBehaviour:
   changeRotationOnHand: 1
   pickupScaleModifier: 0
   holdOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  rotationOffset: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   canPickUp: 1
-  platterScaleModifier: 1
-  changeScaleOnPlatter: 0
+  platterScaleModifier: 0.5
+  changeScaleOnPlatter: 1
+  changeRotationOnPlace: 1
+  placedRotationOffset: {x: 0.49999997, y: 0.49999997, z: -0.49999997, w: 0.49999997}
   doFloorChecks: 1
+  isInvisiblePickupObj: 0
   anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &8656665091203858249
 MonoBehaviour:

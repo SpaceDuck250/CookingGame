@@ -23,6 +23,8 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
     public float platterScaleModifier = 1;
     public bool changeScaleOnPlatter = false;
 
+    public bool changeRotationOnPlace = false;
+    public Quaternion placedRotationOffset = Quaternion.identity;
     public bool doFloorChecks = true;
 
     public bool isInvisiblePickupObj = false;
@@ -42,6 +44,7 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
         pickupScaleModifier = !changeScaleOnHand ? 1 : pickupScaleModifier;
         platterScaleModifier = !changeScaleOnPlatter ? 1 : platterScaleModifier;
         rotationOffset = !changeRotationOnHand ? Quaternion.identity : rotationOffset;
+        placedRotationOffset = !changeRotationOnPlace ? Quaternion.identity : placedRotationOffset;
 
         doFloorChecks = CarryType ? false : true; // Checks if food
 

@@ -13,6 +13,8 @@ public class CarrotCutter : Interactable
     public Transform foodSpawnArea;
     public Vector3 spawnOffset;
 
+    public float downScaleAmount = 1f;
+
     public int chops;
     public int requiredChops;
 
@@ -34,7 +36,7 @@ public class CarrotCutter : Interactable
     {
         canCut = true;
 
-        cutObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodToCut, foodSpawnArea, spawnOffset, false);
+        cutObj = CookingInputOutputScript.SpawnDisplayFoodInPosition(foodToCut, foodSpawnArea, spawnOffset, false, false, downScaleAmount, true);
 
         cutFoodData = foodToCut;
 
@@ -77,7 +79,7 @@ public class CarrotCutter : Interactable
             Vector3 choppedFoodSpawnPosition = foodSpawnArea.position;
             Transform parent = foodSpawnArea;
 
-            GameObject displayOut = CookingInputOutputScript.SpawnDisplayFoodInPosition(cookingInputOutput.currentRecipeUsed.outputFood, parent, spawnOffset, false);
+            GameObject displayOut = CookingInputOutputScript.SpawnDisplayFoodInPosition(cookingInputOutput.currentRecipeUsed.outputFood, parent, spawnOffset, false, false, downScaleAmount, true);
 
             ICookStation cookStation = cookingInputOutput.GetComponent<ICookStation>();
             cookStation.CallFoodSuccessEvent(choppedFoodSpawnPosition, displayOut, foodSpawnArea);
