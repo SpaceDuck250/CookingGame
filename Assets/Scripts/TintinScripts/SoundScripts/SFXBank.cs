@@ -37,7 +37,6 @@ public class SFXBank : ScriptableObject
         if (lookup.TryGetValue(clipName, out Entry entry))
             return entry;
 
-        Debug.LogWarning($"{name}: no clip called '{clipName}'");
         return null;
     }
 }

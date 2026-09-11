@@ -55,7 +55,6 @@ public class CatSpawnerScript : MonoBehaviour
     {
         if (catPrefab == null || spawnPoint == null || waitPoint == null || exitPoint == null)
         {
-            Debug.LogWarning("[Cat] Missing prefab or points - cannot spawn.");
             return;
         }
 
@@ -66,7 +65,6 @@ public class CatSpawnerScript : MonoBehaviour
 
         if (catAI == null)
         {
-            Debug.LogWarning("[Cat] Cat prefab has no CatAIScript component.");
             Destroy(newCat);
             catPresent = false;
             return;

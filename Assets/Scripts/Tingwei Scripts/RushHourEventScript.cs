@@ -40,7 +40,7 @@ public class RushHourEventScript : MonoBehaviour
 
         if (eventSystem == null || customerSpawner == null)
         {
-            Debug.Log("Rush Hour Event is missing an Inspector reference.");
+            //Debug.Log("Rush Hour Event is missing an Inspector reference.");
 
             return;
         }
@@ -88,7 +88,7 @@ public class RushHourEventScript : MonoBehaviour
 
         timeoutRoutine = null;
 
-        Debug.LogWarning("Rush Hour reached its maximum duration.");
+        //Debug.LogWarning("Rush Hour reached its maximum duration.");
 
         FinishEvent();
     }

@@ -47,7 +47,7 @@ public class MealServedEventReporterScript : MonoBehaviour
 
         if (eventData == null)
         {
-            Debug.Log("MealServedEventReporter could not find AIEventDataScript.");
+            //Debug.Log("MealServedEventReporter could not find AIEventDataScript.");
             return;
         }
 

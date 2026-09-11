@@ -11,7 +11,7 @@ public class RatPoopScript : MonoBehaviour
         {
             OnStepOnRatPoop?.Invoke();
             Destroy(gameObject);
-            print("hit poop");
+            //print("hit poop");
         }
     }
 }

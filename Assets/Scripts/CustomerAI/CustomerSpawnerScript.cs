@@ -147,7 +147,7 @@ public class CustomerSpawnerScript : MonoBehaviour
         {
             if (customerPrefabListToSpawn == null || customerPrefabListToSpawn.Count == 0)
             {
-                Debug.LogWarning("No customer prefab available to spawn.");
+                //Debug.LogWarning("No customer prefab available to spawn.");
                 return;
             }
             prefabToInstantiate = customerPrefabListToSpawn[UnityEngine.Random.Range(0, customerPrefabListToSpawn.Count)];

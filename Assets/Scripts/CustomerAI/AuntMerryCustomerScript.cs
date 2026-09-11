@@ -218,14 +218,14 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (movementScript == null)
         {
-            Debug.Log("Aunt Merry cannot inspect the store because CustomerMovementScript was not found.");
+            //Debug.Log("Aunt Merry cannot inspect the store because CustomerMovementScript was not found.");
 
             return;
         }
 
         if (inspectionPoints == null || inspectionPoints.Length == 0)
         {
-            Debug.Log("Aunt Merry has no inspection points and she will continue directly to the queue.");
+            //Debug.Log("Aunt Merry has no inspection points and she will continue directly to the queue.");
 
             inspectionFinished = true;
             return;
@@ -253,7 +253,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
                 continue;
             }
 
-            Debug.Log($"Aunt Merry is walking to inspection point {(i + 1)}.");
+            //Debug.Log($"Aunt Merry is walking to inspection point {(i + 1)}.");
 
             yield return MoveToInspectionPoint(inspectionPoint);
 
@@ -275,7 +275,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
                     sawFoodThisVisit = true;
                     inspectorRequestPending = true;
 
-                    Debug.Log($"Aunt Merry saw food while inspecting: {visibleFood.name}");
+                    //Debug.Log($"Aunt Merry saw food while inspecting: {visibleFood.name}");
 
                     TrySummonInspector();
 
@@ -322,20 +322,20 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (agent == null)
         {
-            Debug.Log("Aunt Merry does not have a NavMeshAgent.");
+            //Debug.Log("Aunt Merry does not have a NavMeshAgent.");
             yield break;
         }
 
         if (!agent.enabled || !agent.isOnNavMesh)
         {
-            Debug.Log("Aunt Merry's NavMeshAgent is unavailable.");
+            //Debug.Log("Aunt Merry's NavMeshAgent is unavailable.");
             yield break;
         }
 
         // Find the nearest valid NavMesh position around the point.
         if (!NavMesh.SamplePosition(inspectionPoint.position, out NavMeshHit navMeshHit, 2f, NavMesh.AllAreas))
         {
-            Debug.Log($"Inspection point is not close to the NavMesh: {inspectionPoint.name}");
+            //Debug.Log($"Inspection point is not close to the NavMesh: {inspectionPoint.name}");
             yield break;
         }
 
@@ -345,7 +345,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         movementScript.OnNewDestinationChange?.Invoke(inspectionPoint);
 
-        Debug.Log($"Aunt Merry is moving toward {inspectionPoint.name}.");
+        //Debug.Log($"Aunt Merry is moving toward {inspectionPoint.name}.");
 
         // Give the agent one frame to calculate its path.
         yield return null;
@@ -378,7 +378,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
                 movementScript.destinationPoint = null;
 
-                Debug.Log($"Aunt Merry reached inspection point: {inspectionPoint.name}");
+                //Debug.Log($"Aunt Merry reached inspection point: {inspectionPoint.name}");
 
                 yield break;
             }
@@ -386,7 +386,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
             yield return null;
         }
 
-        Debug.LogWarning($"Aunt Merry timed out while moving to {inspectionPoint.name}. Remaining distance: {agent.remainingDistance}");
+        //Debug.LogWarning($"Aunt Merry timed out while moving to {inspectionPoint.name}. Remaining distance: {agent.remainingDistance}");
     }
 
     private IEnumerator FaceInspectionDirection(Transform inspectionPoint)
@@ -456,7 +456,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
                 {
                     spottedFood = visibleFood;
 
-                    Debug.Log($"Aunt Merry spotted food while queueing: {visibleFood.name}");
+                    //Debug.Log($"Aunt Merry spotted food while queueing: {visibleFood.name}");
 
                     // Seeing food while queueing means Aunt Merry will perform a full inspection on her next visit
                     if (spawnHandler != null)
@@ -484,13 +484,13 @@ public class AuntMerryCustomerScript : MonoBehaviour
     {
         if (stateMachine == null)
         {
-            Debug.Log("Aunt Merry cannot return because CustomerStateMachine is missing.");
+            //Debug.Log("Aunt Merry cannot return because CustomerStateMachine is missing.");
             return;
         }
 
         if (stateMachine.queuePoint == null)
         {
-            Debug.Log("Aunt Merry cannot return because she does not have a queue point.");
+            //Debug.Log("Aunt Merry cannot return because she does not have a queue point.");
             return;
         }
 
@@ -506,7 +506,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
         // inspectionFinished is already true, so invoking WalkingToCounter will not restart the inspection route
         stateMachine.OnCustomerChangeState?.Invoke(CustomerState.WalkingToCounter);
 
-        Debug.Log("Aunt Merry finished inspecting and is returning to the queue.");
+        //Debug.Log("Aunt Merry finished inspecting and is returning to the queue.");
     }
 
     private bool TrySeeFoodOnGround(out GameObject visibleFood)
@@ -691,7 +691,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (eventSystem == null)
         {
-            Debug.Log("Aunt Merry could not summon the Inspector because AIEventSystemScript was not found.");
+            //Debug.Log("Aunt Merry could not summon the Inspector because AIEventSystemScript was not found.");
 
             return;
         }
@@ -706,7 +706,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
         // Does not overlap Rush Hour or Fussy Customer as HandleEventFinished will retry afterward
         if (eventSystem.currentEvent != HawkerEventType.None)
         {
-            Debug.Log($"Aunt Merry is waiting for {eventSystem.currentEvent} to finish before summoning the Inspector.");
+            //Debug.Log($"Aunt Merry is waiting for {eventSystem.currentEvent} to finish before summoning the Inspector.");
 
             return;
         }
@@ -721,7 +721,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         inspectorRequestPending = false;
 
-        Debug.Log("Aunt Merry summoned the Inspector after seeing food lying on the floor.");
+        //Debug.Log("Aunt Merry summoned the Inspector after seeing food lying on the floor.");
     }
 
     public void TryChangeMindWhenTalkedTo()
@@ -729,7 +729,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
         // Aunt Merry has already used all of her chances to reconsider her order during this visit
         if (changeMindAttempts >= maxChangeMindAttempts)
         {
-            Debug.Log("Aunt Merry has already used all of her chances to change her order.");
+            //Debug.Log("Aunt Merry has already used all of her chances to change her order.");
             return;
         }
 
@@ -737,19 +737,19 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (mealChecker == null)
         {
-            Debug.Log("Aunt Merry cannot change her order because MealChecker was not found.");
+            //Debug.Log("Aunt Merry cannot change her order because MealChecker was not found.");
             return;
         }
 
         // Use one of Aunt Merry's three attempts
         changeMindAttempts++;
 
-        Debug.Log($"Aunt Merry is reconsidering her order. Attempt ${changeMindAttempts} / ${maxChangeMindAttempts}.");
+        //Debug.Log($"Aunt Merry is reconsidering her order. Attempt ${changeMindAttempts} / ${maxChangeMindAttempts}.");
 
         // Roll the chance that Aunt Merry actually changes her mind
         if (Random.value > changeMindChance)
         {
-            Debug.Log("Aunt Merry thought about changing her order but decided to keep it.");
+            //Debug.Log("Aunt Merry thought about changing her order but decided to keep it.");
             return;
         }
 
@@ -757,13 +757,13 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (!changedSuccessfully)
         {
-            Debug.Log("Aunt Merry wanted to change her order, but there was no different meal available.");
+            //Debug.Log("Aunt Merry wanted to change her order, but there was no different meal available.");
             return;
         }
 
         hasChangedMind = true;
 
-        Debug.Log($"Aunt Merry changed her mind and now wants: ${mealChecker.mealToCheck.name}");
+        //Debug.Log($"Aunt Merry changed her mind and now wants: ${mealChecker.mealToCheck.name}");
     }
 
     private bool TryChangeToDifferentOrder()
@@ -775,13 +775,13 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (mealChecker.customerScript == null)
         {
-            Debug.Log("Aunt Merry's MealChecker does not have a CustomerInteractScript.");
+            //Debug.Log("Aunt Merry's MealChecker does not have a CustomerInteractScript.");
             return false;
         }
 
         if (mealChecker.customerScript.heldCustomerData == null)
         {
-            Debug.Log("Aunt Merry does not have CustomerData.");
+            //Debug.Log("Aunt Merry does not have CustomerData.");
             return false;
         }
 
@@ -790,7 +790,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (possibleOrders == null || possibleOrders.Count == 0)
         {
-            Debug.Log("Aunt Merry has no possible meal orders.");
+            //Debug.Log("Aunt Merry has no possible meal orders.");
             return false;
         }
 
@@ -816,7 +816,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         if (alternativeOrders.Count == 0)
         {
-            Debug.Log("Aunt Merry has no meal different from her current order.");
+            //Debug.Log("Aunt Merry has no meal different from her current order.");
             return false;
         }
 
@@ -828,7 +828,7 @@ public class AuntMerryCustomerScript : MonoBehaviour
 
         mealChecker.mealToCheck = newOrder;
 
-        Debug.Log($"Aunt Merry changed her order from ${previousOrder} to {newOrder.name}.");
+        //Debug.Log($"Aunt Merry changed her order from ${previousOrder} to {newOrder.name}.");
 
         return true;
     }

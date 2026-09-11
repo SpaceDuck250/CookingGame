@@ -47,7 +47,7 @@ public class TrayRackScript : Interactable
             return;
         }
 
-        print("Returned");
+        //print("Returned");
 
         trayLeft++;
 

@@ -134,7 +134,7 @@ public class AIEventSystemScript : MonoBehaviour
 
         currentEvent = eventType;
 
-        Debug.Log("Started Hawker Event: " + eventType);
+        //Debug.Log("Started Hawker Event: " + eventType);
 
         OnEventStarted?.Invoke(eventType);
     }
@@ -148,7 +148,7 @@ public class AIEventSystemScript : MonoBehaviour
             return;
         }
 
-        Debug.Log("Finished Hawker Event: " + eventType);
+        //Debug.Log("Finished Hawker Event: " + eventType);
 
         lastCompletedEvent = eventType;
         currentEvent = HawkerEventType.None;

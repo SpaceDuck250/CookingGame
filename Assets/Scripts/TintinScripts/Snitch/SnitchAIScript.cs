@@ -90,16 +90,12 @@ public class SnitchAIScript : MonoBehaviour
         currentScore -= amount;
         currentScore = Mathf.Max(currentScore, 0);
 
-        Debug.Log("[Snitch] " + reason + ". -" + amount + " points (score now " + currentScore + ")");
 
         if (floatingTextPrefab != null)
         {
             SpawnFloatingText("-" + amount, Color.red);
         }
-        else
-        {
-            Debug.LogWarning("[Snitch] floatingTextPrefab is not assigned on " + gameObject.name + " - no visual popup will show.");
-        }
+
     }
 
     private void SpawnFloatingText(string text, Color color)
@@ -129,7 +125,6 @@ public class SnitchAIScript : MonoBehaviour
 
         string customerName = customerStateMachine.profile != null ? customerStateMachine.profile.customerName : gameObject.name;
 
-        Debug.Log("[Snitch] " + customerName + " " + context + ". Final score: " + currentScore);
 
         if (currentScore < reportThreshold)
         {
@@ -147,7 +142,6 @@ public class SnitchAIScript : MonoBehaviour
 
         string customerName = customerStateMachine.profile != null ? customerStateMachine.profile.customerName : gameObject.name;
 
-        Debug.Log("[Snitch] " + customerName + " " + context + ". Final score: " + currentScore + " (reporting regardless of score)");
 
         hasReported = true;
         HealthInspectorManager.ReportStall(customerName, currentScore);

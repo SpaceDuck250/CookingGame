@@ -26,7 +26,7 @@ public class ShowOnlyIfFoodHas : MonoBehaviour
     public void ShowControl(FoodData inputFood)
     {
         clickPreviewScript.canShow = true;
-        print("Show control" + gameObject);
+        //print("Show control" + gameObject);
         clickPreviewScript.OnPlayerEnterRange(PlayerHandScript.instance.gameObject);
     }
 

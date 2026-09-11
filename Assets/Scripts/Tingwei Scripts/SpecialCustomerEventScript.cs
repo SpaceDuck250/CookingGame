@@ -67,7 +67,7 @@ public class SpecialCustomerEventScript : MonoBehaviour
         // The event type must be either FussyCustomer or Inspector for this script to function correctly
         if (eventType != HawkerEventType.FussyCustomer && eventType != HawkerEventType.Inspector)
         {
-            Debug.Log(name + " must use FussyCustomer or Inspector.");
+            //Debug.Log(name + " must use FussyCustomer or Inspector.");
 
             eventSystem.CompleteEvent(startedEvent);
             return;
@@ -76,7 +76,7 @@ public class SpecialCustomerEventScript : MonoBehaviour
         // Check for missing references in the Inspector
         if (eventSystem == null || customerSpawner == null || specialCustomerPrefab == null)
         {
-            Debug.LogError(name + " is missing an Inspector reference.");
+            //Debug.LogError(name + " is missing an Inspector reference.");
 
             if (eventSystem != null)
             {
@@ -140,7 +140,7 @@ public class SpecialCustomerEventScript : MonoBehaviour
         {
             spawnedCustomerCount++;
 
-            Debug.Log(eventType + " customers spawned: " + spawnedCustomerCount + "/" + customerAmount);
+            //Debug.Log(eventType + " customers spawned: " + spawnedCustomerCount + "/" + customerAmount);
         }
     }
 
@@ -185,7 +185,7 @@ public class SpecialCustomerEventScript : MonoBehaviour
 
         timeoutRoutine = null;
 
-        Debug.Log(eventType +" reached its maximum duration.");
+        //Debug.Log(eventType +" reached its maximum duration.");
 
         FinishEvent();
     }

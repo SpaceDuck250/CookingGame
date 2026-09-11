@@ -95,11 +95,11 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
         if (sawFood)
         {
-            Debug.Log("Aunt Merry saw food this visit, she will inspect again next time.");
+            //Debug.Log("Aunt Merry saw food this visit, she will inspect again next time.");
         }
         else
         {
-            Debug.Log("Aunt Merry saw no food this visit, she will skip inspection next time.");
+            //Debug.Log("Aunt Merry saw no food this visit, she will skip inspection next time.");
         }
     }
 
@@ -118,7 +118,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
         // Handles duplicate situations just in case
         if (activeAuntMerry != null && activeAuntMerry != spawnedCustomer)
         {
-            Debug.Log("A duplicate Aunt Merry was detected and destroyed.");
+            //Debug.Log("A duplicate Aunt Merry was detected and destroyed.");
 
             Destroy(spawnedCustomer.gameObject);
             return;
@@ -128,7 +128,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
         // Prevent the random spawner from selecting another Aunt Merry while this one remains in the scene
         RemoveAuntMerryFromSpawnList();
 
-        Debug.Log("Aunt Merry spawned and was temporarily removed from the random customer list.");
+        //Debug.Log("Aunt Merry spawned and was temporarily removed from the random customer list.");
 
         AuntMerryCustomerScript auntMerryScript = spawnedCustomer.GetComponent<AuntMerryCustomerScript>();
 
@@ -143,7 +143,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Aunt Merry does not have AuntMerryCustomerScript.");
+            //Debug.Log("Aunt Merry does not have AuntMerryCustomerScript.");
         }
     }
 
@@ -159,7 +159,7 @@ public class AuntMerrySpawnHandlerScript : MonoBehaviour
 
         RestoreAuntMerryToSpawnList();
 
-        Debug.Log("Aunt Merry exited and can be randomly spawned again.");
+        //Debug.Log("Aunt Merry exited and can be randomly spawned again.");
     }
 
     // Saved Aunt Merry data for the next spawn

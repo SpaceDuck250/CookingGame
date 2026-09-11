@@ -67,7 +67,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         if (eventSystem == null || customerSpawner == null)
         {
-            Debug.Log("FussyCustomerOrderEventScript is missing its event system or customer spawner reference.");
+            //Debug.Log("FussyCustomerOrderEventScript is missing its event system or customer spawner reference.");
 
             return;
         }
@@ -80,7 +80,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         SubscribeToCustomerSpawner();
 
-        Debug.Log("Fussy Customer event is waiting for the next spawned customer.");
+        //Debug.Log("Fussy Customer event is waiting for the next spawned customer.");
     }
 
     // When Fussy Customer event is finished, either by completion or cancellation
@@ -180,7 +180,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         if (mealChecker == null)
         {
-            Debug.Log("The spawned customer does not have a MealChecker.");
+            //Debug.Log("The spawned customer does not have a MealChecker.");
 
             orderChangeInProgress = false;
 
@@ -210,7 +210,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         orderChanged = true;
 
-        Debug.Log("The Fussy Customer changed their order to: " + mealChecker.mealToCheck.name);
+        //Debug.Log("The Fussy Customer changed their order to: " + mealChecker.mealToCheck.name);
 
         // Complete the Fussy Customer event
         if (completeEventAfterOrderChange && eventSystem != null)
@@ -224,14 +224,14 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
     {
         if (mealChecker.customerScript == null)
         {
-            Debug.Log("MealChecker does not have a CustomerInteractScript.");
+            //Debug.Log("MealChecker does not have a CustomerInteractScript.");
 
             return false;
         }
 
         if (mealChecker.customerScript.heldCustomerData == null)
         {
-            Debug.Log("The customer does not have CustomerData.");
+            //Debug.Log("The customer does not have CustomerData.");
 
             return false;
         }
@@ -241,7 +241,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         if (possibleOrders == null || possibleOrders.Count == 0)
         {
-            Debug.Log("The customer has no possible meal orders.");
+            //Debug.Log("The customer has no possible meal orders.");
 
             return false;
         }
@@ -272,7 +272,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
         // Should not be possible, but if the customer has no alternative orders, log a message and return false
         if (alternativeOrders.Count == 0)
         {
-            Debug.Log("The customer has no order different from their current order.");
+            //Debug.Log("The customer has no order different from their current order.");
 
             return false;
         }

@@ -77,7 +77,7 @@ public class PauseGameScript : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Left game");
+        //Debug.Log("Left game");
         Application.Quit();
     }
 

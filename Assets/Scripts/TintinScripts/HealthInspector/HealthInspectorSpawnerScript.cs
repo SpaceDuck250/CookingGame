@@ -41,7 +41,6 @@ public class HealthInspectorSpawnerScript : MonoBehaviour
         inspectionInProgress = true;
 
         float delay = Random.Range(minArrivalDelay, maxArrivalDelay);
-        Debug.Log("[Health Inspector] Report received from " + reportingCustomerName + ". Inspector arriving in " + delay.ToString("F0") + "s.");
 
         StartCoroutine(SpawnAfterDelay(delay));
     }
@@ -58,7 +57,6 @@ public class HealthInspectorSpawnerScript : MonoBehaviour
 
         if (chosenPrefab == null || spawnPoint == null)
         {
-            Debug.LogWarning("[Health Inspector] Missing inspectorPrefabs or spawnPoint - cannot spawn.");
             inspectionInProgress = false;
             return;
         }
@@ -68,13 +66,11 @@ public class HealthInspectorSpawnerScript : MonoBehaviour
 
         if (inspectorAI == null)
         {
-            Debug.LogWarning("[Health Inspector] Inspector prefab has no HealthInspectorAIScript component.");
             Destroy(newInspector);
             inspectionInProgress = false;
             return;
         }
 
-        Debug.Log("[Health Inspector] Spawning " + chosenPrefab.name + " (strictness: " + inspectorAI.strictness + ")");
 
         inspectorAI.BeginInspection(exitPoint, inspectionPoints);
         OnInspectorSpawned?.Invoke();

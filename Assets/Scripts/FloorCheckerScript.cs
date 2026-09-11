@@ -39,7 +39,7 @@ public class FloorManager : MonoBehaviour
 
     public void TryRemoveFoodFromList(GameObject foodToRemove)
     {
-        print(foodToRemove);
+        //print(foodToRemove);
         if (foodOnFloorList.Contains(foodToRemove))
         {
             foodOnFloorList.Remove(foodToRemove);
