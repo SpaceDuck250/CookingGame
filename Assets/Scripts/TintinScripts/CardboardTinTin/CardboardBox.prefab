@@ -720,7 +720,7 @@ PrefabInstance:
       addedObject: {fileID: 8565091554810514773}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2352741360427131986}
+      addedObject: {fileID: 1666019269376097217}
   m_SourcePrefab: {fileID: 100100000, guid: ec475c3732fbc774682e4f714bc3e55d, type: 3}
 --- !u!4 &2419824108407028332 stripped
 Transform:
@@ -806,8 +806,6 @@ MonoBehaviour:
   canPickUp: 1
   platterScaleModifier: 1
   changeScaleOnPlatter: 0
-  changeRotationOnPlace: 0
-  placedRotationOffset: {x: 0, y: 0, z: 0, w: 1}
   doFloorChecks: 1
   isInvisiblePickupObj: 0
   anotherThingToChangeLayer: {fileID: 0}
@@ -866,7 +864,7 @@ MonoBehaviour:
   customControlsText: Left Click (Hold)
   doAltTextIfHoldingFood: 0
   altText: 
---- !u!114 &2352741360427131986
+--- !u!114 &1666019269376097217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -878,8 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb086b640e059f4c9cf841e0943cb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineShower
-  objectsToOutlineList:
-  - {fileID: 3089224806826418390}
+  objectsToOutlineList: []
   setManually: 0
   showControls: 1
   controlsText: 
