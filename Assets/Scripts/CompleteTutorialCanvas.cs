@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class CompleteTutorialCanvas : MonoBehaviour
 {
-    public string mainGameName;
+    public string mainMenuName;
     public void TransportToMainGame()
     {
-        SceneManager.LoadScene(mainGameName);
+        SceneManager.LoadScene(mainMenuName);
     }
 }
