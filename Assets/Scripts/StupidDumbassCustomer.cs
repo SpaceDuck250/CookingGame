@@ -10,6 +10,8 @@ public class StupidDumbassCustomer : MonoBehaviour
 
     public List<Transform> wanderPointList = new List<Transform>();
 
+    public float iq;
+
     private void Update()
     {
         timer += Time.deltaTime;
