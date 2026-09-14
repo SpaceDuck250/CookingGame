@@ -274,7 +274,7 @@ public class InspectorEventScript : MonoBehaviour
 
         if (eventSystem == null || customerSpawner == null || inspectorPrefab == null)
         {
-            Debug.Log("InspectorEventScript is missing the Event System, Customer Spawner, or Inspector Prefab reference.");
+            //Debug.Log("InspectorEventScript is missing the Event System, Customer Spawner, or Inspector Prefab reference.");
 
             // Prevent the central event system from becoming permanently stuck on Inspector
 
@@ -292,7 +292,7 @@ public class InspectorEventScript : MonoBehaviour
 
         inspectorSpawnCoroutine = StartCoroutine(SpawnInspectorWhenSpaceIsAvailable());
 
-        Debug.Log("Inspector event is waiting to spawn the Inspector.");
+        //Debug.Log("Inspector event is waiting to spawn the Inspector.");
     }
 
     private IEnumerator SpawnInspectorWhenSpaceIsAvailable()
@@ -348,7 +348,7 @@ public class InspectorEventScript : MonoBehaviour
         activeInspector = spawnedCustomer;
         waitingForInspectorSpawn = false;
 
-        Debug.Log("Inspector spawned: " + spawnedCustomer.gameObject.name);
+        //Debug.Log("Inspector spawned: " + spawnedCustomer.gameObject.name);
     }
 
     // When Inspector leaves, the event will end
@@ -364,7 +364,7 @@ public class InspectorEventScript : MonoBehaviour
             return;
         }
 
-        Debug.Log("The Inspector has exited.");
+        //Debug.Log("The Inspector has exited.");
 
         activeInspector = null;
 
@@ -378,7 +378,7 @@ public class InspectorEventScript : MonoBehaviour
             return;
         }
 
-        Debug.Log("Inspector event finished.");
+        //Debug.Log("Inspector event finished.");
 
         StopInspectorEventWithoutCompletion();
     }

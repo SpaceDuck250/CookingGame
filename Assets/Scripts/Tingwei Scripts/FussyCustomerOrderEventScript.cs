@@ -12,15 +12,9 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
     // Flags to track the state of the event and order change
     public bool eventRunning;
+    public bool orderChanged;
+    public bool orderChangeInProgress;
     public bool subscribedToSpawner;
-
-    // Every customer that spawns while the Fussy Customer event is active is stored here
-    // They remain selected until the player talks to them even if the Fussy Customer event has already finished
-    public List<CustomerStateMachine> selectedCustomers = new List<CustomerStateMachine>();
-
-    // Customers that have already had their first conversation,
-    // their order will change the next time the player talks to them
-    public List<CustomerStateMachine> customersTalkedToOnce = new List<CustomerStateMachine>();
 
     // Coroutine reference to manage the order change process
     public Coroutine orderChangeCoroutine;
@@ -29,10 +23,6 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
     {
         AIEventSystemScript.OnEventStarted += HandleEventStarted;
         AIEventSystemScript.OnEventFinished += HandleEventFinished;
-
-        // CustomerInteractScript invokes this when the player opens a conversation with any customer
-        CustomerInteractScript.OnAnyCustomerInteract += HandleCustomerInteract;
-        CustomerSpawnerScript.OnCustomerExit += HandleCustomerExit;
     }
 
     private void OnDisable()
@@ -40,33 +30,17 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
         AIEventSystemScript.OnEventStarted -= HandleEventStarted;
         AIEventSystemScript.OnEventFinished -= HandleEventFinished;
 
-        CustomerInteractScript.OnAnyCustomerInteract -= HandleCustomerInteract;
-        CustomerSpawnerScript.OnCustomerExit -= HandleCustomerExit;
-
         UnsubscribeFromCustomerSpawner();
 
+        if (orderChangeCoroutine != null)
+        {
+            StopCoroutine(orderChangeCoroutine);
+            orderChangeCoroutine = null;
+        }
+
         eventRunning = false;
-
-        selectedCustomers.Clear();
-        customersTalkedToOnce.Clear();
-    }
-
-    private void ResolveReferences()
-    {
-        if (eventSystem == null)
-        {
-            eventSystem = AIEventSystemScript.Instance;
-        }
-
-        if (customerSpawner == null && eventSystem != null)
-        {
-            customerSpawner = eventSystem.customerSpawner;
-        }
-
-        if (customerSpawner == null)
-        {
-            customerSpawner = CustomerSpawnerScript.instance;
-        }
+        orderChanged = false;
+        orderChangeInProgress = false;
     }
 
     private void HandleEventStarted(HawkerEventType eventType)
@@ -81,19 +55,32 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
             return;
         }
 
-        ResolveReferences();
+        if (eventSystem == null)
+        {
+            eventSystem = AIEventSystemScript.Instance;
+        }
+
+        if (customerSpawner == null && eventSystem != null)
+        {
+            customerSpawner = eventSystem.customerSpawner;
+        }
 
         if (eventSystem == null || customerSpawner == null)
         {
-            Debug.Log("FussyCustomerOrderEventScript is missing its event system or customer spawner reference.");
+            //Debug.Log("FussyCustomerOrderEventScript is missing its event system or customer spawner reference.");
+
             return;
         }
 
         eventRunning = true;
+        orderChanged = false;
+        orderChangeInProgress = false;
+
+        // Wait for the next customer spawned after the Fussy Customer event begins
 
         SubscribeToCustomerSpawner();
 
-        Debug.Log("Fussy Customer event started. All customers spawned during the event will become Fussy Customers.");
+        //Debug.Log("Fussy Customer event is waiting for the next spawned customer.");
     }
 
     // When Fussy Customer event is finished, either by completion or cancellation
@@ -104,13 +91,17 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
             return;
         }
 
-        // Stop selecting NEW customers after the effect finish. But Customers that spawned during the event should
-        // still change their order when the player talks to them later
-        eventRunning = false;
-
         UnsubscribeFromCustomerSpawner();
 
-        Debug.Log($"Fussy Customer event finished selecting customers. {selectedCustomers.Count} selected customers are still waiting to be talked to.");
+        if (orderChangeCoroutine != null)
+        {
+            StopCoroutine(orderChangeCoroutine);
+            orderChangeCoroutine = null;
+        }
+
+        eventRunning = false;
+        orderChanged = false;
+        orderChangeInProgress = false;
     }
 
     // Subscribe to the customer spawner's OnCustomerSpawned event
@@ -122,7 +113,6 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
         }
 
         customerSpawner.OnCustomerSpawned += HandleCustomerSpawned;
-
         subscribedToSpawner = true;
     }
 
@@ -145,7 +135,7 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
     // When a customer is spawned, check if the Fussy Customer event is running and if the order can be changed
     private void HandleCustomerSpawned(CustomerStateMachine spawnedCustomer, GameObject spawnedPrefab)
     {
-        if (!eventRunning)
+        if (!eventRunning || orderChanged || orderChangeInProgress)
         {
             return;
         }
@@ -155,138 +145,94 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
             return;
         }
 
-        // Aunt Merry has her own change-of-mind behaviour,
-        // so do not make her a Fussy Customer
-        AuntMerryCustomerScript auntMerryScript = spawnedCustomer.GetComponent<AuntMerryCustomerScript>();
-
-        if (auntMerryScript == null)
-        {
-            auntMerryScript = spawnedCustomer.GetComponentInChildren<AuntMerryCustomerScript>();
-        }
-
-        if (auntMerryScript != null)
-        {
-            Debug.Log("Aunt Merry spawned during the Fussy Customer event, but she was ignored because she has her own order change behaviour.");
-            return;
-        }
-
-        // Prevent duplicate entries.
-        if (selectedCustomers.Contains(spawnedCustomer))
-        {
-            return;
-        }
-
         //Claim this customer and stop listening for other customers, to ensures that only one customer is changed
 
-        selectedCustomers.Add(spawnedCustomer);
+        UnsubscribeFromCustomerSpawner();
 
-        Debug.Log($"Customer selected for Fussy Customer event: {spawnedCustomer.gameObject.name}");
+        orderChangeInProgress = true;
+
+        orderChangeCoroutine = StartCoroutine(ChangeOrderAfterCustomerStarts(spawnedCustomer));
     }
 
-    // Called whenever the player opens a conversation with a customer
-    private void HandleCustomerInteract(CustomerStateMachine customer)
+    // Coroutine to change the customer's order after they have started their interaction
+    private IEnumerator ChangeOrderAfterCustomerStarts(CustomerStateMachine spawnedCustomer)
     {
-        if (customer == null)
+
+        // CustomerSpawnerScript invokes OnCustomerSpawned immediately after Instantiate()
+        // waits one frame gives MealChecker.Start() time to call, SetMeal() and create the customer's original order
+
+        yield return null;
+
+        orderChangeCoroutine = null;
+
+        if (!eventRunning || spawnedCustomer == null)
         {
-            return;
+            orderChangeInProgress = false;
+            yield break;
         }
 
-        // Ignore normal customers as only customers that spawned during the
-        // Fussy Customer event are allowed through
-        if (!selectedCustomers.Contains(customer))
-        {
-            return;
-        }
-
-        // The first conversation, does not change the order yet
-        if (!customersTalkedToOnce.Contains(customer))
-        {
-            customersTalkedToOnce.Add(customer);
-
-            Debug.Log($"{customer.gameObject.name} gave the player their original order. They may change their mind on the next conversation.");
-            return;
-        }
-
-        // The second conversation, the player knows the original order
-        // then the customer changes their mind
-        MealChecker mealChecker = customer.GetComponent<MealChecker>();
+        MealChecker mealChecker = spawnedCustomer.GetComponent<MealChecker>();
 
         if (mealChecker == null)
         {
-            mealChecker = customer.GetComponentInChildren<MealChecker>();
+            mealChecker = spawnedCustomer.GetComponentInChildren<MealChecker>();
         }
 
         if (mealChecker == null)
         {
-            Debug.Log("The selected Fussy Customer does not have a MealChecker.");
-            selectedCustomers.Remove(customer);
-            return;
+            //Debug.Log("The spawned customer does not have a MealChecker.");
+
+            orderChangeInProgress = false;
+
+            // Wait for another spawned customer
+            SubscribeToCustomerSpawner();
+
+            yield break;
         }
 
-        // OnAnyCustomerInteract is invoked before NpcDialogueScript displays mealToCheck
-        // so the player sees the new order immediately
-        MealData oldOrder = mealChecker.mealToCheck;
+        int timeInSeconds = Random.Range(15, 30);
+
+        yield return new WaitForSeconds(timeInSeconds);
+
+        // Attempt to change the customer's order to a different one
         bool changedSuccessfully = TryChangeToDifferentOrder(mealChecker);
 
-        // This customer has now used their Fussy Customer change
-        // Remove them so talking again does not repeatedly change their meal
-        selectedCustomers.Remove(customer);
+        orderChangeInProgress = false;
 
         if (!changedSuccessfully)
         {
-            Debug.Log("The Fussy Customer had no alternative meal to change to.");
-            return;
+            // This customer had no alternative order
+            // Continue waiting for another eligible customer.
+
+            SubscribeToCustomerSpawner();
+            yield break;
         }
 
-        string oldOrderName = oldOrder != null ? oldOrder.name : "None";
+        orderChanged = true;
 
-        string newOrderName = mealChecker.mealToCheck != null ? mealChecker.mealToCheck.name : "None";
+        //Debug.Log("The Fussy Customer changed their order to: " + mealChecker.mealToCheck.name);
 
-        Debug.Log($"The Fussy Customer changed their order from {oldOrderName} to {newOrderName}.");
-    }
-
-    private void RemoveFussyCustomer(CustomerStateMachine customer)
-    {
-        selectedCustomers.Remove(customer);
-        customersTalkedToOnce.Remove(customer);
-    }
-
-    // Remove customers that leave before the player gets a chance to talk to them
-    private void HandleCustomerExit(CustomerStateMachine exitingCustomer)
-    {
-        if (exitingCustomer == null)
+        // Complete the Fussy Customer event
+        if (completeEventAfterOrderChange && eventSystem != null)
         {
-            return;
+            eventSystem.CompleteEvent(HawkerEventType.FussyCustomer);
         }
-
-        if (!selectedCustomers.Contains(exitingCustomer))
-        {
-            return;
-        }
-
-        RemoveFussyCustomer(exitingCustomer);
-
-        Debug.Log("A selected Fussy Customer left before finishing their change-of-mind behaviour.");
     }
 
     // Attempt to change the customer's order to a different one from their possible orders
     private bool TryChangeToDifferentOrder(MealChecker mealChecker)
     {
-        if (mealChecker == null)
-        {
-            Debug.Log("MealChecker is null.");
-            return false;
-        }
-
         if (mealChecker.customerScript == null)
         {
-            Debug.Log("MealChecker does not have a CustomerInteractScript.");
+            //Debug.Log("MealChecker does not have a CustomerInteractScript.");
+
             return false;
         }
 
         if (mealChecker.customerScript.heldCustomerData == null)
         {
-            Debug.Log("The customer does not have CustomerData.");
+            //Debug.Log("The customer does not have CustomerData.");
+
             return false;
         }
 
@@ -295,7 +241,8 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
 
         if (possibleOrders == null || possibleOrders.Count == 0)
         {
-            Debug.Log("The customer has no possible meal orders.");
+            //Debug.Log("The customer has no possible meal orders.");
+
             return false;
         }
 
@@ -325,7 +272,8 @@ public class FussyCustomerOrderEventScript : MonoBehaviour
         // Should not be possible, but if the customer has no alternative orders, log a message and return false
         if (alternativeOrders.Count == 0)
         {
-            Debug.Log("The customer has no order different from their current order.");
+            //Debug.Log("The customer has no order different from their current order.");
+
             return false;
         }
 

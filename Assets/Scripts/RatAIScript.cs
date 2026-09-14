@@ -155,14 +155,14 @@ public class RatAIScript : MonoBehaviour
 
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
-            print("stop eating");
+            //print("stop eating");
             return;
         }
 
         float distanceToFood = Vector3.Distance(transform.position, foodTarget.transform.position);
 
         // Food is too far away
-        print(PlayerHandScript.instance.currentFoodHeld == foodTarget);
+        //print(PlayerHandScript.instance.currentFoodHeld == foodTarget);
         if (distanceToFood >= tooFarDistance || PlayerHandScript.instance.currentFoodHeldObj == foodTarget)
         {
             agent.isStopped = false;
@@ -170,7 +170,7 @@ public class RatAIScript : MonoBehaviour
             foodTarget = null;
             eatingTimer = 0;
             OnMouseStopEating?.Invoke(false);
-            print("stop eating");
+            //print("stop eating");
             return;
         }
 
@@ -183,7 +183,7 @@ public class RatAIScript : MonoBehaviour
             OnMouseStopEating?.Invoke(false);
 
             agent.SetDestination(foodTarget.transform.position);
-            print("stop eating");
+            //print("stop eating");
 
             return;
         }

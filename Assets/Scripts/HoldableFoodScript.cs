@@ -76,7 +76,7 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
         if (other.gameObject.tag == "Floor")
         {
             other.gameObject.GetComponent<FloorManager>().OnFoodHitThisFloor?.Invoke(gameObject);
-            print("Hit floor");
+            //print("Hit floor");
         }
     }
 
@@ -90,7 +90,7 @@ public class HoldableFoodScript : MonoBehaviour, ISaveable
         if (other.gameObject.tag == "Floor")
         {
             FloorManager.OnFoodPickupFromFloor?.Invoke(gameObject);
-            print("left floor");
+            //print("left floor");
         }
     }
 

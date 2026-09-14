@@ -33,8 +33,8 @@ public class SaveLoadManager : MonoBehaviour
         {
             //StartCoroutine(BeginSavingAllData());
             //BeginSavingAllData();
-            print(DaySystemManager.dayCounter + " and money is " + MoneyManager.playerMoneyAmount);
-            print("L");
+            //print(DaySystemManager.dayCounter + " and money is " + MoneyManager.playerMoneyAmount);
+            //print("L");
         }
 
         //if (Input.GetKeyDown(KeyCode.N))
