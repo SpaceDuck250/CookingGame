@@ -3,7 +3,7 @@ using UnityEngine;
 public class MenuDisplayScript : MonoBehaviour
 {
     public MenuItemDisplayScript[] menuDisplays;
-    public MealData[] menuItems;
+    public MealData[] menuItems = new MealData[7];
 
     private void Start()
     {
@@ -14,16 +14,21 @@ public class MenuDisplayScript : MonoBehaviour
     {
         int amountToDisplay = Mathf.Min(menuDisplays.Length, menuItems.Length);
 
-        for (int i = 0; i < menuDisplays.Length; i++)
+        for (int i = 0; i < amountToDisplay; i++)
         {
-            if (i < amountToDisplay && menuItems[i] != null)
+            if (menuDisplays[i] == null)
             {
-                menuDisplays[i].SetMenuItem(menuItems[i]);
+                Debug.Log($"Menu Display {i} has not been assigned.");
+                continue;
             }
-            else
+
+            if (menuItems[i] == null)
             {
                 menuDisplays[i].Hide();
+                continue;
             }
+
+            menuDisplays[i].SetMenuItem(menuItems[i]);
         }
     }
 }
