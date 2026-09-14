@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     public BoxCollider[] pointers;
     public GameObject[] recipe;
     public GameObject[] instruction;
+    public GameObject settting;
     public MouseHover mouseHover;
     public Material transparent;
     Coroutine currentCoroutine;
@@ -44,57 +45,57 @@ public class MainMenu : MonoBehaviour
     }
     void Update()
     {
-    if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-    {
-        HandleInput(Mouse.current.position.ReadValue());
-    }
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            HandleInput(Mouse.current.position.ReadValue());
+        }
     }
     public void HandleInput(Vector2 screenPosition)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
         RaycastHit hit;
-        
+
         if (Physics.Raycast(ray, out hit))
         {
             // Your button logic
-            if (hit.collider.CompareTag("Recipe Book"))
+            if (hit.collider.CompareTag("Recipe Book") && !settting.activeInHierarchy)
             {
                 Debug.Log("LOL");
                 StartCoroutine(MoveCameraToRecipe());
-                foreach(GameObject book in recipe)
+                foreach (GameObject book in recipe)
                 {
-                    foreach(BoxCollider obj in objectsInGame)
+                    foreach (BoxCollider obj in objectsInGame)
                     {
-                        if(obj.name == "Instructions Manual" || obj.name == "Map")
+                        if (obj.name == "Instructions Manual" || obj.name == "Map")
                         {
                             obj.enabled = false;
                         }
                     }
-                    if(book.name == "Recipe Book Unopened")
-                    book.SetActive(false);
-                    if(book.name == "Recipe Book Opened")
-                    book.SetActive(true);
+                    if (book.name == "Recipe Book Unopened")
+                        book.SetActive(false);
+                    if (book.name == "Recipe Book Opened")
+                        book.SetActive(true);
                 }
             }
-            if (hit.collider.CompareTag("Instructions"))
+            if (hit.collider.CompareTag("Instructions") && !settting.activeInHierarchy)
             {
                 StartCoroutine(MoveCameraToInstructions());
-                foreach(GameObject book in instruction)
+                foreach (GameObject book in instruction)
                 {
-                    foreach(BoxCollider obj in objectsInGame)
+                    foreach (BoxCollider obj in objectsInGame)
                     {
-                        if(obj.name == "Recipe Book" || obj.name == "Map")
+                        if (obj.name == "Recipe Book" || obj.name == "Map")
                         {
                             obj.enabled = false;
                         }
                     }
-                    if(book.name == "Instructions Unopened")
-                    book.SetActive(false);
-                    if(book.name == "Instructions Opened")
-                    book.SetActive(true);
+                    if (book.name == "Instructions Unopened")
+                        book.SetActive(false);
+                    if (book.name == "Instructions Opened")
+                        book.SetActive(true);
                 }
             }
-            if(hit.collider.name == "Yishun Pointer" ||
+            if (hit.collider.name == "Yishun Pointer" ||
             hit.collider.name == "Marina Bay Pointer" ||
             hit.collider.name == "Changi Airport Pointer" ||
             hit.collider.name == "Scape Pointer" ||
@@ -107,9 +108,9 @@ public class MainMenu : MonoBehaviour
                     renderer.material.color = Color.green;
                     renderer.material.SetColor("_EmissionColor", Color.black);
                     Datamanager.location = hit.collider.name;
-                    foreach(BoxCollider obj in objectsInGame)
+                    foreach (BoxCollider obj in objectsInGame)
                     {
-                        if(obj.CompareTag("Pointer") && obj.name != hit.collider.name)
+                        if (obj.CompareTag("Pointer") && obj.name != hit.collider.name)
                         {
                             MeshRenderer rendererAgain = obj.gameObject.GetComponent<MeshRenderer>();
                             rendererAgain.material.color = transparent.color;
@@ -117,28 +118,28 @@ public class MainMenu : MonoBehaviour
                     }
                 }
             }
-            if(hit.collider.CompareTag("Easy Box"))
+            if (hit.collider.CompareTag("Easy Box"))
             {
                 Datamanager.difficulty = "Easy";
                 SceneManager.LoadScene(Datamanager.location);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            if(hit.collider.CompareTag("Normal Box"))
+            if (hit.collider.CompareTag("Normal Box"))
             {
                 Datamanager.difficulty = "Normal";
                 SceneManager.LoadScene(Datamanager.location);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            if(hit.collider.CompareTag("Hard Box"))
+            if (hit.collider.CompareTag("Hard Box"))
             {
                 Datamanager.difficulty = "Hard";
                 SceneManager.LoadScene(Datamanager.location);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            if(hit.collider.CompareTag("Jovan Box"))
+            if (hit.collider.CompareTag("Jovan Box"))
             {
                 Datamanager.difficulty = "Jovan";
                 SceneManager.LoadScene("Main Game");
@@ -151,7 +152,7 @@ public class MainMenu : MonoBehaviour
     {
         shutterSound.enabled = true;
         if (currentCoroutine != null)
-        StopCoroutine(currentCoroutine);
+            StopCoroutine(currentCoroutine);
         currentCoroutine = StartCoroutine(Open());
     }
     void Tutorial()
@@ -163,13 +164,13 @@ public class MainMenu : MonoBehaviour
     void Map()
     {
         StartCoroutine(MoveCameraToMap());
-                foreach(BoxCollider obj in objectsInGame)
-                {
-                    if(obj.name == "Recipe Book" || obj.name == "Instructions Manual" || obj.name == "Map")
-                    {
-                        obj.enabled = false;
-                    }
-                }
+        foreach (BoxCollider obj in objectsInGame)
+        {
+            if (obj.name == "Recipe Book" || obj.name == "Instructions Manual" || obj.name == "Map")
+            {
+                obj.enabled = false;
+            }
+        }
     }
     void PlayGame()
     {
@@ -181,13 +182,13 @@ public class MainMenu : MonoBehaviour
     }
     void Back()
     {
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
             obj.enabled = false;
         }
         shutterSound.enabled = true;
         if (currentCoroutine != null)
-        StopCoroutine(currentCoroutine);
+            StopCoroutine(currentCoroutine);
         currentCoroutine = StartCoroutine(Close());
     }
     void ReturnToLobby()
@@ -206,35 +207,35 @@ public class MainMenu : MonoBehaviour
         Vector3 cameraStart = cameraPosition.localPosition;
         Vector3 cameraNew = cameraStart + Vector3.up * 0.74f;
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, 0f);
-        
+
         float t = 0;
-        
+
         while (t < 1)
         {
             t += Time.deltaTime;
             shutters.localPosition = Vector3.Lerp(start, target, t);
             cameraPosition.localPosition = Vector3.Lerp(cameraStart, cameraNew, t);
-            cameraPosition.rotation = Quaternion.RotateTowards(cameraPosition.rotation,targetRotation, 90 * Time.deltaTime);
+            cameraPosition.rotation = Quaternion.RotateTowards(cameraPosition.rotation, targetRotation, 90 * Time.deltaTime);
             yield return null;
         }
-        
+
         shutters.localPosition = target;
         cameraPosition.localPosition = cameraNew;
         yield return new WaitForSeconds(0.1f);
         shutterSound.enabled = false;
         lobby.SetActive(true);
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
             obj.enabled = true;
-            if(obj.gameObject.name == "Recipe Book")
+            if (obj.gameObject.name == "Recipe Book")
             {
                 obj.gameObject.tag = "Recipe Book";
             }
-            if(obj.gameObject.name == "Instructions Manual")
+            if (obj.gameObject.name == "Instructions Manual")
             {
                 obj.gameObject.tag = "Instructions";
             }
-            if(obj.gameObject.name == "Map")
+            if (obj.gameObject.name == "Map")
             {
                 obj.gameObject.tag = "Map";
             }
@@ -242,9 +243,9 @@ public class MainMenu : MonoBehaviour
     }
     IEnumerator Close()
     {
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.name == "Recipe Book" || obj.gameObject.name == "Instructions Manual" || obj.gameObject.name == "Map")
+            if (obj.gameObject.name == "Recipe Book" || obj.gameObject.name == "Instructions Manual" || obj.gameObject.name == "Map")
             {
                 obj.gameObject.tag = "Untagged";
             }
@@ -254,9 +255,9 @@ public class MainMenu : MonoBehaviour
         Vector3 cameraEnd = cameraPosition.localPosition;
         Vector3 cameraOld = cameraEnd + Vector3.down * 0.74f;
         Quaternion endTargetRotation = Quaternion.Euler(-20f, 0f, 0f);
-        
+
         float t = 0;
-        
+
         while (t < 1)
         {
             t += Time.deltaTime;
@@ -264,7 +265,7 @@ public class MainMenu : MonoBehaviour
             cameraPosition.localPosition = Vector3.Lerp(cameraEnd, cameraOld, t);
             yield return null;
         }
-        
+
         shutters.localPosition = endTarget;
         cameraPosition.localPosition = cameraOld;
         yield return new WaitForSeconds(0.1f);
@@ -278,9 +279,9 @@ public class MainMenu : MonoBehaviour
     }
     IEnumerator MoveToLevel()
     {
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.name == "Recipe Book" || obj.gameObject.name == "Instructions Manual" || obj.gameObject.name == "Map")
+            if (obj.gameObject.name == "Recipe Book" || obj.gameObject.name == "Instructions Manual" || obj.gameObject.name == "Map")
             {
                 obj.gameObject.tag = "Untagged";
             }
@@ -292,11 +293,11 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
         levelSelection.SetActive(true);
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.name == "Easy Box" || 
-            obj.gameObject.name == "Normal Box" || 
-            obj.gameObject.name == "Hard Box" || 
+            if (obj.gameObject.name == "Easy Box" ||
+            obj.gameObject.name == "Normal Box" ||
+            obj.gameObject.name == "Hard Box" ||
             obj.gameObject.name == "Jovan Box")
             {
                 obj.gameObject.tag = obj.gameObject.name;
@@ -305,11 +306,11 @@ public class MainMenu : MonoBehaviour
     }
     IEnumerator BackFromLevel()
     {
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.name == "Easy Box" || 
-            obj.gameObject.name == "Normal Box" || 
-            obj.gameObject.name == "Hard Box" || 
+            if (obj.gameObject.name == "Easy Box" ||
+            obj.gameObject.name == "Normal Box" ||
+            obj.gameObject.name == "Hard Box" ||
             obj.gameObject.name == "Jovan Box")
             {
                 obj.gameObject.tag = "Untagged";
@@ -321,17 +322,17 @@ public class MainMenu : MonoBehaviour
             cameraPosition.rotation = Quaternion.RotateTowards(cameraPosition.rotation, targetRotation, 90 * Time.deltaTime);
             yield return null;
         }
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.name == "Recipe Book")
+            if (obj.gameObject.name == "Recipe Book")
             {
                 obj.gameObject.tag = "Recipe Book";
             }
-            if(obj.gameObject.name == "Instructions Manual")
+            if (obj.gameObject.name == "Instructions Manual")
             {
                 obj.gameObject.tag = "Instructions";
             }
-            if(obj.gameObject.name == "Map")
+            if (obj.gameObject.name == "Map")
             {
                 obj.gameObject.tag = "Map";
             }
@@ -372,9 +373,9 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
         cameraPosition.position = end;
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.CompareTag("Pointer"))
+            if (obj.gameObject.CompareTag("Pointer"))
             {
                 obj.enabled = true;
             }
@@ -383,9 +384,9 @@ public class MainMenu : MonoBehaviour
     }
     IEnumerator BackFromBook()
     {
-        foreach(GameObject book in instruction)
+        foreach (GameObject book in instruction)
         {
-            if(book.name == "Instructions Unopened")
+            if (book.name == "Instructions Unopened")
             {
                 book.SetActive(true);
             }
@@ -394,9 +395,9 @@ public class MainMenu : MonoBehaviour
                 book.SetActive(false);
             }
         }
-        foreach(GameObject book in recipe)
+        foreach (GameObject book in recipe)
         {
-            if(book.name == "Recipe Book Unopened")
+            if (book.name == "Recipe Book Unopened")
             {
                 book.SetActive(true);
             }
@@ -416,9 +417,9 @@ public class MainMenu : MonoBehaviour
     }
     IEnumerator BackFromMap()
     {
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.gameObject.CompareTag("Pointer"))
+            if (obj.gameObject.CompareTag("Pointer"))
             {
                 obj.enabled = false;
             }
@@ -431,9 +432,9 @@ public class MainMenu : MonoBehaviour
         }
         cameraPosition.position = end;
         lobby.SetActive(true);
-        foreach(BoxCollider obj in objectsInGame)
+        foreach (BoxCollider obj in objectsInGame)
         {
-            if(obj.name == "Recipe Book" || obj.name == "Instructions Manual" || obj.name == "Map")
+            if (obj.name == "Recipe Book" || obj.name == "Instructions Manual" || obj.name == "Map")
             {
                 obj.enabled = true;
             }
