@@ -37,13 +37,11 @@ public class CookingParticleScript : MonoBehaviour
 
     private void OnCookingSuccess(Vector3 spawnPos, GameObject displayObj, Transform parent)
     {
-        StopCookingParticles();
         SpawnBurst(successParticlePrefab, spawnPos);
     }
 
     private void OnCookingFail(Vector3 spawnPos, GameObject displayObj, Transform parent)
     {
-        StopCookingParticles();
         SpawnBurst(failParticlePrefab, spawnPos);
     }
 
