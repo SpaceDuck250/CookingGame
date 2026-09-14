@@ -27,7 +27,7 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
         spawner = CustomerSpawnerScript.instance;
         if (spawner == null)
         {
-            Debug.Log("UncleFedrickSpawnHandler, No CustomerSpawnerScript.instance found in scene");
+            //Debug.Log("UncleFedrickSpawnHandler, No CustomerSpawnerScript.instance found in scene");
             enabled = false;
             return;
         }
@@ -62,7 +62,7 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
         // If an Uncle is already present, remove this duplicate immediately
         if (isUnclePresent)
         {
-            Debug.Log("UncleFedrickSpawnHandler: Duplicate Uncle spawned, removed duplicate");
+            //Debug.Log("UncleFedrickSpawnHandler: Duplicate Uncle spawned, removed duplicate");
 
             // It will remove it from its active list and free up chair/queue transforms
             CustomerSpawnerScript.OnCustomerExit?.Invoke(customer);
@@ -114,7 +114,7 @@ public class UncleFedrickSpawnHandler : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("UncleFedrickSpawnHandler: No child prefab available to spawn");
+                        //Debug.Log("UncleFedrickSpawnHandler: No child prefab available to spawn");
                         break;
                     }
                 }

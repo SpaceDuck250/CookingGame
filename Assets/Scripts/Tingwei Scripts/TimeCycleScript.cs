@@ -64,7 +64,7 @@ public class TimeCycleScript : MonoBehaviour
     {
         currentTimeOfDay = newTimeOfDay;
 
-        Debug.Log("Time changed to: " + currentTimeOfDay);
+        //Debug.Log("Time changed to: " + currentTimeOfDay);
 
         OnTimeOfDayChanged?.Invoke(currentTimeOfDay);
     }

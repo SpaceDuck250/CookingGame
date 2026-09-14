@@ -67,6 +67,6 @@ public class AI : MonoBehaviour
         animator.SetTrigger("Sit");
         transform.LookAt(table);
         
-        Debug.Log("Sat down");
+        //Debug.Log("Sat down");
     }
 }

@@ -19,7 +19,6 @@ public class SnitchFloatingTextScript : MonoBehaviour
 
         if (textComponent == null)
         {
-            Debug.LogWarning("SnitchFloatingTextScript: no TextMeshPro found or assigned.");
             enabled = false;
             return;
         }

@@ -21,7 +21,6 @@ public class HealthInspectorManager : MonoBehaviour
 
     public static void ReportStall(string reportingCustomerName, int finalScore)
     {
-        Debug.Log("[Health Inspector] " + reportingCustomerName + " reported the Stall Final score was " + finalScore);
 
         OnStallReported?.Invoke(reportingCustomerName, finalScore);
 

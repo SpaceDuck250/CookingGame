@@ -79,7 +79,6 @@ public class HealthInspectorAIScript : MonoBehaviour
 
         if (inspectionPoints == null || inspectionPoints.Count == 0)
         {
-            Debug.LogWarning("[Health Inspector] No inspection points assigned - leaving immediately.");
             OnInspectorChangeState?.Invoke(InspectorState.WalkingToExit);
             return;
         }
@@ -177,9 +176,6 @@ public class HealthInspectorAIScript : MonoBehaviour
             violationsFound += fineUnits;
 
             TallyViolations(foundViolations);
-
-            Debug.Log("[Health Inspector] Violation found at " + point.pointName + " - " + string.Join(", ", foundViolations)
-                + " (" + fineUnits + " fine unit(s), strictness: " + strictness + ")");
         }
     }
 
@@ -218,11 +214,6 @@ public class HealthInspectorAIScript : MonoBehaviour
         if (!passed)
         {
             ApplyFine(totalFine);
-            Debug.Log("[Health Inspector] Failed inspection - " + violationsFound + " violation(s). Fined $" + totalFine);
-        }
-        else
-        {
-            Debug.Log("[Health Inspector] Passed inspection - no violations found.");
         }
 
         OnInspectionReport?.Invoke(violationTally, totalFine, passed);
@@ -235,10 +226,6 @@ public class HealthInspectorAIScript : MonoBehaviour
         if (MoneyManager.instance != null)
         {
             MoneyManager.instance.ChangeMoneyAmount(-amount);
-        }
-        else
-        {
-            Debug.LogWarning("[Health Inspector] MoneyManager instance not found - fine not applied.");
         }
 
         if (floatingTextPrefab != null)

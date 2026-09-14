@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1b3e13915e4ad342b4e05ca03a9fc6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6070156393206391786}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1b3e13915e4ad342b4e05ca03a9fc6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5451892169451164745}
   m_SourcePrefab: {fileID: 100100000, guid: c1b3e13915e4ad342b4e05ca03a9fc6e, type: 3}
 --- !u!1 &4013395506833827216 stripped
 GameObject:
@@ -157,14 +160,17 @@ MonoBehaviour:
   cookingStationIn: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
   changeScaleOnHand: 0
-  changeRotationOnHand: 0
+  changeRotationOnHand: 1
   pickupScaleModifier: 0
   holdOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  rotationOffset: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   canPickUp: 1
-  platterScaleModifier: 1
-  changeScaleOnPlatter: 0
+  platterScaleModifier: 0.5
+  changeScaleOnPlatter: 1
+  changeRotationOnPlace: 0
+  placedRotationOffset: {x: 0, y: 0, z: 0, w: 1}
   doFloorChecks: 1
+  isInvisiblePickupObj: 0
   anotherThingToChangeLayer: {fileID: 0}
 --- !u!114 &6070156393206391786
 MonoBehaviour:
@@ -182,3 +188,15 @@ MonoBehaviour:
   setManually: 0
   showControls: 1
   controlsText: 
+--- !u!114 &5451892169451164745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013395506833827216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c550083b3060760468303150338dddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorHitterScript

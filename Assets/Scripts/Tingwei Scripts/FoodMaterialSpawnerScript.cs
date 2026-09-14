@@ -14,7 +14,7 @@ public class FoodMaterialSpawnerScript : MonoBehaviour
     {
         if (spawnItem == null)
         {
-            Debug.Log("No food item has been assigned.");
+            //Debug.Log("No food item has been assigned.");
             return;
         }
 

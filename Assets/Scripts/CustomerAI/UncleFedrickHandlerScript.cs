@@ -105,7 +105,7 @@ public class UncleFedrickHandler : MonoBehaviour
 
             // Change state back to walking to counter
             stateMachine.OnCustomerChangeState?.Invoke(Customer.CustomerState.WalkingToCounter);
-            Debug.Log("Uncle Fedrick is returning to counter.");
+            //Debug.Log("Uncle Fedrick is returning to counter.");
             return;
         }
         else
@@ -119,7 +119,7 @@ public class UncleFedrickHandler : MonoBehaviour
             {
                 stateMachine.OnCustomerChangeState?.Invoke(Customer.CustomerState.LeavingMap);
             }
-            Debug.Log("No free queue point available for Uncle Fedrick return, sending to exit.");
+            //Debug.Log("No free queue point available for Uncle Fedrick return, sending to exit.");
         }
     }
 }
