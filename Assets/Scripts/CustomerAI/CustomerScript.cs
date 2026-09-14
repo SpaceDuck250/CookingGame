@@ -42,6 +42,8 @@ public class CustomerMovementScript : MonoBehaviour
 
     public bool paused = false;
 
+    public bool rotatesToCounter = true;
+
     private void Awake()
     {
         OnNewDestinationChange += SetNewDestination;
@@ -61,7 +63,7 @@ public class CustomerMovementScript : MonoBehaviour
         WalkToDestination();
 
         // For a bug fix dumb as fuck
-        if (customerStateMachine.currentState == CustomerState.WalkingToCounter && CheckIfCloseEnoughToDestination())
+        if (customerStateMachine.currentState == CustomerState.WalkingToCounter && CheckIfCloseEnoughToDestination() && rotatesToCounter)
         {
             customerStateMachine.interactScript.RotateTo(CustomerSpawnerScript.instance.mainCounterPoint.gameObject);
         }
