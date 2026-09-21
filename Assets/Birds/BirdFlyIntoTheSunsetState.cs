@@ -28,7 +28,7 @@ public class BirdFlyIntoTheSunsetState : BirdState
     {
         if (flyPointsList.Count == 0)
         {
-            print("Empty array");
+            //print("Empty array");
             return;
         }
 

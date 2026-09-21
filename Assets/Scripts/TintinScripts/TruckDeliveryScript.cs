@@ -47,7 +47,7 @@ public class TruckDeliveryScript : MonoBehaviour
         while (foodDeliveryList.Count > 0)
         {
             FoodDeliveryData deliveryData = foodDeliveryList.Dequeue();
-            print(deliveryData + " deliver");
+            //print(deliveryData + " deliver");
             SpawnFoodBox(deliveryData, spawnPoint);
 
             yield return new WaitForSeconds(timeBetweenBoxSpawns);

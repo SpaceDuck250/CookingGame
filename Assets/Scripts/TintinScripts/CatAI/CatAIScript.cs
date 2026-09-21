@@ -84,7 +84,6 @@ public class CatAIScript : MonoBehaviour
         if (parentWithWanderPoints != null)
         {
             BirdMovementScript.FillListWithChildrenFromTransform(parentWithWanderPoints, ref wanderPoints);
-            Debug.Log("[Cat] Loaded " + wanderPoints.Count + " wander points from " + parentWithWanderPoints.name);
         }
 
         OnCatChangeState?.Invoke(CatState.WalkingToStall);

@@ -168,7 +168,7 @@ public class CustomerStateMachine : MonoBehaviour
     {
         if (queuePoint == null)
         {
-            Debug.Log("Customer has no counterPoint.");
+            //Debug.Log("Customer has no counterPoint.");
             return;
         }
 

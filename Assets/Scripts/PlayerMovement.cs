@@ -40,10 +40,16 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveZ = Input.GetAxisRaw("Vertical");
 
-        xLook = cam.transform.right.normalized;
+        //xLook = cam.transform.right.normalized;
+        //xLook.y = 0;
+
+        //zLook = cam.transform.forward.normalized;
+        //zLook.y = 0;
+
+        xLook = transform.right.normalized;
         xLook.y = 0;
 
-        zLook = cam.transform.forward.normalized;
+        zLook = transform.forward.normalized;
         zLook.y = 0;
 
         CheckIfMoving(moveX, moveZ);
