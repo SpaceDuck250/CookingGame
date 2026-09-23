@@ -64,6 +64,8 @@ public class PauseGameScript : MonoBehaviour
 
         ShowMouse(true);
         SceneManager.LoadScene(mainMenuName);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
 
